@@ -21,6 +21,10 @@ OGLocalMultiplayerInput="*res://addons/og_local_multiplayer_input/code/autoloads
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 
+[debug]
+
+file_logging/enable_file_logging=true
+
 [display]
 
 window/size/viewport_width=1280
