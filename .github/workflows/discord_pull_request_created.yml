@@ -1,0 +1,43 @@
+name: "(Discord) Pull request created"
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  export_game:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    name: Sending PR info in Discord
+    env:
+      DAVID_USER: "${{ secrets.DAVID_USER }}"
+      MIGUELP_USER: "${{ secrets.MIGUELP_USER }}"
+      ANTONIO_USER: "${{ secrets.ANTONIO_USER }}"
+      RODRO_USER: "${{ secrets.RODRO_USER }}"
+      reviewer: '${{ github.event.pull_request.requested_reviewers[0].login }}'
+    steps:
+      - name: Run script file
+        run: |
+          #!/bin/bash
+          
+          declare -A reviewer_dictionary
+
+          reviewer_dictionary['miguelpOcacho']=$MIGUELP_USER
+          reviewer_dictionary['DavidOcacho']=$DAVID_USER
+          reviewer_dictionary['AntonioJose-OcachoGames']=$ANTONIO_USER
+          reviewer_dictionary['RodroOcacho']=$RODRO_USER
+          
+          echo "reviewer_discord_id=${reviewer_dictionary[$reviewer]}" >> $GITHUB_ENV
+          
+        shell: bash
+
+      - name: Sending message to discord 
+        uses: sarisia/actions-status-discord@v1.12.0
+        with:
+          title: New `Pull Request` has been created for you!
+          description: Make sure the checks from the `Github Actions` are passing before merging <@${{ env.reviewer_discord_id }}>
+          username: GitHub Pull Requests
+          webhook: "https://discord.com/api/webhooks/1090311843551133746/NZ21-obLAGP1pNkU-ifSTvkjyQxgdf7w3rsmBlqKJSGkN59h2eA6Gcz7j777LIWaHkF0"
+          avatar_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/800px-Dwayne_Johnson_2014_%28cropped%29.jpg"
+          content: "<@${{ env.creator_discord_id }}>"
+
+

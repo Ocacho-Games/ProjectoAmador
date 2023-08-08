@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1f8ilg7fdk1y"]
+
+[ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="1_h48ib"]
+[ext_resource type="Script" path="res://addons/og_local_multiplayer_input/code/tutorial/og_tutorial_parent.gd" id="2_bulf1"]
+
+[node name="L_ChoosePlayer" type="Node2D"]
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(89.5, 140.5)
+scale = Vector2(0.554688, 0.554688)
+texture = ExtResource("1_h48ib")
+script = ExtResource("2_bulf1")
+
+[node name="Player2" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(217, 141)
+scale = Vector2(0.554688, 0.554688)
+texture = ExtResource("1_h48ib")
+script = ExtResource("2_bulf1")
+
+[node name="Player3" type="Sprite2D" parent="."]
+modulate = Color(0, 0.984314, 0, 1)
+position = Vector2(347, 142)
+scale = Vector2(0.554688, 0.554688)
+texture = ExtResource("1_h48ib")
+script = ExtResource("2_bulf1")
+
+[node name="Player4" type="Sprite2D" parent="."]
+modulate = Color(0.00392157, 0, 1, 1)
+position = Vector2(465, 142)
+scale = Vector2(0.554688, 0.554688)
+texture = ExtResource("1_h48ib")
+script = ExtResource("2_bulf1")
+
+[node name="SelectText" type="RichTextLabel" parent="."]
+offset_left = 137.0
+offset_top = 30.0
+offset_right = 455.0
+offset_bottom = 85.0
+text = "PRESS SELECT ON YOUR GAMEPAD FOR ENABLE YOUR PLAYER
+"
+
+[node name="PlayText" type="RichTextLabel" parent="."]
+offset_left = 131.0
+offset_top = 243.0
+offset_right = 449.0
+offset_bottom = 298.0
+text = "Press the face down button to start the game on the first player
+"
