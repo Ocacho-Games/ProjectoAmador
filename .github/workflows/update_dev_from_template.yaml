@@ -1,0 +1,16 @@
+name: Updating Game dev branch with Home-Godot template
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  update_dev:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    if: ${{ github.repository != 'Ocacho-Games/Home-Godot' }}
+    steps:
+      - uses: actions/checkout@v3.0.2
+        with:
+          token: ${{ secrets.PRIVATE_GITHUB_TOKEN }}
+      - run: chmod +x scripts/get_latest.bat && scripts/get_latest.bat
