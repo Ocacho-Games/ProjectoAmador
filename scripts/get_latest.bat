@@ -8,4 +8,4 @@ git pull -X theirs template main --allow-unrelated-histories
 git remote remove template
 
 @REM Pushing changes
-git push
+git push origin dev
