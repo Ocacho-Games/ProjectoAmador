@@ -36,7 +36,7 @@ jobs:
           title: New `Pull Request` has been created for you!
           description: Make sure the checks from the `Github Actions` are passing before merging <@${{ env.reviewer_discord_id }}>
           username: GitHub Pull Requests
-          webhook: "https://discord.com/api/webhooks/1090311843551133746/NZ21-obLAGP1pNkU-ifSTvkjyQxgdf7w3rsmBlqKJSGkN59h2eA6Gcz7j777LIWaHkF0"
+          webhook: "${{ secrets.WEBHOOK_PULL_REQUESTS }}"
           avatar_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Dwayne_Johnson_2014_%28cropped%29.jpg/800px-Dwayne_Johnson_2014_%28cropped%29.jpg"
           content: "<@${{ env.creator_discord_id }}>"
 

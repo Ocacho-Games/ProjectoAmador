@@ -80,6 +80,6 @@ jobs:
               Please, <@${{ env.creator_discord_id }}>, run the tests locally and fix the issues before merging.
               Click on the `Workflow` field of this message and download the `gut_test_results` artifact in order to download the logs.
             username: GitHub CI-CL
-            webhook: "https://discord.com/api/webhooks/1134814520490074132/70Xm-bdU3AjLHVjKFnpOu9tZAZd9xjVcoQ8iJM79QkyqUXbHzS0wIQrhV0B0vfRy_hEj"
+            webhook: "${{ secrets.WEBHOOK_CI_CL }}"
             avatar_url: "https://upload.wikimedia.org/wikipedia/commons/2/27/Pepe_Viyuela.jpg"
             content: "<@${{ env.creator_discord_id }}>"

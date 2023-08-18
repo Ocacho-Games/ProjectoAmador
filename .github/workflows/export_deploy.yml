@@ -92,7 +92,7 @@ jobs:
           Version `${{ steps.release.outputs.version }}`
           Click [here](${{ steps.artifacts.outputs.url }}) to download!
         username: GitHub Deploys
-        webhook: "https://discord.com/api/webhooks/1090315263213326346/SRQ-H2J-iovLCoLnnqPETbs_0kmDAxdcO3cAnmt7sb7GnrszjWbjs0Ljlo9_drvcqPqs"
+        webhook: "${{ secrets.WEBHOOK_RELEASES }}"
         avatar_url: "https://media.licdn.com/dms/image/C4D03AQHoLOeZ2WeGuQ/profile-displayphoto-shrink_800_800/0/1517369560191?e=2147483647&v=beta&t=CytOviQ-TsPLNZQk7kVuUpniYRDLtsDLR3gam4KKGjA"
 
   tests_failed:
@@ -120,7 +120,7 @@ jobs:
               Please, <@&${{ secrets.OCACHER_DISCORD_ID }}>, run the tests locally and fix the issues in order to unblock the branch build.
               Click on the `Workflow` field of this message and download the `gut_test_results` artifact in order to download the logs.
             username: GitHub CI-CL
-            webhook: "https://discord.com/api/webhooks/1134814520490074132/70Xm-bdU3AjLHVjKFnpOu9tZAZd9xjVcoQ8iJM79QkyqUXbHzS0wIQrhV0B0vfRy_hEj"
+            webhook: "${{ secrets.WEBHOOK_CI_CL }}"
             avatar_url: "https://upload.wikimedia.org/wikipedia/commons/2/27/Pepe_Viyuela.jpg"
 
     #TODO export_failed
