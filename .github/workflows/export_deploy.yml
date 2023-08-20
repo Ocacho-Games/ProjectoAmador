@@ -8,7 +8,8 @@ on:
 
 jobs: 
   export_game:
-    runs-on: ubuntu-latest
+    permissions: write-all
+    runs-on: windows-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3.0.2
