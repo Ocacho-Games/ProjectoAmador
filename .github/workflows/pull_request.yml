@@ -19,6 +19,15 @@ jobs:
         with:
           name: gut_test_results
           path: ./godot/test_results.xml
+  
+  third_party_libraries:
+    runs-on: windows-latest
+    permissions: write-all
+    needs: pass_tests
+    if: ${{ success() }}
+    name: Install Godot third party libraries
+    steps:
+      - run: cd ./scripts && chmod -x ./setup.bat && ./setup.bat
 
   export_game:
     runs-on: ubuntu-latest
@@ -29,9 +38,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3.0.2
-
-    - name: Installing third-party libraries
-      run: ls && chmod -x ./scripts/setup.bat && ./scripts/setup.bat
 
     - name: Exporting game
       id: export
