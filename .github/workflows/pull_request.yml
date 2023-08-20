@@ -27,6 +27,7 @@ jobs:
     if: ${{ success() }}
     name: Install Godot third party libraries
     steps:
+      - uses: actions/checkout@v3.0.2
       - run: cd .\scripts && .\setup.bat
 
   export_game:

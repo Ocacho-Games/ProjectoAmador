@@ -7,38 +7,39 @@ on:
       - dev
 
 jobs:
-  # pass_tests:
-  #   name: Passing GUT Tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3.0.2
-  #     - uses: croconut/godot-tester@master
-  #       with:
-  #         version: "4.1"
-  #         path: "godot"
-  #         minimum-pass: "1.0"
-  #         test-dir: "res://test"
-  #         result-output-file: "test_results.xml"
-  #     - uses: actions/upload-artifact@v2
-  #       if: always()
-  #       with:
-  #         name: gut_test_results
-  #         path: ./godot/test_results.xml
+  pass_tests:
+    name: Passing GUT Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - uses: croconut/godot-tester@master
+        with:
+          version: "4.1"
+          path: "godot"
+          minimum-pass: "1.0"
+          test-dir: "res://test"
+          result-output-file: "test_results.xml"
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: gut_test_results
+          path: ./godot/test_results.xml
 
   third_party_libraries:
     runs-on: windows-latest
     permissions: write-all
-    #needs: pass_tests
-    #if: ${{ success() }}
+    needs: pass_tests
+    if: ${{ success() }}
     name: Install Godot third party libraries
     steps:
-      - run: dir
+      - uses: actions/checkout@v3.0.2
+      - run: cd .\scripts && .\setup.bat
 
   export_game:
     name: Export Game (Windows)
     runs-on: ubuntu-latest
     permissions: write-all
-    needs: [third_party_libraries]
+    needs: [pass_tests, third_party_libraries]
     if: ${{ success() }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -107,7 +108,7 @@ jobs:
   tests_failed:
     name: GUT tests have failed
     runs-on: ubuntu-latest
-    #needs: pass_tests
+    needs: pass_tests
     if: ${{ failure() }}
     steps:
         - uses: actions/checkout@v3.0.2
