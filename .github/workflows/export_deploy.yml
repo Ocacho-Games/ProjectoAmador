@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v3.0.2
 
     - name: Installing third-party libraries
-      run: ls && chmod 777 ./scripts/setup.bat && ./scripts/setup.bat
+      run: ls && chmod 777 ./scripts/setup.bat && ./scripts/setup.bat && ls ..\godot\addons
 
 # jobs:
 #   pass_tests:
