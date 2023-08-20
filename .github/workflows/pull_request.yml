@@ -27,7 +27,7 @@ jobs:
     if: ${{ success() }}
     name: Install Godot third party libraries
     steps:
-      - run: cd ./scripts && chmod -x ./setup.bat && ./setup.bat
+      - run: cd .\scripts && .\setup.bat
 
   export_game:
     runs-on: ubuntu-latest
