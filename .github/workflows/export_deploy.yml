@@ -38,7 +38,7 @@ jobs:
     name: Export Game (Windows)
     runs-on: ubuntu-latest
     permissions: write-all
-    needs: pass_tests
+    needs: [pass_tests, third_party_libraries]
     if: ${{ success() }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

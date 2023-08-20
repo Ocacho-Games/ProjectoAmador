@@ -32,7 +32,7 @@ jobs:
   export_game:
     runs-on: ubuntu-latest
     permissions: write-all
-    needs: pass_tests
+    needs: [pass_tests, third_party_libraries]
     if: ${{ success() }}
     name: Checking PR export
     steps:
