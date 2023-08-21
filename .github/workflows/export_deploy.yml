@@ -14,10 +14,10 @@ jobs:
     name: Passing GUT Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v3.5.3
       - uses: croconut/godot-tester@master
         with:
-          version: "${GODOT_VERSION}"
+          version: ${GODOT_VERSION}
           path: "godot"
           minimum-pass: "1.0"
           test-dir: "res://test"
