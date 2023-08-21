@@ -4,10 +4,10 @@
 godot/.godot/
 
 # Third party plugins (DON"T INCLUDE GUT)
-godot/addons/scene_manager
-godot/addons/sound_manager
-godot/addons/debug_draw_3d
-godot/addons/godotsteam
+# godot/addons/scene_manager
+# godot/addons/sound_manager
+# godot/addons/debug_draw_3d
+# godot/addons/godotsteam
 
 # Gut specific ignores
 *.xml
