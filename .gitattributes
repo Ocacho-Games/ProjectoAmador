@@ -1,9 +1,0 @@
-# General binary files #
-
-# No binary files but lockeable #
-.gitignore lockable
-.gitmodules lockable
-.gitattributes lockable
-
-# No binary files but lockeable - Godot specific #
-*.cfg lockable
