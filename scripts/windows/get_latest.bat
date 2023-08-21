@@ -1,26 +1,25 @@
-set file=".gitignore"
+SET scriptPath=%~dp0
 
-IF NOT EXIST %file% cd ..
+ECHO %scriptPath%
+SET removePath=%scriptPath:*\Rikishi-Sumo=%
+ECHO %removePath%
 
-echo.>>.gitignore
-echo *.project>>.gitignore
+Echo We dont want: [%removePath%]
 
-type .gitignore
+::Now remove the rest of the path from the original string
+CALL SET "correctPath=%%scriptPath:%removePath%=%%"
+CD %correctPath%
 
-FOR /F "delims=*" %%g IN ('FINDSTR /R /I /V ".project" .gitignore') do echo %%g>>.gitignore_aux
-
-DEL /F .gitignore
-
-RENAME .gitignore_aux .gitignore
+ECHO Get-Location
 
 @REM git add .
-git stash save "Stashed things before get_latest"
-git fetch
-git checkout dev
-git remote add template https://github.com/Ocacho-Games/Home-Godot
-git fetch --all
-git pull -X theirs template main --allow-unrelated-histories
-git remote remove template
+@REM git stash save "Stashed things before get_latest"
+@REM git fetch
+@REM git checkout dev
+@REM git remote add template https://github.com/Ocacho-Games/Home-Godot
+@REM git fetch --all
+@REM git pull -X theirs template main --allow-unrelated-histories
+@REM git remote remove template
 
 @REM Pushing changes
 @REM git push origin dev
