@@ -6,31 +6,34 @@ on:
       - main
       - dev
 
+env:
+  GODOT_VERSION: 4.1.1
+
 jobs:
-  # pass_tests:
-  #   name: Passing GUT Tests
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3.0.2
-  #     - uses: croconut/godot-tester@master
-  #       with:
-  #         version: "4.1"
-  #         path: "godot"
-  #         minimum-pass: "1.0"
-  #         test-dir: "res://test"
-  #         result-output-file: "test_results.xml"
-  #     - uses: actions/upload-artifact@v2
-  #       if: always()
-  #       with:
-  #         name: gut_test_results
-  #         path: ./godot/test_results.xml
+  pass_tests:
+    name: Passing GUT Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.0.2
+      - uses: croconut/godot-tester@master
+        with:
+          version: "${GODOT_VERSION}"
+          path: "godot"
+          minimum-pass: "1.0"
+          test-dir: "res://test"
+          result-output-file: "test_results.xml"
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: gut_test_results
+          path: ./godot/test_results.xml
 
   export_game:
     name: Export Game (Windows)
     runs-on: ubuntu-latest
     permissions: write-all
-    #needs: pass_tests
-    #if: ${{ success() }}
+    needs: pass_tests
+    if: ${{ success() }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       bump_version: patch
@@ -38,8 +41,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3.5.3
     
-    # - name: Install Godot third party libraries
-    #   run: chmod +x ./scripts/linux/setup.sh && ./scripts/linux/setup.sh
+    - name: Install Godot third party libraries
+      run: chmod +x ./scripts/linux/setup.sh && ./scripts/linux/setup.sh
 
     - name: Installing wine for icon
       id: wine_install
@@ -51,8 +54,8 @@ jobs:
       id: export
       uses: firebelley/godot-export@master
       with:
-        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_linux.x86_64.zip
-        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
         relative_project_path: ./godot
         archive_output: true
         cache: true
@@ -102,7 +105,7 @@ jobs:
   tests_failed:
     name: GUT tests have failed
     runs-on: ubuntu-latest
-    #needs: pass_tests
+    needs: pass_tests
     if: ${{ failure() }}
     steps:
         - uses: actions/checkout@v3.0.2
