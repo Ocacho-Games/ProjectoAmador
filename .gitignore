@@ -15,4 +15,3 @@ godot/addons/godotsteam
 # Mono-specific ignores
 .mono/
 data_*/
-*.chroma

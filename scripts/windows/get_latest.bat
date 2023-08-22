@@ -1,22 +1,23 @@
-SET scriptPath=%~dp0
-
+:: Getting the last part of the path so we can remove it later
 ECHO %scriptPath%
 SET removePath=%scriptPath:*\Rikishi-Sumo=%
 ECHO %removePath%
 
-Echo We dont want: [%removePath%]
-
-::Now remove the rest of the path from the original string
+:: Now remove the rest of the path from the original string
 CALL SET "correctPath=%%scriptPath:%removePath%=%%"
 CD %correctPath%
 
+:: Adding all possible changes and stashing them
 git add .
 git stash save "Stashed things before get_latest"
 git fetch
+:: Moving to dev branch
 git checkout dev
+:: Adding the new remote that points to the template repository
 git remote add template https://github.com/Ocacho-Games/Home-Godot
 git fetch --all
 
+:: Iterate through folders and files and take changes from template unless file is project.godot
 FOR /F %%A IN ('DIR /B') DO (
     IF %%A == godot (
         CD %%A
@@ -31,7 +32,8 @@ FOR /F %%A IN ('DIR /B') DO (
     )
 )
 
+:: Removing the template remote from local repository
 git remote remove template
 
-@REM Pushing changes
-@REM git push origin dev
+:: Pushing changes
+git push origin dev
