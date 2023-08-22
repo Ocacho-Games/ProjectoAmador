@@ -27,7 +27,7 @@ FOR /F %%A IN ('DIR /B') DO (
         )
         CD ..
     )
-    ELSE
+    IF %%A NEQ godot
     (
         echo %%A
     )
