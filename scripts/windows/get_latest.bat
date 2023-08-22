@@ -21,7 +21,7 @@ FOR /F %%A IN ('DIR /B') DO (
     IF %%A == godot (
         CD %%A
         FOR /F %%B IN ('DIR /B') DO (
-            IF %%B != project.godot (
+            IF %%B NEQ project.godot (
                 git checkout template/main %%B
             )
         )
