@@ -10,14 +10,29 @@ Echo We dont want: [%removePath%]
 CALL SET "correctPath=%%scriptPath:%removePath%=%%"
 CD %correctPath%
 
-ECHO Get-Location
+git add .
+git stash save "Stashed things before get_latest"
+git fetch
+git checkout dev
+git remote add template https://github.com/Ocacho-Games/Home-Godot
+git fetch --all
 
-@REM git add .
-@REM git stash save "Stashed things before get_latest"
-@REM git fetch
-@REM git checkout dev
-@REM git remote add template https://github.com/Ocacho-Games/Home-Godot
-@REM git fetch --all
+FOR /F %%A IN ('DIR /B') DO (
+    IF %%A == godot (
+        CD %%A
+        FOR /F %%B IN ('DIR /B') DO (
+            IF %%B != project.godot (
+                git checkout template/main %%B
+            )
+        )
+        CD ..
+    )
+    ELSE
+    (
+        git checkout template/main %%A
+    )
+)
+
 @REM git pull -X theirs template main --allow-unrelated-histories
 @REM git remote remove template
 
