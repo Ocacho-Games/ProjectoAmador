@@ -22,18 +22,15 @@ FOR /F %%A IN ('DIR /B') DO (
         CD %%A
         FOR /F %%B IN ('DIR /B') DO (
             IF %%B NEQ project.godot (
-                echo %%B
+                git checkout template/main %%B
             )
         )
         CD ..
-    )
-    IF %%A NEQ godot
-    (
-        echo %%A
+    ) ELSE (
+        git checkout template/main %%A
     )
 )
 
-@REM git pull -X theirs template main --allow-unrelated-histories
 git remote remove template
 
 @REM Pushing changes
