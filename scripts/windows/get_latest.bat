@@ -10,6 +10,8 @@ ECHO %removePath%
 CALL SET "correctPath=%%scriptPath:%removePath%=%%"
 CD %correctPath%
 
+FOR /F "tokens=*" %%g IN ('git rev-parse --abbrev-ref HEAD') do (SET branchName=%%g)
+
 :: Adding all possible changes and stashing them
 git add .
 git stash save "Stashed things before get_latest"
@@ -40,3 +42,7 @@ git remote remove template
 
 :: Pushing changes
 git push origin dev
+
+:: Getting back to initial state
+git checkout %branchName%
+git stash pop 0
