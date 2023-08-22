@@ -1,3 +1,6 @@
+:: Getting path in which the batch file is located
+SET scriptPath=%~dp0
+
 :: Getting the last part of the path so we can remove it later
 ECHO %scriptPath%
 SET removePath=%scriptPath:*\Rikishi-Sumo=%
