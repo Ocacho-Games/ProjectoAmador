@@ -10,7 +10,7 @@ jobs:
   pass_tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - uses: croconut/godot-tester@master
         with:
           version: "4.1"
@@ -18,7 +18,7 @@ jobs:
           minimum-pass: "1.0"
           test-dir: "res://test"
           result-output-file: "test_results.xml"
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@main
         if: always()
         with:
           name: gut_test_results
@@ -32,9 +32,9 @@ jobs:
   tests_failed_on_push:
     needs: pass_tests
     runs-on: ubuntu-latest
-    if: ${{ failure() }}
+    if: ${{ failure() && github.event_name == 'push' }}
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@main
         id: download
         with:
           name: gut_test_results
@@ -43,7 +43,7 @@ jobs:
         shell: bash
         id: extract_branch
 
-      - uses: sarisia/actions-status-discord@v1.12.0
+      - uses: sarisia/actions-status-discord@main
         with:
           content: "<@&${{ secrets.OCACHER_DISCORD_ID }}>"
           status: Failure
@@ -63,7 +63,7 @@ jobs:
   tests_failed_on_pull_request:
     needs: pass_tests
     runs-on: ubuntu-latest
-    if: ${{ failure() }}
+    if: ${{ failure() && github.event_name == 'pull_request' }}
     env:
       DAVID_USER: "${{ secrets.DAVID_USER }}"
       MIGUELP_USER: "${{ secrets.MIGUELP_USER }}"
@@ -71,7 +71,7 @@ jobs:
       RODRO_USER: "${{ secrets.RODRO_USER }}"
       creator: '${{ github.event.pull_request.user.login }}'
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@main
         id: download
         with:
           name: gut_test_results
@@ -89,7 +89,7 @@ jobs:
           echo "creator_discord_id=${creator_dictionary[$creator]}" >> $GITHUB_ENV
         shell: bash
 
-      - uses: sarisia/actions-status-discord@v1.12.0
+      - uses: sarisia/actions-status-discord@main
         with:
           status: Failure 
           title: ❌ GUT tests have failed on `Pull Request` ❌

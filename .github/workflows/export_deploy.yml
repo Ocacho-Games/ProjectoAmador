@@ -16,9 +16,6 @@ jobs:
     needs: export
     steps:
       - uses: actions/checkout@v3
-      - run: ls ./github/ -l -a
-      - uses: ./.github/workflows/reusable_export.yml
-        id: export
 
       - name: Extract branch name
         shell: bash
@@ -47,7 +44,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.release.outputs.tag_name }}
-          files: ${{ steps.export.outputs.archive_directory }}/*
+          files: ${{ job.export.outputs.archive_directory }}/*
 
       - name: Sending message to discord
         uses: sarisia/actions-status-discord@v1.12.0
