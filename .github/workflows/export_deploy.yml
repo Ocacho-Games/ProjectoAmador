@@ -10,7 +10,7 @@ jobs:
   export_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/reusable/export.yml
+      - uses: ./.github/workflows/reusable_export.yml
         id: export
 
       - name: Extract branch name

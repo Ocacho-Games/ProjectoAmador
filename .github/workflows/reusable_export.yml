@@ -4,9 +4,10 @@ on:
 
 jobs:
   pass_tests:
-    - name: Passing GUT Tests
-    - uses: Ocacho-Games/Home-Godot/.github/workflows/reusable/pass_tests.yml
-
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/reusable_export.yml
+      
   export_game:
     name: Export Game (Windows)
     runs-on: ubuntu-latest
