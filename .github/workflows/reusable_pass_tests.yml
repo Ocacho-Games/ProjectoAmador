@@ -2,6 +2,10 @@ name: "Passing GUT Tests"
 on:
   workflow_call:
 
+#############################################################################
+# [pass_tests]: Pass GUT tests to the code and uploads the results as an artifact
+#############################################################################
+
 jobs:
   pass_tests:
     runs-on: ubuntu-latest
@@ -19,3 +23,80 @@ jobs:
         with:
           name: gut_test_results
           path: ./godot/test_results.xml
+
+#############################################################################
+# [tests_failed_on_pull_request]: This job sends the notification to the discord server
+# in case the GUT tests have failed and the github event from the caller is a push
+#############################################################################
+
+  tests_failed_on_push:
+    needs: pass_tests
+    runs-on: ubuntu-latest
+    if: ${{ failure() }} && github.event_name == 'push'
+    steps:
+      - uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: gut_test_results
+      
+      - run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
+        shell: bash
+        id: extract_branch
+
+      - uses: sarisia/actions-status-discord@v1.12.0
+        with:
+          content: "<@&${{ secrets.OCACHER_DISCORD_ID }}>"
+          status: Failure
+          title: ❌ GUT tests have failed on `Deployment` ❌
+          description: |
+            Please, <@&${{ secrets.OCACHER_DISCORD_ID }}>, run the tests locally and fix the issues in order to unblock the branch build.
+            Click on the `Workflow` field of this message and download the `gut_test_results` artifact in order to download the logs.
+          username: GitHub CI-CL
+          webhook: "${{ secrets.WEBHOOK_CI_CL }}"
+          avatar_url: "https://upload.wikimedia.org/wikipedia/commons/2/27/Pepe_Viyuela.jpg"
+
+  #############################################################################
+  # [tests_failed_on_pull_request]: This job sends the notification to the discord server
+  # in case the GUT tests have failed and the github event from the caller is a pull request
+  #############################################################################
+
+  tests_failed_on_pull_request:
+    needs: pass_tests
+    runs-on: ubuntu-latest
+    if: ${{ failure() }} && github.event_name == 'pull_request'
+    env:
+      DAVID_USER: "${{ secrets.DAVID_USER }}"
+      MIGUELP_USER: "${{ secrets.MIGUELP_USER }}"
+      ANTONIO_USER: "${{ secrets.ANTONIO_USER }}"
+      RODRO_USER: "${{ secrets.RODRO_USER }}"
+      creator: '${{ github.event.pull_request.user.login }}'
+    steps:
+      - uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: gut_test_results
+      
+      - run: |
+          #!/bin/bash
+          
+          declare -A creator_dictionary
+
+          creator_dictionary['miguelpOcacho']=$MIGUELP_USER
+          creator_dictionary['DavidOcacho']=$DAVID_USER
+          creator_dictionary['AntonioJose-OcachoGames']=$ANTONIO_USER
+          creator_dictionary['RodroOcacho']=$RODRO_USER
+          
+          echo "creator_discord_id=${creator_dictionary[$creator]}" >> $GITHUB_ENV
+        shell: bash
+
+      - uses: sarisia/actions-status-discord@v1.12.0
+        with:
+          status: Failure 
+          title: ❌ GUT tests have failed on `Pull Request` ❌
+          description: |
+            Please, <@${{ env.creator_discord_id }}>, run the tests locally and fix the issues before merging.
+            Click on the `Workflow` field of this message and download the `gut_test_results` artifact in order to download the logs.
+          username: GitHub CI-CL
+          webhook: "${{ secrets.WEBHOOK_CI_CL }}"
+          avatar_url: "https://upload.wikimedia.org/wikipedia/commons/2/27/Pepe_Viyuela.jpg"
+          content: "<@${{ env.creator_discord_id }}>"
