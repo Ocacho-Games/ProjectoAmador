@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: ls -l -a
+      - run: ls ./github/ -l -a
       - uses: ./.github/workflows/reusable_export.yml
         id: export
 
