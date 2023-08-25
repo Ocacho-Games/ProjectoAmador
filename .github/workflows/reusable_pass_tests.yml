@@ -32,7 +32,7 @@ jobs:
   tests_failed_on_push:
     needs: pass_tests
     runs-on: ubuntu-latest
-    if: ${{ failure() }} && github.event_name == 'push'
+    if: ${{ failure() }}
     steps:
       - uses: actions/download-artifact@v2
         id: download
@@ -63,7 +63,7 @@ jobs:
   tests_failed_on_pull_request:
     needs: pass_tests
     runs-on: ubuntu-latest
-    if: ${{ failure() }} && github.event_name == 'pull_request'
+    if: ${{ failure() }}
     env:
       DAVID_USER: "${{ secrets.DAVID_USER }}"
       MIGUELP_USER: "${{ secrets.MIGUELP_USER }}"
