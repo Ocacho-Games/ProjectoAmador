@@ -1,13 +1,13 @@
 name: "Exporting the game (Github Releases -> (Windows))"
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   pass_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: ./.github/workflows/reusable_export.yml
-      
+
   export_game:
     name: Export Game (Windows)
     runs-on: ubuntu-latest

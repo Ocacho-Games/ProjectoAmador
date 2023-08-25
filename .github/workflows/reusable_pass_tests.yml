@@ -1,6 +1,6 @@
 name: "Passing GUT Tests"
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   pass_tests:

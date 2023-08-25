@@ -7,8 +7,12 @@ on:
       - dev
 
 jobs:
-  export_deploy:
+  export:
+    uses: ./.github/workflows/reusable_export.yml
+
+  deploy:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - uses: actions/checkout@v3
       - run: ls ./github/ -l -a
