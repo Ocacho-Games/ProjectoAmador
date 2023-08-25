@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     needs: export
+    if: ${{ success() }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      bump_version: patch
     steps:
       - uses: actions/checkout@v3
 
