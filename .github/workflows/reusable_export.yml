@@ -4,9 +4,7 @@ on:
 
 jobs:
   pass_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/reusable_export.yml
+    uses: ./.github/workflows/reusable_pass_tests.yml
 
   export_game:
     name: Export Game (Windows)
