@@ -1,6 +1,10 @@
 name: "Exporting the game (Github Releases -> (Windows))"
 on:
   workflow_call:
+    outputs:
+      export_file:
+        description: "The game exported"
+        value: ${{ jobs.export_game.steps.export.outputs.archive_directory }}
 
 jobs:
   pass_tests:
