@@ -10,7 +10,8 @@ jobs:
   export_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.6.0
+      - uses: actions/checkout@v2
+      - run: ls
       - uses: ./.github/workflows/reusable_export.yml
         id: export
 
