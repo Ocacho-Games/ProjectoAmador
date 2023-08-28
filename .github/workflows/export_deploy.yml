@@ -7,126 +7,60 @@ on:
       - dev
 
 jobs:
-  pass_tests:
-    name: Passing GUT Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3.5.3
-      - uses: croconut/godot-tester@master
-        with:
-          version: "4.1.1"
-          path: "godot"
-          minimum-pass: "1.0"
-          test-dir: "res://test"
-          result-output-file: "test_results.xml"
-      - uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: gut_test_results
-          path: ./godot/test_results.xml
+  export:
+    uses: ./.github/workflows/reusable_export.yml
 
-  export_game:
-    name: Export Game (Windows)
+  deploy:
     runs-on: ubuntu-latest
     permissions: write-all
-    needs: pass_tests
+    needs: export
     if: ${{ success() }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       bump_version: patch
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3.5.3
-    
-    - name: Install Godot third party libraries
-      run: chmod +x ./scripts/linux/setup.sh && ./scripts/linux/setup.sh
+      - uses: actions/checkout@v3
 
-    - name: Installing wine for icon
-      id: wine_install
-      run: |
-        sudo apt install wine64
-        echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
+        id: extract_branch
 
-    - name: Exporting game
-      id: export
-      uses: firebelley/godot-export@master
-      with:
-        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_linux.x86_64.zip
-        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
-        relative_project_path: ./godot
-        archive_output: true
-        cache: true
-        wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+      - name: Selecting bump_version type
+        shell: bash
+        run: |
+          #!/bin/bash
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
-      id: extract_branch
+          if [[ "${{ steps.extract_branch.outputs.branch }}" == "main" ]]; then
+              echo "bump_version=minor" >> $GITHUB_ENV
+          fi
 
-    - name: Selecting bump_version type
-      shell: bash
-      run: |
-        #!/bin/bash
+      - name: Creating release with version tag
+        id: release
+        uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: ${{ env.bump_version }}
+          tag_prefix: v
+          use_github_release_notes: true
 
-        if [[ "${{ steps.extract_branch.outputs.branch }}" == "main" ]]; then
-            echo "bump_version=minor" >> $GITHUB_ENV
-        fi
+      - name: Upload artifacts to an existing release
+        id: artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.release.outputs.tag_name }}
+          files: ${{ job.export.outputs.export_file }}/*
 
-    - name: Creating release with version tag
-      id: release
-      uses: rymndhng/release-on-push-action@master
-      with:
-        bump_version_scheme: ${{ env.bump_version }}
-        tag_prefix: v
-        use_github_release_notes: true
-
-    - name: Upload artifacts to an existing release
-      id: artifacts
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: ${{ steps.release.outputs.tag_name }}
-        files: ${{ steps.export.outputs.archive_directory }}/*
-
-    - name: Sending message to discord
-      uses: sarisia/actions-status-discord@v1.12.0
-      with:
-        nodetail: true
-        title: ✅ New build of `${{ steps.extract_branch.outputs.branch }}` is ready ✅!
-        description: |
-          Version `${{ steps.release.outputs.version }}`
-          Click [here](${{ steps.artifacts.outputs.url }}) to download!
-        username: GitHub Deploys
-        webhook: "${{ secrets.WEBHOOK_RELEASES }}"
-        avatar_url: "https://media.licdn.com/dms/image/C4D03AQHoLOeZ2WeGuQ/profile-displayphoto-shrink_800_800/0/1517369560191?e=2147483647&v=beta&t=CytOviQ-TsPLNZQk7kVuUpniYRDLtsDLR3gam4KKGjA"
-
-  tests_failed:
-    name: GUT tests have failed
-    runs-on: ubuntu-latest
-    needs: pass_tests
-    if: ${{ failure() }}
-    steps:
-        - uses: actions/checkout@v3.5.3
-        - uses: actions/download-artifact@v2
-          id: download
-          with:
-            name: gut_test_results
-
-        - run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
-          shell: bash
-          id: extract_branch
-
-        - uses: sarisia/actions-status-discord@v1.12.0
-          with:
-            content: "<@&${{ secrets.OCACHER_DISCORD_ID }}>"
-            status: Failure
-            title: ❌ GUT tests have failed on `Deployment` ❌
-            description: |
-              Please, <@&${{ secrets.OCACHER_DISCORD_ID }}>, run the tests locally and fix the issues in order to unblock the branch build.
-              Click on the `Workflow` field of this message and download the `gut_test_results` artifact in order to download the logs.
-            username: GitHub CI-CL
-            webhook: "${{ secrets.WEBHOOK_CI_CL }}"
-            avatar_url: "https://upload.wikimedia.org/wikipedia/commons/2/27/Pepe_Viyuela.jpg"
+      - name: Sending message to discord
+        uses: sarisia/actions-status-discord@v1.12.0
+        with:
+          nodetail: true
+          title: ✅ New build of `${{ steps.extract_branch.outputs.branch }}` is ready ✅!
+          description: |
+            Version `${{ steps.release.outputs.version }}`
+            Click [here](${{ steps.artifacts.outputs.url }}) to download!
+          username: GitHub Deploys
+          webhook: "${{ secrets.WEBHOOK_RELEASES }}"
+          avatar_url: "https://media.licdn.com/dms/image/C4D03AQHoLOeZ2WeGuQ/profile-displayphoto-shrink_800_800/0/1517369560191?e=2147483647&v=beta&t=CytOviQ-TsPLNZQk7kVuUpniYRDLtsDLR3gam4KKGjA"
 
     #TODO export_failed
-    #TODO Reuse jobs?
     #TODO Make godot version a variable

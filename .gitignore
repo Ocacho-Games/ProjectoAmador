@@ -1,4 +1,3 @@
-
 # Godot-specific ignores
 .import/
 godot/.godot/
@@ -15,3 +14,6 @@ godot/addons/godotsteam
 # Mono-specific ignores
 .mono/
 data_*/
+
+# Executables
+*.exe

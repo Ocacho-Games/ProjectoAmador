@@ -4,7 +4,7 @@ on:
     types: [opened]
 
 jobs:
-  export_game:
+  send_info_to_disc:
     runs-on: ubuntu-latest
     permissions: write-all
     name: Sending PR info in Discord
