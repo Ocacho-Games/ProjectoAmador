@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - dev
 
 jobs:
   export_and_tests:
@@ -42,12 +41,18 @@ jobs:
           tag_prefix: v
           use_github_release_notes: true
 
+      - name: Download game exported as artifact
+        uses: actions/download-artifact@main
+        id: download
+        with:
+          name: ${{ needs.export_and_tests.outputs.export_artifact_name }}
+
       - name: Upload artifacts to an existing release
         id: artifacts
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.release.outputs.tag_name }}
-          files: ${{ needs.export_and_tests.outputs.export_file }}/*
+          files: ${{ steps.download.outputs.download-path }}/*
 
       - name: Sending message to discord
         uses: sarisia/actions-status-discord@v1.12.0

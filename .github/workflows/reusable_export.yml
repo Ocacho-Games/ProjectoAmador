@@ -2,9 +2,9 @@ name: "Exporting the game (Github Releases -> (Windows))"
 on:
   workflow_call:
     outputs:
-      export_file:
-        description: "The game exported"
-        value: ${{ jobs.export_game.outputs.export_file }}
+      export_artifact_name:
+        description: "The name of the artifact containing the game exported"
+        value: ${{ jobs.export_game.outputs.export_artifact_name }}
 
 jobs:
   pass_tests:
@@ -45,7 +45,14 @@ jobs:
         archive_output: true
         cache: true
         wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+    
+    - name: Upload the exported game
+      uses: actions/upload-artifact@main
+      with:
+        name: game-build
+        path:  ${{ steps.export.outputs.archive_directory }}
+
     outputs:
-      export_file: ${{ steps.export.outputs.archive_directory }}
+      export_artifact_name: game-build
 
 #TODO export_failed
