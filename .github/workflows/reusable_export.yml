@@ -4,11 +4,17 @@ on:
     outputs:
       export_file:
         description: "The game exported"
-        value: ${{ jobs.export_game.steps.export.outputs.archive_directory }}
+        value: ${{ jobs.export_game.outputs.export_file }}
 
 jobs:
   pass_tests:
     uses: ./.github/workflows/reusable_pass_tests.yml
+
+#############################################################################
+# [export_game]: This job export the game to the target devices described in the export_presets.cfg from godot,
+# plus installing the icon for the game.
+# @outputs: [export_file]: Path with the exported file
+#############################################################################
 
   export_game:
     name: Export Game (Windows)
@@ -39,3 +45,7 @@ jobs:
         archive_output: true
         cache: true
         wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+    outputs:
+      export_file: ${{ steps.export.outputs.archive_directory }}
+
+#TODO export_failed
