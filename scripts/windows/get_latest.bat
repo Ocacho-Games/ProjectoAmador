@@ -16,8 +16,8 @@ FOR /F "tokens=*" %%g IN ('git rev-parse --abbrev-ref HEAD') do (SET branchName=
 git add .
 git stash save "Stashed things before get_latest"
 git fetch
-:: Moving to dev branch
-git checkout dev
+:: Moving to main branch
+git checkout main
 :: Adding the new remote that points to the template repository
 git remote add template https://github.com/Ocacho-Games/Home-Godot
 git fetch --all
@@ -41,7 +41,7 @@ FOR /F %%A IN ('DIR /B') DO (
 git remote remove template
 
 :: Pushing changes
-git push origin dev
+git push origin main
 
 :: Getting back to initial state
 git checkout %branchName%
