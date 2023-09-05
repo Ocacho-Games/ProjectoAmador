@@ -1,4 +1,4 @@
-name: Updating Game dev branch with Home-Godot template
+name: Updating Game = main = branch with Home-Godot template
 
 on:
   schedule:
@@ -11,7 +11,7 @@ jobs:
     permissions: write-all
     if: ${{ github.repository != 'Ocacho-Games/Home-Godot' }}
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@main
         with:
           token: ${{ secrets.PRIVATE_GITHUB_TOKEN }}
       - run: |        
