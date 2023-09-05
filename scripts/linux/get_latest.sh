@@ -41,12 +41,14 @@ for file in * ; do
     fi
 done
 
+# Pushing changes
+git add .
+git commit -m "Updating repository from template"
+git push origin main
+
 # Removing the template remote from local repository
 git remote remove template
 
-# Pushing changes
-git push origin main
-
 # Getting back to initial state
-git checkout %branchName%
+git checkout $branchName
 git stash pop 0
