@@ -33,6 +33,7 @@ jobs:
     - name: Installing wine for icon
       id: wine_install
       run: |
+        sudo apt-get update
         sudo apt install wine64
         echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
 
@@ -54,6 +55,7 @@ jobs:
         relative_project_path: ./godot
         archive_output: true
         cache: true
+        verbose: true
         wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
     
     - name: Upload the exported game
