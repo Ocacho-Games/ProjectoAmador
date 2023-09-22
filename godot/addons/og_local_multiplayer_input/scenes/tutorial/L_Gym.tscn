@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://uptqsfoddoqm"]
+
+[ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="1_xpwlf"]
+
+[node name="L_Gym" type="Node2D"]
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(287, 183)
+texture = ExtResource("1_xpwlf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 203.0
+offset_top = 62.0
+offset_right = 531.0
+offset_bottom = 129.0
+text = "YOU ARE IN THE LEVEL
+You can't do anything here"

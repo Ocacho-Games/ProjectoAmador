@@ -1,0 +1,70 @@
+name: "Exporting the game (Github Releases -> (Windows))"
+on:
+  workflow_call:
+    outputs:
+      export_artifact_name:
+        description: "The name of the artifact containing the game exported"
+        value: ${{ jobs.export_game.outputs.export_artifact_name }}
+
+jobs:
+  # Commented for now cause we don't want testing for small games
+  # pass_tests:
+  #   uses: ./.github/workflows/reusable_pass_tests.yml
+
+#############################################################################
+# [export_game]: This job export the game to the target devices described in the export_presets.cfg from godot,
+# plus installing the icon for the game.
+# @outputs: [export_file]: Path with the exported file
+#############################################################################
+
+  export_game:
+    name: Export Game (Windows)
+    runs-on: ubuntu-latest
+    #needs: pass_tests
+    if: ${{ success() }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      bump_version: patch
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Godot third party libraries
+      run: chmod +x ./scripts/linux/setup.sh && ./scripts/linux/setup.sh
+
+    - name: Installing wine for icon
+      id: wine_install
+      run: |
+        sudo apt-get update
+        sudo apt install wine64
+        echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'oracle'
+        java-version: 17
+  
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v2
+
+    - name: Exporting game
+      id: export
+      uses: firebelley/godot-export@master
+      with:
+        godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_linux.x86_64.zip
+        godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
+        relative_project_path: ./godot
+        archive_output: true
+        cache: true
+        verbose: true
+        wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
+    
+    - name: Upload the exported game
+      uses: actions/upload-artifact@main
+      with:
+        name: game-build
+        path:  ${{ steps.export.outputs.archive_directory }}
+
+    outputs:
+      export_artifact_name: game-build
+
+#TODO export_failed

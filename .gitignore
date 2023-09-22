@@ -1,0 +1,22 @@
+# Godot-specific ignores
+.import/
+godot/.godot/
+
+# Third party plugins (DON"T INCLUDE GUT)
+godot/addons/scene_manager
+godot/addons/sound_manager
+godot/addons/debug_draw_3d
+godot/addons/godotsteam
+godot/addons/touch_input_manager
+
+# Gut specific ignores
+*.xml
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# Executables
+*.exe
+*.apk
+*.apk.idsig

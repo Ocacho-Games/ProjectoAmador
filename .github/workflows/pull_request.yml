@@ -1,0 +1,6 @@
+name: "Exporting and tests for pull request"
+on: [pull_request]
+
+jobs:
+  export_and_tests:
+    uses: ./.github/workflows/reusable_export.yml

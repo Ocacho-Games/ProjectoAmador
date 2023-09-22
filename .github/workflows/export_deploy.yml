@@ -1,0 +1,69 @@
+name: "Exporting and deploying the game (Github Releases -> (Windows))"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  export_and_tests:
+    uses: ./.github/workflows/reusable_export.yml
+
+  deploy:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: export_and_tests
+    if: ${{ success() }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      bump_version: patch
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Selecting bump_version type
+        shell: bash
+        run: |
+          #!/bin/bash
+
+          if [[ "${{ steps.extract_branch.outputs.branch }}" == "main" ]]; then
+              echo "bump_version=minor" >> $GITHUB_ENV
+          fi
+
+      - name: Creating release with version tag
+        id: release
+        uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: ${{ env.bump_version }}
+          tag_prefix: v
+          use_github_release_notes: true
+
+      - name: Download game exported as artifact
+        uses: actions/download-artifact@main
+        id: download
+        with:
+          name: ${{ needs.export_and_tests.outputs.export_artifact_name }}
+
+      - name: Upload artifacts to an existing release
+        id: artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.release.outputs.tag_name }}
+          files: ${{ steps.download.outputs.download-path }}/*
+
+      - name: Sending message to discord
+        uses: sarisia/actions-status-discord@v1.12.0
+        with:
+          nodetail: true
+          title: ✅ New build of `${{ steps.extract_branch.outputs.branch }}` is ready ✅!
+          description: |
+            Version `${{ steps.release.outputs.version }}`
+            Click [here](${{ steps.artifacts.outputs.url }}) to download!
+          username: GitHub Deploys
+          webhook: "${{ secrets.WEBHOOK_RELEASES }}"
+          avatar_url: "https://media.licdn.com/dms/image/C4D03AQHoLOeZ2WeGuQ/profile-displayphoto-shrink_800_800/0/1517369560191?e=2147483647&v=beta&t=CytOviQ-TsPLNZQk7kVuUpniYRDLtsDLR3gam4KKGjA"
+
+    #TODO Make godot version a variable
