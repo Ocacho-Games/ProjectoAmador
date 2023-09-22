@@ -75,3 +75,19 @@ if not exist "%DESTINATION_PATH%\godotsteam" (
     xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
     rmdir /s /q GodotSteam
 )
+
+if not exist "%DESTINATION_PATH%\touch_input_manager" (
+    echo [94m== Installing/Updating GodotTouchInputManager by Federico-Ciuffardi == [90m
+    git clone -b godot4support https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
+    mkdir "%DESTINATION_PATH%"\touch_input_manager
+    xcopy GodotTouchInputManager\*.gd "%DESTINATION_PATH%"\touch_input_manager /s /e /y
+    rmdir /s /q GodotTouchInputManager
+    rmdir /s /q "%DESTINATION_PATH%"\touch_input_manager\.github
+) else if %OVERWRITE_LIBRARIES%==1 (
+    echo [94m== Installing/Updating GodotTouchInputManager by Federico-Ciuffardi == [90m
+    git clone -b godot4support https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
+    mkdir "%DESTINATION_PATH%"\touch_input_manager
+    xcopy GodotTouchInputManager\*.gd "%DESTINATION_PATH%"\touch_input_manager /s /e /y
+    rmdir /s /q GodotTouchInputManager
+    rmdir /s /q "%DESTINATION_PATH%"\touch_input_manager\.github
+)

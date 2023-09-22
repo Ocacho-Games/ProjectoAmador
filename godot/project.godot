@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 OGLocalMultiplayerInput="*res://addons/og_local_multiplayer_input/code/autoloads/og_s_input_mapping_generator.gd"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
+InputManager="*res://addons/touch_input_manager/InputManager.gd"
 
 [debug]
 
@@ -33,6 +34,7 @@ window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+window/handheld/orientation=1
 
 [editor_plugins]
 
@@ -109,6 +111,11 @@ player_down_0={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.211765, 0.239216, 0.321569, 1)
