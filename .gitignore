@@ -18,3 +18,5 @@ data_*/
 
 # Executables
 *.exe
+*.apk
+*.apk.idsig
