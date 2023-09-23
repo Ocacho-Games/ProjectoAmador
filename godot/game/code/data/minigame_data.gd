@@ -2,6 +2,17 @@
 ##
 class_name SMinigameData extends Resource
 
+#==============================================================================
+# TYPES
+#==============================================================================
+
+## Gender of the minigame. As Metadata 
+enum EGenre {ADVENTURE, ACTION, SPORTS, PLATFORM, RACING, PUZZLE, CASUAL}
+
+#==============================================================================
+# VARIABLES
+#==============================================================================
+
 # Scene of the minigame
 @export var scene 			: PackedScene
 
@@ -10,3 +21,6 @@ class_name SMinigameData extends Resource
 
 # Minigame key used for identification for localization and so on
 @export var game_key		: String		= "my-game-key"
+
+# Array for storing metadata for the minigame. This will be used by the algorithm to provide minigames for the user
+@export var metadata		: Array[EGenre]
