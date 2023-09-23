@@ -35,3 +35,8 @@ mkdir $DESTINATION_PATH/touch_input_manager
 cp -rf GodotTouchInputManager/*.gd $DESTINATION_PATH/touch_input_manager
 rm -rf GodotTouchInputManager
 rm -rf $DESTINATION_PATH/touch_input_manager/.github
+
+echo == Installing/Updating Godot Admob by Gummaciel ==
+git clone https://github.com/Poing-Studios/godot-admob-plugin.git
+cp -rf godot-admob-plugin/addons/ $DESTINATION_PATH
+rm -rf godot-admob-plugin

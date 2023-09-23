@@ -91,3 +91,15 @@ if not exist "%DESTINATION_PATH%\touch_input_manager" (
     rmdir /s /q GodotTouchInputManager
     rmdir /s /q "%DESTINATION_PATH%"\touch_input_manager\.github
 )
+
+if not exist "%DESTINATION_PATH%\admob" (
+    echo [94m== Installing/Updating Godot Admob by Gummaciel == [90m
+    git clone https://github.com/Poing-Studios/godot-admob-plugin.git
+    xcopy godot-admob-plugin\addons\ "%DESTINATION_PATH%" /s /e /y
+    rmdir /s /q godot-admob-plugin
+) else if %OVERWRITE_LIBRARIES%==1 (
+    echo [94m== Installing/Updating Godot Admob by Gummaciel == [90m
+    git clone https://github.com/Poing-Studios/godot-admob-plugin.git
+    xcopy godot-admob-plugin\addons\ "%DESTINATION_PATH%" /s /e /y
+    rmdir /s /q godot-admob-plugin
+)
