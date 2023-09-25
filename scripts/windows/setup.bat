@@ -64,17 +64,17 @@ if not exist "%DESTINATION_PATH%\debug_draw_3d" (
     rmdir /s /q godot_debug_draw_3d
 )
 
-if not exist "%DESTINATION_PATH%\godotsteam" (
-    echo [94m== Installing/Updating Godot Steam by Gramps == [90m
-    git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
-    xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
-    rmdir /s /q GodotSteam
-) else if %OVERWRITE_LIBRARIES%==1 (
-    echo [94m== Installing/Updating Godot Steam by Gramps == [90m
-    git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
-    xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
-    rmdir /s /q GodotSteam
-)
+@REM if not exist "%DESTINATION_PATH%\godotsteam" (
+@REM     echo [94m== Installing/Updating Godot Steam by Gramps == [90m
+@REM     git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
+@REM     xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
+@REM     rmdir /s /q GodotSteam
+@REM ) else if %OVERWRITE_LIBRARIES%==1 (
+@REM     echo [94m== Installing/Updating Godot Steam by Gramps == [90m
+@REM     git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
+@REM     xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
+@REM     rmdir /s /q GodotSteam
+@REM )
 
 if not exist "%DESTINATION_PATH%\touch_input_manager" (
     echo [94m== Installing/Updating GodotTouchInputManager by Federico-Ciuffardi == [90m
@@ -90,4 +90,16 @@ if not exist "%DESTINATION_PATH%\touch_input_manager" (
     xcopy GodotTouchInputManager\*.gd "%DESTINATION_PATH%"\touch_input_manager /s /e /y
     rmdir /s /q GodotTouchInputManager
     rmdir /s /q "%DESTINATION_PATH%"\touch_input_manager\.github
+)
+
+if not exist "%DESTINATION_PATH%\admob" (
+    echo [94m== Installing/Updating Godot Admob by Gummaciel == [90m
+    git clone https://github.com/Poing-Studios/godot-admob-plugin.git
+    xcopy godot-admob-plugin\addons\ "%DESTINATION_PATH%" /s /e /y
+    rmdir /s /q godot-admob-plugin
+) else if %OVERWRITE_LIBRARIES%==1 (
+    echo [94m== Installing/Updating Godot Admob by Gummaciel == [90m
+    git clone https://github.com/Poing-Studios/godot-admob-plugin.git
+    xcopy godot-admob-plugin\addons\ "%DESTINATION_PATH%" /s /e /y
+    rmdir /s /q godot-admob-plugin
 )
