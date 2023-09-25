@@ -24,5 +24,4 @@ godot/android/build/.gradle
 godot/android/build/intermediates
 godot/android/build/assets
 godot/android/build/build
-godot/android/build/res/*
 godot/android/build/libs/gdextensionlibs.json
