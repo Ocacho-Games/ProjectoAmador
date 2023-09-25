@@ -24,10 +24,10 @@ git clone https://github.com/DmitriySalnikov/godot_debug_draw_3d.git
 cp -rf godot_debug_draw_3d/addons/ $DESTINATION_PATH
 rm -rf godot_debug_draw_3d
 
-echo == Installing/Updating Godot Steam by Gramps ==
-git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
-cp -rf GodotSteam/addons/ $DESTINATION_PATH
-rm -rf GodotSteam
+# echo == Installing/Updating Godot Steam by Gramps ==
+# git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
+# cp -rf GodotSteam/addons/ $DESTINATION_PATH
+# rm -rf GodotSteam
 
 echo == Installing/Updating GodotTouchInputManager by Federico-Ciuffardi ==
 git clone -b godot4support https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
@@ -35,3 +35,8 @@ mkdir $DESTINATION_PATH/touch_input_manager
 cp -rf GodotTouchInputManager/*.gd $DESTINATION_PATH/touch_input_manager
 rm -rf GodotTouchInputManager
 rm -rf $DESTINATION_PATH/touch_input_manager/.github
+
+echo == Installing/Updating Godot Admob by Gummaciel ==
+git clone https://github.com/Poing-Studios/godot-admob-plugin.git
+cp -rf godot-admob-plugin/addons/ $DESTINATION_PATH
+rm -rf godot-admob-plugin

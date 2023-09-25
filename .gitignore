@@ -16,7 +16,16 @@ godot/addons/touch_input_manager
 .mono/
 data_*/
 
-# Executables
+# Binaries
 *.exe
 *.apk
 *.apk.idsig
+*.so
+
+# Android exports
+godot/android/build/.gradle
+godot/android/build/intermediates
+godot/android/build/assets
+godot/android/build/build
+godot/android/build/res/*
+godot/android/build/libs/gdextensionlibs.json

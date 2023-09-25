@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MyGame"
-run/main_scene="res://game/scenes/menu/menu.tscn"
+run/main_scene="res://addons/admob/sample/Main.tscn"
 config/features=PackedStringArray("4.1")
 config/icon="res://icon.svg"
 
@@ -21,7 +21,6 @@ OGLocalMultiplayerInput="*res://addons/og_local_multiplayer_input/code/autoloads
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 InputManager="*res://addons/touch_input_manager/InputManager.gd"
-SGame="*res://game/code/autoloads/s_game.gd"
 
 [debug]
 
@@ -39,7 +38,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/og_local_multiplayer_input/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/admob/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/og_local_multiplayer_input/plugin.cfg", "res://addons/scene_manager/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
 
 [input]
 
