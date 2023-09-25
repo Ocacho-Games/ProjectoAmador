@@ -9,9 +9,6 @@ godot/addons/debug_draw_3d
 godot/addons/godotsteam
 godot/addons/touch_input_manager
 
-# Gut specific ignores
-*.xml
-
 # Mono-specific ignores
 .mono/
 data_*/
