@@ -21,6 +21,7 @@ data_*/
 
 # Android exports
 godot/android/build/.gradle
+godot/android/build/src/debug
 godot/android/build/intermediates
 godot/android/build/assets
 godot/android/build/build
