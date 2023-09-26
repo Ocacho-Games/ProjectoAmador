@@ -24,7 +24,7 @@ var current_minigame_duration = 0
 var is_active = false
 
 ## Cached banner ad of the minigame in order to destroy it when exiting the mingame
-var banner_ad : AdView
+var ad_view
 
 #==============================================================================
 # FUNCTIONS
@@ -35,7 +35,7 @@ var banner_ad : AdView
 func _ready():
 	is_active = true
 	
-	banner_ad = AddsLibrary.load_show_add()
+	ad_view = AdsLibrary.load_show_banner()
 	
 	TimeBar.fill_mode = ProgressBar.FILL_BEGIN_TO_END 		
 	minigame_duration = SGame.get_minigame_duration(self)
@@ -62,6 +62,10 @@ func _process(delta):
 		if current_minigame_duration >= minigame_duration:
 			is_active = false
 			SGame.next_minigame()
-			
+
+## Overriden exit tree function
+##			
 func _exit_tree():
-	banner_ad.destroy()
+	if ad_view:
+		ad_view.destroy()
+		ad_view = null
