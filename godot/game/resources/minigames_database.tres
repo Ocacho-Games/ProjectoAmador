@@ -13,49 +13,49 @@
 [sub_resource type="Resource" id="Resource_uuu08"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("1_6urhn")
-game_duration = 4.0
+game_duration = 1e+06
 game_key = "game-1"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_p2v6o"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("3_7sxf7")
-game_duration = 6.0
+game_duration = 1e+06
 game_key = "game-2"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_whi8e"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("4_xaois")
-game_duration = 15.0
+game_duration = 1e+06
 game_key = "game-3"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_yw0mb"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("2_ntq2x")
-game_duration = 30.0
+game_duration = 1e+06
 game_key = "game-4"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_yiklq"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("3_anonp")
-game_duration = -1.0
+game_duration = 1e+06
 game_key = "game-5"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_e22v4"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("2_f1x4t")
-game_duration = 5.0
+game_duration = 1e+06
 game_key = "game-6"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_3315q"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("3_lifcv")
-game_duration = 30.0
+game_duration = 1e+06
 game_key = "game-7"
 metadata = Array[int]([])
 

@@ -46,6 +46,16 @@ func previous_minigame() -> void:
 func next_minigame() -> void:
 	_change_minigame(last_minigame_index + 1)
 	
+## Get the previous minigame PackedScene
+##		
+func get_previous_minigame_scene() -> PackedScene:
+	return _get_minigame_scene_index(last_minigame_index -1)[0]	
+
+## Get the next minigame PackedScene
+##	
+func get_next_minigame_scene() -> PackedScene:
+	return _get_minigame_scene_index(last_minigame_index + 1)[0]
+	
 ## Get the duration of a minigame based on the name of the given node
 ## WARNING: Make sure that your scene file and your root node of the scene have the same name.
 ## [minigame_node] : Node that contains the Minigame.gd script. 
@@ -69,21 +79,32 @@ func get_minigame_duration(minigame_node : Minigame) -> float:
 ## If we press "next" from the last minigame we'll go to the first one
 ## [minigame_index] : The minigame index we want to load
 ##
-func _change_minigame(minigame_index : int) -> void:
+func _change_minigame(minigame_index : int) -> void:			
+	var values 	= _get_minigame_scene_index(minigame_index)
+	var scene 	= values[0]
+	
+	last_minigame_index = values[1]
+	
+	SceneManager.change_scene(scene.resource_path, {
+													"speed": 10,
+													"pattern": "vertical",
+													"on_tree_enter": func(scene): scene.on_tree_enter_from_autoload(),
+													"on_ready": func(scene): scene.on_ready_from_autoload()
+													})	
+	
+## TODO
+## [minigame_index] : The minigame index we want to load
+##
+func _get_minigame_scene_index(minigame_index : int):
 	if game_ready == false: return
 	
 	assert(minigame_index >= -1, "Invalid index for changing the minigame")
 	
-	last_minigame_index = minigame_index
+	var loaded_minigame_index = minigame_index
 	
 	if minigame_index == -1:
-		last_minigame_index = minigames_array.size() - 1
+		loaded_minigame_index = minigames_array.size() - 1
 	elif minigame_index == minigames_array.size():
-		last_minigame_index = 0
+		loaded_minigame_index = 0
 			
-	var minigame = minigames_array[last_minigame_index] 	
-	SceneManager.change_scene(minigame.scene.resource_path, {
-										"speed": 10,
-										"pattern": "vertical",
-										})	
-	
+	return [minigames_array[loaded_minigame_index].scene, loaded_minigame_index]
