@@ -31,12 +31,6 @@ var ad_view
 var previous_scene_node : Minigame = null
 var next_scene_node		: Minigame = null
 
-var is_dragging : STrackVariable
-
-var is_dragging_bool = false
-var cached_event_drag : InputEvent
-var is_touching_bool = false
-
 #==============================================================================
 # FUNCTIONS
 #==============================================================================
@@ -50,65 +44,13 @@ func _ready():
 	minigame_duration = SGame.get_minigame_duration(self)
 	
 	if minigame_duration == -1:
-		TimeBar.visible = false
-	
-	is_dragging = STrackVariable.new(false)
-
-## Overriden input function
-##
-func _input(event):
-	if is_active == false: return
-	is_dragging_bool = false	
-	
-#	if event is InputEventSingleScreenSwipe:
-#		if event.position.y < event.relative.y:
-#			SGame.previous_minigame()
-#		else:
-#			SGame.next_minigame()
-	
-	if event is InputEventSingleScreenDrag:
-		cached_event_drag = event
-		is_dragging.set_value(true) 
-		is_dragging_bool = true
-		
-		var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
-		#print(-(screen_height/2))
-		var is_dragging_down = event.relative.y > 0
-		var is_dragging_up = !is_dragging_down
-		
-		#print(next_scene_node.position.y)
-		
-		var can_drag_down	: bool = previous_scene_node.position.y < -(screen_height/2)
-		var can_drag_up		: bool = next_scene_node.position.y > (screen_height/2)
-		
-		if (can_drag_down and is_dragging_down) or (can_drag_up and is_dragging_up): 
-			self.position.y += event.relative.y
-			previous_scene_node.position.y += event.relative.y
-			next_scene_node.position.y += event.relative.y
-		elif is_dragging_down: # TODO
-			self.position.y = screen_height / 2		
-			previous_scene_node.position.y = -(screen_height/2)
-			next_scene_node.position.y = event.relative.y
-		elif is_dragging_up: # TODO
-			self.position.y = screen_height / 2		
-			previous_scene_node.position.y = -(screen_height/2)
-			next_scene_node.position.y = event.relative.y		
-	elif event is InputEventSingleScreenTouch:
-		is_touching_bool = event.pressed
+		TimeBar.visible = false	
 
 ## Overriden process function
 ##
 func _process(delta):
 	if is_active == false: return
-	
-	is_dragging_bool = cached_event_drag != null
-	print("Is dragging bool: " + str(is_dragging_bool))
-	
-	if !is_touching_bool: 
-		cached_event_drag = null
-		
-	# TODO. Make a component to have some fucntions like tuple<bool,float> ShouldLerpToPreviousMinigame() or something and then make the interpolation here
-	
+
 	if TimeBar.visible:
 		current_minigame_duration += delta
 		TimeBar.value = (current_minigame_duration * 100) / minigame_duration

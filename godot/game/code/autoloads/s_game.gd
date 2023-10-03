@@ -24,8 +24,8 @@ var last_minigame_index : int = -1
 ##
 func _ready():
 	MobileAds.initialize()
-	randomize()
-	minigames_array.shuffle()
+	#randomize()
+	#minigames_array.shuffle()
 	
 	for minigame in minigames_array:
 		print(minigame.scene.resource_path + " has " + str(minigame.game_duration))
@@ -88,8 +88,8 @@ func _change_minigame(minigame_index : int) -> void:
 	SceneManager.change_scene(scene.resource_path, {
 													"speed": 10,
 													"pattern": "vertical",
-													"on_tree_enter": func(scene): scene.on_tree_enter_from_autoload(),
-													"on_ready": func(scene): scene.on_ready_from_autoload()
+													"on_tree_enter": func(scene): scene.get_child(0).on_tree_enter_from_autoload(),
+													"on_ready": func(scene): scene.get_child(0).on_ready_from_autoload()
 													})	
 	
 ## TODO

@@ -22,6 +22,7 @@ SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 InputManager="*res://addons/touch_input_manager/InputManager.gd"
 SGame="*res://game/code/autoloads/s_game.gd"
+SInputUtility="*res://game/code/autoloads/s_input_utility.gd"
 
 [debug]
 
