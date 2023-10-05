@@ -32,29 +32,29 @@ func _ready():
 
 ## Set the game as ready and load the first minigame
 ##		
-func start_game() -> void:
+func start_game() -> PackedScene:
 	game_ready = true
-	next_minigame()
-
-## Load the previous minigame
-##		
-func previous_minigame() -> void:
-	_change_minigame(last_minigame_index -1)	
-
-## Load the next minigame
-##	
-func next_minigame() -> void:
-	_change_minigame(last_minigame_index + 1)
+	return get_next_minigame_scene(true)
 	
 ## Get the previous minigame PackedScene
 ##		
-func get_previous_minigame_scene() -> PackedScene:
-	return _get_minigame_scene_index(last_minigame_index -1)[0]	
+func get_previous_minigame_scene(should_update_index : bool = false) -> PackedScene:
+	var result = _get_minigame_scene_index(last_minigame_index - 1)
+	
+	if should_update_index:
+		last_minigame_index = result[1]
+	
+	return result[0]
 
 ## Get the next minigame PackedScene
 ##	
-func get_next_minigame_scene() -> PackedScene:
-	return _get_minigame_scene_index(last_minigame_index + 1)[0]
+func get_next_minigame_scene(should_update_index : bool = false) -> PackedScene:
+	var result = _get_minigame_scene_index(last_minigame_index + 1)
+	
+	if should_update_index:
+		last_minigame_index = result[1]
+	
+	return result[0]
 	
 ## Get the duration of a minigame based on the name of the given node
 ## WARNING: Make sure that your scene file and your root node of the scene have the same name.
@@ -73,24 +73,6 @@ func get_minigame_duration(minigame_node : Minigame) -> float:
 			return minigame.game_duration
 	
 	return -1
-
-## Load the scene of the minigame based on the given index performing some checks
-## If we press "previous" from the first minigame we'll go to the last one
-## If we press "next" from the last minigame we'll go to the first one
-## [minigame_index] : The minigame index we want to load
-##
-func _change_minigame(minigame_index : int) -> void:			
-	var values 	= _get_minigame_scene_index(minigame_index)
-	var scene 	= values[0]
-	
-	last_minigame_index = values[1]
-	
-	SceneManager.change_scene(scene.resource_path, {
-													"speed": 10,
-													"pattern": "vertical",
-													"on_tree_enter": func(scene): scene.get_child(0).on_tree_enter_from_autoload(),
-													"on_ready": func(scene): scene.get_child(0).on_ready_from_autoload()
-													})	
 	
 ## TODO
 ## [minigame_index] : The minigame index we want to load
@@ -106,5 +88,5 @@ func _get_minigame_scene_index(minigame_index : int):
 		loaded_minigame_index = minigames_array.size() - 1
 	elif minigame_index == minigames_array.size():
 		loaded_minigame_index = 0
-			
+		
 	return [minigames_array[loaded_minigame_index].scene, loaded_minigame_index]

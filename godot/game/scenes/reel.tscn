@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dflmmeq4t1rsu"]
+
+[ext_resource type="Script" path="res://game/code/minigames/reel.gd" id="1_dbiqk"]
+
+[node name="reel" type="Node2D"]
+script = ExtResource("1_dbiqk")
