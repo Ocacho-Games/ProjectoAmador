@@ -1,5 +1,6 @@
 ## This is a tool so we are allowed to change the variables on the editor while playing
 @tool
+
 ## Base class 
 ## This is the base class for Minigames. Mingames should extends from this 
 ## It contains common logic such as 
@@ -54,8 +55,8 @@ func _process(delta):
 		TimeBar.value = (current_minigame_duration * 100) / minigame_duration
 		
 		if current_minigame_duration >= minigame_duration:
+			on_duration_completed.emit()			
 			is_active = false			
-			on_duration_completed.emit()
 
 ## Overriden exit tree function
 ##			
@@ -63,11 +64,11 @@ func _exit_tree():
 	is_active = false
 	
 #==============================================================================
-# SCENE MANAGER FUNCTIONS
+# REEL FUNCTIONS
 #==============================================================================
 	
-## Called from the game autload when this minigame is the selected one to play
+## Called from the reel when this minigame is the selected one to play
 ##
-func on_ready_from_autoload() -> void:
+func on_ready_from_reel() -> void:
 	is_active = true
 

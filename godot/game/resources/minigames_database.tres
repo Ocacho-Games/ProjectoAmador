@@ -13,14 +13,14 @@
 [sub_resource type="Resource" id="Resource_uuu08"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("1_6urhn")
-game_duration = 1e+06
+game_duration = 2.0
 game_key = "game-1"
 metadata = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_p2v6o"]
 script = ExtResource("1_tv1c6")
 scene = ExtResource("3_7sxf7")
-game_duration = 1e+06
+game_duration = 1e+07
 game_key = "game-2"
 metadata = Array[int]([])
 

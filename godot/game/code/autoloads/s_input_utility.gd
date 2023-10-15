@@ -47,7 +47,7 @@ func _input(event):
 
 ## Overriden process function
 ##
-func _process(delta):
+func _process(_delta):
 	if !is_touching:
 		cached_drag_event = null
 	
@@ -89,7 +89,7 @@ func get_dragging_direction_vertical():
 ## @return: A tuple containing if we are performing the gesture passed as a track_variable and the direction of the gesture
 ##
 func _get_gesture_direction(track_variable : STrackVariable, event : InputEvent):
-	if !is_dragging.value or !event: return [false, EGestureDirection.UP]
+	if !track_variable.value or !event: return [false, EGestureDirection.UP]
 	
 	var relative_x = event.relative.x
 	var relative_y = event.relative.y

@@ -14,7 +14,7 @@ var minigames_array = preload("res://game/resources/minigames_database.tres").mi
 var game_ready = false
 
 ## The last minigame index loaded in order to keep track of it
-var last_minigame_index : int = -1
+var last_minigame_index : int = 0
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -39,33 +39,38 @@ func _ready():
 ##		
 func start_game() -> PackedScene:
 	game_ready = true
-	return get_next_minigame_scene(true)
+	return get_current_minigame_scene()
+	
+
+## Update the internal last_minigame_index in order to update the current scene index we are playing
+## Ex: If we are playing the scene index 2, if we call this function tracked index will be 1.
+##
+func load_previous_miningame_index() -> void:
+	last_minigame_index = _get_minigame_scene_index(last_minigame_index - 1)[1]
+	
+## Update the internal last_minigame_index in order to update the current scene index we are playing
+## Ex: If we are playing the scene index 2, if we call this function tracked index will be 3.
+##
+func load_next_miningame_index() -> void:
+	last_minigame_index = _get_minigame_scene_index(last_minigame_index + 1)[1]
+
+## Get the current minigame PackedScene
+## WARNING: This usually should be called after calling load_next/previous_miningame_index() function
+##		
+func get_current_minigame_scene() -> PackedScene:
+	return _get_minigame_scene_index(last_minigame_index)[0]
 	
 ## Get the previous minigame PackedScene
-## [should_update_index]: Whether we should update the internal last_minigame_index in order to update the current scene index we are playing
-## Ex: If we are playing the scene index 2, if we call this function with the parameter set to "true" the tracked index will be 1.
-## But we maybe only want to get the scene in order to preload it, so if we use "false" our index will stay to 2
+## WARNING: This usually should be called after calling load_next/previous_miningame_index() function
 ##		
-func get_previous_minigame_scene(should_update_index : bool = false) -> PackedScene:
-	var result = _get_minigame_scene_index(last_minigame_index - 1)
-	
-	if should_update_index:
-		last_minigame_index = result[1]
-	
-	return result[0]
+func get_previous_minigame_scene() -> PackedScene:
+	return _get_minigame_scene_index(last_minigame_index - 1)[0]
 
 ## Get the next minigame PackedScene
-## [should_update_index]: Whether we should update the internal last_minigame_index in order to update the current scene index we are playing
-## Ex: If we are playing the scene index 2, if we call this function with the parameter set to "true" the tracked index will be 3  
-## But we maybe only want to get the scene in order to preload it, so if we use "false" our index will stay to 2
+## WARNING: This usually should be called after calling load_next/previous_miningame_index() function
 ##	
-func get_next_minigame_scene(should_update_index : bool = false) -> PackedScene:
-	var result = _get_minigame_scene_index(last_minigame_index + 1)
-	
-	if should_update_index:
-		last_minigame_index = result[1]
-	
-	return result[0]
+func get_next_minigame_scene() -> PackedScene:
+	return _get_minigame_scene_index(last_minigame_index + 1)[0]
 	
 ## Get the duration of a minigame based on the name of the given node
 ## WARNING: Make sure that your scene file and your root node of the scene have the same name.
