@@ -5,8 +5,8 @@ extends Node
 var first_drag_y_value : float = 0
 var current_scene_offset: float = 0
 
-var last_drag_direction : SInputUtility.EDragDirection
-var last_swipe_direction : SInputUtility.EDragDirection
+var last_drag_direction : SInputUtility.EGestureDirection
+var last_swipe_direction : SInputUtility.EGestureDirection
 
 var is_lerping : bool = false
 var should_change_minigame = false
@@ -43,7 +43,7 @@ func _process(delta):
 
 	if SInputUtility.is_dragging.has_changed(false) and !is_lerping:
 		var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")		
-		if last_drag_direction == SInputUtility.EDragDirection.UP:
+		if last_drag_direction == SInputUtility.EGestureDirection.UP:
 			if current_scene_node.position.y > screen_height / 2:
 				is_lerping = true
 				should_change_minigame = true
@@ -67,7 +67,7 @@ func _process(delta):
 				initial_minigame_position = current_scene_node.position.y	
 
 	if result[0] and !is_lerping:
-		DebugDraw2D.set_text("Dragging direction", str(SInputUtility.EDragDirection.keys()[result[1]]))	
+		DebugDraw2D.set_text("Dragging direction", str(SInputUtility.EGestureDirection.keys()[result[1]]))	
 		current_scene_node.position.y = SInputUtility.cached_drag_event.position.y - first_drag_y_value + current_scene_offset
 
 	if is_lerping:		
@@ -77,7 +77,7 @@ func _process(delta):
 
 		if t >= 1:
 			if should_change_minigame: 
-				if last_drag_direction == SInputUtility.EDragDirection.UP: _init_specific_game(previous_scene_node)
+				if last_drag_direction == SInputUtility.EGestureDirection.UP: _init_specific_game(previous_scene_node)
 				else: _init_specific_game(next_scene_node)
 
 			is_lerping = false

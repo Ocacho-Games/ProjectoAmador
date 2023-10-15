@@ -17,18 +17,23 @@ var game_ready = false
 var last_minigame_index : int = -1
 
 #==============================================================================
-# FUNCTIONS
+# GODOT FUNCTIONS
 #==============================================================================
 
 ## Overriden ready function
 ##
 func _ready():
 	MobileAds.initialize()
+	# TODO [David]: We should develop an algorithm for this, for now it's disabled for the shake of testing
 	#randomize()
 	#minigames_array.shuffle()
 	
 	for minigame in minigames_array:
 		print(minigame.scene.resource_path + " has " + str(minigame.game_duration))
+
+#==============================================================================
+# PUBLIC FUNCTIONS
+#==============================================================================
 
 ## Set the game as ready and load the first minigame
 ##		
@@ -37,6 +42,9 @@ func start_game() -> PackedScene:
 	return get_next_minigame_scene(true)
 	
 ## Get the previous minigame PackedScene
+## [should_update_index]: Whether we should update the internal last_minigame_index in order to update the current scene index we are playing
+## Ex: If we are playing the scene index 2, if we call this function with the parameter set to "true" the tracked index will be 1.
+## But we maybe only want to get the scene in order to preload it, so if we use "false" our index will stay to 2
 ##		
 func get_previous_minigame_scene(should_update_index : bool = false) -> PackedScene:
 	var result = _get_minigame_scene_index(last_minigame_index - 1)
@@ -47,6 +55,9 @@ func get_previous_minigame_scene(should_update_index : bool = false) -> PackedSc
 	return result[0]
 
 ## Get the next minigame PackedScene
+## [should_update_index]: Whether we should update the internal last_minigame_index in order to update the current scene index we are playing
+## Ex: If we are playing the scene index 2, if we call this function with the parameter set to "true" the tracked index will be 3  
+## But we maybe only want to get the scene in order to preload it, so if we use "false" our index will stay to 2
 ##	
 func get_next_minigame_scene(should_update_index : bool = false) -> PackedScene:
 	var result = _get_minigame_scene_index(last_minigame_index + 1)
@@ -73,9 +84,14 @@ func get_minigame_duration(minigame_node : Minigame) -> float:
 			return minigame.game_duration
 	
 	return -1
+
+#==============================================================================
+# PRIVATE FUNCTIONS
+#==============================================================================
 	
-## TODO
-## [minigame_index] : The minigame index we want to load
+## Get the scene related to the given minigame_index and the actual index of the scene retrieved
+## [minigame_index] : The minigame scene index we want to load
+## @return: A tuple containing the PackedScene and the index of that PackedScene for tracking it
 ##
 func _get_minigame_scene_index(minigame_index : int):
 	if game_ready == false: return

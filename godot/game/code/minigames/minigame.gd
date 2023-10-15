@@ -1,3 +1,4 @@
+## This is a tool so we are allowed to change the variables on the editor while playing
 @tool
 ## Base class 
 ## This is the base class for Minigames. Mingames should extends from this 
@@ -24,6 +25,13 @@ var current_minigame_duration = 0
 var is_active = false
 
 #==============================================================================
+# SIGNALS
+#==============================================================================
+
+# Signal fired when the minigame duration is done, so we should jump to another minigame
+signal on_duration_completed
+
+#==============================================================================
 # FUNCTIONS
 #==============================================================================
 
@@ -46,8 +54,8 @@ func _process(delta):
 		TimeBar.value = (current_minigame_duration * 100) / minigame_duration
 		
 		if current_minigame_duration >= minigame_duration:
-			#Fire signal for reel
-			is_active = false
+			is_active = false			
+			on_duration_completed.emit()
 
 ## Overriden exit tree function
 ##			

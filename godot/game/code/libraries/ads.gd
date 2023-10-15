@@ -19,7 +19,7 @@ static var rewarded_id 					: String = "ca-app-pub-3940256099942544/5224354917" 
 static var rewarded_interstitial_id 	: String = "ca-app-pub-3940256099942544/5354046379" if OS.get_name() == "Android" else "ca-app-pub-3940256099942544/6978759866"
 
 #==============================================================================
-# FUNCTIONS
+# PUBLIC FUNCTIONS
 #==============================================================================
 
 ## Create, load and return an Admob Banner add given the parameters
@@ -74,6 +74,10 @@ static func load_show_rewarded_interstital() -> RewardedInterstitialAd:
 	var ad = load_rewarded_interstital()
 	ad.show()
 	return ad
+
+#==============================================================================
+# PRIVATE FUNCTIONS
+#==============================================================================
 
 ## Create, load and return an advanced Admob Add, based on the instances of the callback, loader and the id of the ad given
 ## [callback] : Callback in order to attach functionality when the ad performs some action  
