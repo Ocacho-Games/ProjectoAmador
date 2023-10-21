@@ -32,6 +32,15 @@ offset_left = 43.0
 offset_top = 213.0
 offset_right = 199.0
 offset_bottom = 257.0
-text = "jUEGA HIJODEPUTA"
+text = "Save game"
+
+[node name="Button2" type="Button" parent="Label"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 277.0
+offset_right = 198.0
+offset_bottom = 321.0
+text = "Load game"
 
 [connection signal="pressed" from="Label/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Label/Button2" to="." method="_on_button_load_pressed"]
