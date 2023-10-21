@@ -11,7 +11,7 @@ const SAVE_NAME = "Suap"
 var GPGS
 
 ## Reference to the data to save for the user, so the user only have to care about modifying the data
-var data_to_save : SSaveData
+var data_to_save : SSaveData = SSaveData.new()
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -32,13 +32,6 @@ func _ready():
 #==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
-
-## Store the reference to the data we want to save/load from the user
-## It also loads the last game saved on the cloud when _on_sign_in_success is fired
-##
-func init(ref : SSaveData) -> void:
-	assert(ref, "Invalid SSaveData reference for GPS")
-	data_to_save = ref
 
 ## Save the game given the reference to the data to store on the cloud. 
 ## NOTE: Make sure to call the init function before calling this method 

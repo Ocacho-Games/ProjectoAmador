@@ -7,7 +7,7 @@ class_name SSaveData
 # VARIABLES
 #==============================================================================
 
-var data = {
+var dictionary = {
 	"name" : "Jose",
 	"test_array" : [] 
 }
@@ -20,5 +20,5 @@ var data = {
 ## NOTE: The parsed_data must be a parsed JSON
 ##
 func copy_data(parsed_data) -> void:
-	data["name"] = parsed_data.name
-	data["test_array"] = parsed_data.test_array	
+	dictionary["name"] = parsed_data.name
+	dictionary["test_array"] = parsed_data.test_array	
