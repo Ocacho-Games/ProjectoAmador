@@ -22,6 +22,12 @@ var minigame_duration = 0
 ## Current duration of this minigame. Used for changing scenes
 var current_minigame_duration = 0
 
+## Score of the game. This will be submitted to GPS and loaded from GPS.
+var score = 0.0
+
+## String ID related to the Google play services leaderboard for this game
+var gps_leader_board_id = "CgkIr7WWkr4cEAIQAQ"
+
 ## TODO: This shouldn't be necessary. See to change this by on load after the transition
 var is_active = false
 
@@ -62,6 +68,7 @@ func _process(delta):
 ##			
 func _exit_tree():
 	is_active = false
+	SGPS.submit_leaderboard_score(self, score)
 	
 #==============================================================================
 # REEL FUNCTIONS

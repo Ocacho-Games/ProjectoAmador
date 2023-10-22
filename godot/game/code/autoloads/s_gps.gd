@@ -33,34 +33,64 @@ func _ready():
 # PUBLIC FUNCTIONS
 #==============================================================================
 
+## Show the leaderboard of an specific minigame
+## [minigame]: Reference to the minigame in order to get the ID of the leaderboard
+##
+func show_leaderboard(minigame : Minigame) -> void:
+	_check_gpgs()
+	assert(minigame, "Invalid minigame in order to show the its leaderboard!")
+	GPGS.showLeaderBoard(minigame.gps_leader_board_id)
+
+## Show all the leaderboards of this game
+##	
+func show_all_leaderboards() -> void:
+	_check_gpgs()
+	GPGS.showAllLeaderBoards()
+	
+## Submit a score to the leaderboard of an specific minigame
+## [minigame]: Reference to the minigame in order to get the ID of the leaderboard
+## [score]: Score to submit
+##
+func submit_leaderboard_score(minigame : Minigame, score) -> void:
+	_check_gpgs()
+	GPGS.submitLeaderBoardScore(minigame.gps_leader_board_id, score)
+
 ## Save the game given the reference to the data to store on the cloud. 
 ## NOTE: Make sure to call the init function before calling this method 
 ##
 func save_game() -> void:
-	assert(GPGS, "Trying to call some GPS functions without proper GPS initialization!")
-	GPGS.saveSnapshot(SAVE_NAME, JSON.new().stringify(data_to_save.data), "")
+	_check_gpgs()
+	GPGS.saveSnapshot(SAVE_NAME, JSON.stringify(data_to_save.dictionary), "")
 
 ## Load the game. This will call a signal that will pull the saved data from the cloud. 
 ## NOTE: Make sure to call the init function before calling this method 
 ##	
 func load_game() -> void:
-	assert(GPGS, "Trying to call some GPS functions without proper GPS initialization!")
-	print("Load the fucking GAMEEEE")
+	_check_gpgs()
 	GPGS.loadSnapshot(SAVE_NAME)
 
 #==============================================================================
 # PRIVATE FUNCTIONS
 #==============================================================================
 
+## Checks if the singleton reference is valid, if not raise an assert. Used in functions that use the singleton
+##
+func _check_gpgs() -> void:
+	assert(GPGS, "Trying to call some GPS functions without proper GPS initialization!")	
+
 ## Connect all the signals from the GPGS plugin to our local functions
 ##
 func _connect_signals() -> void:
 	GPGS.connect("_on_sign_in_success", _on_sign_in_success)
 	GPGS.connect("_on_sign_in_failed", _on_sign_in_failed)		
+	GPGS.connect("_on_leaderboard_score_submitted", _on_leaderboard_score_submitted)
+	GPGS.connect("_on_leaderboard_score_submitted_failed", _on_leaderboard_score_submitted_failed)	
 	GPGS.connect("_on_game_saved_success", _on_game_saved_success)
-	GPGS.connect("_on_game_saved_failed", _on_game_saved_failed)
+	#TODO [David]: This event names aren't right... bro son los del tuto	
+	#GPGS.connect("_on_game_saved_failed", _on_game_saved_failed)
 	GPGS.connect("_on_game_load_success", _on_game_load_success)
-	GPGS.connect("_on_game_load_failed", _on_game_load_failed)
+	#TODO [David]: This event names aren't right... bro son los del tuto
+	#GPGS.connect("_on_game_load_failed", _on_game_load_failed)
 	GPGS.connect("_on_create_new_snapshot", _on_create_new_snapshot)
 
 #==============================================================================
@@ -73,13 +103,21 @@ func _on_sign_in_success(user_information):
 	
 func _on_sign_in_failed(error_code : int):
 	print("Sign in fail: " + str(error_code))
+	
+func _on_leaderboard_score_submitted(id : String):
+	print("Leaderboard score submitted successfuly: " + id)
+	
+func _on_leaderboard_score_submitted_failed(id : String):
+	print("Leaderboard score submitted failed: " + id)
 
 func _on_game_saved_success():
 	print("Game saved successfuly")	
 	
 func _on_game_saved_failed():
 	print("Game saved failed")	
-	
+
+## Updates the referenced game data once the game has been successfuly loaded.
+##	
 func _on_game_load_success(json_data):
 	print("Game load successfuly: " + json_data)
 
@@ -89,5 +127,5 @@ func _on_game_load_success(json_data):
 func _on_game_load_failed():
 	print("Game load failed")		
 	
-func _on_create_new_snapshot(name : String):
-	print("Game create new snapshot: " + name)		
+func _on_create_new_snapshot(snapshot_name : String):
+	print("Game create new snapshot: " + snapshot_name)		
