@@ -1,3 +1,7 @@
+## This autoload is in charge of all the related to Google Play Services (GPS).
+## Provides logic for showing leaderboards, save and load the game mainly.
+## It also contains the data to save to the cloud with GPS.
+##
 extends Node
 
 #==============================================================================
@@ -84,7 +88,8 @@ func _connect_signals() -> void:
 	GPGS.connect("_on_sign_in_success", _on_sign_in_success)
 	GPGS.connect("_on_sign_in_failed", _on_sign_in_failed)		
 	GPGS.connect("_on_leaderboard_score_submitted", _on_leaderboard_score_submitted)
-	GPGS.connect("_on_leaderboard_score_submitted_failed", _on_leaderboard_score_submitted_failed)	
+	#TODO [David]: This event names aren't right... bro son los del tuto		
+	#GPGS.connect("_on_leaderboard_score_submitted_failed", _on_leaderboard_score_submitted_failed)	
 	GPGS.connect("_on_game_saved_success", _on_game_saved_success)
 	#TODO [David]: This event names aren't right... bro son los del tuto	
 	#GPGS.connect("_on_game_saved_failed", _on_game_saved_failed)

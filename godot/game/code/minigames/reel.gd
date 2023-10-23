@@ -135,17 +135,20 @@ func _prepare_game() -> void:
 ## [delta]: Frame delta time coming from the _process function
 ##	
 func _handle_dragging(delta) -> void:
+	if !current_minigame_node.can_drag_from_reel(): return
+	
 	if is_lerping:
 		_handle_reel_interpolation(delta)
 		return
 	
-	var result = SInputUtility.get_dragging_direction_vertical()
-	var is_dragging 		= result[0]
-	last_drag_direction 	= result[1] if is_dragging else last_drag_direction
+	var result_drag 	= SInputUtility.get_dragging_direction_vertical()
+	var is_dragging 	= result_drag[0]
+	last_drag_direction = result_drag[1] if is_dragging else last_drag_direction
 	
 	if !is_dragging:
-		if SInputUtility.is_dragging.has_changed(false): 
-			_handle_dragging_just_false()
+		if SInputUtility.is_dragging.has_changed(false):
+			if SInputUtility.is_swiping : _handle_swipe()
+			else: _handle_dragging_just_false()
 		return
 	
 	_handle_dragging_displacement()
@@ -160,6 +163,14 @@ func _handle_dragging_displacement() -> void:
 	DebugDraw2D.set_text("Dragging direction", str(SInputUtility.EGestureDirection.keys()[last_drag_direction]))	
 	current_minigame_node.position.y = SInputUtility.cached_drag_event.position.y - drag_event_initial_y_position
 
+## Called when we are swiping. Swiping will allow an instant change to the next/previous minigame
+##
+func _handle_swipe() -> void:
+	is_lerping = true
+	lerp_initial_value = current_minigame_node.position.y
+	should_change_minigame_after_lerp = true
+	lerp_target_value = SCREEN_HEIGHT if last_drag_direction == SInputUtility.EGestureDirection.UP else -SCREEN_HEIGHT
+
 ## Called the first time the dragging becomes false after being true.
 ## This function is in charge of setting if we have to set the proper values for changing to the next or previous miningame based on the height threshold.
 ## [David]: Right now, the threshold is set to the middle of the screen, if the drag is bigger than half screen, we will change
@@ -172,11 +183,11 @@ func _handle_dragging_just_false() -> void:
 	if last_drag_direction == SInputUtility.EGestureDirection.UP:
 		threshold_passed = current_minigame_node.position.y > SCREEN_HEIGHT / 3
 		should_change_minigame_after_lerp = true if threshold_passed else false
-		lerp_target_value = SCREEN_HEIGHT if threshold_passed else 0
+		lerp_target_value = SCREEN_HEIGHT if threshold_passed else 0.0
 	else:
 		threshold_passed = current_minigame_node.position.y > -(SCREEN_HEIGHT / 3)
 		should_change_minigame_after_lerp = false if threshold_passed else true
-		lerp_target_value = 0 if threshold_passed else -SCREEN_HEIGHT
+		lerp_target_value = 0.0 if threshold_passed else -SCREEN_HEIGHT
 		
 ## Called when we should interpolate to the same or another minigame
 ## This functions displace the current minigame position in y in order to reach the target in the given lerp_duration.

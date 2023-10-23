@@ -39,7 +39,7 @@ var is_active = false
 signal on_duration_completed
 
 #==============================================================================
-# FUNCTIONS
+# GODOT FUNCTIONS
 #==============================================================================
 
 ## Overriden ready function
@@ -73,6 +73,12 @@ func _exit_tree():
 #==============================================================================
 # REEL FUNCTIONS
 #==============================================================================
+
+## Virtual method that tell us if the minigame allows the reel to drag.
+## Useful when we have a minigame that needs some entity to be draggable  
+##
+func can_drag_from_reel() -> bool:
+	return true	
 	
 ## Called from the reel when this minigame is the selected one to play
 ##

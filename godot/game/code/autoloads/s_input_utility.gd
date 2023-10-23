@@ -14,9 +14,13 @@ enum EGestureDirection {UP, DOWN, LEFT, RIGHT}
 # TYPES
 #==============================================================================
 
-## Minimum displacement threshold for the relative vector of the drag/swipe input event.
+## Minimum displacement threshold for the relative vector of the drag input event.
 ## If the drag is too little, so the relative is less than this, we won't treat the drag as a valid drag
 const RELATIVE_MINIMUM = 2.0
+
+## Minimum displacement threshold for the relative vector of the drag input event in order to trigger a swipe.
+## This means, if the user drag to quick we will consider the drag a swipe
+const SWIPING_RELATIVE_MINIMUM = 150.0
 
 ## Whether we are touching the screen or not
 var is_touching = false
@@ -24,6 +28,12 @@ var is_touching = false
 ## Boolean track variable in order to know if we are dragging or not. 
 ## "is_dragging" will only be valid while we are touching the screen
 var is_dragging : STrackVariable
+
+## Whether we are swiping or not. This will only be true when we are not longer dragging, obviously.
+var is_swiping : bool = false
+
+## If this is bigger than SWIPING_RELATIVE_MINIMUM, we are swiping 
+var max_y_dragging_relative = 0.0
 
 ## Cached last drag event emitted by the input function in order to 
 var cached_drag_event : InputEventSingleScreenDrag
@@ -42,12 +52,16 @@ func _ready():
 func _input(event):
 	if event is InputEventSingleScreenDrag:
 		cached_drag_event = event
+		if abs(event.relative.y) > max_y_dragging_relative: 
+			max_y_dragging_relative = abs(event.relative.y)
 	elif event is InputEventSingleScreenTouch:
 		is_touching = event.pressed
 
 ## Overriden process function
 ##
 func _process(_delta):
+	is_swiping = false
+	
 	if !is_touching:
 		cached_drag_event = null
 	
@@ -72,7 +86,10 @@ func get_dragging_direction_horizontal():
 ##
 func get_dragging_direction_vertical():
 	var result = _get_gesture_direction(is_dragging, cached_drag_event)
-	if !result[0]: return result
+	if !result[0]:
+		is_swiping = max_y_dragging_relative > SWIPING_RELATIVE_MINIMUM
+		max_y_dragging_relative = 0
+		return result
 	
 	if result[1] == EGestureDirection.UP or result[1] == EGestureDirection.DOWN:
 		return result
