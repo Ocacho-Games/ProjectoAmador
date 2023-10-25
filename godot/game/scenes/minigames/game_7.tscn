@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="2_vv58o"]
 
 [node name="game_7" type="Node2D"]
+position = Vector2(0, 1)
 script = ExtResource("1_ba0gh")
 
 [node name="ColorRect" type="ColorRect" parent="."]

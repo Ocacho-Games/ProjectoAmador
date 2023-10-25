@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MinigamesDataBase" load_steps=17 format=3 uid="uid://dlwwh6sxqpale"]
 
-[ext_resource type="PackedScene" uid="uid://cd2f5vcywn8gv" path="res://game/scenes/minigames/game_1.tscn" id="1_6urhn"]
+[ext_resource type="PackedScene" uid="uid://ioi8aq3h06pf" path="res://game/scenes/minigames/spaceship/spaceship.tscn" id="1_h1bcv"]
 [ext_resource type="Script" path="res://game/code/data/minigame_data.gd" id="1_tv1c6"]
 [ext_resource type="PackedScene" uid="uid://m5j68qxragr2" path="res://game/scenes/minigames/game_6.tscn" id="2_f1x4t"]
 [ext_resource type="PackedScene" uid="uid://bsst51rq2yg05" path="res://game/scenes/minigames/game_4.tscn" id="2_ntq2x"]
@@ -12,10 +12,10 @@
 
 [sub_resource type="Resource" id="Resource_uuu08"]
 script = ExtResource("1_tv1c6")
-scene = ExtResource("1_6urhn")
-game_duration = 1e+08
+scene = ExtResource("1_h1bcv")
+game_duration = -1.0
 game_key = "game-1"
-metadata = Array[int]([])
+metadata = Array[int]([0, 0, 0])
 
 [sub_resource type="Resource" id="Resource_p2v6o"]
 script = ExtResource("1_tv1c6")

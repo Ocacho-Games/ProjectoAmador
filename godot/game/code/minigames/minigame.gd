@@ -35,8 +35,8 @@ var is_active = false
 # SIGNALS
 #==============================================================================
 
-# Signal fired when the minigame duration is done, so we should jump to another minigame
-signal on_duration_completed
+# Signal fired when we should jump to the next minigame well because the duration is done, we lost, we won... anything
+signal on_should_change_to_next_minigame
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -61,14 +61,14 @@ func _process(delta):
 		TimeBar.value = (current_minigame_duration * 100) / minigame_duration
 		
 		if current_minigame_duration >= minigame_duration:
-			on_duration_completed.emit()			
+			on_should_change_to_next_minigame.emit()			
 			is_active = false			
 
 ## Overriden exit tree function
 ##			
 func _exit_tree():
 	is_active = false
-	SGPS.submit_leaderboard_score(self, score)
+	#SGPS.submit_leaderboard_score(self, score)
 	
 #==============================================================================
 # REEL FUNCTIONS

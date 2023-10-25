@@ -123,7 +123,7 @@ func _prepare_game() -> void:
 	next_minigame_node.position.y = SCREEN_HEIGHT
 	
 	current_minigame_node.on_ready_from_reel()
-	current_minigame_node.connect("on_duration_completed", func():
+	current_minigame_node.connect("on_should_change_to_next_minigame", func():
 		drag_event_initial_y_position = 0		
 		is_lerping = true
 		should_change_minigame_after_lerp = true
