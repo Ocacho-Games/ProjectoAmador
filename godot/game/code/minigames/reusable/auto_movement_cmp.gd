@@ -1,7 +1,7 @@
 ## Support auto movement for your entities based on different movement and rotation patterns that you can tweak
 ## [David]: I don't know if this is supposed to be an sprite we can change it
 ##
-extends Sprite2D
+class_name AutoMovementCmp extends Node
 
 #==============================================================================
 # TYPES
@@ -89,7 +89,7 @@ var fixed_delta_multiplier	: float = 1.0
 ##
 func _ready():
 	_select_initial_direction()
-	initial_position = position
+	initial_position = get_parent().position
 
 ## Overriden input function
 ##
@@ -187,13 +187,16 @@ func _handle_screen_borders() -> void:
 	var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
 	var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
 	
+	var position_parent = get_parent().position 
+	var sprite_texture 	= get_parent().get_node("Sprite2D")
+	
 	match change_type:
 		EChangeType.SCREEN_WIDHT:
-			if (position.x + texture.get_width() / 2.0 >= screen_width): _change_movement()
-			if (position.x - texture.get_width() / 2.0 <= 0.0): _change_movement()			
+			if (position_parent.x + sprite_texture.get_width() / 2.0 >= screen_width): _change_movement()
+			if (position_parent.x - sprite_texture.get_width() / 2.0 <= 0.0): _change_movement()			
 		EChangeType.SCREEN_HEIGHT:
-			if (position.y + texture.get_height() / 2.0 >= screen_height): _change_movement()
-			if (position.y - texture.get_height() / 2.0 <= 0.0): _change_movement()		
+			if (position_parent.y + sprite_texture.get_height() / 2.0 >= screen_height): _change_movement()
+			if (position_parent.y - sprite_texture.get_height() / 2.0 <= 0.0): _change_movement()		
 
 ## Handles the position of the entity depending on the movement patterns
 ##	
@@ -205,7 +208,7 @@ func _handle_position(delta) -> void:
 		return
 		
 	var velocity = current_direction * speed * delta
-	position += velocity
+	get_parent().position += velocity
 
 ## In case our movement pattern is set to FIXED_UNITS, we will execute a specific type of movement
 ##
@@ -218,7 +221,7 @@ func _handle_fixed_units_position(delta) -> void:
 	
 	var vector_amount = Vector2(fixed_units, 0) if fixed_axis == InterpolationLibrary.EAxis.X else Vector2(0, -fixed_units)	
 	var target_position = initial_position + vector_amount 
-	position = lerp(initial_position, target_position, alpha)
+	get_parent().position = lerp(initial_position, target_position, alpha)
 
 ## Handles the rotation of the entity depending on the rotation patterns
 ##		
@@ -228,14 +231,14 @@ func _handle_rotation(delta) -> void:
 	match rotation_type:
 		ERotationType.NO_ROTATION: return
 		ERotationType.CONSTANT: 
-			rotation_degrees += rotation_degrees_per_frame
+			get_parent().rotation_degrees += rotation_degrees_per_frame
 		ERotationType.ORIENTED_TO_MOVEMENT:
 			var dot = DIRECTION_FWD.dot(current_direction)
 			var det = DIRECTION_FWD.x * current_direction.y - current_direction.x * DIRECTION_FWD.y
 			var target_angle = atan2(det, dot)
 			var offset_angle = rotation_offset if target_angle > 0 else -rotation_offset
 			var final_target_angle = target_angle + deg_to_rad(offset_angle)
-			rotation = InterpolationLibrary.interp_to(rotation, final_target_angle, delta, rotation_interpolation_speed) 
+			get_parent().rotation = InterpolationLibrary.interp_to(get_parent().rotation, final_target_angle, delta, rotation_interpolation_speed) 
 			
 		
  

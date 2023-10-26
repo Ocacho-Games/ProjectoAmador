@@ -1,24 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://ioi8aq3h06pf"]
+[gd_scene load_steps=7 format=3 uid="uid://ioi8aq3h06pf"]
 
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
 [ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="2_svxs2"]
-[ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement.gd" id="3_j5np0"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u2p5"]
+size = Vector2(117, 115)
 
 [node name="spaceship_minigame" type="Node2D"]
 script = ExtResource("1_cbeqs")
 
-[node name="spaceship" type="Sprite2D" parent="."]
-position = Vector2(556, 2054)
-texture = ExtResource("2_svxs2")
-script = ExtResource("3_j5np0")
-enable = true
-movement_type = 13
+[node name="spaceship" type="Node2D" parent="."]
+position = Vector2(550, 2054)
+
+[node name="AutoMovementCmp" type="Node" parent="spaceship"]
+script = ExtResource("3_n1q1x")
 change_type = 3
-speed = 20.0
-fixed_duration = 0.2
 rotation_type = 2
+rotation_offset = -60.0
+
+[node name="Sprite2D" type="Sprite2D" parent="spaceship"]
+texture = ExtResource("2_svxs2")
+
+[node name="Area2D" type="Area2D" parent="spaceship"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spaceship/Area2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_4u2p5")
 
 [node name="obstacle_generator" type="Node2D" parent="."]
 script = ExtResource("4_8xx6q")
@@ -29,3 +39,5 @@ offset_left = 29.0
 offset_top = 2180.0
 offset_right = 1078.0
 offset_bottom = 2266.0
+
+[connection signal="area_entered" from="spaceship/Area2D" to="." method="_on_player_area_entered"]
