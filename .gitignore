@@ -1,6 +1,7 @@
 # Godot-specific ignores
 .import/
 godot/.godot/
+*.import
 
 # Third party plugins (DON"T INCLUDE GUT)
 godot/addons/scene_manager
