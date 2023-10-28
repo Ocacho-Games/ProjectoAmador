@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn8cw41kc3lsj"]
+
+[ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
+[ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_ow4q8"]
+[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="4_2hd3k"]
+
+[node name="clicker_minigame" type="Node2D"]
+script = ExtResource("1_wskaq")
+
+[node name="background" type="TextureRect" parent="."]
+self_modulate = Color(1, 0.709804, 0, 1)
+offset_left = -76.0
+offset_top = -468.0
+offset_right = 1317.0
+offset_bottom = 2564.0
+texture = ExtResource("2_ow4q8")
+expand_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 29.0
+offset_top = 2180.0
+offset_right = 1078.0
+offset_bottom = 2266.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 196.0
+offset_top = 894.0
+offset_right = 913.0
+offset_bottom = 1550.0
+texture_normal = ExtResource("4_2hd3k")
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 378.0
+offset_top = 674.0
+offset_right = 693.0
+offset_bottom = 795.0
+mouse_filter = 2
+text = "SCORE"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

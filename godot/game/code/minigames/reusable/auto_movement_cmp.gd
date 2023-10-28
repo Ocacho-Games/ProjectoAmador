@@ -88,6 +88,7 @@ var fixed_delta_multiplier	: float = 1.0
 ## Overriden ready function
 ##
 func _ready():
+	set_name.call_deferred("AutoMovementCmp")
 	_select_initial_direction()
 	initial_position = get_parent().position
 

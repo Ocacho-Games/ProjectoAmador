@@ -9,6 +9,8 @@ extends Minigame
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	super._ready()	
+	
 	gps_leader_board_id = "CgkIr7WWkr4cEAIQAg"
 	
 func _input(event):
@@ -19,6 +21,8 @@ func _input(event):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	super._process(delta)
+	
 	score += delta * 7.5
 	_check_for_screen_collision()
 
@@ -30,8 +34,6 @@ func _check_for_screen_collision() -> void:
 	if spaceship.position.x > ProjectSettings.get_setting("display/window/size/viewport_width"): on_should_change_to_next_minigame.emit() 
 	if spaceship.position.x < 0: on_should_change_to_next_minigame.emit() 
 	
-
 func _on_player_area_entered(area):
 	spaceship.get_node("AutoMovementCmp").enable = false	
 	print("Game over | Score: " + str(score))
-	pass # Replace with function body.

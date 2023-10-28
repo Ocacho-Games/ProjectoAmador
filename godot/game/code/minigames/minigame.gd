@@ -13,8 +13,11 @@ class_name Minigame extends Node2D
 # VARIABLES
 #==============================================================================
 
+## Reference to the background of the minigame. Each Minigame must have a background
+@onready var background : TextureRect = $background
+
 ## Reference to the progress bar of the minigame. Each Minigame must have a progress bar
-@onready var TimeBar : ProgressBar = $ProgressBar 
+@onready var time_bar : ProgressBar = $ProgressBar 
 
 ## Duration of this minigame. Dictated by the minigames database resource of the autoload
 var minigame_duration = 0
@@ -44,21 +47,27 @@ signal on_should_change_to_next_minigame
 
 ## Overriden ready function
 ##
-func _ready():	
-	TimeBar.fill_mode = ProgressBar.FILL_BEGIN_TO_END 		
+func _ready():
+	if 	background:
+		background.position = Vector2(0,0)
+		var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
+		var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+		background.size = Vector2(screen_width,screen_height)
+			
+	time_bar.fill_mode = ProgressBar.FILL_BEGIN_TO_END 		
 	minigame_duration = SGame.get_minigame_duration(self)
 	
 	if minigame_duration == -1:
-		TimeBar.visible = false	
+		time_bar.visible = false	
 
 ## Overriden process function
 ##
 func _process(delta):
 	if is_active == false: return
-
-	if TimeBar.visible:
+	
+	if time_bar.visible:
 		current_minigame_duration += delta
-		TimeBar.value = (current_minigame_duration * 100) / minigame_duration
+		time_bar.value = (current_minigame_duration * 100) / minigame_duration
 		
 		if current_minigame_duration >= minigame_duration:
 			on_should_change_to_next_minigame.emit()			
@@ -68,6 +77,7 @@ func _process(delta):
 ##			
 func _exit_tree():
 	is_active = false
+	#TODO [David]: Enable this if you want to submit the score to the minigames' leaderboard
 	#SGPS.submit_leaderboard_score(self, score)
 	
 #==============================================================================
