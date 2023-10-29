@@ -41,37 +41,43 @@ func _ready():
 ## [minigame]: Reference to the minigame in order to get the ID of the leaderboard
 ##
 func show_leaderboard(minigame : Minigame) -> void:
-	_check_gpgs()
-	assert(minigame, "Invalid minigame in order to show the its leaderboard!")
-	GPGS.showLeaderBoard(minigame.gps_leader_board_id)
+	if OS.get_name() == "Android":
+		_check_gpgs()
+		assert(minigame, "Invalid minigame in order to show the its leaderboard!")
+		GPGS.showLeaderBoard(minigame.gps_leader_board_id)
 
 ## Show all the leaderboards of this game
 ##	
 func show_all_leaderboards() -> void:
-	_check_gpgs()
-	GPGS.showAllLeaderBoards()
+	if OS.get_name() == "Android":
+		_check_gpgs()
+		GPGS.showAllLeaderBoards()
 	
 ## Submit a score to the leaderboard of an specific minigame
 ## [minigame]: Reference to the minigame in order to get the ID of the leaderboard
 ## [score]: Score to submit
 ##
 func submit_leaderboard_score(minigame : Minigame, score) -> void:
-	_check_gpgs()
-	GPGS.submitLeaderBoardScore(minigame.gps_leader_board_id, score)
+	if OS.get_name() == "Android":
+		_check_gpgs()
+		GPGS.submitLeaderBoardScore(minigame.gps_leader_board_id, score)
 
 ## Save the game given the reference to the data to store on the cloud. 
 ## NOTE: Make sure to call the init function before calling this method 
 ##
 func save_game() -> void:
-	_check_gpgs()
-	GPGS.saveSnapshot(SAVE_NAME, JSON.stringify(data_to_save.dictionary), "")
+	if OS.get_name() == "Android":
+		_check_gpgs()
+		GPGS.saveSnapshot(SAVE_NAME, JSON.stringify(data_to_save.dictionary), "")
 
 ## Load the game. This will call a signal that will pull the saved data from the cloud. 
 ## NOTE: Make sure to call the init function before calling this method 
 ##	
 func load_game() -> void:
-	_check_gpgs()
-	GPGS.loadSnapshot(SAVE_NAME)
+	if OS.get_name() == "Android":
+		print("This is working")
+		_check_gpgs()
+		GPGS.loadSnapshot(SAVE_NAME)
 
 #==============================================================================
 # PRIVATE FUNCTIONS

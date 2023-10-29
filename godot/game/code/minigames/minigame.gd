@@ -16,6 +16,9 @@ class_name Minigame extends Node2D
 ## Reference to the background of the minigame. Each Minigame must have a background
 @onready var background : TextureRect = $background
 
+## Reference to the button to open the leaderboard of the game. Each Minigame must have a leaderboard button
+@onready var leaderboard_button : Button = $leaderboard_button
+
 ## Reference to the progress bar of the minigame. Each Minigame must have a progress bar
 @onready var time_bar : ProgressBar = $ProgressBar 
 
@@ -31,9 +34,6 @@ var score = 0.0
 ## String ID related to the Google play services leaderboard for this game
 var gps_leader_board_id = "CgkIr7WWkr4cEAIQAQ"
 
-## TODO: This shouldn't be necessary. See to change this by on load after the transition
-var is_active = false
-
 #==============================================================================
 # SIGNALS
 #==============================================================================
@@ -48,38 +48,49 @@ signal on_should_change_to_next_minigame
 ## Overriden ready function
 ##
 func _ready():
-	if 	background:
-		background.position = Vector2(0,0)
-		var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
-		var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
-		background.size = Vector2(screen_width,screen_height)
+	_handle_background()
+	_handle_leaderboard_button()
 			
 	time_bar.fill_mode = ProgressBar.FILL_BEGIN_TO_END 		
 	minigame_duration = SGame.get_minigame_duration(self)
 	
 	if minigame_duration == -1:
-		time_bar.visible = false	
+		time_bar.visible = false
 
 ## Overriden process function
 ##
 func _process(delta):
-	if is_active == false: return
-	
 	if time_bar.visible:
 		current_minigame_duration += delta
 		time_bar.value = (current_minigame_duration * 100) / minigame_duration
 		
 		if current_minigame_duration >= minigame_duration:
 			on_should_change_to_next_minigame.emit()			
-			is_active = false			
 
 ## Overriden exit tree function
 ##			
 func _exit_tree():
-	is_active = false
-	#TODO [David]: Enable this if you want to submit the score to the minigames' leaderboard
-	#SGPS.submit_leaderboard_score(self, score)
+	SGPS.submit_leaderboard_score(self, score)
 	
+#==============================================================================
+# PRIVATE FUNCTIONS
+#==============================================================================
+
+## Position and scale the background image of the game if any
+##
+func _handle_background() -> void:
+	if 	background:
+		background.position = Vector2(0,0)
+		var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
+		var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
+		background.size = Vector2(screen_width,screen_height)
+		
+## Connect the logic to show the leaderboard of the game to the leaderboard button
+##
+func _handle_leaderboard_button() -> void:
+	if leaderboard_button:
+		leaderboard_button.pressed.connect(func(): SGPS.show_leaderboard(self))
+		
 #==============================================================================
 # REEL FUNCTIONS
 #==============================================================================
@@ -89,9 +100,4 @@ func _exit_tree():
 ##
 func can_drag_from_reel() -> bool:
 	return true	
-	
-## Called from the reel when this minigame is the selected one to play
-##
-func on_ready_from_reel() -> void:
-	is_active = true
 

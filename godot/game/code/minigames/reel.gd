@@ -122,7 +122,10 @@ func _prepare_game() -> void:
 	previous_minigame_node.position.y = -SCREEN_HEIGHT
 	next_minigame_node.position.y = SCREEN_HEIGHT
 	
-	current_minigame_node.on_ready_from_reel()
+	GameUtilityLibrary.resume_scene(current_minigame_node, [previous_minigame_node.get_path(), next_minigame_node.get_path()])	
+	GameUtilityLibrary.pause_scene(previous_minigame_node)
+	GameUtilityLibrary.pause_scene(next_minigame_node)
+	
 	current_minigame_node.connect("on_should_change_to_next_minigame", func():
 		drag_event_initial_y_position = 0		
 		is_lerping = true
@@ -150,6 +153,9 @@ func _handle_dragging(delta) -> void:
 			if SInputUtility.is_swiping : _handle_swipe()
 			else: _handle_dragging_just_false()
 		return
+		
+	if SInputUtility.is_dragging.has_changed(true):
+		GameUtilityLibrary.pause_scene(current_minigame_node, [previous_minigame_node.get_path(), next_minigame_node.get_path()])
 	
 	_handle_dragging_displacement()
 
@@ -178,6 +184,7 @@ func _handle_swipe() -> void:
 func _handle_dragging_just_false() -> void:
 	is_lerping = true
 	lerp_initial_value = current_minigame_node.position.y
+	GameUtilityLibrary.resume_scene(current_minigame_node,[previous_minigame_node.get_path(), next_minigame_node.get_path()])
 	
 	var threshold_passed
 	if last_drag_direction == SInputUtility.EGestureDirection.UP:

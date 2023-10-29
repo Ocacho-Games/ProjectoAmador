@@ -22,7 +22,7 @@ texture = ExtResource("2_hutlb")
 expand_mode = 1
 
 [node name="spaceship" type="Node2D" parent="."]
-position = Vector2(550, 2054)
+position = Vector2(548, 2054)
 
 [node name="AutoMovementCmp" type="Node" parent="spaceship"]
 script = ExtResource("3_n1q1x")
@@ -49,5 +49,12 @@ offset_left = 29.0
 offset_top = 2180.0
 offset_right = 1078.0
 offset_bottom = 2266.0
+
+[node name="leaderboard_button" type="Button" parent="."]
+offset_left = 731.0
+offset_top = 1927.0
+offset_right = 973.0
+offset_bottom = 2004.0
+text = "Leaderboard"
 
 [connection signal="area_entered" from="spaceship/Area2D" to="." method="_on_player_area_entered"]

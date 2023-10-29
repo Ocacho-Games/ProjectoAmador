@@ -22,7 +22,7 @@ offset_top = 2180.0
 offset_right = 1078.0
 offset_bottom = 2266.0
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="clicker_button" type="TextureButton" parent="."]
 offset_left = 196.0
 offset_top = 894.0
 offset_right = 913.0
@@ -38,4 +38,11 @@ offset_bottom = 795.0
 mouse_filter = 2
 text = "SCORE"
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="leaderboard_button" type="Button" parent="."]
+offset_left = 731.0
+offset_top = 1927.0
+offset_right = 973.0
+offset_bottom = 2004.0
+text = "Leaderboard"
+
+[connection signal="pressed" from="clicker_button" to="." method="_on_texture_button_pressed"]

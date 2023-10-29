@@ -23,6 +23,7 @@ rotation_degrees_per_frame = 0.5
 
 [node name="DestroyCmp" type="Node" parent="."]
 script = ExtResource("3_oknmg")
+destroy_action = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 
