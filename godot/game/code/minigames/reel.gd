@@ -56,7 +56,7 @@ func _ready():
 
 func _process(delta):
 	_handle_dragging(delta)
-
+	
 ## Overriden exit tree function
 ##			
 func _exit_tree():
@@ -75,6 +75,8 @@ func _exit_tree():
 	if ad_view:
 		ad_view.destroy()
 		ad_view = null
+		
+	#SGPS.save_game()		
 
 #==============================================================================
 # PRIVATE FUNCTIONS
@@ -118,6 +120,10 @@ func _prepare_game() -> void:
 	
 	current_minigame_node.add_child(previous_minigame_node)
 	current_minigame_node.add_child(next_minigame_node)
+	
+	current_minigame_node.is_being_played = true
+	previous_minigame_node.is_being_played = false
+	next_minigame_node.is_being_played = false
 	
 	previous_minigame_node.position.y = -SCREEN_HEIGHT
 	next_minigame_node.position.y = SCREEN_HEIGHT

@@ -17,6 +17,9 @@ var GPGS
 ## Reference to the data to save for the user, so the user only have to care about modifying the data
 var data_to_save : SSaveData = SSaveData.new()
 
+## Whether the load_game function has been called at least once
+var is_game_loaded : bool = false
+
 #==============================================================================
 # GODOT FUNCTIONS
 #==============================================================================
@@ -24,6 +27,9 @@ var data_to_save : SSaveData = SSaveData.new()
 ## Overridden ready function
 ##
 func _ready():
+	if OS.get_name() != "Android":
+		is_game_loaded = true
+		
 	if Engine.has_singleton("GodotPlayGamesServices"):
 		GPGS = Engine.get_singleton("GodotPlayGamesServices")
 		
@@ -75,7 +81,6 @@ func save_game() -> void:
 ##	
 func load_game() -> void:
 	if OS.get_name() == "Android":
-		print("This is working")
 		_check_gpgs()
 		GPGS.loadSnapshot(SAVE_NAME)
 
@@ -110,6 +115,7 @@ func _connect_signals() -> void:
 
 func _on_sign_in_success(user_information):
 	print("Sign in success: " + user_information)
+	print("Sign in success: loading game...")	
 	load_game()	
 	
 func _on_sign_in_failed(error_code : int):
@@ -123,6 +129,7 @@ func _on_leaderboard_score_submitted_failed(id : String):
 
 func _on_game_saved_success():
 	print("Game saved successfuly")	
+	print(data_to_save.dictionary)
 	
 func _on_game_saved_failed():
 	print("Game saved failed")	
@@ -131,6 +138,7 @@ func _on_game_saved_failed():
 ##	
 func _on_game_load_success(json_data):
 	print("Game load successfuly: " + json_data)
+	is_game_loaded = true
 
 	var parsed_data = JSON.parse_string(json_data)
 	data_to_save.copy_data(parsed_data)

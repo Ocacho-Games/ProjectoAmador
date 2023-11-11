@@ -36,4 +36,3 @@ func _check_for_screen_collision() -> void:
 	
 func _on_player_area_entered(_area):
 	spaceship.get_node("AutoMovementCmp").enable = false	
-	print("Game over | Score: " + str(score))

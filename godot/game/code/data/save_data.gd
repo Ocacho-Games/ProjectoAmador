@@ -9,7 +9,8 @@ class_name SSaveData
 
 var dictionary = {
 	"name" : "Jose",
-	"test_array" : [] 
+	"test_array" : [],
+	"clicker_score" : 0
 }
 
 #==============================================================================
@@ -21,4 +22,5 @@ var dictionary = {
 ##
 func copy_data(parsed_data) -> void:
 	dictionary["name"] = parsed_data.name
-	dictionary["test_array"] = parsed_data.test_array	
+	dictionary["test_array"] = parsed_data.test_array
+	dictionary["clicker_score"] = parsed_data.clicker_score			

@@ -34,6 +34,9 @@ var score = 0.0
 ## String ID related to the Google play services leaderboard for this game
 var gps_leader_board_id = "CgkIr7WWkr4cEAIQAQ"
 
+## Whether this specific minigame is being played even though is paused or whatever
+var is_being_played = false
+
 #==============================================================================
 # SIGNALS
 #==============================================================================
@@ -66,11 +69,12 @@ func _process(delta):
 		
 		if current_minigame_duration >= minigame_duration:
 			on_should_change_to_next_minigame.emit()			
-
+				
 ## Overriden exit tree function
 ##			
 func _exit_tree():
-	SGPS.submit_leaderboard_score(self, score)
+	if is_being_played:
+		SGPS.submit_leaderboard_score(self, score)
 	
 #==============================================================================
 # PRIVATE FUNCTIONS
