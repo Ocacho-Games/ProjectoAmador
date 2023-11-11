@@ -27,8 +27,8 @@ var drag_event_initial_y_position : float = 0
 var last_drag_direction : SInputUtility.EGestureDirection
 
 ## === LERP VARIABLES ===
-## Duration of the full lerp, this should be smaller when the total lerp is smaller
-const lerp_duration : float = 0.2
+## Duration of the full lerp, in seconds, this should be smaller when the total lerp is smaller
+const lerp_duration : float = 0.25
 
 ## Whether we are learping to a new miningame or not
 var is_lerping : bool = false
@@ -127,6 +127,7 @@ func _prepare_game() -> void:
 	GameUtilityLibrary.pause_scene(next_minigame_node)
 	
 	current_minigame_node.connect("on_should_change_to_next_minigame", func():
+		GameUtilityLibrary.pause_scene(current_minigame_node, [previous_minigame_node.get_path(), next_minigame_node.get_path()])
 		drag_event_initial_y_position = 0		
 		is_lerping = true
 		should_change_minigame_after_lerp = true
