@@ -193,11 +193,11 @@ func _handle_screen_borders() -> void:
 	
 	match change_type:
 		EChangeType.SCREEN_WIDHT:
-			if (position_parent.x + sprite_texture.get_width() / 2.0 >= screen_width): _change_movement()
-			if (position_parent.x - sprite_texture.get_width() / 2.0 <= 0.0): _change_movement()			
+			if (position_parent.x + sprite_texture.texture.get_width() / 2.0 >= screen_width): _change_movement()
+			if (position_parent.x - sprite_texture.texture.get_width() / 2.0 <= 0.0): _change_movement()			
 		EChangeType.SCREEN_HEIGHT:
-			if (position_parent.y + sprite_texture.get_height() / 2.0 >= screen_height): _change_movement()
-			if (position_parent.y - sprite_texture.get_height() / 2.0 <= 0.0): _change_movement()		
+			if (position_parent.y + sprite_texture.texture.get_height() / 2.0 >= screen_height): _change_movement()
+			if (position_parent.y - sprite_texture.texture.get_height() / 2.0 <= 0.0): _change_movement()		
 
 ## Handles the position of the entity depending on the movement patterns
 ##	

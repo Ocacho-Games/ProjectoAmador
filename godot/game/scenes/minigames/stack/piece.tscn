@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b13nnl1grf052"]
+
+[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="1_4gvj6"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="2_ihjt6"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="3_ri6cv"]
+
+[node name="obstacle" type="Node2D"]
+position = Vector2(500, 500)
+scale = Vector2(2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4gvj6")
+
+[node name="AutoMovementCmp" type="Node" parent="."]
+script = ExtResource("2_ihjt6")
+enable = true
+change_type = 1
+rotation_degrees_per_frame = 0.5
+
+[node name="DestroyCmp" type="Node" parent="."]
+script = ExtResource("3_ri6cv")
+destroy_action = 1
