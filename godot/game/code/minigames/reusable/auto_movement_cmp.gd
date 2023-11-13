@@ -81,6 +81,11 @@ var fixed_elapsed_time		: float = 0.0
 ## Multiplier used for inversing the lerp in order to comeback to the initial position. This is only for FIXED_UNITS
 var fixed_delta_multiplier	: float = 1.0
 
+## Half of the width of the parent object. The parent object should have a Sprite2D or a TextureRect in order to calculate the width 
+@onready var half_object_width = GameUtilityLibrary.get_node_actual_width(get_parent()) / 2.0
+## Half of the height of the parent object. The parent object should have a Sprite2D or a TextureRect in order to calculate the height 
+@onready var half_object_height = GameUtilityLibrary.get_node_actual_height(get_parent()) / 2.0
+
 #==============================================================================
 # GODOT FUNCTIONS
 #==============================================================================
@@ -185,19 +190,14 @@ func _handle_screen_borders() -> void:
 	if(!_is_direction_changeable()): return
 	if(change_type != EChangeType.SCREEN_HEIGHT and change_type != EChangeType.SCREEN_WIDHT): return
 	
-	var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
-	var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
-	
 	var position_parent = get_parent().position 
-	var sprite_texture 	= get_parent().get_node("Sprite2D")
-	
 	match change_type:
 		EChangeType.SCREEN_WIDHT:
-			if (position_parent.x + sprite_texture.texture.get_width() / 2.0 >= screen_width): _change_movement()
-			if (position_parent.x - sprite_texture.texture.get_width() / 2.0 <= 0.0): _change_movement()			
+			if (position_parent.x + half_object_width > GameUtilityLibrary.SCREEN_WIDTH): _change_movement()
+			if (position_parent.x - half_object_width < 0.0): _change_movement()			
 		EChangeType.SCREEN_HEIGHT:
-			if (position_parent.y + sprite_texture.texture.get_height() / 2.0 >= screen_height): _change_movement()
-			if (position_parent.y - sprite_texture.texture.get_height() / 2.0 <= 0.0): _change_movement()		
+			if (position_parent.y + half_object_height > GameUtilityLibrary.SCREEN_HEIGHT): _change_movement()
+			if (position_parent.y - half_object_width < 0.0): _change_movement()		
 
 ## Handles the position of the entity depending on the movement patterns
 ##	

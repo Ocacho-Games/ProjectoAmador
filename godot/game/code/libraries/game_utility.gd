@@ -3,8 +3,58 @@
 class_name GameUtilityLibrary
 
 #==============================================================================
+# VARIABLES
+#==============================================================================
+
+static var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
+static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
+
+#==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
+
+## Loop through all the children checking for the class_type given as a paremeter.
+## [root_node]: Base node to loop through the children
+## [class_type]: Class to look up for. E.g (Sprite2D, TextureRect...)
+##
+static func get_child_node_by_class(root_node : Node, class_type : String):
+	for node_child in root_node.get_children():
+		if node_child.get_class() == class_type: return node_child
+		if node_child.get_child_count() > 0:
+			var inner_child = get_child_node_by_class(node_child, class_type)
+			if inner_child != null : return inner_child
+	
+	return null
+
+## Get the actual width of a node that contains a sprite or a texture rect as a child
+## NOTE!: The function takes into account the node scale, not the texture rect or sprite scale!
+##
+static func get_node_actual_width(node : Node) -> float:
+	var sprite = get_child_node_by_class(node, "Sprite2D")
+	if sprite:
+		return sprite.texture.get_width() * node.scale.x
+		
+	var texture_rect = get_child_node_by_class(node, "TextureRect")
+	if texture_rect != null:
+		return texture_rect.size.x * node.scale.x
+
+	assert(texture_rect, "Trying to get the width from a node that doesn't have a Sprite2D or TextureRect")
+	return 0.0
+
+## Get the actual height of a node that contains a sprite or a texture rect as a child
+## NOTE!: The function takes into account the node scale, not the texture rect or sprite scale!
+##	
+static func get_node_actual_height(node : Node) -> float:
+	var sprite = get_child_node_by_class(node, "Sprite2D")
+	if sprite:
+		return sprite.texture.get_height() * node.scale.y
+		
+	var texture_rect = get_child_node_by_class(node, "TextureRect")
+	if texture_rect:
+		return texture_rect.size.y * node.scale.y
+
+	assert(texture_rect, "Trying to get the width from a node that doesn't have a Sprite2D or TextureRect")
+	return 0.0
 
 ## Resume the entire given scene node. This means resuming the root node and its children
 ## [node]: Root node to resume and it schildren

@@ -30,9 +30,14 @@ func _process(delta):
 # PRIVATE FUNCTIONS
 #==============================================================================
 
+##
+##
 func _check_for_screen_collision() -> void:
 	if spaceship.position.x > ProjectSettings.get_setting("display/window/size/viewport_width"): on_should_change_to_next_minigame.emit() 
 	if spaceship.position.x < 0: on_should_change_to_next_minigame.emit() 
-	
+
+##
+##	
 func _on_player_area_entered(_area):
 	spaceship.get_node("AutoMovementCmp").enable = false	
+	on_should_change_to_next_minigame.emit()

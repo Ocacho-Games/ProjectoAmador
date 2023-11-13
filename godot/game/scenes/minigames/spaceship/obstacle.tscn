@@ -4,14 +4,13 @@
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="2_k60bl"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="3_oknmg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0prb"]
-size = Vector2(117, 115)
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmpmq"]
+radius = 169.199
 
 [node name="obstacle" type="Node2D"]
-position = Vector2(65, 65)
+scale = Vector2(0.35, 0.35)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.349715, 0.349715)
 texture = ExtResource("1_vga1u")
 
 [node name="AutoMovementCmp" type="Node" parent="."]
@@ -29,4 +28,4 @@ destroy_action = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_c0prb")
+shape = SubResource("CircleShape2D_nmpmq")
