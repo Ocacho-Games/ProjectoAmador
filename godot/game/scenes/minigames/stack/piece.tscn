@@ -1,15 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://b13nnl1grf052"]
+[gd_scene load_steps=6 format=3 uid="uid://vm4waf4vh7m7"]
 
-[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="1_4gvj6"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="2_ihjt6"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="3_ri6cv"]
 
-[node name="obstacle" type="Node2D"]
-position = Vector2(500, 500)
-scale = Vector2(2, 0.2)
+[sub_resource type="Gradient" id="Gradient_dpna3"]
+offsets = PackedFloat32Array(0, 0.673267, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.930693, 0.930693, 0.930693, 1, 1, 1, 1, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_4gvj6")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j80lx"]
+gradient = SubResource("Gradient_dpna3")
+fill_to = Vector2(0.908537, 0.823171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1tq8"]
+size = Vector2(509, 59)
+
+[node name="piece" type="Node2D"]
+position = Vector2(500, 500)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0.0705882, 1, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -30.0
+offset_right = 256.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+texture = SubResource("GradientTexture2D_j80lx")
+expand_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_e1tq8")
 
 [node name="AutoMovementCmp" type="Node" parent="."]
 script = ExtResource("2_ihjt6")

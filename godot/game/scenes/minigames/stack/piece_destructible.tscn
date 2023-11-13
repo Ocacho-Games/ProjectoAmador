@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://b13nnl1grf052"]
+
+[ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="2_61n2j"]
+
+[sub_resource type="Gradient" id="Gradient_dpna3"]
+offsets = PackedFloat32Array(0, 0.673267, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.930693, 0.930693, 0.930693, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j80lx"]
+gradient = SubResource("Gradient_dpna3")
+fill_to = Vector2(0.908537, 0.823171)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orvci"]
+size = Vector2(510, 60)
+
+[node name="piece_destructible" type="Node2D"]
+position = Vector2(500, 500)
+
+[node name="DestroyCmp" type="Node" parent="."]
+script = ExtResource("2_61n2j")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(1, 0)
+mass = 0.2
+can_sleep = false
+
+[node name="TextureRect" type="TextureRect" parent="RigidBody2D"]
+modulate = Color(1, 0.0705882, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -30.0
+offset_right = 256.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_stretch_ratio = 0.0
+texture = SubResource("GradientTexture2D_j80lx")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_orvci")
