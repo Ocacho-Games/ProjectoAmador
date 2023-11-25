@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.17 710.15">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f7a545;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Clock">
+    <g id="clock_marker">
+      <path class="cls-1" d="m0,475.47l417.37,234.68L16.84,484.94c-10.4-5.85-16.84-16.85-16.84-28.79V33.04C0,13.79,16.4-1.47,35.58.11c235,19.33,441.59,227.41,441.59,475.36,0,72.62-15.72,141.41-43.8,202.86-8,17.5-29.36,24.31-46.14,14.87L0,475.47Z"/>
+    </g>
+  </g>
+</svg>
