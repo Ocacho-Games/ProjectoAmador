@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 355.67 325.27">
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.67 325.27">
   <defs>
     <style>
       .cls-1, .cls-2, .cls-3 {
         stroke-width: 0px;
-      }
-
-      .cls-4 {
-        filter: url(#drop-shadow-1);
       }
 
       .cls-2 {
@@ -18,17 +14,10 @@
         fill: #f2f2f2;
       }
     </style>
-    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
-      <feOffset dx="9.24" dy="9.24"/>
-      <feGaussianBlur result="blur" stdDeviation="13.2"/>
-      <feFlood flood-color="#000" flood-opacity="1"/>
-      <feComposite in2="blur" operator="in"/>
-      <feComposite in="SourceGraphic"/>
-    </filter>
   </defs>
   <g id="Alien">
     <g id="Bob">
-      <g class="cls-4">
+      <g>
         <g>
           <ellipse class="cls-3" cx="177.83" cy="162.63" rx="160.67" ry="145.47"/>
           <path class="cls-3" d="m177.83,34.32c79.26,0,143.51,57.45,143.51,128.31s-64.25,128.31-143.51,128.31S34.32,233.5,34.32,162.63,98.57,34.32,177.83,34.32m0-34.32c-46.78,0-90.95,16.45-124.35,46.32-16.62,14.86-29.71,32.25-38.9,51.69C4.9,118.46,0,140.2,0,162.63s4.9,44.18,14.57,64.62c9.2,19.45,22.29,36.84,38.9,51.69,33.41,29.87,77.57,46.32,124.35,46.32s90.95-16.45,124.35-46.32c16.62-14.86,29.71-32.25,38.9-51.69,9.67-20.44,14.57-42.18,14.57-64.62s-4.9-44.18-14.57-64.62c-9.2-19.45-22.29-36.84-38.9-51.69C268.78,16.45,224.62,0,177.83,0h0Z"/>
