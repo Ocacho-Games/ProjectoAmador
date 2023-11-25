@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
 [ext_resource type="PackedScene" uid="uid://b13nnl1grf052" path="res://game/scenes/minigames/stack/piece_destructible.tscn" id="5_dvd48"]
 
-[node name="stack_minigame" type="Node2D"]
+[node name="stack" type="Node2D"]
 script = ExtResource("1_mtjus")
 
 [node name="background" type="TextureRect" parent="."]

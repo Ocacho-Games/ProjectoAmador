@@ -1,6 +1,6 @@
 extends Minigame
 
-@onready var spaceship = $spaceship
+@onready var spaceship = $spaceship_player
 @onready var obstacle_generator = $obstacle_generator
 
 #==============================================================================

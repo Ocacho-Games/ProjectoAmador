@@ -36,5 +36,3 @@ func _process(delta):
 func _on_counter_button_pressed():
 	is_counter_stopped = true
 	score = counter_time
-	await get_tree().create_timer(2).timeout
-	on_should_change_to_next_minigame.emit()
