@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.7 235.48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #999;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #666;
+      }
+
+      .cls-3 {
+        fill: gray;
+      }
+    </style>
+  </defs>
+  <g id="Clock">
+    <g id="clock_timer">
+      <g id="clock_timer-2" data-name="clock_timer">
+        <rect class="cls-1" x="8" y="8" width="378.7" height="219.48" rx="35" ry="35"/>
+        <path class="cls-2" d="m351.7,16c14.91,0,27,12.09,27,27v149.48c0,14.91-12.09,27-27,27H43c-14.91,0-27-12.09-27-27V43c0-14.91,12.09-27,27-27h308.7m0-16H43C19.29,0,0,19.29,0,43v149.48c0,23.71,19.29,43,43,43h308.7c23.71,0,43-19.29,43-43V43c0-23.71-19.29-43-43-43h0Z"/>
+      </g>
+      <path id="clock_timer-3" data-name="clock_timer" class="cls-3" d="m351.7,23c11.03,0,20,8.97,20,20v149.48c0,11.03-8.97,20-20,20H43c-11.03,0-20-8.97-20-20V43c0-11.03,8.97-20,20-20h308.7m0-7H43c-14.91,0-27,12.09-27,27v149.48c0,14.91,12.09,27,27,27h308.7c14.91,0,27-12.09,27-27V43c0-14.91-12.09-27-27-27h0Z"/>
+    </g>
+  </g>
+</svg>
