@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn8cw41kc3lsj"]
+[gd_scene load_steps=6 format=3 uid="uid://bn8cw41kc3lsj"]
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
-[ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_ow4q8"]
-[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="4_2hd3k"]
+[ext_resource type="Texture2D" uid="uid://dgd5763yfoh5k" path="res://game/resources/img/cookie/cookie_background.svg" id="2_ytf4l"]
+[ext_resource type="Texture2D" uid="uid://bsp26w43vaugl" path="res://game/resources/img/cookie/cookie_bob_click.svg" id="3_7s45k"]
+[ext_resource type="Texture2D" uid="uid://8eu38kcsodm" path="res://game/resources/img/cookie/cookie_bob_idle.svg" id="3_166b6"]
+[ext_resource type="Texture2D" uid="uid://dt3irt5a51n5r" path="res://game/resources/img/cookie/cookie_sign.svg" id="4_4qauk"]
 
 [node name="clicker_minigame" type="Node2D"]
 script = ExtResource("1_wskaq")
 
 [node name="background" type="TextureRect" parent="."]
-self_modulate = Color(1, 0.709804, 0, 1)
 offset_left = -76.0
 offset_top = -468.0
 offset_right = 1317.0
 offset_bottom = 2564.0
-texture = ExtResource("2_ow4q8")
+texture = ExtResource("2_ytf4l")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -23,20 +24,14 @@ offset_right = 1078.0
 offset_bottom = 2266.0
 
 [node name="clicker_button" type="TextureButton" parent="."]
-offset_left = 196.0
-offset_top = 894.0
-offset_right = 913.0
-offset_bottom = 1550.0
-texture_normal = ExtResource("4_2hd3k")
+offset_left = 100.0
+offset_top = 1055.0
+offset_right = 1015.0
+offset_bottom = 1892.0
+mouse_filter = 1
+texture_normal = ExtResource("3_166b6")
+texture_pressed = ExtResource("3_7s45k")
 stretch_mode = 0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 378.0
-offset_top = 674.0
-offset_right = 693.0
-offset_bottom = 795.0
-mouse_filter = 2
-text = "SCORE"
 
 [node name="leaderboard_button" type="Button" parent="."]
 offset_left = 731.0
@@ -44,5 +39,18 @@ offset_top = 1927.0
 offset_right = 973.0
 offset_bottom = 2004.0
 text = "Leaderboard"
+
+[node name="score_sprite" type="Sprite2D" parent="."]
+position = Vector2(552, 364)
+scale = Vector2(0.699425, 0.699425)
+texture = ExtResource("4_4qauk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="score_sprite"]
+offset_left = -281.66
+offset_top = 48.6113
+offset_right = 33.3399
+offset_bottom = 169.611
+mouse_filter = 2
+text = "SCORE"
 
 [connection signal="pressed" from="clicker_button" to="." method="_on_texture_button_pressed"]

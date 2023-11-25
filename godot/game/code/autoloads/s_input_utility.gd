@@ -20,7 +20,7 @@ const RELATIVE_MINIMUM = 2.0
 
 ## Minimum displacement threshold for the relative vector of the drag input event in order to trigger a swipe.
 ## This means, if the user drag to quick we will consider the drag a swipe
-const SWIPING_RELATIVE_MINIMUM = 150.0
+const SWIPING_RELATIVE_MINIMUM = 10.0
 
 ## Whether we are touching the screen or not
 var is_touching = false

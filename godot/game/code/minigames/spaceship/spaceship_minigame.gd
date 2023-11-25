@@ -12,16 +12,14 @@ func _ready():
 	super._ready()	
 	
 	gps_leader_board_id = "CgkIr7WWkr4cEAIQAg"
-	
-func _input(event):
-	if event is InputEventSingleScreenTap:
-		spaceship.get_node("AutoMovementCmp").enable = true
-		obstacle_generator.enable = true
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)
+	
+	if SInputUtility.is_touching:
+		spaceship.get_node("AutoMovementCmp").enable = true
+		obstacle_generator.enable = true
 	
 	score += delta * 7.5
 	_check_for_screen_collision()

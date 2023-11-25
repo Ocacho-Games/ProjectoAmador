@@ -1,12 +1,10 @@
 extends Minigame
 
-@onready var score_text : RichTextLabel = $RichTextLabel
+@onready var score_text : RichTextLabel = $score_sprite/RichTextLabel
 
 #==============================================================================
 # GODOT FUNCTIONS
 #==============================================================================
-
-#TODO: [David]: We need to save the game, maybe a general save game is not ideal maybe we need one per game
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +27,7 @@ func _exit_tree():
 		SGPS.save_game()
 
 #==============================================================================
-# PRIVATE FUNCTIONS
+# SIGNAL FUNCTIONS
 #==============================================================================
 
 func _on_texture_button_pressed():
