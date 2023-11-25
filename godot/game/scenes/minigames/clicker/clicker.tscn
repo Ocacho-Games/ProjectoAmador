@@ -18,10 +18,10 @@ texture = ExtResource("2_jcc4w")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 29.0
-offset_top = 2180.0
-offset_right = 1078.0
-offset_bottom = 2266.0
+offset_left = 14.0
+offset_top = 2182.0
+offset_right = 1063.0
+offset_bottom = 2268.0
 
 [node name="clicker_button" type="TextureButton" parent="."]
 offset_left = 100.0
