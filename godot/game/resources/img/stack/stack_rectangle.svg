@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750.59 116.67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e6e6e6;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Stack">
+    <g id="stack_rectangle">
+      <rect id="stack_rectangle-2" data-name="stack_rectangle" class="cls-1" x="13.73" y="13.73" width="723.13" height="89.22" rx="17.58" ry="17.58"/>
+      <path id="stack_rectangle-3" data-name="stack_rectangle" class="cls-2" d="m719.27,13.73c9.71,0,17.58,7.87,17.58,17.58v54.05c0,9.71-7.87,17.58-17.58,17.58H31.31c-9.71,0-17.58-7.87-17.58-17.58V31.31c0-9.71,7.87-17.58,17.58-17.58h687.96m0-13.73H31.31C14.05,0,0,14.05,0,31.31v54.05c0,17.27,14.05,31.31,31.31,31.31h687.96c17.27,0,31.31-14.05,31.31-31.31V31.31c0-17.27-14.05-31.31-31.31-31.31h0Z"/>
+    </g>
+  </g>
+</svg>
