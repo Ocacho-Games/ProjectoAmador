@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 464.04 289.72">
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 467.05 300.56">
   <defs>
     <style>
       .cls-1 {
         fill: #666;
+      }
+
+      .cls-1, .cls-2 {
         stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #4a4a4a;
       }
     </style>
   </defs>
   <g id="Clock">
     <g id="clock_stick">
-      <rect class="cls-1" x="75.53" y="153.84" width="411.65" height="46.96" rx="23.48" ry="23.48" transform="translate(122.19 -114.69) rotate(29.19)"/>
+      <rect class="cls-2" x="74.77" y="157.49" width="415.51" height="52.9" rx="25.08" ry="25.08" transform="translate(127.94 -115.66) rotate(29.64)"/>
+      <rect class="cls-1" x="74.41" y="155.74" width="411.65" height="46.96" rx="23.48" ry="23.48" transform="translate(125.31 -115.14) rotate(29.64)"/>
+      <path class="cls-2" d="m88.38,47.19c0,23.3-18.89,42.19-42.19,42.19S4,70.49,4,47.19,21,6.95,42.65,5.15c1.17-.1,2.35-.15,3.54-.15s2.38.05,3.54.15c21.64,1.8,38.65,19.94,38.65,42.04Z"/>
       <path class="cls-1" d="m84.38,42.19c0,23.3-18.89,42.19-42.19,42.19S0,65.49,0,42.19,17,1.95,38.65.15c1.17-.1,2.35-.15,3.54-.15s2.38.05,3.54.15c21.64,1.8,38.65,19.94,38.65,42.04Z"/>
     </g>
   </g>

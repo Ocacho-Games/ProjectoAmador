@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="MyGame"
+config/name="Suipe"
 run/main_scene="res://game/scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.1")
-config/icon="res://icon.svg"
+config/icon="res://game/resources/img/bob.svg"
 
 [autoload]
 
