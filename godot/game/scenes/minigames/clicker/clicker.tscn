@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn8cw41kc3lsj"]
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
-[ext_resource type="Texture2D" uid="uid://dgd5763yfoh5k" path="res://game/resources/img/clicker/cookie_background.svg" id="2_jcc4w"]
-[ext_resource type="Texture2D" uid="uid://8eu38kcsodm" path="res://game/resources/img/clicker/cookie_bob_idle.svg" id="3_deuv5"]
-[ext_resource type="Texture2D" uid="uid://bsp26w43vaugl" path="res://game/resources/img/clicker/cookie_bob_click.svg" id="4_x7gdo"]
-[ext_resource type="Texture2D" uid="uid://dt3irt5a51n5r" path="res://game/resources/img/clicker/cookie_sign.svg" id="5_86ro3"]
+[ext_resource type="Texture2D" uid="uid://6hccxaue2gcj" path="res://game/resources/img/clicker/clicker_background.svg" id="2_beeb1"]
+[ext_resource type="Texture2D" uid="uid://de8mi6hwsp5au" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
+[ext_resource type="Texture2D" uid="uid://bjb3crojigfvq" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
+[ext_resource type="Texture2D" uid="uid://hbuup76wvl3t" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
 
 [node name="clicker" type="Node2D"]
 script = ExtResource("1_wskaq")
@@ -14,14 +14,16 @@ offset_left = -76.0
 offset_top = -468.0
 offset_right = 1317.0
 offset_bottom = 2564.0
-texture = ExtResource("2_jcc4w")
+texture = ExtResource("2_beeb1")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 14.0
-offset_top = 2182.0
-offset_right = 1063.0
-offset_bottom = 2268.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = -13.5
+offset_right = 20.0
+offset_bottom = 2266.5
+grow_vertical = 2
 
 [node name="clicker_button" type="TextureButton" parent="."]
 offset_left = 100.0
@@ -29,8 +31,8 @@ offset_top = 1055.0
 offset_right = 1015.0
 offset_bottom = 1892.0
 mouse_filter = 1
-texture_normal = ExtResource("3_deuv5")
-texture_pressed = ExtResource("4_x7gdo")
+texture_normal = ExtResource("3_wp7ik")
+texture_pressed = ExtResource("4_eo4nj")
 stretch_mode = 0
 
 [node name="leaderboard_button" type="Button" parent="."]
@@ -43,7 +45,7 @@ text = "Leaderboard"
 [node name="score_sprite" type="Sprite2D" parent="."]
 position = Vector2(552, 364)
 scale = Vector2(0.699425, 0.699425)
-texture = ExtResource("5_86ro3")
+texture = ExtResource("5_pwu35")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="score_sprite"]
 offset_left = -455.0
