@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwm0qubmpqhtn"]
+
+[ext_resource type="Script" path="res://game/code/minigames/basket/basket_minigame.gd" id="1_03ldb"]
+[ext_resource type="Texture2D" uid="uid://dasj0cjllch3v" path="res://game/resources/img/basket/basket_background.svg" id="2_btd0o"]
+
+[node name="basket" type="Node2D"]
+script = ExtResource("1_03ldb")
+
+[node name="background" type="TextureRect" parent="."]
+offset_left = -76.0
+offset_top = -468.0
+offset_right = 1317.0
+offset_bottom = 2564.0
+texture = ExtResource("2_btd0o")
+expand_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 14.0
+offset_top = 2182.0
+offset_right = 1063.0
+offset_bottom = 2268.0
+
+[node name="leaderboard_button" type="Button" parent="."]
+offset_left = 731.0
+offset_top = 1927.0
+offset_right = 973.0
+offset_bottom = 2004.0
+text = "Leaderboard"

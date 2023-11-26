@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn8cw41kc3lsj"]
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
-[ext_resource type="Texture2D" uid="uid://dgd5763yfoh5k" path="res://game/resources/img/clicker/cookie_background.svg" id="2_jcc4w"]
-[ext_resource type="Texture2D" uid="uid://8eu38kcsodm" path="res://game/resources/img/clicker/cookie_bob_idle.svg" id="3_deuv5"]
-[ext_resource type="Texture2D" uid="uid://bsp26w43vaugl" path="res://game/resources/img/clicker/cookie_bob_click.svg" id="4_x7gdo"]
-[ext_resource type="Texture2D" uid="uid://dt3irt5a51n5r" path="res://game/resources/img/clicker/cookie_sign.svg" id="5_86ro3"]
+[ext_resource type="Texture2D" uid="uid://wijvireqstin" path="res://game/resources/img/clicker/cookie_background.svg" id="2_jcc4w"]
+[ext_resource type="Texture2D" uid="uid://c6p5d0yn43cxb" path="res://game/resources/img/clicker/cookie_bob_idle.svg" id="3_deuv5"]
+[ext_resource type="Texture2D" uid="uid://dpoo7rdkb7nos" path="res://game/resources/img/clicker/cookie_bob_click.svg" id="4_x7gdo"]
+[ext_resource type="Texture2D" uid="uid://btstpg7ok0hno" path="res://game/resources/img/clicker/cookie_sign.svg" id="5_86ro3"]
 
 [node name="clicker" type="Node2D"]
 script = ExtResource("1_wskaq")
