@@ -35,12 +35,12 @@ func _check_ball_collision( ball ):
 
 # Function that checks if the player missed or not the shoot
 func _check_score( ball ):
-	var ballPos = ball.global_position
-	var checkPos = score_checker.global_position
-	var ball_checker_vec = ballPos - checkPos
+	var ball_pos = ball.global_position
+	var check_pos = score_checker.global_position
+	var ball_checker_vec = ball_pos - check_pos
 	
-	ballPos.y = ballPos.y * -1.0
-	checkPos.y = checkPos.y * -1.0
+	ball_pos.y = ball_pos.y * -1.0
+	check_pos.y = check_pos.y * -1.0
 	ball_checker_vec = ball_checker_vec.normalized()
 	
 	var dot_score = ball_checker_vec.dot(score_up_vector)
@@ -56,7 +56,6 @@ func _check_score( ball ):
 func _score():
 	var game_base = get_parent()
 	game_base.on_should_change_to_next_minigame.emit()
-	pass
 
 # Function called when shoot was failed
 func _fail_shoot():

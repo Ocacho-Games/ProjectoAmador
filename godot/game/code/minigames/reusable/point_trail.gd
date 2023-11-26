@@ -45,10 +45,6 @@ var point_array : PackedVector2Array
 # GODOT FUNCTIONS
 #==============================================================================
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 func _process(_delta):
 	if visible :
 		_calculate_point_trail()

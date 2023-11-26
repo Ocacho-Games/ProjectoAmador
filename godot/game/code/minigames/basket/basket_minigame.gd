@@ -62,9 +62,9 @@ func _process(delta):
 			trail_point.input_value(last_drag_vector * trail_factor)
 	elif !is_ball_thrown and SInputUtility.is_dragging.has_changed(false) :
 		trail_point.input_value(Vector2( 0.0 , 0.0 ))
-		var lastDragPosGDSpace = Vector2(-curr_drag_position.x,-curr_drag_position.y)
-		var releasedInBall = _check_action_in_ball(lastDragPosGDSpace)
-		if !releasedInBall :
+		var last_drag_pos_GD_space = Vector2(-curr_drag_position.x,-curr_drag_position.y)
+		var released_in_ball = _check_action_in_ball(last_drag_pos_GD_space)
+		if !released_in_ball :
 			ball_node.throw(last_drag_vector * impulse_ball_factor)
 	
 	if SInputUtility.is_dragging.has_changed(false) :
@@ -84,46 +84,46 @@ func _move_random_location_entities():
 	var width = GameUtilityLibrary.SCREEN_WIDTH
 	var height = GameUtilityLibrary.SCREEN_HEIGHT
 	
-	var minXBasketRange = offset_screen + half_basket_size.x
-	var maxXBasketRange = width - half_basket_size.x - offset_screen
-	var minYBasketRange = offset_screen + half_basket_size.x
-	var maxYBasketRange = height - half_basket_size.y - offset_screen
+	var min_X_basket_range = offset_screen + half_basket_size.x
+	var max_X_basket_range = width - half_basket_size.x - offset_screen
+	var min_Y_basket_range = offset_screen + half_basket_size.x
+	var max_Y_basketrange = height - half_basket_size.y - offset_screen
 	
-	var basketXRand = randf_range( minXBasketRange , maxXBasketRange )
-	var basketYRand = randf_range( minYBasketRange , maxYBasketRange )
-	var basketRandPos = Vector2(basketXRand, basketYRand)
+	var basket_X_rand = randf_range( min_X_basket_range , max_X_basket_range )
+	var basket_Y_rand = randf_range( min_Y_basket_range , max_Y_basketrange )
+	var basket_rand_pos = Vector2(basket_X_rand, basket_Y_rand)
 	
-	basket_node.position = basketRandPos
+	basket_node.position = basket_rand_pos
 	
-	var ballYRand = randf_range( ball_radius + offset_screen , height - ball_radius - offset_screen )
+	var ball_Y_rand = randf_range( ball_radius + offset_screen , height - ball_radius - offset_screen )
 	
 	var range_left_min = ball_radius + offset_screen
-	var range_left_max = basketRandPos.x - half_basket_size.x - ball_radius * 2.0
-	var range_right_min = basketRandPos.x + half_basket_size.x + ball_radius * 2.0 
+	var range_left_max = basket_rand_pos.x - half_basket_size.x - ball_radius * 2.0
+	var range_right_min = basket_rand_pos.x + half_basket_size.x + ball_radius * 2.0 
 	var range_right_max = width - ball_radius - offset_screen
 	
 	var min_size_spawn = ball_radius * 3
 	
 	if range_left_max - range_left_min < min_size_spawn :
-		var ballXRand = randf_range( range_right_min , range_right_max )
-		ball_node.position = Vector2(ballXRand, ballYRand)
+		var ball_X_rand = randf_range( range_right_min , range_right_max )
+		ball_node.position = Vector2(ball_X_rand, ball_Y_rand)
 	elif range_right_max - range_right_min < min_size_spawn :
-		var ballXRand = randf_range( range_left_min , range_left_max )
-		ball_node.position = Vector2(ballXRand, ballYRand)
+		var ball_X_rand = randf_range( range_left_min , range_left_max )
+		ball_node.position = Vector2(ball_X_rand, ball_Y_rand)
 
 # Checks if the given position collides with the basketball
 func _check_action_in_ball( pos : Vector2 ):
-	var ballPos = ball_node.position
+	var ball_pos = ball_node.position
 	
-	var minX = ballPos.x - ball_radius
-	var maxX = ballPos.x + ball_radius
-	var minY = ballPos.y - ball_radius
-	var maxY = ballPos.y + ball_radius
+	var min_X = ball_pos.x - ball_radius
+	var max_X = ball_pos.x + ball_radius
+	var min_Y = ball_pos.y - ball_radius
+	var max_Y = ball_pos.y + ball_radius
 	
-	var xBound = pos.x >= minX and pos.x <= maxX
-	var yBound = pos.y >= minY and pos.y <= maxY
+	var x_bound = pos.x >= min_X and pos.x <= max_X
+	var y_bound = pos.y >= min_Y and pos.y <= max_Y
 	
-	return xBound and yBound
+	return x_bound and y_bound
 
 #==============================================================================
 # REEL FUNCTIONS
