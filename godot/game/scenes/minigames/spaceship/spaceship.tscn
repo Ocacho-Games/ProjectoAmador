@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ioi8aq3h06pf"]
 
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
-[ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
+[ext_resource type="Texture2D" uid="uid://dl3jamvddookk" path="res://game/resources/img/spaceship/alien_background.svg" id="2_2hs7o"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
-[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="4_72jgq"]
+[ext_resource type="Texture2D" uid="uid://bwk8swrch70sf" path="res://game/resources/img/bob.png" id="4_72jgq"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khny3"]
@@ -14,33 +14,48 @@ radius = 48.0104
 script = ExtResource("1_cbeqs")
 
 [node name="background" type="TextureRect" parent="."]
-offset_left = 261.0
-offset_top = 211.0
-offset_right = 1654.0
-offset_bottom = 3243.0
-texture = ExtResource("2_hutlb")
+self_modulate = Color(0, 1, 0, 1)
+offset_left = -94.0
+offset_top = -250.0
+offset_right = 1299.0
+offset_bottom = 2782.0
+texture = ExtResource("2_2hs7o")
 expand_mode = 1
 
-[node name="spaceship_player" type="Node2D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visibility_layer = 2
+offset_right = 1084.0
+offset_bottom = 2285.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_cull_mask = 4293918722
+size = Vector2i(1084, 2285)
+render_target_update_mode = 4
+
+[node name="spaceship_player" type="Node2D" parent="SubViewportContainer/SubViewport"]
+visibility_layer = 2
 position = Vector2(548, 2054)
 
-[node name="AutoMovementCmp" type="Node" parent="spaceship_player"]
+[node name="AutoMovementCmp" type="Node" parent="SubViewportContainer/SubViewport/spaceship_player"]
 script = ExtResource("3_n1q1x")
 change_type = 3
 rotation_type = 2
 rotation_offset = -60.0
 
-[node name="Sprite2D" type="Sprite2D" parent="spaceship_player"]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/spaceship_player"]
+visibility_layer = 2
 scale = Vector2(0.38, 0.38)
 texture = ExtResource("4_72jgq")
 
-[node name="Area2D" type="Area2D" parent="spaceship_player"]
+[node name="Area2D" type="Area2D" parent="SubViewportContainer/SubViewport/spaceship_player"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spaceship_player/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/spaceship_player/Area2D"]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_khny3")
 
-[node name="obstacle_generator" type="Node2D" parent="."]
+[node name="obstacle_generator" type="Node2D" parent="SubViewportContainer/SubViewport"]
+visibility_layer = 2
 script = ExtResource("4_8xx6q")
 obstacle = ExtResource("5_6dd0u")
 
@@ -57,4 +72,4 @@ offset_right = 973.0
 offset_bottom = 2004.0
 text = "Leaderboard"
 
-[connection signal="area_entered" from="spaceship_player/Area2D" to="." method="_on_player_area_entered"]
+[connection signal="area_entered" from="SubViewportContainer/SubViewport/spaceship_player/Area2D" to="." method="_on_player_area_entered"]

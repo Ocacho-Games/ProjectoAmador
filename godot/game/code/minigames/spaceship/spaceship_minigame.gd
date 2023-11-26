@@ -1,7 +1,7 @@
 extends Minigame
 
-@onready var spaceship = $spaceship_player
-@onready var obstacle_generator = $obstacle_generator
+@onready var spaceship = $SubViewportContainer/SubViewport/spaceship_player
+@onready var obstacle_generator = $SubViewportContainer/SubViewport/obstacle_generator
 
 #==============================================================================
 # GODOT FUNCTIONS

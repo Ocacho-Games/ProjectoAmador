@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpoq7rgiyi6qy"]
 
 [ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
-[ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_u7krg"]
+[ext_resource type="Texture2D" uid="uid://fudlq4loankk" path="res://game/resources/img/spaceship/alien_background.png" id="2_u7krg"]
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
 [ext_resource type="PackedScene" uid="uid://b13nnl1grf052" path="res://game/scenes/minigames/stack/piece_destructible.tscn" id="5_dvd48"]

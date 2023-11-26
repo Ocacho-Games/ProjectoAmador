@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bbd4w1ed5hqo2"]
 
-[ext_resource type="Texture2D" uid="uid://c4uxqjui4u75f" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_vga1u"]
+[ext_resource type="Texture2D" uid="uid://ccn2pjn46b0de" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_vga1u"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="2_k60bl"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="3_oknmg"]
 
@@ -8,9 +8,11 @@
 radius = 169.199
 
 [node name="obstacle" type="Node2D"]
+visibility_layer = 2
 scale = Vector2(0.35, 0.35)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
 texture = ExtResource("1_vga1u")
 
 [node name="AutoMovementCmp" type="Node" parent="."]
