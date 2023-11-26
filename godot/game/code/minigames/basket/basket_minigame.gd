@@ -5,33 +5,33 @@ extends Minigame
 #==============================================================================
 
 # Ball node
-@onready var ballNode = $ball_entity;
+@onready var ball_node = $ball_entity;
 # Basket node
-@onready var basketNode = $basket_entity;
+@onready var basket_node = $basket_entity;
 # Point trail node
-@onready var trailPoint = $ball_entity/point_trail
+@onready var trail_point = $ball_entity/point_trail
 
 # Radius of the ball
-@onready var ballRadius = ballNode.get_node("RigidBody2D/CollisionShape2D").get_shape().get_radius()
+@onready var ball_radius = ball_node.get_node("RigidBody2D/CollisionShape2D").get_shape().get_radius()
 # Size of the basket
-@onready var halfBasketSize = basketNode.get_node("basketRing/sprite_basket").get_rect().size / 2.0
+@onready var half_basket_size = basket_node.get_node("basketRing/sprite_basket").get_rect().size / 2.0
 
 #Offset position from the screen borders
-var offsetScreen = 10.0
+@export var offset_screen = 10.0
 
 # Bool value to know if it's pressed
-var isPressed : bool = false
+var is_pressed : bool = false
 # Initial dragging position
-var initDragPosition	: Vector2 = Vector2( 0.0 , 0.0 )
+var init_drag_position	: Vector2 = Vector2( 0.0 , 0.0 )
 # Current dragging position
-var currDragPosition	: Vector2 = Vector2( 0.0 , 0.0 )
+var curr_drag_position	: Vector2 = Vector2( 0.0 , 0.0 )
 # Drag vector released
-var lastDragVector		: Vector2 = Vector2( 0.0 , 0.0 )
+var last_drag_vector		: Vector2 = Vector2( 0.0 , 0.0 )
 
 # Trail vector scale factor
-var trailFactor = 3.0
+@export var trail_factor = 3.0
 # Impulse ball force factor
-var impulseBallFactor = 2.3
+@export var impulse_ball_factor = 2.3
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -48,27 +48,27 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	
-	var isBallThrown = ballNode.get_thrown()
-	if !isBallThrown and SInputUtility.is_dragging.value :
+	var is_ball_thrown = ball_node.thrown
+	if !is_ball_thrown and SInputUtility.is_dragging.value :
 		var event = SInputUtility.cached_drag_event
-		if !isPressed :
-			isPressed = _check_action_in_ball(event.position)
-			initDragPosition.x = -event.position.x
-			initDragPosition.y = -event.position.y
+		if !is_pressed :
+			is_pressed = _check_action_in_ball(event.position)
+			init_drag_position.x = -event.position.x
+			init_drag_position.y = -event.position.y
 		else :
-			currDragPosition.x = -event.position.x
-			currDragPosition.y = -event.position.y
-			lastDragVector = currDragPosition - initDragPosition
-			trailPoint.input_value(lastDragVector * trailFactor)
-	elif !isBallThrown and SInputUtility.is_dragging.has_changed(false) :
-		trailPoint.input_value(Vector2( 0.0 , 0.0 ))
-		var lastDragPosGDSpace = Vector2(-currDragPosition.x,-currDragPosition.y)
+			curr_drag_position.x = -event.position.x
+			curr_drag_position.y = -event.position.y
+			last_drag_vector = curr_drag_position - init_drag_position
+			trail_point.input_value(last_drag_vector * trail_factor)
+	elif !is_ball_thrown and SInputUtility.is_dragging.has_changed(false) :
+		trail_point.input_value(Vector2( 0.0 , 0.0 ))
+		var lastDragPosGDSpace = Vector2(-curr_drag_position.x,-curr_drag_position.y)
 		var releasedInBall = _check_action_in_ball(lastDragPosGDSpace)
 		if !releasedInBall :
-			ballNode.throw(lastDragVector * impulseBallFactor)
+			ball_node.throw(last_drag_vector * impulse_ball_factor)
 	
 	if SInputUtility.is_dragging.has_changed(false) :
-		isPressed = false
+		is_pressed = false
 
 ## Overriden exit tree function
 ##
@@ -84,41 +84,41 @@ func _move_random_location_entities():
 	var width = GameUtilityLibrary.SCREEN_WIDTH
 	var height = GameUtilityLibrary.SCREEN_HEIGHT
 	
-	var minXBasketRange = offsetScreen + halfBasketSize.x
-	var maxXBasketRange = width - halfBasketSize.x - offsetScreen
-	var minYBasketRange = offsetScreen + halfBasketSize.x
-	var maxYBasketRange = height - halfBasketSize.y - offsetScreen
+	var minXBasketRange = offset_screen + half_basket_size.x
+	var maxXBasketRange = width - half_basket_size.x - offset_screen
+	var minYBasketRange = offset_screen + half_basket_size.x
+	var maxYBasketRange = height - half_basket_size.y - offset_screen
 	
 	var basketXRand = randf_range( minXBasketRange , maxXBasketRange )
 	var basketYRand = randf_range( minYBasketRange , maxYBasketRange )
 	var basketRandPos = Vector2(basketXRand, basketYRand)
 	
-	basketNode.position = basketRandPos
+	basket_node.position = basketRandPos
 	
-	var ballYRand = randf_range( ballRadius + offsetScreen , height - ballRadius - offsetScreen )	
+	var ballYRand = randf_range( ball_radius + offset_screen , height - ball_radius - offset_screen )
 	
-	var range_left_min = ballRadius + offsetScreen
-	var range_left_max = basketRandPos.x - halfBasketSize.x - ballRadius * 2.0
-	var range_right_min = basketRandPos.x + halfBasketSize.x + ballRadius * 2.0 
-	var range_right_max = width - ballRadius - offsetScreen
+	var range_left_min = ball_radius + offset_screen
+	var range_left_max = basketRandPos.x - half_basket_size.x - ball_radius * 2.0
+	var range_right_min = basketRandPos.x + half_basket_size.x + ball_radius * 2.0 
+	var range_right_max = width - ball_radius - offset_screen
 	
-	var min_size_spawn = ballRadius * 3
+	var min_size_spawn = ball_radius * 3
 	
 	if range_left_max - range_left_min < min_size_spawn :
 		var ballXRand = randf_range( range_right_min , range_right_max )
-		ballNode.position = Vector2(ballXRand, ballYRand)
+		ball_node.position = Vector2(ballXRand, ballYRand)
 	elif range_right_max - range_right_min < min_size_spawn :
 		var ballXRand = randf_range( range_left_min , range_left_max )
-		ballNode.position = Vector2(ballXRand, ballYRand)
+		ball_node.position = Vector2(ballXRand, ballYRand)
 
 # Checks if the given position collides with the basketball
 func _check_action_in_ball( pos : Vector2 ):
-	var ballPos = ballNode.position
+	var ballPos = ball_node.position
 	
-	var minX = ballPos.x - ballRadius
-	var maxX = ballPos.x + ballRadius
-	var minY = ballPos.y - ballRadius
-	var maxY = ballPos.y + ballRadius
+	var minX = ballPos.x - ball_radius
+	var maxX = ballPos.x + ball_radius
+	var minY = ballPos.y - ball_radius
+	var maxY = ballPos.y + ball_radius
 	
 	var xBound = pos.x >= minX and pos.x <= maxX
 	var yBound = pos.y >= minY and pos.y <= maxY
@@ -129,14 +129,11 @@ func _check_action_in_ball( pos : Vector2 ):
 # REEL FUNCTIONS
 #==============================================================================
 func can_drag_from_reel() -> bool:
-	if isPressed and SInputUtility.is_dragging.has_changed(false) :
-		return false
+	if is_pressed and SInputUtility.is_dragging.has_changed(false) : return false
 	
 	var event = SInputUtility.cached_drag_event
-	if event == null :
-		return true
+	if event == null : return true
 	
-	if _check_action_in_ball(event.position) or isPressed :
-		return false
+	if _check_action_in_ball(event.position) or is_pressed : return false
 	
 	return true

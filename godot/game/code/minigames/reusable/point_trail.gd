@@ -70,39 +70,30 @@ func _draw():
 func input_value( vector_dir : Vector2 ):
 	input_vec = vector_dir
 	if vector_dir.length() <= 5.0 :
-		_make_invisible()
+		visible = false
 		return
-	_make_visible()
+	visible = true
 
 #==============================================================================
 # PRIVATE FUNCTIONS
 #==============================================================================
-
-# Set the trail to Visible
-func _make_visible():
-	visible = true
-
-# Set the trail to invisible
-func _make_invisible():
-	visible = false
 
 # Calculates the trail of points
 func _calculate_point_trail():
 	point_array.clear()
 	trail_dir	= input_vec
 	point_collide	= false
-	if trail_type == TrailType.Linear :
-		_linear_trail()
-	elif trail_type == TrailType.Parabolic :
-		_parabolic_trail()
+	
+	if trail_type == TrailType.Linear : _linear_trail()
+	elif trail_type == TrailType.Parabolic : _parabolic_trail()
+	
 	ball.position = origin_ball
 
 # Calculates a linear trail of points
 func _linear_trail():
 	point_array.append(origin_ball)
 	for i in point_numbers :
-		if point_collide :
-			return
+		if point_collide : return
 		var point_pos = _next_point_linear_pos(i)
 		point_array.append(point_pos)
 
@@ -121,8 +112,7 @@ func _next_point_linear_pos( i ):
 func _parabolic_trail():
 	point_array.append(origin_ball)
 	for i in point_numbers :
-		if point_collide :
-			return
+		if point_collide : return
 		var point_pos = _next_point_parabolic_pos(i)
 		point_array.append(point_pos)
 
@@ -141,8 +131,8 @@ func _next_point_parabolic_pos( i ):
 func _check_trail_collision( pos : Vector2 ):
 	ball.position = pos
 	var info = ball.move_and_collide(Vector2(0.0,0.0), true)
-	if info != null :
-		point_collide = true
+	
+	if info != null : point_collide = true
 	ball.position = origin_ball
 
 # Calculates the next point size
