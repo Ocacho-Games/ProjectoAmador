@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="MyGame"
-run/main_scene="res://game/scenes/menu/menu.tscn"
+config/name="Suipe"
+run/main_scene="res://game/scenes/menu/loading_screen.tscn"
 config/features=PackedStringArray("4.1")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.901961, 0.941176, 0.976471, 1)
+config/icon="res://game/resources/img/loading_screen/suipe_logo_app.png"
 
 [autoload]
 

@@ -1,21 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpoq7rgiyi6qy"]
 
 [ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
-[ext_resource type="Texture2D" uid="uid://fudlq4loankk" path="res://game/resources/img/spaceship/alien_background.png" id="2_u7krg"]
+[ext_resource type="Texture2D" uid="uid://b5fhnx8y0i7oo" path="res://game/resources/img/stack/stack_floor.svg" id="2_4d88l"]
+[ext_resource type="Texture2D" uid="uid://dr8ccd4hh6iaw" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
-[ext_resource type="PackedScene" uid="uid://b13nnl1grf052" path="res://game/scenes/minigames/stack/piece_destructible.tscn" id="5_dvd48"]
 
 [node name="stack" type="Node2D"]
 script = ExtResource("1_mtjus")
 
 [node name="background" type="TextureRect" parent="."]
-self_modulate = Color(0, 1, 0, 1)
 offset_left = -76.0
 offset_top = -468.0
 offset_right = 1317.0
 offset_bottom = 2564.0
-texture = ExtResource("2_u7krg")
+texture = ExtResource("2_yqun0")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -30,16 +29,28 @@ offset_top = 52.0
 offset_right = 697.0
 offset_bottom = 173.0
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 50
 text = "SCORE"
 
 [node name="leaderboard_button" type="Button" parent="."]
-offset_left = 731.0
-offset_top = 1927.0
-offset_right = 973.0
-offset_bottom = 2004.0
+offset_left = 82.0
+offset_top = 73.0
+offset_right = 324.0
+offset_bottom = 150.0
 text = "Leaderboard"
 
-[node name="piece_generator" type="Node" parent="."]
+[node name="piece_generator" type="Node" parent="." node_paths=PackedStringArray("initial_piece", "floor_ref")]
 script = ExtResource("3_xgy7n")
 piece = ExtResource("3_fykb7")
-piece_destructible = ExtResource("5_dvd48")
+initial_piece = NodePath("../initial_piece")
+floor_ref = NodePath("../StackFloor")
+
+[node name="StackFloor" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(540, 1960)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_4d88l")
+
+[node name="initial_piece" parent="." instance=ExtResource("3_fykb7")]
+process_mode = 4
+position = Vector2(301, 1564)

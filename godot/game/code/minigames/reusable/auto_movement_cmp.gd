@@ -44,6 +44,8 @@ const DIRECTION_BWD_RIGHT	: Vector2 = Vector2 (0.7, 0.7)
 @export_group("Movement")
 ## Pattern of movement we want to follow. See EMovementType for more info
 @export var movement_type 	: EMovementType = EMovementType.HORIZONTAL
+## Initial movement direction to follow. This should be something like LEFT, RIGHT or similar. Otherwise the cmp won't work as expected
+@export var initial_direction : EMovementType = EMovementType.NO_MOVEMENT
 ## Change pattern we want to follow. See EChangeType for more info
 @export var change_type 	: EChangeType = EChangeType.NO_CHANGE
 ## Entity's acceleration. NOT USED
@@ -85,6 +87,8 @@ var fixed_delta_multiplier	: float = 1.0
 @onready var half_object_width = GameUtilityLibrary.get_node_actual_width(get_parent()) / 2.0
 ## Half of the height of the parent object. The parent object should have a Sprite2D or a TextureRect in order to calculate the height 
 @onready var half_object_height = GameUtilityLibrary.get_node_actual_height(get_parent()) / 2.0
+## Whether the parent of this component has a sprite or not in order to perform different operations
+@onready var has_a_sprite = GameUtilityLibrary.get_child_node_by_class(self, "Sprite2D")
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -111,6 +115,17 @@ func _physics_process(delta):
 	_handle_screen_borders()
 	_handle_position(delta)
 	_handle_rotation(delta)
+	
+#==============================================================================
+# PUBLIC FUNCTIONS
+#==============================================================================
+
+## In case the sizes of the parent have changed we need to call this function to make sure
+## the half width and height are recalculated
+##
+func update_sizes() -> void:
+	half_object_width = GameUtilityLibrary.get_node_actual_width(get_parent()) / 2.0
+	half_object_height = GameUtilityLibrary.get_node_actual_height(get_parent()) / 2.0
 
 #==============================================================================
 # PRIVATE FUNCTIONS
@@ -118,7 +133,11 @@ func _physics_process(delta):
 
 ## Select the initial current direction based on the type of movement pattern
 ##
-func _select_initial_direction() -> void:	
+func _select_initial_direction() -> void:
+	if initial_direction != EMovementType.NO_MOVEMENT:
+		movement_type = initial_direction
+		return
+		
 	match movement_type:
 		EMovementType.HORIZONTAL		: current_direction = DIRECTION_RIGHT
 		EMovementType.VERTICAL			: current_direction = DIRECTION_FWD
@@ -191,13 +210,22 @@ func _handle_screen_borders() -> void:
 	if(change_type != EChangeType.SCREEN_HEIGHT and change_type != EChangeType.SCREEN_WIDHT): return
 	
 	var position_parent = get_parent().position 
+	
 	match change_type:
 		EChangeType.SCREEN_WIDHT:
-			if (position_parent.x + half_object_width > GameUtilityLibrary.SCREEN_WIDTH): _change_movement()
-			if (position_parent.x - half_object_width < 0.0): _change_movement()			
+			if has_a_sprite:		
+				if (position_parent.x + half_object_width > GameUtilityLibrary.SCREEN_WIDTH): _change_movement()
+				if (position_parent.x - half_object_width < 0.0): _change_movement()
+			else:
+				if (position_parent.x + (half_object_width * 2) > GameUtilityLibrary.SCREEN_WIDTH): _change_movement()
+				if (position_parent.x < 0.0): _change_movement()			
 		EChangeType.SCREEN_HEIGHT:
-			if (position_parent.y + half_object_height > GameUtilityLibrary.SCREEN_HEIGHT): _change_movement()
-			if (position_parent.y - half_object_width < 0.0): _change_movement()		
+			if has_a_sprite:					
+				if (position_parent.y + half_object_height > GameUtilityLibrary.SCREEN_HEIGHT): _change_movement()
+				if (position_parent.y - half_object_height < 0.0): _change_movement()
+			else:
+				if (position_parent.y + (half_object_height * 2) > GameUtilityLibrary.SCREEN_HEIGHT): _change_movement()
+				if (position_parent.y < 0.0): _change_movement()		
 
 ## Handles the position of the entity depending on the movement patterns
 ##	
@@ -240,7 +268,3 @@ func _handle_rotation(delta) -> void:
 			var offset_angle = rotation_offset if target_angle > 0 else -rotation_offset
 			var final_target_angle = target_angle + deg_to_rad(offset_angle)
 			get_parent().rotation = InterpolationLibrary.interp_to(get_parent().rotation, final_target_angle, delta, rotation_interpolation_speed) 
-			
-		
- 
-	

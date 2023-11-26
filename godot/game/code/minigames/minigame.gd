@@ -54,7 +54,7 @@ func _ready():
 	_handle_background()
 	_handle_leaderboard_button()
 			
-	time_bar.fill_mode = ProgressBar.FILL_BEGIN_TO_END 		
+	time_bar.fill_mode = ProgressBar.FILL_TOP_TO_BOTTOM 		
 	minigame_duration = SGame.get_minigame_duration(self)
 	
 	if minigame_duration == -1:
