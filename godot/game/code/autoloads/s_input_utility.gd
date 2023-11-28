@@ -29,6 +29,9 @@ var is_touching = false
 ## "is_dragging" will only be valid while we are touching the screen
 var is_dragging : STrackVariable
 
+## Boolean track variable in order to know if we are tapping or not. 
+var is_tapping : STrackVariable
+
 ## Whether we are swiping or not. This will only be true when we are not longer dragging, obviously.
 var is_swiping : bool = false
 
@@ -46,16 +49,21 @@ var cached_drag_event : InputEventSingleScreenDrag
 ##
 func _ready():
 	is_dragging = STrackVariable.new(false)
+	is_tapping	= STrackVariable.new(false)	
 
 ## Overriden input function
 ##
 func _input(event):
+	is_tapping.set_value(false)	  		
+	
 	if event is InputEventSingleScreenDrag:
 		cached_drag_event = event
 		if abs(event.relative.y) > max_y_dragging_relative: 
 			max_y_dragging_relative = abs(event.relative.y)
 	elif event is InputEventSingleScreenTouch:
 		is_touching = event.pressed
+	elif event is InputEventSingleScreenTap:
+		is_tapping.set_value(true)
 
 ## Overriden process function
 ##
@@ -65,7 +73,7 @@ func _process(_delta):
 	if !is_touching:
 		cached_drag_event = null
 	
-	is_dragging.set_value(cached_drag_event != null)  	
+	is_dragging.set_value(cached_drag_event != null)
 
 #==============================================================================
 # PUBLIC FUNCTIONS

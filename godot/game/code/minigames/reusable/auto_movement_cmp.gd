@@ -44,6 +44,8 @@ const DIRECTION_BWD_RIGHT	: Vector2 = Vector2 (0.7, 0.7)
 @export_group("Movement")
 ## Pattern of movement we want to follow. See EMovementType for more info
 @export var movement_type 	: EMovementType = EMovementType.HORIZONTAL
+## Additional pattern movement we want to follow. For example going bwd + horizontal movement. This movement won't change so you should use something like LEFT, RIGHT, BWD...
+@export var additional_movement_type : EMovementType = EMovementType.NO_MOVEMENT
 ## Initial movement direction to follow. This should be something like LEFT, RIGHT or similar. Otherwise the cmp won't work as expected
 @export var initial_direction : EMovementType = EMovementType.NO_MOVEMENT
 ## Change pattern we want to follow. See EChangeType for more info
@@ -52,6 +54,9 @@ const DIRECTION_BWD_RIGHT	: Vector2 = Vector2 (0.7, 0.7)
 @export var acceleration	: float = 0.0
 ## Entity's speed.
 @export var speed 			: float = 400.0
+## Entity's speed for the additional movement type
+@export var additional_speed : float = 400.0
+
 @export_subgroup("Fixed Amount")
 ## Amount we want to travel when we are in FIXED_UNITS
 @export var fixed_units					: float = 300.0
@@ -78,6 +83,8 @@ const DIRECTION_BWD_RIGHT	: Vector2 = Vector2 (0.7, 0.7)
 var initial_position 		: Vector2
 ## Current direction we are following
 var current_direction 		: Vector2 = DIRECTION_FWD
+## Additional current direction we are following
+var additional_current_direction : Vector2 = DIRECTION_BWD
 ## How much time since we start the interpolation. This is only for FIXED_UNITS
 var fixed_elapsed_time		: float = 0.0
 ## Multiplier used for inversing the lerp in order to comeback to the initial position. This is only for FIXED_UNITS
@@ -88,7 +95,7 @@ var fixed_delta_multiplier	: float = 1.0
 ## Half of the height of the parent object. The parent object should have a Sprite2D or a TextureRect in order to calculate the height 
 @onready var half_object_height = GameUtilityLibrary.get_node_actual_height(get_parent()) / 2.0
 ## Whether the parent of this component has a sprite or not in order to perform different operations
-@onready var has_a_sprite = GameUtilityLibrary.get_child_node_by_class(self, "Sprite2D")
+@onready var has_a_sprite = GameUtilityLibrary.get_child_node_by_class(get_parent(), "Sprite2D")
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -104,6 +111,8 @@ func _ready():
 ## Overriden input function
 ##
 func _input(event):
+	if !enable: return
+	
 	if event is InputEventSingleScreenTap:
 		_handle_tap()		
 
@@ -134,11 +143,12 @@ func update_sizes() -> void:
 ## Select the initial current direction based on the type of movement pattern
 ##
 func _select_initial_direction() -> void:
+	var current_movement_type = movement_type
+	
 	if initial_direction != EMovementType.NO_MOVEMENT:
-		movement_type = initial_direction
-		return
+		current_movement_type = initial_direction
 		
-	match movement_type:
+	match current_movement_type:
 		EMovementType.HORIZONTAL		: current_direction = DIRECTION_RIGHT
 		EMovementType.VERTICAL			: current_direction = DIRECTION_FWD
 		EMovementType.FWD				: current_direction = DIRECTION_FWD
@@ -151,6 +161,7 @@ func _select_initial_direction() -> void:
 		EMovementType.FWD_RIGHT			: current_direction = DIRECTION_FWD_RIGHT
 		EMovementType.BWD_LEFT			: current_direction = DIRECTION_BWD_LEFT
 		EMovementType.BWD_RIGHT			: current_direction = DIRECTION_BWD_RIGHT
+		
 
 ## Called when we should trigger a movement change. Depending on the movemenet pattern,
 ## we will trigger direction changes
@@ -235,9 +246,15 @@ func _handle_position(delta) -> void:
 	if movement_type == EMovementType.FIXED_UNITS:
 		_handle_fixed_units_position(delta)
 		return
-		
-	var velocity = current_direction * speed * delta
+	
+	var additional_movement_direction = Vector2(0,0)
+	if additional_movement_type != EMovementType.NO_MOVEMENT:
+		additional_movement_direction = additional_current_direction * additional_speed
+	
+	var movement_direction = current_direction * speed
+	var velocity = (movement_direction + additional_movement_direction) * delta
 	get_parent().position += velocity
+	
 
 ## In case our movement pattern is set to FIXED_UNITS, we will execute a specific type of movement
 ##

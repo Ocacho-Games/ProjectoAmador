@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdafntthxpcrc"]
+[gd_scene load_steps=6 format=3 uid="uid://bdafntthxpcrc"]
 
 [ext_resource type="Script" path="res://game/code/minigames/counter/counter_minigame.gd" id="1_3rns3"]
 [ext_resource type="Texture2D" uid="uid://dbowy6i76hgti" path="res://game/resources/img/counter/counter_background.svg" id="2_bqla4"]
 [ext_resource type="Texture2D" uid="uid://dnw1k6fynr2ux" path="res://game/resources/img/counter/counter_button_idle.svg" id="3_w3vbs"]
 [ext_resource type="Texture2D" uid="uid://gpn2yi6nd772" path="res://game/resources/img/counter/counter_button_click.svg" id="4_myjrs"]
 [ext_resource type="Texture2D" uid="uid://drooshpibfkt8" path="res://game/resources/img/counter/counter_chronometer.svg" id="5_m82xw"]
-[ext_resource type="Texture2D" uid="uid://f2hi4grnxayf" path="res://game/resources/img/counter/counter_timer.svg" id="6_tu5tf"]
 
 [node name="counter" type="Node2D"]
 script = ExtResource("1_3rns3")
@@ -46,18 +45,13 @@ position = Vector2(541, 591)
 scale = Vector2(0.76249, 0.76249)
 texture = ExtResource("5_m82xw")
 
-[node name="CounterTimer" type="Sprite2D" parent="CounterChronometer"]
-position = Vector2(-2.62299, 270.167)
-scale = Vector2(1.31149, 1.31149)
-texture = ExtResource("6_tu5tf")
-
 [node name="counter_time_text" type="RichTextLabel" parent="."]
-offset_left = 372.0
-offset_top = 698.0
-offset_right = 973.0
-offset_bottom = 979.0
+offset_left = 427.0
+offset_top = 809.0
+offset_right = 844.0
+offset_bottom = 1004.0
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 120
+theme_override_font_sizes/normal_font_size = 100
 text = "SCORE"
 
 [connection signal="pressed" from="counter_button" to="." method="_on_counter_button_pressed"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ioi8aq3h06pf"]
 
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
-[ext_resource type="Texture2D" uid="uid://fudlq4loankk" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
+[ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
-[ext_resource type="Texture2D" uid="uid://bwk8swrch70sf" path="res://game/resources/img/bob.png" id="4_72jgq"]
+[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="4_72jgq"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khny3"]
@@ -23,10 +23,12 @@ expand_mode = 1
 
 [node name="spaceship_player" type="Node2D" parent="."]
 position = Vector2(548, 2054)
+scale = Vector2(0.6, 0.6)
 
 [node name="AutoMovementCmp" type="Node" parent="spaceship_player"]
 script = ExtResource("3_n1q1x")
 change_type = 3
+speed = 600.0
 rotation_type = 2
 rotation_offset = -60.0
 

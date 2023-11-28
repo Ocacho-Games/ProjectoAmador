@@ -17,7 +17,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	
-	if SInputUtility.is_touching:
+	if SInputUtility.is_tapping.value:
 		spaceship.get_node("AutoMovementCmp").enable = true
 		obstacle_generator.enable = true
 	
