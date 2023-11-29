@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
-[ext_resource type="Texture2D" uid="uid://di8u7nnnovslj" path="res://game/resources/img/bob.png" id="4_72jgq"]
+[ext_resource type="Texture2D" uid="uid://d0xwinwjd5l1c" path="res://game/resources/img/bob/bob.svg" id="4_sagvy"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khny3"]
@@ -34,7 +34,7 @@ rotation_offset = -60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="spaceship_player"]
 scale = Vector2(0.38, 0.38)
-texture = ExtResource("4_72jgq")
+texture = ExtResource("4_sagvy")
 
 [node name="Area2D" type="Area2D" parent="spaceship_player"]
 
