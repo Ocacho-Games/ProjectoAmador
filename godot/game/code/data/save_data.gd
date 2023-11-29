@@ -8,9 +8,10 @@ class_name SSaveData
 #==============================================================================
 
 var dictionary = {
-	"name" : "Jose",
-	"test_array" : [],
-	"clicker_score" : 0
+	"clicker_score" : 0,
+	# This should be the same name as the bob_skins.tres key
+	"bob_skins" : ["black"],
+	"current_bob_skins" : "black"
 }
 
 #==============================================================================
@@ -21,6 +22,6 @@ var dictionary = {
 ## NOTE: The parsed_data must be a parsed JSON
 ##
 func copy_data(parsed_data) -> void:
-	dictionary["name"] = parsed_data.name
-	dictionary["test_array"] = parsed_data.test_array
-	dictionary["clicker_score"] = parsed_data.clicker_score			
+	dictionary["clicker_score"] = parsed_data.clicker_score
+	dictionary["bob-skins"] = parsed_data.bob_skins	
+	dictionary["current_bob_skins"] = parsed_data.current_bob_skins		
