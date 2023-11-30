@@ -7,11 +7,14 @@ class_name SSaveData
 # VARIABLES
 #==============================================================================
 
+#TODO[David]: I would like to automatize this and the score stuff so we don't need to add the variables manually to the dictionary.
+
 var dictionary = {
 	"clicker_score" : 0,
-	# This should be the same name as the bob_skins.tres key
-	"bob_skins" : ["black"],
-	"current_bob_skins" : "black"
+	# This should be the same name as the bob.tres key. NOTE: This will contain all the unlocked resources "keys" of the colection
+	"bob" : ["black", "click_2"],
+	"current_bob_sprite" : "black",
+	"current_bob_sound" : "click_2",
 }
 
 #==============================================================================
@@ -23,5 +26,6 @@ var dictionary = {
 ##
 func copy_data(parsed_data) -> void:
 	dictionary["clicker_score"] = parsed_data.clicker_score
-	dictionary["bob-skins"] = parsed_data.bob_skins	
-	dictionary["current_bob_skins"] = parsed_data.current_bob_skins		
+	dictionary["bob"] = parsed_data.bob	
+	dictionary["current_bob_sprite"] = parsed_data.current_bob_sprite
+	dictionary["current_bob_sound"] = parsed_data.current_bob_sound					

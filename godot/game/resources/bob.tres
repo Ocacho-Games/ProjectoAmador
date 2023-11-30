@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="SCollection" load_steps=18 format=3 uid="uid://dnuok8mfsrmex"]
+
+[ext_resource type="Texture2D" uid="uid://bdm56neielu3u" path="res://game/resources/img/basket/basket_ball.svg" id="1_a00sy"]
+[ext_resource type="Script" path="res://game/code/menu/shop/collection_resource.gd" id="1_a7b4q"]
+[ext_resource type="Texture2D" uid="uid://t38lnonvlv5v" path="res://game/resources/img/bob/skins/bob_skin_01.svg" id="1_he6ui"]
+[ext_resource type="Script" path="res://game/code/menu/shop/collectable_resource.gd" id="2_30vs3"]
+[ext_resource type="Texture2D" uid="uid://4fgulp6acror" path="res://game/resources/img/bob/skins/bob_skin_02.svg" id="3_algqp"]
+[ext_resource type="Texture2D" uid="uid://btne44iv2b2fi" path="res://game/resources/img/bob/skins/bob_skin_03.svg" id="4_fp5pq"]
+[ext_resource type="AudioStream" uid="uid://cpuqeb77ucbde" path="res://game/resources/sound/test/click_1.mp3" id="6_a7xrh"]
+[ext_resource type="Texture2D" uid="uid://bkdpdm4bsarg5" path="res://game/resources/img/spaceship/alien_ovni.svg" id="7_7ffg5"]
+[ext_resource type="Texture2D" uid="uid://hsg08umvutbv" path="res://game/resources/img/spaceship/alien_spaceship.png" id="7_qfjgf"]
+[ext_resource type="AudioStream" uid="uid://dyrvuksno3o7u" path="res://game/resources/sound/test/click_2.mp3" id="8_ibsbs"]
+[ext_resource type="AudioStream" uid="uid://b2yswaagsagny" path="res://game/resources/sound/test/clilck_3.mp3" id="9_m3o2r"]
+
+[sub_resource type="Resource" id="Resource_gb2mx"]
+script = ExtResource("2_30vs3")
+key = "young"
+type = 0
+shop_sprite = ExtResource("1_he6ui")
+blocked_shop_sprite = ExtResource("1_a00sy")
+asset = ExtResource("1_he6ui")
+
+[sub_resource type="Resource" id="Resource_0p8w6"]
+script = ExtResource("2_30vs3")
+key = "fancy"
+type = 0
+shop_sprite = ExtResource("3_algqp")
+blocked_shop_sprite = ExtResource("1_a00sy")
+asset = ExtResource("3_algqp")
+
+[sub_resource type="Resource" id="Resource_g4m55"]
+script = ExtResource("2_30vs3")
+key = "black"
+type = 0
+shop_sprite = ExtResource("4_fp5pq")
+blocked_shop_sprite = ExtResource("1_a00sy")
+asset = ExtResource("4_fp5pq")
+
+[sub_resource type="Resource" id="Resource_cgmvj"]
+script = ExtResource("2_30vs3")
+key = "click_1"
+type = 1
+shop_sprite = ExtResource("7_7ffg5")
+blocked_shop_sprite = ExtResource("7_qfjgf")
+asset = ExtResource("6_a7xrh")
+
+[sub_resource type="Resource" id="Resource_3x1sn"]
+script = ExtResource("2_30vs3")
+key = "click_2"
+type = 1
+shop_sprite = ExtResource("7_7ffg5")
+blocked_shop_sprite = ExtResource("7_qfjgf")
+asset = ExtResource("8_ibsbs")
+
+[sub_resource type="Resource" id="Resource_qqsvn"]
+script = ExtResource("2_30vs3")
+key = "click_3"
+type = 1
+shop_sprite = ExtResource("7_7ffg5")
+blocked_shop_sprite = ExtResource("7_qfjgf")
+asset = ExtResource("9_m3o2r")
+
+[resource]
+script = ExtResource("1_a7b4q")
+shop_name = "BOB"
+key = "bob"
+collectables = Array[ExtResource("2_30vs3")]([SubResource("Resource_gb2mx"), SubResource("Resource_0p8w6"), SubResource("Resource_g4m55"), SubResource("Resource_cgmvj"), SubResource("Resource_3x1sn"), SubResource("Resource_qqsvn")])

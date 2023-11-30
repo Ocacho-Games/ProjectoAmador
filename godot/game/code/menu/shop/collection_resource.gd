@@ -1,9 +1,9 @@
 class_name SCollection extends Resource
 
-@export var key : String = "test-key-skin"
+#Name that will be displayed in the store. This should be translated
+@export var shop_name = "BOB"
 
-#This should be the sprite that is shown when the collectable is blocked
-@export var blocked_sprite : Resource
+@export var key : String = "test-key-skin"
 
 ## Array containing the definition of our minigames
 @export var collectables : Array[SCollectable]

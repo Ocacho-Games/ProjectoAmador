@@ -7,8 +7,11 @@ enum ECollectableType {SPRITE, SOUND}
 
 @export var type : ECollectableType
 
+#This is the sprite that will be displayed on the shop, not the actual resource.
+@export var shop_sprite : Texture
+
+#This should be the sprite that is shown when the collectable is blocked
+@export var blocked_shop_sprite : Texture
+
 #This should be the sprite or similar
 @export var asset : Resource
-
-# Am I gonna use this?
-@export var should_unlock_with_video : bool = false
