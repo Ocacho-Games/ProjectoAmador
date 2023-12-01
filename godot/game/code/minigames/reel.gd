@@ -89,6 +89,7 @@ func _exit_tree():
 func _init_game() -> void:
 	current_minigame_node = SGame.start_game().instantiate()
 	add_child(current_minigame_node)
+	move_child(current_minigame_node, 0)
 	
 	_prepare_game()
 
@@ -104,6 +105,8 @@ func _init_specific_game(specific_game : Minigame) -> void:
 	
 	specific_game.position.y = 0
 	add_child(specific_game)
+	move_child(specific_game, 0)
+	
 	current_minigame_node = specific_game	
 	
 	if specific_game == previous_minigame_node: SGame.load_previous_miningame_index()
@@ -221,3 +224,10 @@ func _handle_reel_interpolation(delta) -> void:
 
 		is_lerping = false
 		lerp_elapsed_time = 0
+
+#==============================================================================
+# SIGNAL FUNCTIONS
+#==============================================================================
+
+func _on_shop_button_pressed():
+	SceneManager.change_scene("res://game/scenes/menu/shop/shop.tscn")

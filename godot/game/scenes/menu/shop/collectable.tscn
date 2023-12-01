@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://fgnfdtvg8c3c"]
+
+[ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
+[ext_resource type="Texture2D" uid="uid://c4uxqjui4u75f" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_bm2je"]
+
+[node name="collectable" type="Node2D"]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_28gil")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bm2je")
+
+[node name="Button" type="Button" parent="Sprite2D"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -247.5
+offset_top = -215.0
+offset_right = -103.5
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "SELECT"
+
+[connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]

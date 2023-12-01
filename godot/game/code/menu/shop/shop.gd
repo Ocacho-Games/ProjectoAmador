@@ -1,8 +1,10 @@
 extends Node
 
 @export var collections : Array[SCollection]
+@export var collectable_scene : PackedScene
 
-@onready var type_store_text : RichTextLabel = $Control/RichTextLabel
+@onready var coins_label : RichTextLabel = $Control/coins_label
+@onready var type_store_text : RichTextLabel = $Control/type_store_label
 @onready var skin_container : HBoxContainer = $Control/ScrollContainer/HBoxContainer
 
 var current_index_collection : int = 0
@@ -12,8 +14,7 @@ func _ready():
 	_display_current_collection()
 	
 func _process(_delta):
-	#print(current_index_collection)
-	pass
+	coins_label.text = "Coins: " + str(SGPS.data_to_save.dictionary["coins"])	
 
 func _on_left_pressed():
 	if current_index_collection - 1 >= 0:
@@ -31,6 +32,9 @@ func _on_right_pressed():
 	current_index_collection = 0
 	#_display_current_collection()
 
+func _on_back_to_game_button_pressed():
+	SceneManager.change_scene("res://game/scenes/reel.tscn")
+
 func _display_current_collection() -> void:
 	var current_collection = collections[current_index_collection]
 	type_store_text.text = current_collection.shop_name
@@ -41,27 +45,18 @@ func _display_current_collection() -> void:
 	var initial_y = 200
 	
 	for collectable in current_collection.collectables:
-			var sprite = Sprite2D.new()
-			
-			if _is_collectable_blocked(current_collection.key, collectable.key):
-				sprite.texture = collectable.shop_sprite				
-			else:
-				sprite.texture = collectable.blocked_shop_sprite				
-				
-			sprite.position.x = initial_x
-			sprite.position.y = initial_y
-			sprite.scale = Vector2(0.6, 0.6)			
+		var collectable_node = collectable_scene.instantiate()
+		collectable_node = collectable_node as CollectableNode
+		
+		collectable_node.set_collectable_properties(current_collection.key, collectable)			
+		collectable_node.position.x = initial_x
+		collectable_node.position.y = initial_y		
 
-			skin_container.call_deferred("add_child", sprite)
-			initial_x += 300
-			if initial_x > 1000:
-				initial_x = 300
-				initial_y += 350
+		skin_container.call_deferred("add_child", collectable_node)
+		initial_x += 300
+		if initial_x > 1000:
+			initial_x = 300
+			initial_y += 350
 	
 
-func _is_collectable_blocked(collection_key : String, collectable_key : String) -> bool:
-	for collectable_name in SGPS.data_to_save.dictionary[collection_key]:
-		if collectable_name == collectable_key:
-			return true
-	return false
-	
+

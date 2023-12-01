@@ -4,3 +4,15 @@
 
 [node name="reel" type="Node2D"]
 script = ExtResource("1_dbiqk")
+
+[node name="shop_button" type="Button" parent="."]
+top_level = true
+z_index = 10
+offset_left = 37.0
+offset_top = 2145.0
+offset_right = 234.0
+offset_bottom = 2249.0
+theme_override_font_sizes/font_size = 70
+text = "SHOP"
+
+[connection signal="pressed" from="shop_button" to="." method="_on_shop_button_pressed"]
