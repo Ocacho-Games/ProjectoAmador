@@ -43,9 +43,7 @@ static func load_interstital() -> InterstitialAd:
 ## Make sure to destroy the ad once you are done with it with .destroy()
 ##	
 static func load_show_interstital() -> InterstitialAd:
-	var ad = load_interstital()
-	ad.show()
-	return ad
+	return _load_advanced_add(InterstitialAdLoadCallback.new(), InterstitialAdLoader.new(), interstital_id, true)
 
 ## Create and return an Admob Rewarded
 ## Make sure to destroy the ad once you are done with it with .destroy()
@@ -57,9 +55,7 @@ static func load_rewarded()-> RewardedAd:
 ## Make sure to destroy the ad once you are done with it with .destroy()
 ##	
 static func load_show_rewarded()-> RewardedAd:
-	var ad = load_rewarded()
-	ad.show()
-	return ad
+	return _load_advanced_add(RewardedAdLoadCallback.new(), RewardedAdLoader.new(), rewarded_id, true)
 
 ## Create and return an Admob Rewarded Interstitial
 ## Make sure to destroy the ad once you are done with it with .destroy()
@@ -71,9 +67,7 @@ static func load_rewarded_interstital() -> RewardedInterstitialAd:
 ## Make sure to destroy the ad once you are done with it with .destroy()
 ##	
 static func load_show_rewarded_interstital() -> RewardedInterstitialAd:
-	var ad = load_rewarded_interstital()
-	ad.show()
-	return ad
+	return _load_advanced_add(RewardedInterstitialAdLoadCallback.new(), RewardedInterstitialAdLoader.new(), rewarded_interstitial_id, true)
 
 #==============================================================================
 # PRIVATE FUNCTIONS
@@ -84,7 +78,7 @@ static func load_show_rewarded_interstital() -> RewardedInterstitialAd:
 ## [loader] : Type of loader in order to load the add
 ## [ad_id] : Test ID of the add
 ##	
-static func _load_advanced_add(callback, loader, ad_id):
+static func _load_advanced_add(callback, loader, ad_id, show_ad = false):
 	var ad
 	
 	callback.on_ad_failed_to_load = func(adError : LoadAdError) -> void:
@@ -92,6 +86,8 @@ static func _load_advanced_add(callback, loader, ad_id):
 
 	callback.on_ad_loaded = func(rewarded_interstitial_ad) -> void:
 		ad = rewarded_interstitial_ad
+		if show_ad:
+			ad.show();
 
 	loader.load(ad_id, AdRequest.new(), callback)
 	return ad

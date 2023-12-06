@@ -25,6 +25,7 @@ InputManager="*res://addons/touch_input_manager/InputManager.gd"
 SGame="*res://game/code/autoloads/s_game.gd"
 SInputUtility="*res://game/code/autoloads/s_input_utility.gd"
 SGPS="*res://game/code/autoloads/s_gps.gd"
+SAds="*res://game/code/autoloads/s_ads.gd"
 
 [debug]
 

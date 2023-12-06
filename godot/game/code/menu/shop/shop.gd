@@ -32,6 +32,10 @@ func _on_right_pressed():
 	current_index_collection = 0
 	#_display_current_collection()
 
+func _on_video_coin_button_pressed():
+	var ad = AdsLibrary.load_show_rewarded()
+	SGPS.data_to_save.dictionary["coins"] += 25
+
 func _on_back_to_game_button_pressed():
 	SceneManager.change_scene("res://game/scenes/reel.tscn")
 
@@ -57,6 +61,3 @@ func _display_current_collection() -> void:
 		if initial_x > 1000:
 			initial_x = 300
 			initial_y += 350
-	
-
-

@@ -42,7 +42,7 @@ func _on_button_pressed():
 					SGPS.data_to_save.dictionary["coins"] = current_coins - cached_collectable.coins_to_unlock
 					set_collectable_properties(cached_collection_key, cached_collectable)
 			SCollectable.EUnlockType.VIDEO:
-				AdsLibrary.load_show_rewarded()
+				var _ad = AdsLibrary.load_show_rewarded()
 	else:
 		var key = "current_" + cached_collection_key + "_" + cached_collectable.get_type_to_string()
 		SGPS.data_to_save.dictionary[key] = cached_collectable.key
