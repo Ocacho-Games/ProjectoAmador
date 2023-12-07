@@ -14,7 +14,7 @@ func _ready():
 	_display_current_collection()
 	
 func _process(_delta):
-	coins_label.text = "Coins: " + str(SGPS.data_to_save.dictionary["coins"])	
+	coins_label.text = "Coins: " + str(SGPS.data_to_save_dic["coins"])	
 
 func _on_left_pressed():
 	if current_index_collection - 1 >= 0:
@@ -34,7 +34,7 @@ func _on_right_pressed():
 
 func _on_video_coin_button_pressed():
 	var ad = AdsLibrary.load_show_rewarded()
-	SGPS.data_to_save.dictionary["coins"] += 25
+	SGPS.data_to_save_dic["coins"] += 25
 
 func _on_back_to_game_button_pressed():
 	SceneManager.change_scene("res://game/scenes/reel.tscn")

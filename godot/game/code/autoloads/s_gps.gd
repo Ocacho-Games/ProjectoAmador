@@ -14,8 +14,8 @@ const SAVE_NAME = "Suap"
 ## Reference to the Google Play Game Services plugin
 var GPGS
 
-## Reference to the data to save for the user, so the user only have to care about modifying the data
-var data_to_save : SSaveData = SSaveData.new()
+## Data to save for the user, so the user only have to care about modifying the data. We load/save it here
+var data_to_save_dic = {}
 
 ## Whether the load_game function has been called at least once
 var is_game_loaded : bool = false
@@ -74,7 +74,7 @@ func submit_leaderboard_score(minigame : Minigame, score) -> void:
 func save_game() -> void:
 	if OS.get_name() == "Android":
 		_check_gpgs()
-		GPGS.saveSnapshot(SAVE_NAME, JSON.stringify(data_to_save.dictionary), "")
+		GPGS.saveSnapshot(SAVE_NAME, JSON.stringify(data_to_save_dic), "")
 
 ## Load the game. This will call a signal that will pull the saved data from the cloud. 
 ## NOTE: Make sure to call the init function before calling this method 
@@ -84,6 +84,11 @@ func load_game() -> void:
 		_check_gpgs()
 		GPGS.loadSnapshot(SAVE_NAME)
 
+## Get the value of the saved data dictionary given the key if valid if not, return null		
+func get_saved_data(key : String):
+	if data_to_save_dic.has(key):
+		return data_to_save_dic[key]
+		
 #==============================================================================
 # PRIVATE FUNCTIONS
 #==============================================================================
@@ -129,7 +134,7 @@ func _on_leaderboard_score_submitted_failed(id : String):
 
 func _on_game_saved_success():
 	print("Game saved successfuly")	
-	print(data_to_save.dictionary)
+	print(data_to_save_dic)
 	
 func _on_game_saved_failed():
 	print("Game saved failed")	
@@ -140,8 +145,7 @@ func _on_game_load_success(json_data):
 	print("Game load successfuly: " + json_data)
 	is_game_loaded = true
 
-	var parsed_data = JSON.parse_string(json_data)
-	data_to_save.copy_data(parsed_data)
+	data_to_save_dic = JSON.parse_string(json_data)
 
 func _on_game_load_failed():
 	print("Game load failed")		

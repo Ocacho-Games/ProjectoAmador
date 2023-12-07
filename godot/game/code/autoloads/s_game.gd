@@ -71,23 +71,25 @@ func get_previous_minigame_scene() -> PackedScene:
 ##	
 func get_next_minigame_scene() -> PackedScene:
 	return _get_minigame_scene_index(last_minigame_index + 1)[0]
+
+## Look and return the name of the runtime scene of the minigame_node based on the scene path 
+## [minigame_node] : Node that contains the Minigame.gd script.
+##
+func get_minigame_name(minigame_node : Minigame) -> String:
+	for minigame in minigames_array:
+		if minigame_node.scene_file_path == minigame.scene.resource_path:
+			return minigame.game_key
+	
+	return ""
 	
 ## Get the duration of a minigame based on the name of the given node
-## WARNING: Make sure that your scene file and your root node of the scene have the same name.
 ## [minigame_node] : Node that contains the Minigame.gd script. 
 ##
 func get_minigame_duration(minigame_node : Minigame) -> float:
-	var split_name = str(minigame_node.get_path()).split("/", false, 10)
-	var scene_name = split_name[split_name.size() - 1]
-	
 	for minigame in minigames_array:
-		var split_name_resource = minigame.scene.resource_path.split("/", false, 10)
-		var no_tscn 			= split_name_resource[split_name_resource.size() - 1].split(".", false, 10)
-		var scene_resource_name = no_tscn[0]
-		
-		if scene_resource_name == scene_name:
+		if minigame_node.key_name == minigame.game_key:
 			return minigame.game_duration
-	
+			
 	return -1
 
 #==============================================================================

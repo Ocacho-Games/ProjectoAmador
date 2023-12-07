@@ -27,7 +27,9 @@ func set_collectable_properties(collection_key : String, collectable : SCollecta
 			SCollectable.EUnlockType.COINS:
 				button.text = "Unlock " + str(collectable.coins_to_unlock) + " coins"
 			SCollectable.EUnlockType.VIDEO:
-				button.text = "Watch a video to unlock"				
+				button.text = "Watch a video to unlock"
+			SCollectable.EUnlockType.OBJETIVE:
+				button.text = "See the objetive"				
 	else:
 		sprite.texture = collectable.shop_sprite
 		button.text = "Select"					
@@ -36,21 +38,22 @@ func _on_button_pressed():
 	if cached_is_blocked:
 		match cached_collectable.unlock_type:
 			SCollectable.EUnlockType.COINS:
-				var current_coins = SGPS.data_to_save.dictionary["coins"]
+				var current_coins = SGPS.data_to_save_dic["coins"]
 				if current_coins >= cached_collectable.coins_to_unlock:
-					SGPS.data_to_save.dictionary[cached_collection_key].append(cached_collectable.key)
-					SGPS.data_to_save.dictionary["coins"] = current_coins - cached_collectable.coins_to_unlock
+					SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
+					SGPS.data_to_save_dic["coins"] = current_coins - cached_collectable.coins_to_unlock
 					set_collectable_properties(cached_collection_key, cached_collectable)
 			SCollectable.EUnlockType.VIDEO:
+				#TODO: We have to disable input when loading and only ad coins when watiching the full video
 				var _ad = AdsLibrary.load_show_rewarded()
 	else:
 		var key = "current_" + cached_collection_key + "_" + cached_collectable.get_type_to_string()
-		SGPS.data_to_save.dictionary[key] = cached_collectable.key
+		SGPS.data_to_save_dic[key] = cached_collectable.key
 		
 	SGPS.save_game()				
 
 func _is_collectable_blocked(collection_key : String, collectable_key : String) -> bool:
-	for collectable_name in SGPS.data_to_save.dictionary[collection_key]:
+	for collectable_name in SGPS.data_to_save_dic[collection_key]:
 		if collectable_name == collectable_key:
 			return false
 	return true

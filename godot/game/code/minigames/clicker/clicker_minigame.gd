@@ -9,7 +9,7 @@ extends Minigame
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	score = SGPS.data_to_save.dictionary["clicker_score"]
+	score = SGPS.get_saved_data("clicker_score")
 	
 	gps_leader_board_id = "CgkIr7WWkr4cEAIQAw"
 	
@@ -23,7 +23,7 @@ func _process(delta):
 func _exit_tree():
 	super._exit_tree()
 	if is_being_played:
-		SGPS.data_to_save.dictionary["clicker_score"] = score
+		SGPS.data_to_save_dic["clicker_score"] = score
 		SGPS.save_game()
 
 #==============================================================================

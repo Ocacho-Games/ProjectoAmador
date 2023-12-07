@@ -22,6 +22,9 @@ class_name Minigame extends Node2D
 ## Reference to the progress bar of the minigame. Each Minigame must have a progress bar
 @onready var time_bar : ProgressBar = $ProgressBar 
 
+## Name (key) of this minigame. Dictated by the minigames database resource of the autoload
+var key_name : String = "" 
+
 ## Duration of this minigame. Dictated by the minigames database resource of the autoload
 var minigame_duration = 0
 
@@ -53,13 +56,14 @@ signal on_should_change_to_next_minigame
 func _ready():
 	_handle_background()
 	_handle_leaderboard_button()
-			
-	time_bar.fill_mode = ProgressBar.FILL_TOP_TO_BOTTOM 		
+	
+	key_name = SGame.get_minigame_name(self)			
 	minigame_duration = SGame.get_minigame_duration(self)
 	
+	time_bar.fill_mode = ProgressBar.FILL_TOP_TO_BOTTOM 			
 	if minigame_duration == -1:
 		time_bar.visible = false
-
+	
 ## Overriden process function
 ##
 func _process(delta):

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://gpn2yi6nd772" path="res://game/resources/img/counter/counter_button_click.svg" id="5_mhjsv"]
 
 [node name="shop" type="Node2D"]
-position = Vector2(0, 1)
+position = Vector2(-1, 0)
 script = ExtResource("1_r0ehy")
 collections = Array[Resource("res://game/code/menu/shop/collection_resource.gd")]([ExtResource("2_21sk6")])
 collectable_scene = ExtResource("3_pgk4b")

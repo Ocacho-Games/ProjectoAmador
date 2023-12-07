@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SCollection" load_steps=18 format=3 uid="uid://dnuok8mfsrmex"]
+[gd_resource type="Resource" script_class="SCollection" load_steps=20 format=3 uid="uid://dnuok8mfsrmex"]
 
 [ext_resource type="Texture2D" uid="uid://bdm56neielu3u" path="res://game/resources/img/basket/basket_ball.svg" id="1_a00sy"]
 [ext_resource type="Script" path="res://game/code/menu/shop/collection_resource.gd" id="1_a7b4q"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://hsg08umvutbv" path="res://game/resources/img/spaceship/alien_spaceship.png" id="7_qfjgf"]
 [ext_resource type="AudioStream" uid="uid://dyrvuksno3o7u" path="res://game/resources/sound/test/click_2.mp3" id="8_ibsbs"]
 [ext_resource type="AudioStream" uid="uid://b2yswaagsagny" path="res://game/resources/sound/test/clilck_3.mp3" id="9_m3o2r"]
+[ext_resource type="Texture2D" uid="uid://chbqo6awh0rdh" path="res://game/resources/img/spaceship/alien_asteroid.svg" id="11_4emmg"]
 
 [sub_resource type="Resource" id="Resource_gb2mx"]
 script = ExtResource("2_30vs3")
@@ -72,8 +73,18 @@ shop_sprite = ExtResource("7_7ffg5")
 blocked_shop_sprite = ExtResource("7_qfjgf")
 asset = ExtResource("9_m3o2r")
 
+[sub_resource type="Resource" id="Resource_5ypuu"]
+script = ExtResource("2_30vs3")
+key = "test_objetive"
+type = 0
+unlock_type = 2
+coins_to_unlock = 200
+shop_sprite = ExtResource("11_4emmg")
+blocked_shop_sprite = ExtResource("1_a00sy")
+asset = ExtResource("11_4emmg")
+
 [resource]
 script = ExtResource("1_a7b4q")
 shop_name = "BOB"
 key = "bob"
-collectables = Array[ExtResource("2_30vs3")]([SubResource("Resource_gb2mx"), SubResource("Resource_0p8w6"), SubResource("Resource_g4m55"), SubResource("Resource_cgmvj"), SubResource("Resource_3x1sn"), SubResource("Resource_qqsvn")])
+collectables = Array[ExtResource("2_30vs3")]([SubResource("Resource_gb2mx"), SubResource("Resource_0p8w6"), SubResource("Resource_g4m55"), SubResource("Resource_cgmvj"), SubResource("Resource_3x1sn"), SubResource("Resource_qqsvn"), SubResource("Resource_5ypuu")])

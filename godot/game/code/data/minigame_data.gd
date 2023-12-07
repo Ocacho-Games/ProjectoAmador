@@ -19,7 +19,7 @@ enum EGenre {ADVENTURE, ACTION, SPORTS, PLATFORM, RACING, PUZZLE, CASUAL}
 # Duration in seconds of the minigame. -1 means infinity duration
 @export var game_duration	: float 		= 30
 
-# Minigame key used for identification for localization and so on
+# Unique ID name for each minigame. This will be used for retrieving and saving data for the minigame
 @export var game_key		: String		= "my-game-key"
 
 # Array for storing metadata for the minigame. This will be used by the algorithm to provide minigames for the user
