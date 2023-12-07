@@ -18,7 +18,7 @@ var next_minigame_node		: Minigame = null
 
 ## === DISPLACEMENT VARIABLES ===
 ## Screen height of the screen. With capital letters cause it should be a constant
-@onready var SCREEN_HEIGHT : float = ProjectSettings.get_setting("display/window/size/viewport_height")
+@onready var SCREEN_HEIGHT : float = ProjectSettings.get_setting("display/window/size/window_width_override")
 
 ## When we first begin dragging the y position of the input event in that moment
 var drag_event_initial_y_position : float = 0
