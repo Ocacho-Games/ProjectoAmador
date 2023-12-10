@@ -6,8 +6,8 @@ class_name GameUtilityLibrary
 # VARIABLES
 #==============================================================================
 
-static var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
-static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
+static var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/window_width_override")
+static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/window_height_override")
 
 #==============================================================================
 # PUBLIC FUNCTIONS
