@@ -15,7 +15,16 @@ const SAVE_NAME = "Suap"
 var GPGS
 
 ## Data to save for the user, so the user only have to care about modifying the data. We load/save it here
-var data_to_save_dic = {}
+## NOTE: This dictionary has entries for the shake of testing in PC. This should be empty for the release of the game
+var data_to_save_dic = {	
+		"coins" : 550,
+		"clicker_score" : 0,
+		"stack_score": 0,
+		# This should be the same name as the bob.tres key. NOTE: This will contain all the unlocked resources "keys" of the colection
+		"bob" : ["click_2"],
+		"current_bob_sprite" : "",
+		"current_bob_sound" : "click_2",
+	}
 
 ## Whether the load_game function has been called at least once
 var is_game_loaded : bool = false
@@ -38,6 +47,11 @@ func _ready():
 		
 		_connect_signals()
 		GPGS.signIn()
+
+## This shit is not working. We should save here		
+func _notification(id): 
+	if id == NOTIFICATION_WM_GO_BACK_REQUEST:
+		print("Quiting")
 
 #==============================================================================
 # PUBLIC FUNCTIONS
@@ -83,11 +97,13 @@ func load_game() -> void:
 	if OS.get_name() == "Android":
 		_check_gpgs()
 		GPGS.loadSnapshot(SAVE_NAME)
-
+		
 ## Get the value of the saved data dictionary given the key if valid if not, return null		
-func get_saved_data(key : String):
+func get_saved_data(key : String, return_thing = 0):
 	if data_to_save_dic.has(key):
 		return data_to_save_dic[key]
+		
+	return return_thing
 		
 #==============================================================================
 # PRIVATE FUNCTIONS

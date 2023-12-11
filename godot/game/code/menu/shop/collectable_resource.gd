@@ -1,8 +1,5 @@
 class_name SCollectable extends Resource
 
-
-var test_dropdwon : Array[String] = ["Jose", "Maria"]
-
 ## Type of the collectable
 enum ECollectableType {SPRITE, SOUND}
 
@@ -22,6 +19,10 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 @export_group("Unlock conditions")
 ## In case unlock_type is set to COINS, how many coins do we need to unlock this collectable
 @export var coins_to_unlock : int = 200
+## In case unlock_type is set to OBJETIVE, the description that should appear if the collectable is unlocked
+@export var objetive_description : String = "?"
+## In case unlock_type is set to OBJETIVE, the boolean function that should be called to check if the collectable is unlocked. This should be bound in Minigame.gd or children
+@export var objetive_callable : Callable
 @export_group("")
 
 ## This is the sprite that will be displayed on the shop, not the actual resource.

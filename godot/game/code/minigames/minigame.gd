@@ -13,6 +13,9 @@ class_name Minigame extends Node2D
 # VARIABLES
 #==============================================================================
 
+## The collectable collections in case we want to add callbacks to objetive collectables
+@export var collection_array : Array[SCollection]
+
 ## Reference to the background of the minigame. Each Minigame must have a background
 @onready var background : TextureRect = $background
 
@@ -79,6 +82,27 @@ func _process(delta):
 func _exit_tree():
 	if is_being_played:
 		SGPS.submit_leaderboard_score(self, score)
+		if SGPS.get_saved_data(key_name + "_score", 0) < score:
+			SGPS.data_to_save_dic[key_name + "_score"] = score
+			SGPS.save_game()
+			
+#==============================================================================
+# PUBLIC FUNCTIONS
+#==============================================================================
+
+## Get the historical max score of this minigame
+##
+func get_max_score():
+	if key_name == "":
+		key_name = SGame.get_minigame_name(self)
+		
+	return SGPS.data_to_save_dic[key_name + "_score"]
+	
+## Called at the beginning from the autoload SGame. Load all the callbacks for the collectables
+## This should be overridden by the children
+##	
+func load_collectable_callbacks():
+	pass
 	
 #==============================================================================
 # PRIVATE FUNCTIONS
@@ -89,9 +113,7 @@ func _exit_tree():
 func _handle_background() -> void:
 	if 	background:
 		background.position = Vector2(0,0)
-		var screen_height = ProjectSettings.get_setting("display/window/size/viewport_height")
-		var screen_width = ProjectSettings.get_setting("display/window/size/viewport_width")
-		background.size = Vector2(screen_width,screen_height)
+		background.size = Vector2(GameUtilityLibrary.SCREEN_WIDTH, GameUtilityLibrary.SCREEN_HEIGHT)
 		
 ## Connect the logic to show the leaderboard of the game to the leaderboard button
 ##

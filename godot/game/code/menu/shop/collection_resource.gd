@@ -8,3 +8,16 @@ class_name SCollection extends Resource
 
 ## Array containing the collectables that take part of this collection
 @export var collectables : Array[SCollectable]
+
+## TODO
+##
+func add_callable_to_objetive_collectable(callable : Callable, collectable_key : String) -> bool:
+	if not callable: return false
+	for collectable in collectables:
+		if collectable.key == collectable_key and collectable.unlock_type == SCollectable.EUnlockType.OBJETIVE:
+			collectable.objetive_callable = callable
+			return true
+	
+	assert(false, "Trying to add a callable to an invalid collectable key")
+	return false
+	

@@ -33,7 +33,7 @@ func _on_right_pressed():
 	#_display_current_collection()
 
 func _on_video_coin_button_pressed():
-	var ad = AdsLibrary.load_show_rewarded()
+	var _ad = AdsLibrary.load_show_rewarded()
 	SGPS.data_to_save_dic["coins"] += 25
 
 func _on_back_to_game_button_pressed():
