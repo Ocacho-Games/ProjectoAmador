@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxnmpd4xkj3rh"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop.gd" id="1_r0ehy"]
-[ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/bob.tres" id="2_21sk6"]
+[ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_0ay04"]
 [ext_resource type="Texture2D" uid="uid://de8mi6hwsp5au" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="2_65u2b"]
 [ext_resource type="Texture2D" uid="uid://bjb3crojigfvq" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="3_jr5y5"]
 [ext_resource type="PackedScene" uid="uid://fgnfdtvg8c3c" path="res://game/scenes/menu/shop/collectable.tscn" id="3_pgk4b"]
@@ -11,7 +11,7 @@
 [node name="shop" type="Node2D"]
 position = Vector2(-1, 0)
 script = ExtResource("1_r0ehy")
-collections = Array[Resource("res://game/code/menu/shop/collection_resource.gd")]([ExtResource("2_21sk6")])
+collections = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("2_0ay04")])
 collectable_scene = ExtResource("3_pgk4b")
 
 [node name="Control" type="Control" parent="."]
