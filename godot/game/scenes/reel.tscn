@@ -13,6 +13,6 @@ offset_top = 2145.0
 offset_right = 234.0
 offset_bottom = 2249.0
 theme_override_font_sizes/font_size = 70
-text = "SHOP"
+text = "K_SHOP"
 
 [connection signal="pressed" from="shop_button" to="." method="_on_shop_button_pressed"]

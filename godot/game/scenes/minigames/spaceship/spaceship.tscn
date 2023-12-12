@@ -64,6 +64,6 @@ offset_left = 731.0
 offset_top = 1927.0
 offset_right = 973.0
 offset_bottom = 2004.0
-text = "Leaderboard"
+text = "K_LEADERBOARD"
 
 [connection signal="area_entered" from="spaceship_player/Area2D" to="." method="_on_player_area_entered"]

@@ -120,6 +120,11 @@ player_down_0={
 
 pointing/emulate_touch_from_mouse=true
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://game/localization/localization.ar.translation", "res://game/localization/localization.br.translation", "res://game/localization/localization.de.translation", "res://game/localization/localization.en.translation", "res://game/localization/localization.es.translation", "res://game/localization/localization.fr.translation", "res://game/localization/localization.it.translation", "res://game/localization/localization.ja.translation", "res://game/localization/localization.ko.translation", "res://game/localization/localization.pl.translation", "res://game/localization/localization.ru.translation", "res://game/localization/localization.ua.translation", "res://game/localization/localization.zh.translation")
+locale/include_text_server_data=true
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
