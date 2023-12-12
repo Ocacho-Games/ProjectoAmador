@@ -97,15 +97,26 @@ func _set_lock_collectable_properties(sprite : Sprite2D, button : Button) -> voi
 ##		
 func _button_pressed_lock() -> void:
 	match cached_collectable.unlock_type:
+		
 		SCollectable.EUnlockType.COINS:
 			var current_coins = SGPS.data_to_save_dic["coins"]
 			if current_coins >= cached_collectable.coins_to_unlock:
 				SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
 				SGPS.data_to_save_dic["coins"] = current_coins - cached_collectable.coins_to_unlock
 				set_collectable_properties(cached_collection_key, cached_collectable)
+				
 		SCollectable.EUnlockType.VIDEO:
-			#TODO: We have to disable input when loading and only ad coins when watiching the full video
-			var _ad = AdsLibrary.load_show_rewarded()
+			get_tree().get_root().set_disable_input(true)
+			var ad : RewardedAd
+			var ad_listener = OnUserEarnedRewardListener.new()
+			ad_listener.on_user_earned_reward = func(_rewarded_item):
+				SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
+				set_collectable_properties(cached_collection_key, cached_collectable)
+				get_tree().get_root().set_disable_input(false)
+				ad.destroy()
+			
+			ad = AdsLibrary.load_show_rewarded(ad_listener)
+			
 		SCollectable.EUnlockType.OBJETIVE:
 			pop_up.show()
 			pop_up.get_node("RichTextLabel").text = cached_collectable.objetive_description

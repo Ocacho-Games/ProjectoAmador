@@ -76,8 +76,15 @@ func _on_right_pressed():
 	#_display_current_collection()
 
 func _on_video_coin_button_pressed():
-	var _ad = AdsLibrary.load_show_rewarded()
-	SGPS.data_to_save_dic["coins"] += 25
+	get_tree().get_root().set_disable_input(true)
+	var ad : RewardedAd
+	var ad_listener = OnUserEarnedRewardListener.new()
+	ad_listener.on_user_earned_reward = func(_rewarded_item):
+		SGPS.data_to_save_dic["coins"] += 25
+		get_tree().get_root().set_disable_input(false)
+		ad.destroy()
+	
+	ad = AdsLibrary.load_show_rewarded(ad_listener)
 
 func _on_back_to_game_button_pressed():
 	SceneManager.change_scene("res://game/scenes/reel.tscn")
