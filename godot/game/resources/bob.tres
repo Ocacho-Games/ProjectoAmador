@@ -22,7 +22,7 @@ coins_to_unlock = 350
 objetive_description = "?"
 objetive_callable = Callable()
 shop_sprite = ExtResource("1_he6ui")
-blocked_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("1_he6ui")
 
 [sub_resource type="Resource" id="Resource_0p8w6"]
@@ -34,7 +34,7 @@ coins_to_unlock = 200
 objetive_description = "?"
 objetive_callable = Callable()
 shop_sprite = ExtResource("3_algqp")
-blocked_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("3_algqp")
 
 [sub_resource type="Resource" id="Resource_g4m55"]
@@ -46,7 +46,7 @@ coins_to_unlock = 200
 objetive_description = "?"
 objetive_callable = Callable()
 shop_sprite = ExtResource("4_fp5pq")
-blocked_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("4_fp5pq")
 
 [sub_resource type="Resource" id="Resource_cgmvj"]
@@ -58,7 +58,7 @@ coins_to_unlock = 200
 objetive_description = "?"
 objetive_callable = Callable()
 shop_sprite = ExtResource("7_7ffg5")
-blocked_shop_sprite = ExtResource("7_qfjgf")
+lock_shop_sprite = ExtResource("7_qfjgf")
 asset = ExtResource("6_a7xrh")
 
 [sub_resource type="Resource" id="Resource_3x1sn"]
@@ -70,7 +70,7 @@ coins_to_unlock = 200
 objetive_description = "?"
 objetive_callable = Callable()
 shop_sprite = ExtResource("7_7ffg5")
-blocked_shop_sprite = ExtResource("7_qfjgf")
+lock_shop_sprite = ExtResource("7_qfjgf")
 asset = ExtResource("8_ibsbs")
 
 [sub_resource type="Resource" id="Resource_qqsvn"]
@@ -82,7 +82,7 @@ coins_to_unlock = 200
 objetive_description = "?"
 objetive_callable = Callable()
 shop_sprite = ExtResource("7_7ffg5")
-blocked_shop_sprite = ExtResource("7_qfjgf")
+lock_shop_sprite = ExtResource("7_qfjgf")
 asset = ExtResource("9_m3o2r")
 
 [sub_resource type="Resource" id="Resource_5ypuu"]
@@ -94,7 +94,7 @@ coins_to_unlock = 200
 objetive_description = "Obtain > 22 score on stack"
 objetive_callable = Callable()
 shop_sprite = ExtResource("11_4emmg")
-blocked_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("11_4emmg")
 
 [resource]

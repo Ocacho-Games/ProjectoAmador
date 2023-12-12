@@ -36,11 +36,11 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 @export var objetive_callable : Callable
 @export_group("")
 
-## This is the sprite that will be displayed on the shop, not the actual resource.
+## This is the sprite that will be displayed on the shop if unlock, not the actual resource.
 @export var shop_sprite : Texture
 
-## This should be the sprite that is shown when the collectable is blocked
-@export var blocked_shop_sprite : Texture
+## This should be the sprite that is shown when the collectable is lock
+@export var lock_shop_sprite : Texture
 
 # Actual asset to load if unlocked
 @export var asset : Resource
