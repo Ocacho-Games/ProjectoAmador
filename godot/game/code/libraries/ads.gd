@@ -77,6 +77,7 @@ static func load_show_rewarded_interstital() -> RewardedInterstitialAd:
 ## [callback] : Callback in order to attach functionality when the ad performs some action  
 ## [loader] : Type of loader in order to load the add
 ## [ad_id] : Test ID of the add
+## [show_ad]: Whether we should show the ad once it's loaded or not
 ##	
 static func _load_advanced_add(callback, loader, ad_id, show_ad = false):
 	var ad
@@ -84,8 +85,8 @@ static func _load_advanced_add(callback, loader, ad_id, show_ad = false):
 	callback.on_ad_failed_to_load = func(adError : LoadAdError) -> void:
 		print(adError.message)
 
-	callback.on_ad_loaded = func(rewarded_interstitial_ad) -> void:
-		ad = rewarded_interstitial_ad
+	callback.on_ad_loaded = func(incoming_ad) -> void:
+		ad = incoming_ad
 		if show_ad:
 			ad.show();
 

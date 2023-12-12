@@ -1,6 +1,14 @@
 extends Node
 
+## This is a draft because we don't know the shop structure yet, so no comments
+
+#==============================================================================
+# VARIABLES
+#==============================================================================
+
+## The shop will display a bunch of collections, these are the collections to display
 @export var collections : Array[SCollection]
+## This is the collectable scene to instantiate when displaying the shop
 @export var collectable_scene : PackedScene
 
 @onready var coins_label : RichTextLabel = $Control/coins_label
@@ -9,6 +17,10 @@ extends Node
 
 var current_index_collection : int = 0
 
+#==============================================================================
+# GODOT FUNCTIONS
+#==============================================================================
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_display_current_collection()
@@ -16,28 +28,9 @@ func _ready():
 func _process(_delta):
 	coins_label.text = "Coins: " + str(SGPS.data_to_save_dic["coins"])	
 
-func _on_left_pressed():
-	if current_index_collection - 1 >= 0:
-		current_index_collection = current_index_collection - 1
-		return
-		
-	current_index_collection = 0
-	#_display_current_collection()
-
-func _on_right_pressed():
-	if current_index_collection + 1 < collections.size():
-		current_index_collection = current_index_collection + 1
-		return
-		
-	current_index_collection = 0
-	#_display_current_collection()
-
-func _on_video_coin_button_pressed():
-	var _ad = AdsLibrary.load_show_rewarded()
-	SGPS.data_to_save_dic["coins"] += 25
-
-func _on_back_to_game_button_pressed():
-	SceneManager.change_scene("res://game/scenes/reel.tscn")
+#==============================================================================
+# PRIVATE FUNCTIONS
+#==============================================================================
 
 func _display_current_collection() -> void:
 	var current_collection = collections[current_index_collection]
@@ -61,3 +54,30 @@ func _display_current_collection() -> void:
 		if initial_x > 1000:
 			initial_x = 300
 			initial_y += 350
+
+#==============================================================================
+# SIGNAL FUNCTIONS
+#==============================================================================
+
+func _on_left_pressed():
+	if current_index_collection - 1 >= 0:
+		current_index_collection = current_index_collection - 1
+		return
+		
+	current_index_collection = 0
+	#_display_current_collection()
+
+func _on_right_pressed():
+	if current_index_collection + 1 < collections.size():
+		current_index_collection = current_index_collection + 1
+		return
+		
+	current_index_collection = 0
+	#_display_current_collection()
+
+func _on_video_coin_button_pressed():
+	var _ad = AdsLibrary.load_show_rewarded()
+	SGPS.data_to_save_dic["coins"] += 25
+
+func _on_back_to_game_button_pressed():
+	SceneManager.change_scene("res://game/scenes/reel.tscn")

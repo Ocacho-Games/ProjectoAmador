@@ -1,10 +1,20 @@
+## Resource containing the data necessary to describe a collectable (skin, sound...) 
+##
 class_name SCollectable extends Resource
+
+#==============================================================================
+# TYPES
+#==============================================================================
 
 ## Type of the collectable
 enum ECollectableType {SPRITE, SOUND}
 
 ## How to unblock the collectable
 enum EUnlockType { COINS, VIDEO, OBJETIVE}
+
+#==============================================================================
+# VARIABLES
+#==============================================================================
 
 ## The unique key that identifies this collectable
 @export var key : String = "test-key-skin"
@@ -21,7 +31,8 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 @export var coins_to_unlock : int = 200
 ## In case unlock_type is set to OBJETIVE, the description that should appear if the collectable is unlocked
 @export var objetive_description : String = "?"
-## In case unlock_type is set to OBJETIVE, the boolean function that should be called to check if the collectable is unlocked. This should be bound in Minigame.gd or children
+## In case unlock_type is set to OBJETIVE, the boolean function that should be called to check if the collectable is unlocked. 
+## This should be bound in load_collectable_callbacks() (Minigame.gd) or children
 @export var objetive_callable : Callable
 @export_group("")
 
@@ -34,7 +45,11 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 # Actual asset to load if unlocked
 @export var asset : Resource
 
-## Parse the ECollectableType enum to string
+#==============================================================================
+# HELPER FUNCTIONS
+#==============================================================================
+
+## Parse the ECollectableType enum to string. Used for saving the cloud data automatically
 ##
 func get_type_to_string() -> String:
 	if type == ECollectableType.SPRITE: return "sprite"

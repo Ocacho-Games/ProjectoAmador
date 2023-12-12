@@ -1,5 +1,10 @@
 ## Autoload that is in charge of initializing everything related to ads
+#
 extends Node
+
+#==============================================================================
+# GODOT FUNCTIONS
+#==============================================================================
 
 func _ready():
 	var on_initialization_complete_listener := OnInitializationCompleteListener.new()
@@ -12,6 +17,10 @@ func _ready():
 	request_configuration.convert_to_dictionary()
 	MobileAds.set_request_configuration(request_configuration)
 	MobileAds.initialize(on_initialization_complete_listener)
+
+#==============================================================================
+# PRIVATE FUNCTIONS
+#==============================================================================
 
 func _on_initialization_complete(initialization_status : InitializationStatus) -> void:
 	print("MobileAds initialization complete")

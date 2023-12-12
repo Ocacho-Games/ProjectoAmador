@@ -7,8 +7,6 @@ extends Minigame
 # GODOT FUNCTIONS
 #==============================================================================
 
-#TODO: [David]: We need to save the game, maybe a general save game is not ideal maybe we need one per game
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
@@ -26,6 +24,8 @@ func _process(delta):
 # PUBLIC FUNCTIONS
 #==============================================================================
 
+## This is an example of adding callbacks to collectables
+##
 func load_collectable_callbacks():
 	super.load_collectable_callbacks()
 	collection_array[0].add_callable_to_objetive_collectable(test_objetive_unlock_callback, "test_objetive")	

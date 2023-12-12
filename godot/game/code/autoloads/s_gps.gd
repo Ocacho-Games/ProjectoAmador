@@ -16,6 +16,7 @@ var GPGS
 
 ## Data to save for the user, so the user only have to care about modifying the data. We load/save it here
 ## NOTE: This dictionary has entries for the shake of testing in PC. This should be empty for the release of the game
+#var data_to_save_dic = {}
 var data_to_save_dic = {	
 		"coins" : 550,
 		"clicker_score" : 0,
@@ -48,7 +49,9 @@ func _ready():
 		_connect_signals()
 		GPGS.signIn()
 
-## This shit is not working. We should save here		
+## Overridden notification function
+## This should be use to save the game when exiting but it's not working on android
+##		
 func _notification(id): 
 	if id == NOTIFICATION_WM_GO_BACK_REQUEST:
 		print("Quiting")
@@ -98,7 +101,10 @@ func load_game() -> void:
 		_check_gpgs()
 		GPGS.loadSnapshot(SAVE_NAME)
 		
-## Get the value of the saved data dictionary given the key if valid if not, return null		
+## Get the value of the saved data dictionary given the key if valid if not, return return_thing
+## [key]: Key of the data_to_save_dic 
+## [return_thing]: In case the key doesn't exist, return this variadic, can be anything
+##
 func get_saved_data(key : String, return_thing = 0):
 	if data_to_save_dic.has(key):
 		return data_to_save_dic[key]

@@ -1,5 +1,4 @@
 ## Support auto movement for your entities based on different movement and rotation patterns that you can tweak
-## [David]: I don't know if this is supposed to be an sprite we can change it
 ##
 class_name AutoMovementCmp extends Node
 
