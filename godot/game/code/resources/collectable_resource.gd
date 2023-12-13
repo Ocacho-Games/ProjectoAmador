@@ -7,7 +7,7 @@ class_name SCollectable extends Resource
 #==============================================================================
 
 ## Type of the collectable
-enum ECollectableType {SPRITE, SOUND}
+enum ECollectableType {SPRITE}
 
 ## How to unblock the collectable
 enum EUnlockType { COINS, VIDEO, OBJETIVE}
@@ -29,6 +29,8 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 @export_group("Unlock conditions")
 ## In case unlock_type is set to COINS, how many coins do we need to unlock this collectable
 @export var coins_to_unlock : int = 200
+## In case unlock_type is set to VIDEO, how many videos do we need to watch in order to unlock this collectable
+@export var videos_to_unlock : int = 4
 ## In case unlock_type is set to OBJETIVE, the description that should appear if the collectable is unlocked
 @export var objetive_description : String = "?"
 ## In case unlock_type is set to OBJETIVE, the boolean function that should be called to check if the collectable is unlocked. 
@@ -53,6 +55,5 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 ##
 func get_type_to_string() -> String:
 	if type == ECollectableType.SPRITE: return "sprite"
-	if type == ECollectableType.SOUND: return "sound"
 
 	return ""

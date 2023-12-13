@@ -24,7 +24,6 @@ var data_to_save_dic = {
 		# This should be the same name as the bob.tres key. NOTE: This will contain all the unlocked resources "keys" of the colection
 		"bob" : ["click_2"],
 		"current_bob_sprite" : "",
-		"current_bob_sound" : "click_2",
 	}
 
 ## Whether the load_game function has been called at least once

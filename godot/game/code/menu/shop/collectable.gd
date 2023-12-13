@@ -87,7 +87,9 @@ func _set_lock_collectable_properties(sprite : Sprite2D, button : Button) -> voi
 		SCollectable.EUnlockType.COINS:
 			button.text = "Unlock " + str(cached_collectable.coins_to_unlock) + " coins"
 		SCollectable.EUnlockType.VIDEO:
-			button.text = "Watch a video to unlock"
+			var remaining_videos_key : String = "remaining_" + cached_collectable.key + "_videos"
+			var remaining_videos = SGPS.get_saved_data(remaining_videos_key, cached_collectable.videos_to_unlock)
+			button.text = "Watch " + str(remaining_videos) + " video(s) to unlock "
 		SCollectable.EUnlockType.OBJETIVE:
 			button.text = "See the objetive pop-up"
 
@@ -110,8 +112,15 @@ func _button_pressed_lock() -> void:
 			var ad : RewardedAd
 			var ad_listener = OnUserEarnedRewardListener.new()
 			ad_listener.on_user_earned_reward = func(_rewarded_item):
-				SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
-				set_collectable_properties(cached_collection_key, cached_collectable)
+				var remaining_videos_key : String = "remaining_" + cached_collectable.key + "_videos"
+				var remaining_videos = SGPS.get_saved_data(remaining_videos_key, cached_collectable.videos_to_unlock)
+				
+				if remaining_videos == 1:
+					SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
+				else:
+					SGPS.data_to_save_dic[remaining_videos_key] = remaining_videos - 1
+				
+				set_collectable_properties(cached_collection_key, cached_collectable)					
 				get_tree().get_root().set_disable_input(false)
 				ad.destroy()
 			
