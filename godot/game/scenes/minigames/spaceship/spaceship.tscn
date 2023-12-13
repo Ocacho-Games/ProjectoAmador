@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://ioi8aq3h06pf"]
 
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
-[ext_resource type="Texture2D" uid="uid://bxqwnyvklhwu8" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
+[ext_resource type="Texture2D" uid="uid://fudlq4loankk" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
-[ext_resource type="Texture2D" uid="uid://d0xwinwjd5l1c" path="res://game/resources/img/bob/bob.svg" id="4_sagvy"]
+[ext_resource type="Texture2D" uid="uid://bmrst33i464po" path="res://game/resources/img/bob/bob.svg" id="4_sagvy"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="5_7mfjr"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/bob.tres" id="6_4mb1t"]
@@ -16,15 +16,16 @@ radius = 48.0104
 script = ExtResource("1_cbeqs")
 
 [node name="background" type="TextureRect" parent="."]
-offset_left = -77.0
-offset_top = -77.0
-offset_right = 1316.0
-offset_bottom = 2955.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 1920.0
 texture = ExtResource("2_hutlb")
-expand_mode = 1
+expand_mode = 4
 
 [node name="spaceship_player" type="Node2D" parent="."]
-position = Vector2(548, 2054)
+position = Vector2(548, 1694)
 scale = Vector2(0.6, 0.6)
 
 [node name="AutoMovementCmp" type="Node" parent="spaceship_player"]
@@ -53,16 +54,27 @@ script = ExtResource("4_8xx6q")
 obstacle = ExtResource("5_6dd0u")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 29.0
-offset_top = 2180.0
-offset_right = 1078.0
-offset_bottom = 2266.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 1817.0
+offset_right = 1068.0
+offset_bottom = 1903.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
 
 [node name="leaderboard_button" type="Button" parent="."]
-offset_left = 731.0
-offset_top = 1927.0
-offset_right = 973.0
-offset_bottom = 2004.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 720.0
+offset_top = 1525.0
+offset_right = 990.0
+offset_bottom = 1654.0
+grow_horizontal = 0
+grow_vertical = 2
 text = "Leaderboard"
 
 [connection signal="area_entered" from="spaceship_player/Area2D" to="." method="_on_player_area_entered"]

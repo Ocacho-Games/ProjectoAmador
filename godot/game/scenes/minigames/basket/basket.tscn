@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwm0qubmpqhtn"]
 
 [ext_resource type="Script" path="res://game/code/minigames/basket/basket_minigame.gd" id="1_03ldb"]
-[ext_resource type="Texture2D" uid="uid://dagwdpkieuwo2" path="res://game/resources/img/basket/basket_background.svg" id="2_btd0o"]
+[ext_resource type="Texture2D" uid="uid://dasj0cjllch3v" path="res://game/resources/img/basket/basket_background.svg" id="2_btd0o"]
 [ext_resource type="PackedScene" uid="uid://sw0eoop1jtmk" path="res://game/scenes/minigames/basket/entities/ball.tscn" id="3_ka1b6"]
 [ext_resource type="PackedScene" uid="uid://maqcojbnkhh4" path="res://game/scenes/minigames/basket/entities/basket_entity.tscn" id="4_egoqy"]
 
@@ -9,28 +9,37 @@
 script = ExtResource("1_03ldb")
 
 [node name="background" type="TextureRect" parent="."]
-offset_left = -76.0
-offset_top = -468.0
-offset_right = 1317.0
-offset_bottom = 2564.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 1920.0
 texture = ExtResource("2_btd0o")
 expand_mode = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 14.0
-offset_top = 2182.0
-offset_right = 1063.0
-offset_bottom = 2268.0
-
-[node name="leaderboard_button" type="Button" parent="."]
-offset_left = 731.0
-offset_top = 1927.0
-offset_right = 973.0
-offset_bottom = 2004.0
-text = "Leaderboard"
 
 [node name="ball_entity" parent="." instance=ExtResource("3_ka1b6")]
 position = Vector2(743, 1015)
 
 [node name="basket_entity" parent="." instance=ExtResource("4_egoqy")]
 position = Vector2(270, 1036)
+
+[node name="leaderboard_button" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 720.0
+offset_top = 1525.0
+offset_right = 990.0
+offset_bottom = 1654.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Leaderboard"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1832.0
+offset_right = 1079.0
+offset_bottom = 1918.0

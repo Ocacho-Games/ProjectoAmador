@@ -1,49 +1,43 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn8cw41kc3lsj"]
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
-[ext_resource type="Texture2D" uid="uid://6hccxaue2gcj" path="res://game/resources/img/clicker/clicker_background.svg" id="2_beeb1"]
-[ext_resource type="Texture2D" uid="uid://de8mi6hwsp5au" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
-[ext_resource type="Texture2D" uid="uid://bjb3crojigfvq" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
-[ext_resource type="Texture2D" uid="uid://hbuup76wvl3t" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
+[ext_resource type="Texture2D" uid="uid://bq1uc5cole61e" path="res://game/resources/img/clicker/clicker_background.svg" id="2_beeb1"]
+[ext_resource type="Texture2D" uid="uid://dxkpr3rl7v2vw" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
+[ext_resource type="Texture2D" uid="uid://btpjith7g1a3r" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
+[ext_resource type="Texture2D" uid="uid://cbvn4fbcqkkh1" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
 
 [node name="clicker" type="Node2D"]
 script = ExtResource("1_wskaq")
 
 [node name="background" type="TextureRect" parent="."]
-offset_left = -76.0
-offset_top = -468.0
-offset_right = 1317.0
-offset_bottom = 2564.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 1920.0
 texture = ExtResource("2_beeb1")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-anchors_preset = 9
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -13.5
 offset_right = 20.0
-offset_bottom = 2266.5
+offset_bottom = 1920.0
 grow_vertical = 2
 
 [node name="clicker_button" type="TextureButton" parent="."]
 offset_left = 100.0
-offset_top = 1055.0
+offset_top = 916.0
 offset_right = 1015.0
-offset_bottom = 1892.0
+offset_bottom = 1753.0
 mouse_filter = 1
 texture_normal = ExtResource("3_wp7ik")
 texture_pressed = ExtResource("4_eo4nj")
 stretch_mode = 0
 
-[node name="leaderboard_button" type="Button" parent="."]
-offset_left = 731.0
-offset_top = 1927.0
-offset_right = 973.0
-offset_bottom = 2004.0
-text = "Leaderboard"
-
 [node name="score_sprite" type="Sprite2D" parent="."]
-position = Vector2(552, 364)
+position = Vector2(552, 352)
 scale = Vector2(0.699425, 0.699425)
 texture = ExtResource("5_pwu35")
 
@@ -55,5 +49,17 @@ offset_bottom = 372.0
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 150
 text = "SCORE"
+
+[node name="leaderboard_button" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 720.0
+offset_top = 1525.0
+offset_right = 990.0
+offset_bottom = 1654.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Leaderboard"
 
 [connection signal="pressed" from="clicker_button" to="." method="_on_texture_button_pressed"]

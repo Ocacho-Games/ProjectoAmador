@@ -17,7 +17,9 @@ extends Minigame
 @onready var half_basket_size = basket_node.get_node("basketRing/sprite_basket").get_rect().size / 2.0
 
 #Offset position from the screen borders
-@export var offset_screen = 10.0
+@export var offset_screen = 40.0
+#Radius ball offset
+@export var ball_radius_check_offset = 15.0
 
 # Bool value to know if it's pressed
 var is_pressed : bool = false
@@ -29,9 +31,9 @@ var curr_drag_position	: Vector2 = Vector2( 0.0 , 0.0 )
 var last_drag_vector		: Vector2 = Vector2( 0.0 , 0.0 )
 
 # Trail vector scale factor
-@export var trail_factor = 3.0
+@export var trail_factor = 5.0
 # Impulse ball force factor
-@export var impulse_ball_factor = 2.3
+@export var impulse_ball_factor = 3.8
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -114,6 +116,8 @@ func _move_random_location_entities():
 # Checks if the given position collides with the basketball
 func _check_action_in_ball( pos : Vector2 ):
 	var ball_pos = ball_node.position
+	
+	var radius_check = ball_radius + ball_radius_check_offset
 	
 	var min_X = ball_pos.x - ball_radius
 	var max_X = ball_pos.x + ball_radius

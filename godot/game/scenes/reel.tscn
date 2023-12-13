@@ -8,10 +8,10 @@ script = ExtResource("1_dbiqk")
 [node name="shop_button" type="Button" parent="."]
 top_level = true
 z_index = 10
-offset_left = 37.0
-offset_top = 2145.0
-offset_right = 234.0
-offset_bottom = 2249.0
+offset_left = 66.0
+offset_top = 1725.0
+offset_right = -786.0
+offset_bottom = -68.0
 theme_override_font_sizes/font_size = 70
 text = "SHOP"
 
