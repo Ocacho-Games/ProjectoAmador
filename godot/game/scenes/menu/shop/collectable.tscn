@@ -25,4 +25,23 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "SELECT"
 
+[node name="pop_up" type="Window" parent="."]
+initial_position = 2
+size = Vector2i(800, 300)
+unresizable = true
+
+[node name="ColorRect" type="ColorRect" parent="pop_up"]
+offset_right = 10000.0
+offset_bottom = 100000.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="pop_up"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "lkjhjklhjl"
+
 [connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]

@@ -1,5 +1,10 @@
 ## Autoload that is in charge of initializing everything related to ads
+#
 extends Node
+
+#==============================================================================
+# GODOT FUNCTIONS
+#==============================================================================
 
 func _ready():
 	var on_initialization_complete_listener := OnInitializationCompleteListener.new()
@@ -13,29 +18,33 @@ func _ready():
 	MobileAds.set_request_configuration(request_configuration)
 	MobileAds.initialize(on_initialization_complete_listener)
 
+#==============================================================================
+# PRIVATE FUNCTIONS
+#==============================================================================
+
 func _on_initialization_complete(initialization_status : InitializationStatus) -> void:
 	print("MobileAds initialization complete")
 	print_all_values(initialization_status)
-	var ad_colony_app_options := AdColonyAppOptions.new()
-	print("set values ad_colony")
-	ad_colony_app_options.set_privacy_consent_string(AdColonyAppOptions.CCPA, "STRIaNG CCPA")
-	ad_colony_app_options.set_privacy_framework_required(AdColonyAppOptions.CCPA, false)
-	ad_colony_app_options.set_user_id("ads_colony_id")
-	ad_colony_app_options.set_test_mode(false)
-	
-	print(ad_colony_app_options.get_privacy_consent_string(AdColonyAppOptions.CCPA))
-	print(ad_colony_app_options.get_privacy_framework_required(AdColonyAppOptions.CCPA))
-	print(ad_colony_app_options.get_user_id())
-	print(ad_colony_app_options.get_test_mode())
-	
-	if OS.get_name() == "iOS":
-		#FBAdSettings is available only for iOS, Google didn't put this method on Android SDK
-		FBAdSettings.set_advertiser_tracking_enabled(true)
-		
-	Vungle.update_ccpa_status(Vungle.Consent.OPTED_IN)
-	Vungle.update_ccpa_status(Vungle.Consent.OPTED_OUT)
-	Vungle.update_consent_status(Vungle.Consent.OPTED_IN, "message1")
-	Vungle.update_consent_status(Vungle.Consent.OPTED_OUT, "message2")
+#	var ad_colony_app_options := AdColonyAppOptions.new()
+#	print("set values ad_colony")
+#	ad_colony_app_options.set_privacy_consent_string(AdColonyAppOptions.CCPA, "STRIaNG CCPA")
+#	ad_colony_app_options.set_privacy_framework_required(AdColonyAppOptions.CCPA, false)
+#	ad_colony_app_options.set_user_id("ads_colony_id")
+#	ad_colony_app_options.set_test_mode(false)
+#
+#	print(ad_colony_app_options.get_privacy_consent_string(AdColonyAppOptions.CCPA))
+#	print(ad_colony_app_options.get_privacy_framework_required(AdColonyAppOptions.CCPA))
+#	print(ad_colony_app_options.get_user_id())
+#	print(ad_colony_app_options.get_test_mode())
+#
+#	if OS.get_name() == "iOS":
+#		#FBAdSettings is available only for iOS, Google didn't put this method on Android SDK
+#		FBAdSettings.set_advertiser_tracking_enabled(true)
+#
+#	Vungle.update_ccpa_status(Vungle.Consent.OPTED_IN)
+#	Vungle.update_ccpa_status(Vungle.Consent.OPTED_OUT)
+#	Vungle.update_consent_status(Vungle.Consent.OPTED_IN, "message1")
+#	Vungle.update_consent_status(Vungle.Consent.OPTED_OUT, "message2")
 
 func print_all_values(initialization_status : InitializationStatus) -> void:
 	for key in initialization_status.adapter_status_map:

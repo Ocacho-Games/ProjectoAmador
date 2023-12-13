@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="MinigamesDataBase" load_steps=13 format=3 uid="uid://dlwwh6sxqpale"]
 
 [ext_resource type="PackedScene" uid="uid://ioi8aq3h06pf" path="res://game/scenes/minigames/spaceship/spaceship.tscn" id="1_h1bcv"]
-[ext_resource type="Script" path="res://game/code/data/minigame_data.gd" id="1_tv1c6"]
+[ext_resource type="Script" path="res://game/code/resources/minigame_resource.gd" id="1_tv1c6"]
 [ext_resource type="PackedScene" uid="uid://bn8cw41kc3lsj" path="res://game/scenes/minigames/clicker/clicker.tscn" id="3_f4kmf"]
-[ext_resource type="Script" path="res://game/code/data/minigames_database.gd" id="4_8e2eg"]
+[ext_resource type="Script" path="res://game/code/resources/minigames_resource.gd" id="4_8e2eg"]
 [ext_resource type="PackedScene" uid="uid://bpoq7rgiyi6qy" path="res://game/scenes/minigames/stack/stack.tscn" id="4_a0she"]
 [ext_resource type="PackedScene" uid="uid://bdafntthxpcrc" path="res://game/scenes/minigames/counter/counter.tscn" id="5_km4g4"]
 [ext_resource type="PackedScene" uid="uid://dwm0qubmpqhtn" path="res://game/scenes/minigames/basket/basket.tscn" id="6_1q5wx"]

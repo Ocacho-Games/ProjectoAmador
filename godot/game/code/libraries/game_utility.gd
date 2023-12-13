@@ -1,4 +1,4 @@
-## Library that provides utility functions for the game such as pausing.
+## Library that provides utility functions for the game such as pausing, screen,node dimensions and so on.
 ##
 class_name GameUtilityLibrary
 
@@ -6,6 +6,8 @@ class_name GameUtilityLibrary
 # VARIABLES
 #==============================================================================
 
+## Global width and height to use in case we want to know the screen dimensions.
+##
 static var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
 static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
 

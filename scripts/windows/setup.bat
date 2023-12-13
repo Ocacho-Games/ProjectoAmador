@@ -3,6 +3,7 @@ cls
 
 :: Getting destination path
 for /f "delims=" %%i in ('git rev-parse --show-toplevel') do set "GIT_ROOT_PATH=%%i"
+set GODOT_GAME_PATH=%GIT_ROOT_PATH%\godot\game\
 set DESTINATION_PATH=%GIT_ROOT_PATH%\godot\addons\
 set OVERWRITE_LIBRARIES=0
 
@@ -14,6 +15,10 @@ for %%A in (%*) do (
 :: Updating Git submodules
 echo [92m== Updating Git Submodules ==
 git submodule update --remote
+
+:: Updating localization
+echo [92m== Updating Localization ==
+powershell wget https://docs.google.com/spreadsheets/d/1_nm66MNoA1zymBRlSUbu-gO7j57r7ITFMtp_KpWK6FM/export?format=csv -O "%GODOT_GAME_PATH%\localization\localization.csv"
 
 :: Installing third party libraries if they aren't installed or they are forced (/f flag)
 if not exist "%DESTINATION_PATH%\gut" (

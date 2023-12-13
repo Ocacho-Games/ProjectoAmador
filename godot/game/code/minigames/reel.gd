@@ -54,6 +54,8 @@ func _ready():
 	ad_view = AdsLibrary.load_show_banner()
 	_init_game()
 
+## Overriden process function
+##
 func _process(delta):
 	_handle_dragging(delta)
 	
@@ -74,9 +76,7 @@ func _exit_tree():
 	
 	if ad_view:
 		ad_view.destroy()
-		ad_view = null
-		
-	#SGPS.save_game()		
+		ad_view = null		
 
 #==============================================================================
 # PRIVATE FUNCTIONS

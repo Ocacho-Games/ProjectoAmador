@@ -29,7 +29,7 @@ func _ready():
 	#minigames_array.shuffle()
 	
 	for minigame in minigames_array:
-		print(minigame.scene.resource_path + " has " + str(minigame.game_duration))
+		minigame.scene.instantiate().load_collectable_callbacks()
 
 #==============================================================================
 # PUBLIC FUNCTIONS

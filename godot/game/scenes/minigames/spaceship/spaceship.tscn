@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://bmrst33i464po" path="res://game/resources/img/bob/bob.svg" id="4_sagvy"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="5_7mfjr"]
-[ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/bob.tres" id="6_4mb1t"]
+[ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="6_4rmhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khny3"]
 radius = 48.0104
 
 [node name="spaceship" type="Node2D"]
 script = ExtResource("1_cbeqs")
+collection_array = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("6_4rmhc")])
 
 [node name="background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -41,7 +42,7 @@ texture = ExtResource("4_sagvy")
 
 [node name="SelectCollectableCmp" type="Node" parent="spaceship_player/Sprite2D"]
 script = ExtResource("5_7mfjr")
-collection = ExtResource("6_4mb1t")
+collection = ExtResource("6_4rmhc")
 
 [node name="Area2D" type="Area2D" parent="spaceship_player"]
 
@@ -75,6 +76,6 @@ offset_right = 990.0
 offset_bottom = 1654.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "Leaderboard"
+text = "K_LEADERBOARD"
 
 [connection signal="area_entered" from="spaceship_player/Area2D" to="." method="_on_player_area_entered"]
