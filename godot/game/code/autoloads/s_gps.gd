@@ -205,5 +205,4 @@ func _on_create_new_snapshot(snapshot_name : String):
 #==============================================================================
 
 func _on_connected():
-	print("hey peque'a")
 	GPB.querySkuDetails(["my_iap_item"], "inapp")

@@ -22,6 +22,7 @@ OGLocalMultiplayerInput="*res://addons/og_local_multiplayer_input/code/autoloads
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 InputManager="*res://addons/touch_input_manager/InputManager.gd"
+SLocalNotification="*res://addons/android_local_notification/LocalNotification.gd"
 SGame="*res://game/code/autoloads/s_game.gd"
 SInputUtility="*res://game/code/autoloads/s_input_utility.gd"
 SGPS="*res://game/code/autoloads/s_gps.gd"
