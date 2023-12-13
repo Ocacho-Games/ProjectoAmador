@@ -1,10 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpoq7rgiyi6qy"]
 
 [ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
-[ext_resource type="Texture2D" uid="uid://b5fhnx8y0i7oo" path="res://game/resources/img/stack/stack_floor.svg" id="2_4d88l"]
+[ext_resource type="Texture2D" uid="uid://cpydbsn11hhtn" path="res://game/resources/img/stack/stack_floor.svg" id="2_4d88l"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_up357"]
-[ext_resource type="Texture2D" uid="uid://dr8ccd4hh6iaw" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
-
+[ext_resource type="Texture2D" uid="uid://d1i72u1hcodbt" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
 
