@@ -7,6 +7,12 @@ extends Node
 # VARIABLES
 #==============================================================================
 
+## === SCENETREE VARIABLES ===
+@onready var ad_control_node : Control = $VGrid/Ad
+
+@onready var minigame_control_node : Control = $VGrid/MiniGame
+
+
 ## === REFERENCES VARIABLES ===
 ## Cached banner ad of the minigame in order to destroy it when exiting the mingame
 var ad_view
@@ -51,7 +57,13 @@ var lerp_target_value : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ad_view = AdsLibrary.load_show_banner()
+	#TODO : Clean this and check
+	var ad_control_size = ad_control_node.size
+	var ad_parent_size = ad_control_node.get_parent_area_size()
+	var ad_size = Vector2(ad_parent_size.x, ad_control_size.y)
+	var adSize = AdSize.new( ad_size.x, ad_size.y )
+	ad_view = AdsLibrary.load_show_banner( adSize )
+#	ad_view = AdsLibrary.load_show_banner()
 	_init_game()
 
 ## Overriden process function
@@ -88,8 +100,8 @@ func _exit_tree():
 ##
 func _init_game() -> void:
 	current_minigame_node = SGame.start_game().instantiate()
-	add_child(current_minigame_node)
-	move_child(current_minigame_node, 0)
+	minigame_control_node.add_child(current_minigame_node)
+	move_child(current_minigame_node, 1)
 	
 	_prepare_game()
 

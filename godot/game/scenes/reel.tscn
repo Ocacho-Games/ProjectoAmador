@@ -5,14 +5,43 @@
 [node name="reel" type="Node2D"]
 script = ExtResource("1_dbiqk")
 
-[node name="shop_button" type="Button" parent="."]
-top_level = true
-z_index = 10
-offset_left = 66.0
-offset_top = 1725.0
-offset_right = -786.0
-offset_bottom = -68.0
-theme_override_font_sizes/font_size = 70
+[node name="VGrid" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1080.0
+offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ad" type="Control" parent="VGrid"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="MiniGame" type="Control" parent="VGrid"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HGridMenu" type="HBoxContainer" parent="VGrid"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="shop_button" type="Button" parent="VGrid/HGridMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
 text = "K_SHOP"
 
-[connection signal="pressed" from="shop_button" to="." method="_on_shop_button_pressed"]
+[node name="play_button" type="Button" parent="VGrid/HGridMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "K_PLAY"
+
+[node name="profile_button" type="Button" parent="VGrid/HGridMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "K_PROFILE"
+
+[connection signal="pressed" from="VGrid/HGridMenu/shop_button" to="." method="_on_shop_button_pressed"]
