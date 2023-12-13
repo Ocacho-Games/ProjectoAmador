@@ -1,6 +1,6 @@
 ## This autoload is in charge of all the related to Google Play Services (GPS).
 ## Provides logic for showing leaderboards, save and load the game mainly.
-## It also contains the data to save to the cloud with GPS.
+## It also contains the data to save to the cloud with GPS and in-app purchases.
 ##
 extends Node
 
@@ -13,6 +13,9 @@ const SAVE_NAME = "Suap"
 
 ## Reference to the Google Play Game Services plugin
 var GPGS
+
+## Reference to the Google Play Billing plugin
+var GPB
 
 ## Data to save for the user, so the user only have to care about modifying the data. We load/save it here
 ## NOTE: This dictionary has entries for the shake of testing in PC. This should be empty for the release of the game
@@ -47,6 +50,29 @@ func _ready():
 		
 		_connect_signals()
 		GPGS.signIn()
+	
+	if Engine.has_singleton("GodotGooglePlayBilling"):
+		GPB = Engine.get_singleton("GodotGooglePlayBilling")
+
+		# These are all signals supported by the API
+		# You can drop some of these based on your needs
+#		payment.billing_resume.connect(_on_billing_resume) # No params
+		GPB.connected.connect(_on_connected) # No params
+#		payment.disconnected.connect(_on_disconnected) # No params
+#		payment.connect_error.connect(_on_connect_error) # Response ID (int), Debug message (string)
+#		payment.price_change_acknowledged.connect(_on_price_acknowledged) # Response ID (int)
+#		payment.purchases_updated.connect(_on_purchases_updated) # Purchases (Dictionary[])
+#		payment.purchase_error.connect(_on_purchase_error) # Response ID (int), Debug message (string)
+#		payment.product_details_query_completed.connect(_on_product_details_query_completed) # Products (Dictionary[])
+#		payment.product_details_query_error.connect(_on_product_details_query_error) # Response ID (int), Debug message (string), Queried SKUs (string[])
+#		payment.purchase_acknowledged.connect(_on_purchase_acknowledged) # Purchase token (string)
+#		payment.purchase_acknowledgement_error.connect(_on_purchase_acknowledgement_error) # Response ID (int), Debug message (string), Purchase token (string)
+#		payment.purchase_consumed.connect(_on_purchase_consumed) # Purchase token (string)
+#		payment.purchase_consumption_error.connect(_on_purchase_consumption_error) # Response ID (int), Debug message (string), Purchase token (string)
+#		payment.query_purchases_response.connect(_on_query_purchases_response) # Purchases (Dictionary[])
+		GPB.startConnection()
+	else:
+		print("Android IAP support is not enabled. Make sure you have enabled 'Gradle Build' and the GodotGooglePlayBilling plugin in your Android export settings! IAP will not work.")
 
 ## Overridden notification function
 ## This should be use to save the game when exiting but it's not working on android
@@ -136,7 +162,7 @@ func _connect_signals() -> void:
 	GPGS.connect("_on_create_new_snapshot", _on_create_new_snapshot)
 
 #==============================================================================
-# SIGNAL FUNCTIONS
+# GPGS SIGNAL FUNCTIONS
 #==============================================================================
 
 func _on_sign_in_success(user_information):
@@ -173,3 +199,11 @@ func _on_game_load_failed():
 	
 func _on_create_new_snapshot(snapshot_name : String):
 	print("Game create new snapshot: " + snapshot_name)		
+
+#==============================================================================
+# GPB SIGNAL FUNCTIONS
+#==============================================================================
+
+func _on_connected():
+	print("hey peque'a")
+	GPB.querySkuDetails(["my_iap_item"], "inapp")

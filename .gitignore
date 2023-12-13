@@ -18,6 +18,7 @@ data_*/
 *.exe
 *.apk
 *.apk.idsig
+*.aab
 *.so
 
 # Android exports
