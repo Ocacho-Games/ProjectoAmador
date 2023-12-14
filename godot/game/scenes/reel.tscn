@@ -6,6 +6,8 @@
 script = ExtResource("1_dbiqk")
 
 [node name="VGrid" type="VBoxContainer" parent="."]
+top_level = true
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,14 +15,7 @@ offset_right = 1080.0
 offset_bottom = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Ad" type="Control" parent="VGrid"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="MiniGame" type="Control" parent="VGrid"]
-layout_mode = 2
-size_flags_vertical = 3
+alignment = 2
 
 [node name="HGridMenu" type="HBoxContainer" parent="VGrid"]
 custom_minimum_size = Vector2(0, 180)
