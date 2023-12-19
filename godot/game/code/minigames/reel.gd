@@ -101,7 +101,7 @@ func _exit_tree():
 func _init_game() -> void:
 	current_minigame_node = SGame.start_game().instantiate()
 	add_child(current_minigame_node)
-	move_child(current_minigame_node, 1)
+	move_child(current_minigame_node, 0)
 	
 	_prepare_game()
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn8cw41kc3lsj"]
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
-[ext_resource type="Texture2D" uid="uid://bq1uc5cole61e" path="res://game/resources/img/clicker/clicker_background.svg" id="2_beeb1"]
-[ext_resource type="Texture2D" uid="uid://dxkpr3rl7v2vw" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
-[ext_resource type="Texture2D" uid="uid://btpjith7g1a3r" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
-[ext_resource type="Texture2D" uid="uid://cbvn4fbcqkkh1" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
+[ext_resource type="Texture2D" uid="uid://dgadj4qtgicx8" path="res://game/resources/img/clicker/clicker_background.svg" id="2_beeb1"]
+[ext_resource type="Texture2D" uid="uid://plhbqgk5efju" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
+[ext_resource type="Texture2D" uid="uid://bvasl7bj2ayy2" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
+[ext_resource type="Texture2D" uid="uid://d2bws6xls5hw7" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
 
 [node name="clicker" type="Node2D"]
 script = ExtResource("1_wskaq")

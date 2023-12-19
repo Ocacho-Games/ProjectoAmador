@@ -1,11 +1,8 @@
-[gd_resource type="Resource" script_class="SCollection" load_steps=12 format=3 uid="uid://dnuok8mfsrmex"]
+[gd_resource type="Resource" script_class="SCollection" load_steps=9 format=3 uid="uid://dnuok8mfsrmex"]
 
-[ext_resource type="Texture2D" uid="uid://yxppiwnyuifx" path="res://game/resources/img/basket/basket_ball.svg" id="1_a00sy"]
-[ext_resource type="Texture2D" uid="uid://ctbkcuklfcj2r" path="res://game/resources/img/bob/skins/bob_skin_01.svg" id="1_he6ui"]
-[ext_resource type="Texture2D" uid="uid://b001ke5ik41eb" path="res://game/resources/img/bob/skins/bob_skin_02.svg" id="3_algqp"]
+[ext_resource type="Texture2D" uid="uid://p1wnq71p0dud" path="res://game/resources/img/basket/basket_ball.svg" id="1_a00sy"]
 [ext_resource type="Script" path="res://game/code/resources/collectable_resource.gd" id="3_ko04a"]
-[ext_resource type="Texture2D" uid="uid://pkjjfdr0my0u" path="res://game/resources/img/bob/skins/bob_skin_03.svg" id="4_fp5pq"]
-[ext_resource type="Texture2D" uid="uid://dwmenlcc4xme7" path="res://game/resources/img/spaceship/alien_asteroid.svg" id="11_4emmg"]
+[ext_resource type="Texture2D" uid="uid://c13rygvj38rev" path="res://game/resources/img/spaceship/alien_asteroid.svg" id="11_4emmg"]
 [ext_resource type="Script" path="res://game/code/resources/collection_resource.gd" id="12_10c5a"]
 
 [sub_resource type="Resource" id="Resource_gb2mx"]
@@ -17,9 +14,7 @@ coins_to_unlock = 350
 videos_to_unlock = 4
 objetive_description = ""
 objetive_callable = Callable()
-shop_sprite = ExtResource("1_he6ui")
 lock_shop_sprite = ExtResource("1_a00sy")
-asset = ExtResource("1_he6ui")
 
 [sub_resource type="Resource" id="Resource_0p8w6"]
 script = ExtResource("3_ko04a")
@@ -30,9 +25,7 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "?"
 objetive_callable = Callable()
-shop_sprite = ExtResource("3_algqp")
 lock_shop_sprite = ExtResource("1_a00sy")
-asset = ExtResource("3_algqp")
 
 [sub_resource type="Resource" id="Resource_g4m55"]
 script = ExtResource("3_ko04a")
@@ -43,9 +36,7 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "?"
 objetive_callable = Callable()
-shop_sprite = ExtResource("4_fp5pq")
 lock_shop_sprite = ExtResource("1_a00sy")
-asset = ExtResource("4_fp5pq")
 
 [sub_resource type="Resource" id="Resource_5ypuu"]
 script = ExtResource("3_ko04a")
