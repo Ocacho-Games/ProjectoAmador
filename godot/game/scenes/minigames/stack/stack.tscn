@@ -1,26 +1,32 @@
 [gd_scene load_steps=7 format=3 uid="uid://bpoq7rgiyi6qy"]
 
 [ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
-[ext_resource type="Texture2D" uid="uid://cpydbsn11hhtn" path="res://game/resources/img/stack/stack_floor.svg" id="2_4d88l"]
+[ext_resource type="Texture2D" uid="uid://c5m2k8pt7uvfi" path="res://game/resources/img/stack/stack_floor.svg" id="2_4d88l"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_up357"]
-[ext_resource type="Texture2D" uid="uid://d1i72u1hcodbt" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
+[ext_resource type="Texture2D" uid="uid://c5an0djrpmp2v" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
 
-[node name="stack" type="Node2D"]
+[node name="stack" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_mtjus")
 collection_array = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("2_up357")])
 
 [node name="background" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 1080.0
 offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_yqun0")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
 offset_left = 21.0
 offset_top = 1822.0
 offset_right = 1070.0
@@ -39,6 +45,7 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_4d88l")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,6 +53,8 @@ offset_left = 29.0
 offset_top = 208.0
 offset_right = 344.0
 offset_bottom = 329.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
@@ -63,6 +72,7 @@ process_mode = 4
 position = Vector2(301, 1564)
 
 [node name="leaderboard_button" type="Button" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -62,7 +62,21 @@ func _input(event):
 			max_y_dragging_relative = abs(event.relative.y)
 	elif event is InputEventSingleScreenTouch:
 		is_touching = event.pressed
-	elif event is InputEventSingleScreenTap:
+	elif event is InputEventSingleScreenTap or event is InputEventMouseButton :
+		is_tapping.set_value(true)
+
+## Overriden input function
+##
+func _gui_input(event):
+	is_tapping.set_value(false)	  		
+	
+	if event is InputEventSingleScreenDrag:
+		cached_drag_event = event
+		if abs(event.relative.y) > max_y_dragging_relative: 
+			max_y_dragging_relative = abs(event.relative.y)
+	elif event is InputEventSingleScreenTouch:
+		is_touching = event.pressed
+	elif event is InputEventSingleScreenTap or event is InputEventMouseButton:
 		is_tapping.set_value(true)
 
 ## Overriden process function

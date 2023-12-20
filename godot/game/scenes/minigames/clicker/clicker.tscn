@@ -6,27 +6,35 @@
 [ext_resource type="Texture2D" uid="uid://bvasl7bj2ayy2" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
 [ext_resource type="Texture2D" uid="uid://d2bws6xls5hw7" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
 
-[node name="clicker" type="Node2D"]
+[node name="clicker" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_wskaq")
 
 [node name="background" type="TextureRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 1080.0
 offset_bottom = 1920.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_beeb1")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 20.0
 offset_bottom = 1920.0
+grow_horizontal = 2
 grow_vertical = 2
 
 [node name="clicker_button" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 916.0
 offset_right = 1015.0
@@ -51,6 +59,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "SCORE"
 
 [node name="leaderboard_button" type="Button" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

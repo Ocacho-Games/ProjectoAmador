@@ -7,7 +7,7 @@
 ## 		- The progression bar of the minigame.
 ##		- The logic for firing a signal for the next game if the progress bar is 100%
 ##
-class_name Minigame extends Node2D
+class_name Minigame extends Control
 
 #==============================================================================
 # VARIABLES
