@@ -3,12 +3,14 @@
 godot/.godot/
 *.import
 
-# Third party plugins (DON"T INCLUDE GUT)
+# Third party plugins (DON'T INCLUDE GUT)
+godot/addons/gut
 godot/addons/scene_manager
 godot/addons/sound_manager
 godot/addons/debug_draw_3d
 godot/addons/godotsteam
 godot/addons/touch_input_manager
+godot/addons/admob
 
 # Mono-specific ignores
 .mono/
@@ -20,6 +22,7 @@ data_*/
 *.apk.idsig
 *.aab
 *.so
+scripts/linux/launch_godot_binaries
 
 # Android exports
 godot/android/build/.gradle
