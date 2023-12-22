@@ -57,12 +57,13 @@ var lerp_target_value : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#TODO : Clean this and check
-#	var ad_control_size = ad_control_node.size
-#	var ad_parent_size = ad_control_node.get_parent_area_size()
-#	var ad_size = Vector2(ad_parent_size.x, ad_control_size.y)
-#	var adSize = AdSize.new( ad_size.x, ad_size.y )
-#	ad_view = AdsLibrary.load_show_banner( adSize )
+#	var screen_size = DisplayServer.screen_get_size()
+#	ProjectSettings.set_setting("display/window/size/viewport_width", screen_size.x)
+#	ProjectSettings.set_setting("display/window/size/viewport_height", screen_size.y)
+#
+#	var wi = ProjectSettings.get_setting("display/window/size/viewport_width")
+	
+	
 	ad_view = AdsLibrary.load_show_banner()
 	_init_game()
 

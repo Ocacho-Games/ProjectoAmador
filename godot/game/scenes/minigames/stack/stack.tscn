@@ -7,14 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
 
-[node name="stack" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="stack" type="Node2D"]
 script = ExtResource("1_mtjus")
 collection_array = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("2_up357")])
 
 [node name="background" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -26,7 +23,6 @@ texture = ExtResource("2_yqun0")
 expand_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-layout_mode = 0
 offset_left = 21.0
 offset_top = 1822.0
 offset_right = 1070.0
@@ -45,7 +41,6 @@ scale = Vector2(0.85, 0.85)
 texture = ExtResource("2_4d88l")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -72,7 +67,6 @@ process_mode = 4
 position = Vector2(301, 1564)
 
 [node name="leaderboard_button" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

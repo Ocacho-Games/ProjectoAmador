@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Suipe"
-run/main_scene="res://game/scenes/menu/loading_screen.tscn"
+run/main_scene="res://game/scenes/reel.tscn"
 config/features=PackedStringArray("4.1")
 boot_splash/bg_color=Color(0.921569, 0.937255, 0.94902, 1)
 config/icon="res://game/resources/img/loading_screen/suipe_logo_app.png"
@@ -26,6 +26,7 @@ SGame="*res://game/code/autoloads/s_game.gd"
 SInputUtility="*res://game/code/autoloads/s_input_utility.gd"
 SGPS="*res://game/code/autoloads/s_gps.gd"
 SAds="*res://game/code/autoloads/s_ads.gd"
+SApp="*res://game/code/autoloads/s_app.gd"
 
 [debug]
 
@@ -35,8 +36,8 @@ file_logging/enable_file_logging=true
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 window/handheld/orientation=1
 
 [editor_plugins]

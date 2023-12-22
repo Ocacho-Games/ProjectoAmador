@@ -5,13 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://sw0eoop1jtmk" path="res://game/scenes/minigames/basket/entities/ball.tscn" id="3_ka1b6"]
 [ext_resource type="PackedScene" uid="uid://maqcojbnkhh4" path="res://game/scenes/minigames/basket/entities/basket_entity.tscn" id="4_egoqy"]
 
-[node name="basket" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="basket" type="Node2D"]
 script = ExtResource("1_03ldb")
 
 [node name="background" type="TextureRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,7 +26,6 @@ position = Vector2(743, 1015)
 position = Vector2(270, 1036)
 
 [node name="leaderboard_button" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -42,7 +38,6 @@ grow_vertical = 2
 text = "Leaderboard"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
