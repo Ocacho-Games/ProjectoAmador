@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dflmmeq4t1rsu"]
+[gd_scene load_steps=2 format=3 uid="uid://dflmmeq4t1rsu"]
 
 [ext_resource type="Script" path="res://game/code/minigames/reel.gd" id="1_dbiqk"]
-[ext_resource type="Script" path="res://game/scenes/HGridMenu_test.gd" id="2_sssor"]
 
 [node name="reel" type="Node2D"]
 script = ExtResource("1_dbiqk")
@@ -10,7 +9,6 @@ script = ExtResource("1_dbiqk")
 offset_top = 1740.0
 offset_right = 1080.0
 offset_bottom = 1920.0
-script = ExtResource("2_sssor")
 
 [node name="shop_button" type="Button" parent="HGridMenu"]
 layout_mode = 2

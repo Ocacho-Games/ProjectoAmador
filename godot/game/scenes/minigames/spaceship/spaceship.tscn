@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
 [ext_resource type="Texture2D" uid="uid://b4g1jphx5qn2e" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
+[ext_resource type="Script" path="res://game/scenes/minigames/spaceship/temp_scale.gd" id="3_ns8yt"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
 [ext_resource type="Texture2D" uid="uid://n83to4x5vnjv" path="res://game/resources/img/bob/bob.svg" id="4_sirws"]
 [ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
-[ext_resource type="Script" path="res://game/scenes/minigames/spaceship/temp_scale.gd" id="5_6s25b"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="5_7mfjr"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="6_4rmhc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khny3"]
-radius = 48.0104
+radius = 158.951
 
 [node name="spaceship" type="Node2D"]
 script = ExtResource("1_cbeqs")
@@ -24,7 +24,8 @@ expand_mode = 4
 
 [node name="spaceship_player" type="Node2D" parent="."]
 position = Vector2(548, 1694)
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.33, 0.33)
+script = ExtResource("3_ns8yt")
 
 [node name="AutoMovementCmp" type="Node" parent="spaceship_player"]
 script = ExtResource("3_n1q1x")
@@ -34,9 +35,7 @@ rotation_type = 2
 rotation_offset = -60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="spaceship_player"]
-scale = Vector2(0.38, 0.38)
 texture = ExtResource("4_sirws")
-script = ExtResource("5_6s25b")
 
 [node name="SelectCollectableCmp" type="Node" parent="spaceship_player/Sprite2D"]
 script = ExtResource("5_7mfjr")

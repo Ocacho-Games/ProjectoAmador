@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn8cw41kc3lsj"]
+[gd_scene load_steps=7 format=3 uid="uid://bn8cw41kc3lsj"]
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
 [ext_resource type="Texture2D" uid="uid://dgadj4qtgicx8" path="res://game/resources/img/clicker/clicker_background.svg" id="2_beeb1"]
 [ext_resource type="Texture2D" uid="uid://plhbqgk5efju" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
 [ext_resource type="Texture2D" uid="uid://bvasl7bj2ayy2" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
 [ext_resource type="Texture2D" uid="uid://d2bws6xls5hw7" path="res://game/resources/img/clicker/clicker_sign.svg" id="5_pwu35"]
+[ext_resource type="Script" path="res://game/scenes/minigames/spaceship/temp_scale.gd" id="6_qr5ws"]
 
 [node name="clicker" type="Node2D"]
 script = ExtResource("1_wskaq")
@@ -43,6 +44,7 @@ stretch_mode = 0
 position = Vector2(552, 352)
 scale = Vector2(0.699425, 0.699425)
 texture = ExtResource("5_pwu35")
+script = ExtResource("6_qr5ws")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="score_sprite"]
 offset_left = -455.0

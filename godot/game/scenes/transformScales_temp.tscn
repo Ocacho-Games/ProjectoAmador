@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://8a64cf6garxd"]
+
+[ext_resource type="Script" path="res://game/scenes/minigames/spaceship/temp_scale.gd" id="1_rokvq"]
+[ext_resource type="Texture2D" uid="uid://n83to4x5vnjv" path="res://game/resources/img/bob/bob.svg" id="2_ti1xp"]
+
+[node name="transformScales" type="Node2D"]
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(200, 300)
+rotation = 0.785398
+script = ExtResource("1_rokvq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Target"]
+texture = ExtResource("2_ti1xp")
