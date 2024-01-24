@@ -2,9 +2,12 @@
 cls
 
 :: Getting destination path
-for /f "delims=" %%i in ('git rev-parse --show-toplevel') do set "GIT_ROOT_PATH=%%i"
-set GODOT_GAME_PATH=%GIT_ROOT_PATH%\godot\game\
-set DESTINATION_PATH=%GIT_ROOT_PATH%\godot\addons\
+set WINDOWS_SCRIPTS_PATH=%~dp0
+set REPO_PATH=%~dp0..\
+FOR %%A IN ("%REPO_PATH%.") DO SET REPO_PATH=%%~dpA
+
+set GODOT_GAME_PATH=%REPO_PATH%godot\game\
+set DESTINATION_PATH=%REPO_PATH%godot\addons\
 set OVERWRITE_LIBRARIES=0
 
 :: Get flags 

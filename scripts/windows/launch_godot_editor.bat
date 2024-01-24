@@ -2,8 +2,9 @@
 cls
 
 :: Setting path variables in order to make the script global
-for /f "delims=" %%i in ('git rev-parse --show-toplevel') do set "GIT_ROOT_PATH=%%i"
-set WINDOWS_SCRIPTS_PATH=%GIT_ROOT_PATH%\scripts\windows\
+set WINDOWS_SCRIPTS_PATH=%~dp0
+set REPO_PATH=%~dp0..\
+FOR %%A IN ("%REPO_PATH%.") DO SET REPO_PATH=%%~dpA
 
 :: Check if Godot has been downloaded or not and donwload it if needed
 if exist "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries" (
@@ -20,4 +21,4 @@ if exist "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries" (
 call %WINDOWS_SCRIPTS_PATH%\setup.bat
 
 :: Launching godot in editor with our project
-start "" "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\Godot_v4.1.1-stable_win64.exe" -e --path "%GIT_ROOT_PATH%/godot/"
+start "" "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\Godot_v4.1.1-stable_win64.exe" -e --path "%REPO_PATH%/godot/"
