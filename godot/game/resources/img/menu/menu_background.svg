@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 275">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: .2;
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Menu_Template">
+    <g id="Inferior">
+      <path class="cls-1" d="m1375.54,0H64.46C28.86,0,0,28.86,0,64.46v210.54h1440V64.46c0-35.6-28.86-64.46-64.46-64.46Z"/>
+    </g>
+  </g>
+</svg>

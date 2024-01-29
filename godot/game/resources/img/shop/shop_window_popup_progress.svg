@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 851.79 130.87">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-linecap: square;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #fff8ea;
+      }
+
+      .cls-1, .cls-4, .cls-5, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-3 {
+        stroke: #9ff3fc;
+        stroke-width: 83.83px;
+      }
+
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-4 {
+        stroke: #7d9799;
+        stroke-width: 83.56px;
+      }
+
+      .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-4, .cls-5, .cls-3 {
+        stroke-linecap: round;
+      }
+
+      .cls-5 {
+        stroke: #000;
+        stroke-width: 130.87px;
+      }
+    </style>
+  </defs>
+  <g id="Shop">
+    <g id="Games">
+      <g id="Pop_Up">
+        <g id="Bar">
+          <g>
+            <line class="cls-2" x1="65.43" y1="65.43" x2="786.36" y2="65.43"/>
+            <line class="cls-4" x1="65.43" y1="65.43" x2="786.36" y2="65.43"/>
+            <line class="cls-5" x1="65.43" y1="65.43" x2="786.36" y2="65.43"/>
+          </g>
+          <g>
+            <line class="cls-2" x1="65.43" y1="65.43" x2="786.36" y2="65.43"/>
+            <line class="cls-4" x1="65.43" y1="65.43" x2="786.36" y2="65.43"/>
+            <line class="cls-4" x1="65.43" y1="65.43" x2="786.36" y2="65.43"/>
+          </g>
+          <line class="cls-3" x1="65.43" y1="65.43" x2="305.84" y2="65.43"/>
+          <line class="cls-1" x1="350.89" y1="65.43" x2="591.29" y2="65.43"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

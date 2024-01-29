@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 2349.35">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #fff;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-miterlimit: 10;
+        stroke-width: 24px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #fff8ea;
+      }
+
+      .cls-2 {
+        stroke: #000;
+      }
+
+      .cls-3 {
+        stroke-width: 0px;
+      }
+    </style>
+  </defs>
+  <g id="Shop">
+    <g id="Games">
+      <g id="Shop-2" data-name="Shop">
+        <g id="Menu">
+          <rect class="cls-3" x="0" y="25.15" width="1440" height="2273.72"/>
+          <line class="cls-1" x1="0" y1="12" x2="1440" y2="12"/>
+          <line class="cls-2" y1="25.15" x2="1440" y2="25.15"/>
+          <line class="cls-1" x1="0" y1="2337.35" x2="1440" y2="2337.35"/>
+          <line class="cls-2" x1="0" y1="2323.35" x2="1440" y2="2323.35"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

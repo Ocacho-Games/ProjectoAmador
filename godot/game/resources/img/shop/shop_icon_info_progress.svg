@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 90.81">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-4 {
+        stroke-linecap: round;
+      }
+
+      .cls-1, .cls-3 {
+        fill: #fff8ea;
+        stroke: #9ff3fc;
+        stroke-width: 16px;
+      }
+
+      .cls-2 {
+        stroke: #7d9799;
+        stroke-width: 15.95px;
+      }
+
+      .cls-2, .cls-4 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke-linecap: square;
+      }
+
+      .cls-4 {
+        stroke: #000;
+        stroke-width: 30px;
+      }
+    </style>
+  </defs>
+  <g id="Shop">
+    <g id="Games">
+      <g id="Shop-2" data-name="Shop">
+        <g id="Unlocks">
+          <g id="Objectives">
+            <g id="OBJ_1">
+              <g id="Bar">
+                <g>
+                  <line class="cls-2" x1="15" y1="75.81" x2="15" y2="15"/>
+                  <line class="cls-4" x1="15" y1="75.81" x2="15" y2="15"/>
+                </g>
+                <g>
+                  <line class="cls-2" x1="15" y1="75.81" x2="15" y2="15"/>
+                  <line class="cls-2" x1="15" y1="75.81" x2="15" y2="15"/>
+                </g>
+                <line class="cls-1" x1="15" y1="75.81" x2="15" y2="55.53"/>
+                <line class="cls-3" x1="15" y1="64.98" x2="15" y2="44.7"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
