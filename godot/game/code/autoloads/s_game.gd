@@ -23,7 +23,6 @@ var last_minigame_index : int = 0
 ## Overriden ready function
 ##
 func _ready():
-	MobileAds.initialize()
 	# TODO [David]: We should develop an algorithm for this, for now it's disabled for the shake of testing
 	#randomize()
 	#minigames_array.shuffle()

@@ -24,7 +24,7 @@ func _ready():
 
 func _on_initialization_complete(initialization_status : InitializationStatus) -> void:
 	print("MobileAds initialization complete")
-	print_all_values(initialization_status)
+	#print_all_values(initialization_status)
 #	var ad_colony_app_options := AdColonyAppOptions.new()
 #	print("set values ad_colony")
 #	ad_colony_app_options.set_privacy_consent_string(AdColonyAppOptions.CCPA, "STRIaNG CCPA")

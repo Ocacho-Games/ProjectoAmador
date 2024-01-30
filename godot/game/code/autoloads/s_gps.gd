@@ -5,6 +5,12 @@
 extends Node
 
 #==============================================================================
+# SIGNALS
+#==============================================================================
+## Will be called once we have internet connection and gps has been initialized
+signal on_gps_initialized
+
+#==============================================================================
 # VARIABLES
 #==============================================================================
 
@@ -31,6 +37,8 @@ var data_to_save_dic = {
 
 ## Whether the load_game function has been called at least once
 var is_game_loaded : bool = false
+## Whether the _init_gps function has been called at least once successfully
+var is_gps_initialized : bool = false
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -39,40 +47,13 @@ var is_game_loaded : bool = false
 ## Overridden ready function
 ##
 func _ready():
+	# Debug purpouses
 	if OS.get_name() != "Android":
 		is_game_loaded = true
-		
-	if Engine.has_singleton("GodotPlayGamesServices"):
-		GPGS = Engine.get_singleton("GodotPlayGamesServices")
-		
-		# First true means pull PlayerID, second one the email, third one the profile data
-		GPGS.initWithSavedGames(true, SAVE_NAME, true, true, "")
-		
-		_connect_signals()
-		GPGS.signIn()
+		on_gps_initialized.emit()
 	
-	if Engine.has_singleton("GodotGooglePlayBilling"):
-		GPB = Engine.get_singleton("GodotGooglePlayBilling")
-
-		# These are all signals supported by the API
-		# You can drop some of these based on your needs
-#		payment.billing_resume.connect(_on_billing_resume) # No params
-		GPB.connected.connect(_on_connected) # No params
-#		payment.disconnected.connect(_on_disconnected) # No params
-#		payment.connect_error.connect(_on_connect_error) # Response ID (int), Debug message (string)
-#		payment.price_change_acknowledged.connect(_on_price_acknowledged) # Response ID (int)
-#		payment.purchases_updated.connect(_on_purchases_updated) # Purchases (Dictionary[])
-#		payment.purchase_error.connect(_on_purchase_error) # Response ID (int), Debug message (string)
-#		payment.product_details_query_completed.connect(_on_product_details_query_completed) # Products (Dictionary[])
-#		payment.product_details_query_error.connect(_on_product_details_query_error) # Response ID (int), Debug message (string), Queried SKUs (string[])
-#		payment.purchase_acknowledged.connect(_on_purchase_acknowledged) # Purchase token (string)
-#		payment.purchase_acknowledgement_error.connect(_on_purchase_acknowledgement_error) # Response ID (int), Debug message (string), Purchase token (string)
-#		payment.purchase_consumed.connect(_on_purchase_consumed) # Purchase token (string)
-#		payment.purchase_consumption_error.connect(_on_purchase_consumption_error) # Response ID (int), Debug message (string), Purchase token (string)
-#		payment.query_purchases_response.connect(_on_query_purchases_response) # Purchases (Dictionary[])
-		GPB.startConnection()
-	else:
-		print("Android IAP support is not enabled. Make sure you have enabled 'Gradle Build' and the GodotGooglePlayBilling plugin in your Android export settings! IAP will not work.")
+	SNetwork.on_connection_success.connect(_init_gps)
+	#TODO: If internet wasnt working but now we have internet another pop up and stop the game
 
 ## Overridden notification function
 ## This should be use to save the game when exiting but it's not working on android
@@ -135,6 +116,14 @@ func get_saved_data(key : String, return_thing = 0):
 		return data_to_save_dic[key]
 		
 	return return_thing
+	
+## Helper function for connecting GPS signals with some checks
+##
+func connect_signal(signal_name : String, callable : Callable) -> void:
+	if OS.get_name() == "Android":
+		_check_gpgs()
+		# TODO: Asserts for custom android
+		GPGS.connect(signal_name, callable)
 		
 #==============================================================================
 # PRIVATE FUNCTIONS
@@ -160,6 +149,46 @@ func _connect_signals() -> void:
 	#TODO [David]: This event names aren't right... bro son los del tuto
 	#GPGS.connect("_on_game_load_failed", _on_game_load_failed)
 	GPGS.connect("_on_create_new_snapshot", _on_create_new_snapshot)
+	
+## Init all the systems related to GPS.
+## This will be called only if we have internet connection
+##
+func _init_gps() -> void:
+	if is_gps_initialized: return
+	
+	if Engine.has_singleton("GodotPlayGamesServices"):
+		GPGS = Engine.get_singleton("GodotPlayGamesServices")
+		
+		# First true means pull PlayerID, second one the email, third one the profile data
+		GPGS.initWithSavedGames(true, SAVE_NAME, true, true, "")
+		is_gps_initialized = true
+		
+		_connect_signals()
+		on_gps_initialized.emit()
+		GPGS.signIn()
+	
+	if Engine.has_singleton("GodotGooglePlayBilling"):
+		GPB = Engine.get_singleton("GodotGooglePlayBilling")
+
+		# These are all signals supported by the API
+		# You can drop some of these based on your needs
+#		payment.billing_resume.connect(_on_billing_resume) # No params
+		GPB.connected.connect(_on_connected) # No params
+#		payment.disconnected.connect(_on_disconnected) # No params
+#		payment.connect_error.connect(_on_connect_error) # Response ID (int), Debug message (string)
+#		payment.price_change_acknowledged.connect(_on_price_acknowledged) # Response ID (int)
+#		payment.purchases_updated.connect(_on_purchases_updated) # Purchases (Dictionary[])
+#		payment.purchase_error.connect(_on_purchase_error) # Response ID (int), Debug message (string)
+#		payment.product_details_query_completed.connect(_on_product_details_query_completed) # Products (Dictionary[])
+#		payment.product_details_query_error.connect(_on_product_details_query_error) # Response ID (int), Debug message (string), Queried SKUs (string[])
+#		payment.purchase_acknowledged.connect(_on_purchase_acknowledged) # Purchase token (string)
+#		payment.purchase_acknowledgement_error.connect(_on_purchase_acknowledgement_error) # Response ID (int), Debug message (string), Purchase token (string)
+#		payment.purchase_consumed.connect(_on_purchase_consumed) # Purchase token (string)
+#		payment.purchase_consumption_error.connect(_on_purchase_consumption_error) # Response ID (int), Debug message (string), Purchase token (string)
+#		payment.query_purchases_response.connect(_on_query_purchases_response) # Purchases (Dictionary[])
+		GPB.startConnection()
+	else:
+		print("Android IAP support is not enabled. Make sure you have enabled 'Gradle Build' and the GodotGooglePlayBilling plugin in your Android export settings! IAP will not work.")
 
 #==============================================================================
 # GPGS SIGNAL FUNCTIONS
