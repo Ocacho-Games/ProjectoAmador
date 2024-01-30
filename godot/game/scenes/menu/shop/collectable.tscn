@@ -1,29 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://fgnfdtvg8c3c"]
+[gd_scene load_steps=8 format=3 uid="uid://fgnfdtvg8c3c"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
 [ext_resource type="Texture2D" uid="uid://c4uxqjui4u75f" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_bm2je"]
+[ext_resource type="Texture2D" uid="uid://7d54qyv02wsy" path="res://game/resources/img/shop/bob_coin.svg" id="2_f1cg6"]
+[ext_resource type="Texture2D" uid="uid://dbqx18nnvhrbx" path="res://game/resources/img/shop/shop_box_blue.svg" id="2_mmpbx"]
+[ext_resource type="Texture2D" uid="uid://dkpjvvbyqtnfc" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_efiev"]
+[ext_resource type="Texture2D" uid="uid://6bqtnx3fyc5x" path="res://game/resources/img/shop/shop_icon_ad.svg" id="4_3p8lk"]
+[ext_resource type="Texture2D" uid="uid://c4vc6voujmiw7" path="res://game/resources/img/shop/shop_icon_selected.svg" id="5_6e3jf"]
 
 [node name="collectable" type="Node2D"]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_28gil")
+coin_texture = ExtResource("2_f1cg6")
+objetive_texture = ExtResource("3_efiev")
+video_texture = ExtResource("4_3p8lk")
+selected_texture = ExtResource("5_6e3jf")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BoxButton" type="TextureButton" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 356.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("2_mmpbx")
+
+[node name="asset" type="Sprite2D" parent="BoxButton"]
+position = Vector2(175, 175)
+scale = Vector2(0.666667, 0.666667)
 texture = ExtResource("1_bm2je")
 
-[node name="Button" type="Button" parent="Sprite2D"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="corner_info" type="Sprite2D" parent="BoxButton"]
+position = Vector2(343.056, 11.1111)
+texture = ExtResource("3_efiev")
+
+[node name="corner_info_text" type="RichTextLabel" parent="BoxButton/corner_info"]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -247.5
-offset_top = -215.0
-offset_right = -103.5
-offset_bottom = -152.0
+offset_left = -147.222
+offset_top = -76.3888
+offset_right = -147.222
+offset_bottom = -76.3888
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 40
-text = "SELECT"
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "300"
+fit_content = true
+scroll_active = false
 
 [node name="pop_up" type="Window" parent="."]
 initial_position = 2
@@ -44,4 +70,4 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 50
 text = "lkjhjklhjl"
 
-[connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BoxButton" to="." method="_on_box_button_pressed"]

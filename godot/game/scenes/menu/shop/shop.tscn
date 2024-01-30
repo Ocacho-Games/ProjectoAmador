@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxnmpd4xkj3rh"]
+[gd_scene load_steps=7 format=3 uid="uid://cxnmpd4xkj3rh"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop.gd" id="1_r0ehy"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_0ay04"]
 [ext_resource type="Texture2D" uid="uid://de8mi6hwsp5au" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="2_65u2b"]
 [ext_resource type="Texture2D" uid="uid://bjb3crojigfvq" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="3_jr5y5"]
 [ext_resource type="PackedScene" uid="uid://fgnfdtvg8c3c" path="res://game/scenes/menu/shop/collectable.tscn" id="3_pgk4b"]
-[ext_resource type="Texture2D" uid="uid://dnw1k6fynr2ux" path="res://game/resources/img/counter/counter_button_idle.svg" id="4_3mij6"]
-[ext_resource type="Texture2D" uid="uid://gpn2yi6nd772" path="res://game/resources/img/counter/counter_button_click.svg" id="5_mhjsv"]
+[ext_resource type="Texture2D" uid="uid://cfnisdp5mcwyq" path="res://game/resources/img/shop/shop_window_popup_btn_ad.svg" id="4_elom3"]
 
 [node name="shop" type="Node2D"]
 position = Vector2(-1, 0)
@@ -41,19 +40,18 @@ fit_content = true
 [node name="video_coin_button" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.875926
-anchor_top = -0.0688597
-anchor_right = 0.875926
-anchor_bottom = -0.0688597
-offset_left = -246.0
-offset_top = 200.0
-offset_right = -100.0
-offset_bottom = 333.0
+anchor_left = 0.116519
+anchor_top = 0.0634035
+anchor_right = 0.447519
+anchor_bottom = 0.127825
+offset_left = 0.159973
+offset_top = 0.44
+offset_right = 88.68
+offset_bottom = 66.56
 grow_horizontal = 0
-texture_normal = ExtResource("4_3mij6")
-texture_pressed = ExtResource("5_mhjsv")
-ignore_texture_size = true
-stretch_mode = 0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("4_elom3")
+texture_pressed = ExtResource("4_elom3")
 metadata/_edit_use_anchors_ = true
 
 [node name="type_store_label" type="RichTextLabel" parent="Control"]
@@ -61,10 +59,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -264.0
-offset_top = 200.0
-offset_right = 264.0
-offset_bottom = 310.0
+offset_left = -258.0
+offset_top = 295.0
+offset_right = 270.0
+offset_bottom = 405.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 70
 text = "TYPE OF STORE"
@@ -73,10 +71,10 @@ fit_content = true
 [node name="left" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 100.0
-offset_top = 200.0
-offset_right = 246.0
-offset_bottom = 333.0
+offset_left = 106.0
+offset_top = 295.0
+offset_right = 252.0
+offset_bottom = 428.0
 texture_normal = ExtResource("2_65u2b")
 texture_pressed = ExtResource("3_jr5y5")
 ignore_texture_size = true
@@ -87,10 +85,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -246.0
-offset_top = 200.0
-offset_right = -100.0
-offset_bottom = 333.0
+offset_left = -240.0
+offset_top = 295.0
+offset_right = -94.0
+offset_bottom = 428.0
 grow_horizontal = 0
 texture_normal = ExtResource("2_65u2b")
 texture_pressed = ExtResource("3_jr5y5")

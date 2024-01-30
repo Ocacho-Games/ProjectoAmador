@@ -38,6 +38,9 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 @export var objetive_callable : Callable
 @export_group("")
 
+## This is the sprite that will be displayed as the box recovering the asset sprites
+@export var box_sprite : Texture2D
+
 ## This is the sprite that will be displayed on the shop if unlock, not the actual resource.
 @export var shop_sprite : Texture
 

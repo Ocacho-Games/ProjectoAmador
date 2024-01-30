@@ -38,7 +38,7 @@ func _display_current_collection() -> void:
 	
 	## Add section labels like, Skins, sounds etc
 	
-	var initial_x = 300
+	var initial_x = 100
 	var initial_y = 200
 	
 	for collectable in current_collection.collectables:
@@ -51,8 +51,8 @@ func _display_current_collection() -> void:
 
 		skin_container.call_deferred("add_child", collectable_node)
 		initial_x += 300
-		if initial_x > 1000:
-			initial_x = 300
+		if initial_x >= 1000:
+			initial_x = 100
 			initial_y += 350
 
 #==============================================================================

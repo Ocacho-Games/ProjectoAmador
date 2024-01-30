@@ -6,8 +6,13 @@ class_name CollectableNode extends Node
 # VARIABLES
 #==============================================================================
 
+@export var coin_texture: Texture2D
+@export var objetive_texture: Texture2D
+@export var video_texture: Texture2D
+@export var selected_texture : Texture2D
+
 ## Reference to the pop up in case this is an objetive collectable
-@onready var pop_up : Window = $pop_up 
+@onready var pop_up : Window = $pop_up
 
 ## Cached value of the lock status of the collectable
 var cached_is_lock : bool
@@ -15,6 +20,10 @@ var cached_is_lock : bool
 var cached_collection_key : String
 ## Cached value of the collectable itself
 var cached_collectable : SCollectable
+## Cached corner Sprite2D info node
+var cached_sprite_corner_info : Sprite2D
+## Cached corner Text info nod
+var cached_text_corner_info : RichTextLabel
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -23,6 +32,10 @@ var cached_collectable : SCollectable
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pop_up.hide()
+
+# Called each frame
+func _process(_delta):
+	_check_selected_collectable()
 
 #==============================================================================
 # PUBLIC FUNCTIONS
@@ -40,14 +53,14 @@ func set_collectable_properties(collection_key : String, collectable : SCollecta
 	cached_is_lock = _is_collectable_lock()
 	_check_objetive_collectable()	
 	
-	var sprite : Sprite2D = get_node("Sprite2D")
-	var button : Button = sprite.get_node("Button")
+	get_node("BoxButton").set_texture_normal(collectable.box_sprite)
 	
-	if cached_is_lock:
-		_set_lock_collectable_properties(sprite, button)
-	else:
-		sprite.texture = collectable.shop_sprite
-		button.text = "Select"					
+	var sprite_asset : Sprite2D = get_node("BoxButton/asset")
+	cached_sprite_corner_info = get_node("BoxButton/corner_info")
+	cached_text_corner_info = cached_sprite_corner_info.get_node("corner_info_text") 	
+	
+	if cached_is_lock: _set_lock_collectable_properties(sprite_asset)
+	else: sprite_asset.texture = collectable.shop_sprite
 
 #==============================================================================
 # PRIVATE FUNCTIONS
@@ -77,21 +90,38 @@ func _check_objetive_collectable() -> void:
 		SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
 		SGPS.save_game()
 		
+## In case the collectable in unlock. Must be called each frame
+## We should check if the collectable is the selected one in order to change the select mark
+##
+func _check_selected_collectable() -> void:
+	if cached_is_lock: return
+	
+	var name_selected_asset : String = "current_" + cached_collection_key + "_" + cached_collectable.get_type_to_string()	
+	if cached_collectable.key == SGPS.get_saved_data(name_selected_asset):
+		cached_sprite_corner_info.texture = selected_texture
+		cached_sprite_corner_info.visible = true
+		cached_text_corner_info.visible = false		 
+	else:
+		cached_sprite_corner_info.visible = false
+		
 ## In case the collectable is lock set the properties of it based on the unlock type
 ## [sprite]: Reference to the shop sprite to change
-## [button]: Reference to the shop button to change
+## [sprite_corner_info]: Reference to the sprite that shows the type of asset in order to change it
 ##
-func _set_lock_collectable_properties(sprite : Sprite2D, button : Button) -> void:
+func _set_lock_collectable_properties(sprite : Sprite2D) -> void:
 	sprite.texture = cached_collectable.lock_shop_sprite
 	match cached_collectable.unlock_type:
 		SCollectable.EUnlockType.COINS:
-			button.text = "Unlock " + str(cached_collectable.coins_to_unlock) + " coins"
+			cached_sprite_corner_info.texture = coin_texture
+			cached_text_corner_info.text = str(cached_collectable.coins_to_unlock)			
 		SCollectable.EUnlockType.VIDEO:
 			var remaining_videos_key : String = "remaining_" + cached_collectable.key + "_videos"
 			var remaining_videos = SGPS.get_saved_data(remaining_videos_key, cached_collectable.videos_to_unlock)
-			button.text = "Watch " + str(remaining_videos) + " video(s) to unlock "
+			cached_sprite_corner_info.texture = video_texture
+			cached_text_corner_info.text = "x" + str(remaining_videos)
 		SCollectable.EUnlockType.OBJETIVE:
-			button.text = "See the objetive pop-up"
+			cached_sprite_corner_info.texture = objetive_texture
+			cached_text_corner_info.visible = false
 
 ## Called when the button is pressed and the collectable is lock
 ## Depending on the unlock_type of the collectable, check if we can unlock it or not. 
@@ -135,7 +165,8 @@ func _button_pressed_lock() -> void:
 ##	
 func _button_pressed_unlock() -> void:
 	var key = "current_" + cached_collection_key + "_" + cached_collectable.get_type_to_string()
-	SGPS.data_to_save_dic[key] = cached_collectable.key			
+	SGPS.data_to_save_dic[key] = cached_collectable.key
+	set_collectable_properties(cached_collection_key, cached_collectable)			
 
 #==============================================================================
 # SIGNAL FUNCTIONS
@@ -143,8 +174,8 @@ func _button_pressed_unlock() -> void:
 
 ## Every collectable is/has a button attached to it. Signal when pressed 
 ##		
-func _on_button_pressed():
+func _on_box_button_pressed():
 	if cached_is_lock: _button_pressed_lock()
 	else: _button_pressed_unlock()
 		
-	SGPS.save_game()				
+	SGPS.save_game()	

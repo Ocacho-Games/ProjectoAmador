@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="SCollection" load_steps=12 format=3 uid="uid://dnuok8mfsrmex"]
+[gd_resource type="Resource" script_class="SCollection" load_steps=15 format=3 uid="uid://dnuok8mfsrmex"]
 
 [ext_resource type="Texture2D" uid="uid://bdm56neielu3u" path="res://game/resources/img/basket/basket_ball.svg" id="1_a00sy"]
 [ext_resource type="Texture2D" uid="uid://t38lnonvlv5v" path="res://game/resources/img/bob/skins/bob_skin_01.svg" id="1_he6ui"]
+[ext_resource type="Texture2D" uid="uid://chua1h8dxcls1" path="res://game/resources/img/shop/shop_box_green.svg" id="2_phxev"]
 [ext_resource type="Texture2D" uid="uid://4fgulp6acror" path="res://game/resources/img/bob/skins/bob_skin_02.svg" id="3_algqp"]
 [ext_resource type="Script" path="res://game/code/resources/collectable_resource.gd" id="3_ko04a"]
 [ext_resource type="Texture2D" uid="uid://btne44iv2b2fi" path="res://game/resources/img/bob/skins/bob_skin_03.svg" id="4_fp5pq"]
+[ext_resource type="Texture2D" uid="uid://dbqx18nnvhrbx" path="res://game/resources/img/shop/shop_box_blue.svg" id="6_71a3n"]
+[ext_resource type="Texture2D" uid="uid://cj55np5xnde2d" path="res://game/resources/img/shop/shop_box_pink.svg" id="8_w0bd5"]
 [ext_resource type="Texture2D" uid="uid://chbqo6awh0rdh" path="res://game/resources/img/spaceship/alien_asteroid.svg" id="11_4emmg"]
 [ext_resource type="Script" path="res://game/code/resources/collection_resource.gd" id="12_10c5a"]
 
@@ -17,6 +20,7 @@ coins_to_unlock = 350
 videos_to_unlock = 4
 objetive_description = ""
 objetive_callable = Callable()
+box_sprite = ExtResource("2_phxev")
 shop_sprite = ExtResource("1_he6ui")
 lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("1_he6ui")
@@ -30,6 +34,7 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "?"
 objetive_callable = Callable()
+box_sprite = ExtResource("6_71a3n")
 shop_sprite = ExtResource("3_algqp")
 lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("3_algqp")
@@ -38,11 +43,12 @@ asset = ExtResource("3_algqp")
 script = ExtResource("3_ko04a")
 key = "black"
 type = 0
-unlock_type = 0
+unlock_type = 1
 coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "?"
 objetive_callable = Callable()
+box_sprite = ExtResource("8_w0bd5")
 shop_sprite = ExtResource("4_fp5pq")
 lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("4_fp5pq")
@@ -56,6 +62,7 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "Obtain > 22 score on stack"
 objetive_callable = Callable()
+box_sprite = ExtResource("2_phxev")
 shop_sprite = ExtResource("11_4emmg")
 lock_shop_sprite = ExtResource("1_a00sy")
 asset = ExtResource("11_4emmg")

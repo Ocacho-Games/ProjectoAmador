@@ -25,8 +25,8 @@ var data_to_save_dic = {
 		"clicker_score" : 0,
 		"stack_score": 0,
 		# This should be the same name as the bob.tres key. NOTE: This will contain all the unlocked resources "keys" of the colection
-		"bob" : ["click_2"],
-		"current_bob_sprite" : "",
+		"bob" : ["fancy"],
+		"current_bob_sprite" : "fancy",
 	}
 
 ## Whether the load_game function has been called at least once
