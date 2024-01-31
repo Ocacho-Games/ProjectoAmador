@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="SCollection" load_steps=15 format=3 uid="uid://dnuok8mfsrmex"]
+[gd_resource type="Resource" script_class="SCollection" load_steps=16 format=3 uid="uid://dnuok8mfsrmex"]
 
 [ext_resource type="Texture2D" uid="uid://bdm56neielu3u" path="res://game/resources/img/basket/basket_ball.svg" id="1_a00sy"]
 [ext_resource type="Texture2D" uid="uid://t38lnonvlv5v" path="res://game/resources/img/bob/skins/bob_skin_01.svg" id="1_he6ui"]
 [ext_resource type="Texture2D" uid="uid://chua1h8dxcls1" path="res://game/resources/img/shop/shop_box_green.svg" id="2_phxev"]
 [ext_resource type="Texture2D" uid="uid://4fgulp6acror" path="res://game/resources/img/bob/skins/bob_skin_02.svg" id="3_algqp"]
+[ext_resource type="Texture2D" uid="uid://dj2gj0tawwh1n" path="res://game/resources/img/shop/shop_question_mark.svg" id="3_asb4d"]
 [ext_resource type="Script" path="res://game/code/resources/collectable_resource.gd" id="3_ko04a"]
 [ext_resource type="Texture2D" uid="uid://btne44iv2b2fi" path="res://game/resources/img/bob/skins/bob_skin_03.svg" id="4_fp5pq"]
 [ext_resource type="Texture2D" uid="uid://dbqx18nnvhrbx" path="res://game/resources/img/shop/shop_box_blue.svg" id="6_71a3n"]
@@ -22,7 +23,7 @@ objetive_description = ""
 objetive_callable = Callable()
 box_sprite = ExtResource("2_phxev")
 shop_sprite = ExtResource("1_he6ui")
-lock_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("3_asb4d")
 asset = ExtResource("1_he6ui")
 
 [sub_resource type="Resource" id="Resource_0p8w6"]
@@ -36,7 +37,7 @@ objetive_description = "?"
 objetive_callable = Callable()
 box_sprite = ExtResource("6_71a3n")
 shop_sprite = ExtResource("3_algqp")
-lock_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("3_asb4d")
 asset = ExtResource("3_algqp")
 
 [sub_resource type="Resource" id="Resource_g4m55"]
@@ -50,7 +51,7 @@ objetive_description = "?"
 objetive_callable = Callable()
 box_sprite = ExtResource("8_w0bd5")
 shop_sprite = ExtResource("4_fp5pq")
-lock_shop_sprite = ExtResource("1_a00sy")
+lock_shop_sprite = ExtResource("3_asb4d")
 asset = ExtResource("4_fp5pq")
 
 [sub_resource type="Resource" id="Resource_5ypuu"]

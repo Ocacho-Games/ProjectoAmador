@@ -34,6 +34,7 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 ## In case unlock_type is set to OBJETIVE, the description that should appear if the collectable is unlocked
 @export var objetive_description : String = "?"
 ## In case unlock_type is set to OBJETIVE, the boolean function that should be called to check if the collectable is unlocked. 
+## Apart from the bool, the function should return a percentage for the progression bar of the objetive
 ## This should be bound in load_collectable_callbacks() (Minigame.gd) or children
 @export var objetive_callable : Callable
 @export_group("")
@@ -43,9 +44,6 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 
 ## This is the sprite that will be displayed on the shop if unlock, not the actual resource.
 @export var shop_sprite : Texture
-
-## This should be the sprite that is shown when the collectable is lock
-@export var lock_shop_sprite : Texture
 
 # Actual asset to load if unlocked
 @export var asset : Resource

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fgnfdtvg8c3c"]
+[gd_scene load_steps=10 format=3 uid="uid://fgnfdtvg8c3c"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
 [ext_resource type="Texture2D" uid="uid://c4uxqjui4u75f" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_bm2je"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dkpjvvbyqtnfc" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_efiev"]
 [ext_resource type="Texture2D" uid="uid://6bqtnx3fyc5x" path="res://game/resources/img/shop/shop_icon_ad.svg" id="4_3p8lk"]
 [ext_resource type="Texture2D" uid="uid://c4vc6voujmiw7" path="res://game/resources/img/shop/shop_icon_selected.svg" id="5_6e3jf"]
+[ext_resource type="Texture2D" uid="uid://dj2gj0tawwh1n" path="res://game/resources/img/shop/shop_question_mark.svg" id="6_7y6a0"]
+[ext_resource type="Texture2D" uid="uid://d4beqqhois3ta" path="res://game/resources/img/shop/shop_box_blocked.svg" id="6_op8d2"]
 
 [node name="collectable" type="Node2D"]
 scale = Vector2(0.6, 0.6)
@@ -15,6 +17,8 @@ coin_texture = ExtResource("2_f1cg6")
 objetive_texture = ExtResource("3_efiev")
 video_texture = ExtResource("4_3p8lk")
 selected_texture = ExtResource("5_6e3jf")
+lock_sprite_texture = ExtResource("6_7y6a0")
+lock_box_texture = ExtResource("6_op8d2")
 
 [node name="BoxButton" type="TextureButton" parent="."]
 anchors_preset = 15
@@ -50,6 +54,17 @@ theme_override_font_sizes/normal_font_size = 50
 text = "300"
 fit_content = true
 scroll_active = false
+
+[node name="progress_bar" type="ProgressBar" parent="BoxButton/corner_info"]
+visible = false
+modulate = Color(0, 1, 1, 1)
+offset_left = -73.6116
+offset_top = -44.4444
+offset_right = -52.6116
+offset_bottom = 45.5556
+rounded = true
+fill_mode = 3
+show_percentage = false
 
 [node name="pop_up" type="Window" parent="."]
 initial_position = 2

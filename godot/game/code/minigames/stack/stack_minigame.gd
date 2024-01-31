@@ -30,7 +30,7 @@ func load_collectable_callbacks():
 	super.load_collectable_callbacks()
 	collection_array[0].add_callable_to_objetive_collectable(test_objetive_unlock_callback, "test_objetive")	
 	
-func test_objetive_unlock_callback() -> bool:
+func test_objetive_unlock_callback():
 	if get_max_score() > 22:
-		return true
-	return false
+		return [true, 100]
+	return [false, get_max_score() / 22.0 * 100.0]

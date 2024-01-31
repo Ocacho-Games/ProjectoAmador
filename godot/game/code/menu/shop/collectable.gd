@@ -10,6 +10,8 @@ class_name CollectableNode extends Node
 @export var objetive_texture: Texture2D
 @export var video_texture: Texture2D
 @export var selected_texture : Texture2D
+@export var lock_sprite_texture : Texture2D
+@export var lock_box_texture: Texture2D
 
 ## Reference to the pop up in case this is an objetive collectable
 @onready var pop_up : Window = $pop_up
@@ -85,7 +87,13 @@ func _check_objetive_collectable() -> void:
 	
 	assert(cached_collectable.objetive_callable.is_valid(), "Trying to call a null callable in a objetive collectable")
 	
-	if cached_collectable.objetive_callable.call():
+	#TODO: I would like to measure this function
+	var objetive_callable_result = cached_collectable.objetive_callable.call() 
+	var progress_bar : ProgressBar = GameUtilityLibrary.get_child_node_by_class(self, "ProgressBar") 
+	progress_bar.visible = true
+	progress_bar.value = objetive_callable_result[1]
+	
+	if objetive_callable_result[0]:
 		cached_is_lock = false
 		SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
 		SGPS.save_game()
@@ -109,7 +117,8 @@ func _check_selected_collectable() -> void:
 ## [sprite_corner_info]: Reference to the sprite that shows the type of asset in order to change it
 ##
 func _set_lock_collectable_properties(sprite : Sprite2D) -> void:
-	sprite.texture = cached_collectable.lock_shop_sprite
+	sprite.texture = lock_sprite_texture
+	get_node("BoxButton").set_texture_normal(lock_box_texture)	
 	match cached_collectable.unlock_type:
 		SCollectable.EUnlockType.COINS:
 			cached_sprite_corner_info.texture = coin_texture
@@ -122,6 +131,8 @@ func _set_lock_collectable_properties(sprite : Sprite2D) -> void:
 		SCollectable.EUnlockType.OBJETIVE:
 			cached_sprite_corner_info.texture = objetive_texture
 			cached_text_corner_info.visible = false
+			sprite.texture = cached_collectable.shop_sprite
+			sprite.set_modulate(Color(1, 1, 1, 0.1))
 
 ## Called when the button is pressed and the collectable is lock
 ## Depending on the unlock_type of the collectable, check if we can unlock it or not. 
