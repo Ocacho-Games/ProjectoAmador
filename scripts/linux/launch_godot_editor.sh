@@ -1,7 +1,7 @@
 #!/bin/bash
 
 script_path=$(dirname $0)
-godot_url=https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_linux.x86_64.zip
+godot_url=https://downloads.tuxfamily.org/godotengine/4.1.3/Godot_v4.1.3-stable_linux.x86_64.zip
 
 if test -d $script_path/launch_godot_binaries; then
      echo Godot is already downloaded. No need to download 
@@ -18,4 +18,4 @@ fi
 $script_path/setup.sh
 
 # Launching godot
-$script_path/launch_godot_binaries/Godot_v4.1.1-stable_linux.x86_64 -e --rendering-driver opengl3 --path $script_path/../../godot/ &
+$script_path/launch_godot_binaries/Godot_v4.1.3-stable_linux.x86_64 -e --rendering-driver opengl3 --path $script_path/../../godot/ &

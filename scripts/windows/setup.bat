@@ -17,6 +17,7 @@ for %%A in (%*) do (
 
 :: Updating Git submodules
 echo [92m== Updating Git Submodules ==
+cd /d "%REPO_PATH%"
 git submodule update --remote
 
 :: Updating localization
@@ -26,12 +27,12 @@ powershell wget https://docs.google.com/spreadsheets/d/1_nm66MNoA1zymBRlSUbu-gO7
 :: Installing third party libraries if they aren't installed or they are forced (/f flag)
 if not exist "%DESTINATION_PATH%\gut" (
     echo [94m== Installing/Updating GUT [Godot Unit Testing] by Bitwes == [90m
-    git clone -b godot_4 https://github.com/bitwes/Gut.git
+    git clone https://github.com/bitwes/Gut.git
     xcopy Gut\addons "%DESTINATION_PATH%" /s /e /y
     rmdir /s /q Gut
 ) else if %OVERWRITE_LIBRARIES%==1 (
     echo [94m== Installing/Updating GUT [Godot Unit Testing] by Bitwes == [90m
-    git clone -b godot_4 https://github.com/bitwes/Gut.git
+    git clone https://github.com/bitwes/Gut.git
     xcopy Gut\addons "%DESTINATION_PATH%" /s /e /y
     rmdir /s /q Gut
 )
@@ -72,28 +73,16 @@ if not exist "%DESTINATION_PATH%\debug_draw_3d" (
     rmdir /s /q godot_debug_draw_3d
 )
 
-@REM if not exist "%DESTINATION_PATH%\godotsteam" (
-@REM     echo [94m== Installing/Updating Godot Steam by Gramps == [90m
-@REM     git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
-@REM     xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
-@REM     rmdir /s /q GodotSteam
-@REM ) else if %OVERWRITE_LIBRARIES%==1 (
-@REM     echo [94m== Installing/Updating Godot Steam by Gramps == [90m
-@REM     git clone -b gdextension-plugin https://github.com/CoaguCo-Industries/GodotSteam.git
-@REM     xcopy GodotSteam\addons\ "%DESTINATION_PATH%" /s /e /y
-@REM     rmdir /s /q GodotSteam
-@REM )
-
 if not exist "%DESTINATION_PATH%\touch_input_manager" (
     echo [94m== Installing/Updating GodotTouchInputManager by Federico-Ciuffardi == [90m
-    git clone -b godot4support https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
+    git clone https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
     mkdir "%DESTINATION_PATH%"\touch_input_manager
     xcopy GodotTouchInputManager\*.gd "%DESTINATION_PATH%"\touch_input_manager /s /e /y
     rmdir /s /q GodotTouchInputManager
     rmdir /s /q "%DESTINATION_PATH%"\touch_input_manager\.github
 ) else if %OVERWRITE_LIBRARIES%==1 (
     echo [94m== Installing/Updating GodotTouchInputManager by Federico-Ciuffardi == [90m
-    git clone -b godot4support https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
+    git clone https://github.com/Federico-Ciuffardi/GodotTouchInputManager.git
     mkdir "%DESTINATION_PATH%"\touch_input_manager
     xcopy GodotTouchInputManager\*.gd "%DESTINATION_PATH%"\touch_input_manager /s /e /y
     rmdir /s /q GodotTouchInputManager

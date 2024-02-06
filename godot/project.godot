@@ -33,6 +33,10 @@ SAds="*res://game/code/autoloads/s_ads.gd"
 
 file_logging/enable_file_logging=true
 
+[debug_draw_3d]
+
+settings/telemetry_state=1
+
 [display]
 
 window/size/viewport_width=1080

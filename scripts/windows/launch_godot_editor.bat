@@ -7,11 +7,11 @@ set REPO_PATH=%~dp0..\
 FOR %%A IN ("%REPO_PATH%.") DO SET REPO_PATH=%%~dpA
 
 :: Check if Godot has been downloaded or not and donwload it if needed
-if exist "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries" (
+if exist "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\Godot_v4.1.3-stable_win64.exe" (
     echo Godot is already downloaded. No need to download 
 ) else (
     mkdir "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries"
-    curl https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_win64.exe.zip --output "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\godot.zip"
+    curl https://downloads.tuxfamily.org/godotengine/4.1.3/Godot_v4.1.3-stable_win64.exe.zip --output "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\godot.zip"
     cd "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\"
     tar -xf godot.zip
     del godot.zip
@@ -21,4 +21,4 @@ if exist "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries" (
 call %WINDOWS_SCRIPTS_PATH%\setup.bat
 
 :: Launching godot in editor with our project
-start "" "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\Godot_v4.1.1-stable_win64.exe" -e --path "%REPO_PATH%/godot/"
+start "" "%WINDOWS_SCRIPTS_PATH%\launch_godot_binaries\Godot_v4.1.3-stable_win64.exe" -e --path "%REPO_PATH%/godot/"
