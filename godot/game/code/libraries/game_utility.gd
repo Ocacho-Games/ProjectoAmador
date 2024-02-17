@@ -21,6 +21,7 @@ static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/view
 ## [class_type]: Class to look up for. E.g (Sprite2D, TextureRect...)
 ##
 static func get_child_node_by_class(root_node : Node, class_type : String):
+	if root_node.name == class_type or root_node.get_class() == class_type: return root_node
 	for node_child in root_node.get_children():
 		if node_child.name == class_type or node_child.get_class() == class_type: return node_child
 		if node_child.get_child_count() > 0:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckrgouc1e86q1"]
 
 [ext_resource type="Script" path="res://game/code/menu/info_popup.gd" id="1_w20k3"]
-[ext_resource type="Texture2D" uid="uid://daepvjh31cues" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
-[ext_resource type="Texture2D" uid="uid://dkpjvvbyqtnfc" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_uhf8t"]
-[ext_resource type="Texture2D" uid="uid://d0xwinwjd5l1c" path="res://game/resources/img/bob/bob.svg" id="4_4kufn"]
+[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
+[ext_resource type="Texture2D" uid="uid://dquipijowngsh" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_uhf8t"]
+[ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="4_4kufn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3qhd"]
 

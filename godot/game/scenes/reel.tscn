@@ -1,18 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://dflmmeq4t1rsu"]
+[gd_scene load_steps=6 format=3 uid="uid://dflmmeq4t1rsu"]
 
 [ext_resource type="Script" path="res://game/code/minigames/reel.gd" id="1_dbiqk"]
+[ext_resource type="Texture2D" uid="uid://bnme0l7m8lof8" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="2_2sqwt"]
+[ext_resource type="Texture2D" uid="uid://ds3sotkbkpcwh" path="res://game/resources/img/menu/menu_btn_left_2280x1080.png" id="2_60562"]
+[ext_resource type="Texture2D" uid="uid://dn72k62xfwmw0" path="res://game/resources/img/menu/menu_btn_center_2280x1080.png" id="3_r6qqu"]
+[ext_resource type="Texture2D" uid="uid://dm8u1qk8wk7i" path="res://game/resources/img/menu/menu_bnt_right_2280x1080.png" id="4_5xee7"]
 
 [node name="reel" type="Node2D"]
 script = ExtResource("1_dbiqk")
 
-[node name="shop_button" type="Button" parent="."]
-top_level = true
-z_index = 10
-offset_left = 37.0
-offset_top = 2145.0
-offset_right = 234.0
-offset_bottom = 2249.0
-theme_override_font_sizes/font_size = 70
-text = "K_SHOP"
+[node name="MenuBackground" type="TextureRect" parent="."]
+z_index = 2
+offset_top = 1991.0
+offset_right = 1081.0
+offset_bottom = 2266.0
+texture = ExtResource("2_2sqwt")
 
-[connection signal="pressed" from="shop_button" to="." method="_on_shop_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 1080.0
+offset_bottom = 2280.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Add" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "I'm an add
+"
+
+[node name="GameZone" type="Container" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Menu" type="HBoxContainer" parent="VBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+
+[node name="Left" type="TextureButton" parent="VBoxContainer/Menu"]
+layout_mode = 2
+texture_normal = ExtResource("2_60562")
+
+[node name="Middle" type="TextureButton" parent="VBoxContainer/Menu"]
+layout_mode = 2
+texture_normal = ExtResource("3_r6qqu")
+
+[node name="Right" type="TextureButton" parent="VBoxContainer/Menu"]
+layout_mode = 2
+texture_normal = ExtResource("4_5xee7")
+
+[connection signal="pressed" from="VBoxContainer/Menu/Middle" to="." method="_on_shop_button_pressed"]

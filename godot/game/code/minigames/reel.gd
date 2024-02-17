@@ -16,9 +16,12 @@ var current_minigame_node 	: Minigame = null
 var previous_minigame_node 	: Minigame = null
 var next_minigame_node		: Minigame = null
 
+## Reference to the main container of the reel
+@onready var main_container : VBoxContainer = $VBoxContainer
+## Reference to the main container of the reel
+@onready var menu_background : TextureRect = $MenuBackground
+
 ## === DISPLACEMENT VARIABLES ===
-## Screen height of the screen. With capital letters cause it should be a constant
-@onready var SCREEN_HEIGHT : float = ProjectSettings.get_setting("display/window/size/viewport_height")
 
 ## When we first begin dragging the y position of the input event in that moment
 var drag_event_initial_y_position : float = 0
@@ -51,7 +54,7 @@ var lerp_target_value : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	ad_view = AdsLibrary.load_show_banner()
+	_prepare_containers()	
 	_init_game()
 
 ## Overriden process function
@@ -81,6 +84,18 @@ func _exit_tree():
 #==============================================================================
 # PRIVATE FUNCTIONS
 #==============================================================================
+
+## In charge of setting the percentages to the different containers in order to be responsive
+##
+func _prepare_containers() -> void:
+	ad_view = AdsLibrary.load_show_banner(AdSize.new(-1, 60), AdPosition.Values.TOP_LEFT)	
+		
+	main_container.size.x = GameUtilityLibrary.SCREEN_WIDTH
+	main_container.size.y = GameUtilityLibrary.SCREEN_HEIGHT
+	main_container.get_node("Add").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * 0.05
+	main_container.get_node("GameZone").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * 0.87
+	
+	menu_background.position.y = GameUtilityLibrary.SCREEN_HEIGHT - GameUtilityLibrary.get_node_actual_height(menu_background)
 
 ## Initialize the game, instantiating and adding to the self node the first three minigames (current, previous and next)
 ## It also positions the three games to the right positions so we have the feeling of a reel when dragging.
@@ -128,8 +143,8 @@ func _prepare_game() -> void:
 	previous_minigame_node.is_being_played = false
 	next_minigame_node.is_being_played = false
 	
-	previous_minigame_node.position.y = -SCREEN_HEIGHT
-	next_minigame_node.position.y = SCREEN_HEIGHT
+	previous_minigame_node.position.y = -GameUtilityLibrary.SCREEN_HEIGHT
+	next_minigame_node.position.y = GameUtilityLibrary.SCREEN_HEIGHT
 	
 	GameUtilityLibrary.resume_scene(current_minigame_node, [previous_minigame_node.get_path(), next_minigame_node.get_path()])	
 	GameUtilityLibrary.pause_scene(previous_minigame_node)
@@ -142,7 +157,7 @@ func _prepare_game() -> void:
 		should_change_minigame_after_lerp = true
 		lerp_initial_value = current_minigame_node.position.y
 		last_drag_direction = SInputUtility.EGestureDirection.DOWN
-		lerp_target_value = -SCREEN_HEIGHT)
+		lerp_target_value = -GameUtilityLibrary.SCREEN_HEIGHT)
 
 ## Called on _process, this function handles all the logic related to minigames scene interpolation or dragging displacement
 ## [delta]: Frame delta time coming from the _process function
@@ -185,7 +200,7 @@ func _handle_swipe() -> void:
 	is_lerping = true
 	lerp_initial_value = current_minigame_node.position.y
 	should_change_minigame_after_lerp = true
-	lerp_target_value = SCREEN_HEIGHT if last_drag_direction == SInputUtility.EGestureDirection.UP else -SCREEN_HEIGHT
+	lerp_target_value = GameUtilityLibrary.SCREEN_HEIGHT if last_drag_direction == SInputUtility.EGestureDirection.UP else -GameUtilityLibrary.SCREEN_HEIGHT
 
 ## Called the first time the dragging becomes false after being true.
 ## This function is in charge of setting if we have to set the proper values for changing to the next or previous miningame based on the height threshold.
@@ -198,13 +213,13 @@ func _handle_dragging_just_false() -> void:
 	
 	var threshold_passed
 	if last_drag_direction == SInputUtility.EGestureDirection.UP:
-		threshold_passed = current_minigame_node.position.y > SCREEN_HEIGHT / 3
+		threshold_passed = current_minigame_node.position.y > GameUtilityLibrary.SCREEN_HEIGHT / 3
 		should_change_minigame_after_lerp = true if threshold_passed else false
-		lerp_target_value = SCREEN_HEIGHT if threshold_passed else 0.0
+		lerp_target_value = GameUtilityLibrary.SCREEN_HEIGHT if threshold_passed else 0.0
 	else:
-		threshold_passed = current_minigame_node.position.y > -(SCREEN_HEIGHT / 3)
+		threshold_passed = current_minigame_node.position.y > -(GameUtilityLibrary.SCREEN_HEIGHT / 3)
 		should_change_minigame_after_lerp = false if threshold_passed else true
-		lerp_target_value = 0.0 if threshold_passed else -SCREEN_HEIGHT
+		lerp_target_value = 0.0 if threshold_passed else -GameUtilityLibrary.SCREEN_HEIGHT
 		
 ## Called when we should interpolate to the same or another minigame
 ## This functions displace the current minigame position in y in order to reach the target in the given lerp_duration.
@@ -213,7 +228,7 @@ func _handle_dragging_just_false() -> void:
 func _handle_reel_interpolation(delta) -> void:
 	lerp_elapsed_time += delta
 	var delta_lerp_distance 	= abs(abs(lerp_initial_value) - abs(lerp_target_value))
-	var lerp_alpha_multiplier 	= delta_lerp_distance / SCREEN_HEIGHT
+	var lerp_alpha_multiplier 	= delta_lerp_distance / GameUtilityLibrary.SCREEN_HEIGHT
 	var alpha = min(1, lerp_elapsed_time / (lerp_duration * lerp_alpha_multiplier))
 	current_minigame_node.position.y = lerp(lerp_initial_value, lerp_target_value, alpha)
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bll84i82yt67u"]
 
 [ext_resource type="Script" path="res://game/code/menu/loading_screen.gd" id="1_fisos"]
-[ext_resource type="Texture2D" uid="uid://caqo6vc3d07mt" path="res://game/resources/img/loading_screen/loading_screen_background.svg" id="3_j48eq"]
-[ext_resource type="Texture2D" uid="uid://c8f4c4skf5vfp" path="res://game/resources/img/loading_screen/loading_screen_text.svg" id="4_mnpwu"]
-[ext_resource type="Texture2D" uid="uid://ctrpjs4eg1lan" path="res://game/resources/img/loading_screen/loading_screen_bob.svg" id="5_0e7yq"]
+[ext_resource type="Texture2D" uid="uid://jb1duh4ypppm" path="res://game/resources/img/loading_screen/loading_screen_background.svg" id="3_j48eq"]
+[ext_resource type="Texture2D" uid="uid://stqf4grkggj" path="res://game/resources/img/loading_screen/loading_screen_text.svg" id="4_mnpwu"]
+[ext_resource type="Texture2D" uid="uid://biqtis58i0kpy" path="res://game/resources/img/loading_screen/loading_screen_bob.svg" id="5_0e7yq"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="6_ur5o1"]
 
 [node name="loading_screen" type="Node2D"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bu3txaoe44d0f"]
 
-[ext_resource type="Texture2D" uid="uid://daepvjh31cues" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
-[ext_resource type="Texture2D" uid="uid://c4yh62q1r2otf" path="res://game/resources/img/shop/shop_window_popup_progress.svg" id="2_r5nnm"]
-[ext_resource type="Texture2D" uid="uid://cfnisdp5mcwyq" path="res://game/resources/img/shop/shop_window_popup_btn_ad.svg" id="3_nvcg5"]
+[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
+[ext_resource type="Texture2D" uid="uid://cmloyoeu24jht" path="res://game/resources/img/shop/shop_window_popup_progress.svg" id="2_r5nnm"]
+[ext_resource type="Texture2D" uid="uid://tllugbxm6xom" path="res://game/resources/img/shop/shop_window_popup_btn_ad.svg" id="3_nvcg5"]
 
 [node name="popup" type="Node2D"]
 
