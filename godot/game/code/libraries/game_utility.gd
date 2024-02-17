@@ -20,12 +20,12 @@ static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/view
 ## [root_node]: Base node to loop through the children
 ## [class_type]: Class to look up for. E.g (Sprite2D, TextureRect...)
 ##
-static func get_child_node_by_class(root_node : Node, class_type : String):
+static func get_child_node_by_class_or_name(root_node : Node, class_type : String):
 	if root_node.name == class_type or root_node.get_class() == class_type: return root_node
 	for node_child in root_node.get_children():
 		if node_child.name == class_type or node_child.get_class() == class_type: return node_child
 		if node_child.get_child_count() > 0:
-			var inner_child = get_child_node_by_class(node_child, class_type)
+			var inner_child = get_child_node_by_class_or_name(node_child, class_type)
 			if inner_child != null : return inner_child
 	
 	return null
@@ -34,11 +34,11 @@ static func get_child_node_by_class(root_node : Node, class_type : String):
 ## NOTE!: The function takes into account the node scale, not the texture rect or sprite scale!
 ##
 static func get_node_actual_width(node : Node) -> float:
-	var sprite = get_child_node_by_class(node, "Sprite2D")
+	var sprite = get_child_node_by_class_or_name(node, "Sprite2D")
 	if sprite:
 		return sprite.texture.get_width() * node.scale.x
 		
-	var texture_rect = get_child_node_by_class(node, "TextureRect")
+	var texture_rect = get_child_node_by_class_or_name(node, "TextureRect")
 	if texture_rect != null:
 		return texture_rect.size.x * node.scale.x
 
@@ -49,11 +49,11 @@ static func get_node_actual_width(node : Node) -> float:
 ## NOTE!: The function takes into account the node scale, not the texture rect or sprite scale!
 ##	
 static func get_node_actual_height(node : Node) -> float:
-	var sprite = get_child_node_by_class(node, "Sprite2D")
+	var sprite = get_child_node_by_class_or_name(node, "Sprite2D")
 	if sprite:
 		return sprite.texture.get_height() * node.scale.y
 		
-	var texture_rect = get_child_node_by_class(node, "TextureRect")
+	var texture_rect = get_child_node_by_class_or_name(node, "TextureRect")
 	if texture_rect:
 		return texture_rect.size.y * node.scale.y
 

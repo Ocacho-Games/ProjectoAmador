@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/code/menu/info_popup.gd" id="1_w20k3"]
 [ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
-[ext_resource type="Texture2D" uid="uid://dquipijowngsh" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_uhf8t"]
+[ext_resource type="Texture2D" uid="uid://bjjnvwhk7rewa" path="res://game/resources/img/shop/shop_icon_close.png" id="3_h0wn6"]
 [ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="4_4kufn"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3qhd"]
@@ -32,7 +32,7 @@ offset_top = -977.5
 offset_right = 601.036
 offset_bottom = -871.5
 scale = Vector2(1.36374, 2.5)
-texture_normal = ExtResource("3_uhf8t")
+texture_normal = ExtResource("3_h0wn6")
 
 [node name="text" type="RichTextLabel" parent="popup_background"]
 custom_minimum_size = Vector2(600, 200)

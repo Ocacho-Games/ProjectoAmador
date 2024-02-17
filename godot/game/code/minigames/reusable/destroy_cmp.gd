@@ -43,7 +43,7 @@ func _process(_delta):
 ##	
 func _handle_screen_borders() -> void:
 	var position_parent = get_parent().position
-	var rigidbody = GameUtilityLibrary.get_child_node_by_class(get_parent(), "RigidBody2D")
+	var rigidbody = GameUtilityLibrary.get_child_node_by_class_or_name(get_parent(), "RigidBody2D")
 	if rigidbody:
 		position_parent += rigidbody.position
 

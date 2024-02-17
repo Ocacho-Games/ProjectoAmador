@@ -36,7 +36,9 @@ enum EUnlockType { COINS, VIDEO, OBJETIVE}
 ## In case unlock_type is set to OBJETIVE, the boolean function that should be called to check if the collectable is unlocked. 
 ## Apart from the bool, the function should return a percentage for the progression bar of the objetive
 ## This should be bound in load_collectable_callbacks() (Minigame.gd) or children
-@export var objetive_callable : Callable
+var objetive_callable : Callable
+## In case unlock_type is set to OBJETIVE, whether we should show the option to add 1 to the current score for unlocking the collectable
+@export var show_reward_video_button : bool = true
 @export_group("")
 
 ## This is the sprite that will be displayed as the box recovering the asset sprites

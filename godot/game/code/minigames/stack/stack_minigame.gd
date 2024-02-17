@@ -26,9 +26,9 @@ func _process(delta):
 
 ## This is an example of adding callbacks to collectables
 ##
-func load_collectable_callbacks():
-	super.load_collectable_callbacks()
-	collection_array[0].add_callable_to_objetive_collectable(test_objetive_unlock_callback, "test_objetive")	
+func load_collectable_callbacks(collections : Array[SCollection]) -> void:
+	super.load_collectable_callbacks(collections)
+	collections[0].add_callable_to_objetive_collectable(test_objetive_unlock_callback, "test_objetive")	
 	
 func test_objetive_unlock_callback():
 	if get_max_score() > 22:

@@ -94,7 +94,7 @@ var fixed_delta_multiplier	: float = 1.0
 ## Half of the height of the parent object. The parent object should have a Sprite2D or a TextureRect in order to calculate the height 
 @onready var half_object_height = GameUtilityLibrary.get_node_actual_height(get_parent()) / 2.0
 ## Whether the parent of this component has a sprite or not in order to perform different operations
-@onready var has_a_sprite = GameUtilityLibrary.get_child_node_by_class(get_parent(), "Sprite2D")
+@onready var has_a_sprite = GameUtilityLibrary.get_child_node_by_class_or_name(get_parent(), "Sprite2D")
 
 #==============================================================================
 # GODOT FUNCTIONS

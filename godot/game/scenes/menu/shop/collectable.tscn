@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://fgnfdtvg8c3c"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
-[ext_resource type="Texture2D" uid="uid://c4uxqjui4u75f" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_bm2je"]
-[ext_resource type="Texture2D" uid="uid://7d54qyv02wsy" path="res://game/resources/img/shop/bob_coin.svg" id="2_f1cg6"]
-[ext_resource type="Texture2D" uid="uid://dbqx18nnvhrbx" path="res://game/resources/img/shop/shop_box_blue.svg" id="2_mmpbx"]
-[ext_resource type="Texture2D" uid="uid://dkpjvvbyqtnfc" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_efiev"]
-[ext_resource type="Texture2D" uid="uid://6bqtnx3fyc5x" path="res://game/resources/img/shop/shop_icon_ad.svg" id="4_3p8lk"]
-[ext_resource type="Texture2D" uid="uid://c4vc6voujmiw7" path="res://game/resources/img/shop/shop_icon_selected.svg" id="5_6e3jf"]
-[ext_resource type="Texture2D" uid="uid://dj2gj0tawwh1n" path="res://game/resources/img/shop/shop_question_mark.svg" id="6_7y6a0"]
-[ext_resource type="Texture2D" uid="uid://d4beqqhois3ta" path="res://game/resources/img/shop/shop_box_blocked.svg" id="6_op8d2"]
+[ext_resource type="Texture2D" uid="uid://2fmobchsxc1i" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_bm2je"]
+[ext_resource type="Texture2D" uid="uid://bpny0cepj5fx4" path="res://game/resources/img/shop/bob_coin.svg" id="2_f1cg6"]
+[ext_resource type="Texture2D" uid="uid://bhcuumv0oduvr" path="res://game/resources/img/shop/shop_box_blue.svg" id="2_mmpbx"]
+[ext_resource type="Texture2D" uid="uid://dquipijowngsh" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_efiev"]
+[ext_resource type="Texture2D" uid="uid://bqusb8fuxxpse" path="res://game/resources/img/shop/shop_icon_ad.svg" id="4_3p8lk"]
+[ext_resource type="Texture2D" uid="uid://cf4vh8eamlre7" path="res://game/resources/img/shop/shop_icon_selected.svg" id="5_6e3jf"]
+[ext_resource type="Texture2D" uid="uid://bh6fs1e85jt6a" path="res://game/resources/img/shop/shop_question_mark.svg" id="6_7y6a0"]
+[ext_resource type="Texture2D" uid="uid://cphb12wkojmah" path="res://game/resources/img/shop/shop_box_blocked.svg" id="6_op8d2"]
 
 [node name="collectable" type="Node2D"]
 scale = Vector2(0.6, 0.6)
@@ -65,24 +65,5 @@ offset_bottom = 45.5556
 rounded = true
 fill_mode = 3
 show_percentage = false
-
-[node name="pop_up" type="Window" parent="."]
-initial_position = 2
-size = Vector2i(800, 300)
-unresizable = true
-
-[node name="ColorRect" type="ColorRect" parent="pop_up"]
-offset_right = 10000.0
-offset_bottom = 100000.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="pop_up"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "lkjhjklhjl"
 
 [connection signal="pressed" from="BoxButton" to="." method="_on_box_button_pressed"]

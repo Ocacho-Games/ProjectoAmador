@@ -13,9 +13,6 @@ class_name CollectableNode extends Node
 @export var lock_sprite_texture : Texture2D
 @export var lock_box_texture: Texture2D
 
-## Reference to the pop up in case this is an objetive collectable
-@onready var pop_up : Window = $pop_up
-
 ## Cached value of the lock status of the collectable
 var cached_is_lock : bool
 ## Cached value of the collection's key
@@ -30,10 +27,6 @@ var cached_text_corner_info : RichTextLabel
 #==============================================================================
 # GODOT FUNCTIONS
 #==============================================================================
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pop_up.hide()
 
 # Called each frame
 func _process(_delta):
@@ -89,7 +82,7 @@ func _check_objetive_collectable() -> void:
 	
 	#TODO: I would like to measure this function
 	var objetive_callable_result = cached_collectable.objetive_callable.call() 
-	var progress_bar : ProgressBar = GameUtilityLibrary.get_child_node_by_class(self, "ProgressBar") 
+	var progress_bar : ProgressBar = GameUtilityLibrary.get_child_node_by_class_or_name(self, "ProgressBar") 
 	progress_bar.visible = true
 	progress_bar.value = objetive_callable_result[1]
 	
@@ -168,8 +161,7 @@ func _button_pressed_lock() -> void:
 			ad = AdsLibrary.load_show_rewarded(ad_listener)
 			
 		SCollectable.EUnlockType.OBJETIVE:
-			pop_up.show()
-			pop_up.get_node("RichTextLabel").text = cached_collectable.objetive_description
+			PopupLibrary.show_shop_popup(self, cached_collectable)
 
 ## Called when the button is pressed and the collectable is unlock
 ## Change the current asset for the collectable's type in the cloud data

@@ -22,7 +22,7 @@ func _exit_tree():
 ## When instanciating the popup, you can call this function in order to set the popups' properties
 ##
 func set_properties(text : String, callable : Callable) -> void:
-	GameUtilityLibrary.get_child_node_by_class(self, "RichTextLabel").text = text
+	GameUtilityLibrary.get_child_node_by_class_or_name(self, "RichTextLabel").text = text
 	callable_on_close = callable
 
 #==============================================================================

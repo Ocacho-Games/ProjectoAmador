@@ -13,9 +13,6 @@ class_name Minigame extends Node2D
 # VARIABLES
 #==============================================================================
 
-## The collectable collections in case we want to add callbacks to objetive collectables
-@export var collection_array : Array[SCollection]
-
 ## Reference to the background of the minigame. Each Minigame must have a background
 @onready var background : TextureRect = $background
 
@@ -101,7 +98,7 @@ func get_max_score():
 ## Called at the beginning from the autoload SGame. Load all the callbacks for the collectables
 ## This should be overridden by the children
 ##	
-func load_collectable_callbacks():
+func load_collectable_callbacks(collections : Array[SCollection]) -> void:
 	pass
 	
 #==============================================================================

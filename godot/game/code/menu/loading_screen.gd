@@ -7,13 +7,17 @@ extends Node2D
 ## Whether the popup in case we are offline has been shown or not
 var offline_pop_up_shown = false
 
+## The collectable collections in case we want to add callbacks to objetive collectables
+@export var collection_array : Array[SCollection]
+
 #==============================================================================
 # GODOT FUNCTIONS
 #==============================================================================
 
 func _ready():
 	if OS.get_name() != "Android":
-		SceneManager.change_scene("res://game/scenes/reel.tscn")		
+		SceneManager.change_scene("res://game/scenes/reel.tscn")
+		SGame.load_all_collectable_callbacks(collection_array)		
 	else:
 		SNetwork.on_connection_failed.connect(_on_internet_connection_failed)
 		SGPS.on_gps_initialized.connect(_on_gps_initialized)
@@ -37,4 +41,7 @@ func _on_internet_connection_failed(_error, _msg):
 ## Called when gps is initialized. Changes to the reel scene when the game has been loaded
 ##		
 func _on_gps_initialized() -> void:
-	SGPS.connect_signal("_on_game_load_success", func(_unused): SceneManager.change_scene("res://game/scenes/reel.tscn"))
+	SGPS.connect_signal("_on_game_load_success", 
+	func(_unused): 
+		SceneManager.change_scene("res://game/scenes/reel.tscn")
+		SGame.load_all_collectable_callbacks(collection_array))

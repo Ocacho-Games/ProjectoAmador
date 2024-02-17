@@ -26,13 +26,18 @@ func _ready():
 	# TODO [David]: We should develop an algorithm for this, for now it's disabled for the shake of testing
 	#randomize()
 	#minigames_array.shuffle()
+	pass
 	
-	for minigame in minigames_array:
-		minigame.scene.instantiate().load_collectable_callbacks()
-
 #==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
+
+## Load the global and the specific game callbacks for the collectables that are objetives
+##
+func load_all_collectable_callbacks(collections : Array[SCollection]) -> void:
+	# TODO: Global callbacks
+	for minigame in minigames_array:
+		minigame.scene.instantiate().load_collectable_callbacks(collections)
 
 ## Set the game as ready and load the first minigame
 ##		

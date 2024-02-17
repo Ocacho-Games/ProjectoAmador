@@ -137,7 +137,7 @@ func _create_and_place_piece() -> void:
 func _set_piece_size_position_speed(piece_node : Node2D) -> void:
 	assert(piece_node)
 	
-	var auto_movement_cmp = GameUtilityLibrary.get_child_node_by_class(piece_node, "AutoMovementCmp")
+	var auto_movement_cmp = GameUtilityLibrary.get_child_node_by_class_or_name(piece_node, "AutoMovementCmp")
 	assert(auto_movement_cmp, "Pieces must have an AutoMovementCmp")
 	piece_node.get_node("TextureRect").size.x = next_x_size
 	auto_movement_cmp.update_sizes()	
