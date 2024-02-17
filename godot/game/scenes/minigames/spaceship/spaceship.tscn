@@ -14,7 +14,6 @@ radius = 48.0104
 
 [node name="spaceship" type="Node2D"]
 script = ExtResource("1_cbeqs")
-collection_array = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("6_4rmhc")])
 metadata/_edit_group_ = true
 
 [node name="background" type="TextureRect" parent="."]
