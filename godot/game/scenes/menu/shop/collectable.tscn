@@ -10,8 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://bh6fs1e85jt6a" path="res://game/resources/img/shop/shop_question_mark.svg" id="6_7y6a0"]
 [ext_resource type="Texture2D" uid="uid://cphb12wkojmah" path="res://game/resources/img/shop/shop_box_blocked.svg" id="6_op8d2"]
 
-[node name="collectable" type="Node2D"]
+[node name="collectable" type="MarginContainer"]
 scale = Vector2(0.6, 0.6)
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 script = ExtResource("1_28gil")
 coin_texture = ExtResource("2_f1cg6")
 objetive_texture = ExtResource("3_efiev")
@@ -21,14 +25,7 @@ lock_sprite_texture = ExtResource("6_7y6a0")
 lock_box_texture = ExtResource("6_op8d2")
 
 [node name="BoxButton" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 356.0
-offset_bottom = 356.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.2, 1.2)
+layout_mode = 2
 texture_normal = ExtResource("2_mmpbx")
 
 [node name="asset" type="Sprite2D" parent="BoxButton"]
@@ -54,16 +51,5 @@ theme_override_font_sizes/normal_font_size = 50
 text = "300"
 fit_content = true
 scroll_active = false
-
-[node name="progress_bar" type="ProgressBar" parent="BoxButton/corner_info"]
-visible = false
-modulate = Color(0, 1, 1, 1)
-offset_left = -73.6116
-offset_top = -44.4444
-offset_right = -52.6116
-offset_bottom = 45.5556
-rounded = true
-fill_mode = 3
-show_percentage = false
 
 [connection signal="pressed" from="BoxButton" to="." method="_on_box_button_pressed"]

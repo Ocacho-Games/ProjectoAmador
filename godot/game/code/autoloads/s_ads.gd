@@ -22,7 +22,7 @@ func _ready():
 # PRIVATE FUNCTIONS
 #==============================================================================
 
-func _on_initialization_complete(initialization_status : InitializationStatus) -> void:
+func _on_initialization_complete(_initialization_status : InitializationStatus) -> void:
 	print("MobileAds initialization complete")
 	#print_all_values(initialization_status)
 #	var ad_colony_app_options := AdColonyAppOptions.new()

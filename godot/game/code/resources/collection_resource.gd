@@ -8,8 +8,8 @@ class_name SCollection extends Resource
 # VARIABLES
 #==============================================================================
 
-## Name that will be displayed in the store. NOTE: This should be translated when localiziting
-@export var shop_name = "BOB"
+## Sprite that will be displayed in the store for this collection
+@export var shop_sprite : Texture 
 
 ## Unique ID name of the collecction. There should be an array entry on save_data with the same name
 @export var key : String = "test-key-skin"

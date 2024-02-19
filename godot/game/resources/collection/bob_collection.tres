@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="SCollection" load_steps=14 format=3 uid="uid://dnuok8mfsrmex"]
+[gd_resource type="Resource" script_class="SCollection" load_steps=15 format=3 uid="uid://dnuok8mfsrmex"]
 
-[ext_resource type="Texture2D" uid="uid://ctbkcuklfcj2r" path="res://game/resources/img/bob/skins/bob_skin_01.svg" id="1_he6ui"]
-[ext_resource type="Texture2D" uid="uid://sjjdpftbupck" path="res://game/resources/img/shop/shop_box_green.svg" id="2_phxev"]
-[ext_resource type="Texture2D" uid="uid://b001ke5ik41eb" path="res://game/resources/img/bob/skins/bob_skin_02.svg" id="3_algqp"]
+[ext_resource type="Texture2D" uid="uid://b3kkhofre34xc" path="res://game/resources/img/bob/skins/bob_skin_01.svg" id="1_he6ui"]
+[ext_resource type="Texture2D" uid="uid://d1pd6gc6hfn6k" path="res://game/resources/img/shop/shop_box_green.svg" id="2_phxev"]
+[ext_resource type="Texture2D" uid="uid://dq3sj7fcj5pl7" path="res://game/resources/img/bob/skins/bob_skin_02.svg" id="3_algqp"]
 [ext_resource type="Script" path="res://game/code/resources/collectable_resource.gd" id="3_ko04a"]
-[ext_resource type="Texture2D" uid="uid://pkjjfdr0my0u" path="res://game/resources/img/bob/skins/bob_skin_03.svg" id="4_fp5pq"]
-[ext_resource type="Texture2D" uid="uid://cdhvpoln0vcwx" path="res://game/resources/img/shop/shop_box_blue.svg" id="6_71a3n"]
-[ext_resource type="Texture2D" uid="uid://co4ts21au0ava" path="res://game/resources/img/shop/shop_box_pink.svg" id="8_w0bd5"]
-[ext_resource type="Texture2D" uid="uid://dwmenlcc4xme7" path="res://game/resources/img/spaceship/alien_asteroid.svg" id="11_4emmg"]
+[ext_resource type="Texture2D" uid="uid://cgsm36piyvjl1" path="res://game/resources/img/bob/skins/bob_skin_03.svg" id="4_fp5pq"]
+[ext_resource type="Texture2D" uid="uid://bhcuumv0oduvr" path="res://game/resources/img/shop/shop_box_blue.svg" id="6_71a3n"]
+[ext_resource type="Texture2D" uid="uid://cmmne0yu1bhx" path="res://game/resources/img/shop/shop_box_pink.svg" id="8_w0bd5"]
+[ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="10_ombry"]
+[ext_resource type="Texture2D" uid="uid://cearlwb2w8vjt" path="res://game/resources/img/spaceship/alien_asteroid.svg" id="11_4emmg"]
 [ext_resource type="Script" path="res://game/code/resources/collection_resource.gd" id="12_10c5a"]
 
 [sub_resource type="Resource" id="Resource_gb2mx"]
@@ -64,6 +65,6 @@ asset = ExtResource("11_4emmg")
 
 [resource]
 script = ExtResource("12_10c5a")
-shop_name = "BOB"
+shop_sprite = ExtResource("10_ombry")
 key = "bob"
 collectables = Array[ExtResource("3_ko04a")]([SubResource("Resource_gb2mx"), SubResource("Resource_0p8w6"), SubResource("Resource_g4m55"), SubResource("Resource_5ypuu")])

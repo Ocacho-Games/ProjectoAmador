@@ -8,18 +8,11 @@ extends Node
 #==============================================================================
 
 ## === REFERENCES VARIABLES ===
-## Cached banner ad of the minigame in order to destroy it when exiting the mingame
-var ad_view
 
 ## Cached current,previous and next instanciated PackedScenes in order to add/move/destroy them when changing among minigames
 var current_minigame_node 	: Minigame = null
 var previous_minigame_node 	: Minigame = null
 var next_minigame_node		: Minigame = null
-
-## Reference to the main container of the reel
-@onready var main_container : VBoxContainer = $VBoxContainer
-## Reference to the main container of the reel
-@onready var menu_background : TextureRect = $MenuBackground
 
 ## === DISPLACEMENT VARIABLES ===
 
@@ -54,7 +47,6 @@ var lerp_target_value : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_prepare_containers()	
 	_init_game()
 
 ## Overriden process function
@@ -75,27 +67,11 @@ func _exit_tree():
 	
 	if next_minigame_node:
 		next_minigame_node.queue_free()
-		next_minigame_node = null
-	
-	if ad_view:
-		ad_view.destroy()
-		ad_view = null		
+		next_minigame_node = null	
 
 #==============================================================================
 # PRIVATE FUNCTIONS
 #==============================================================================
-
-## In charge of setting the percentages to the different containers in order to be responsive
-##
-func _prepare_containers() -> void:
-	ad_view = AdsLibrary.load_show_banner(AdSize.new(-1, 60), AdPosition.Values.TOP_LEFT)	
-		
-	main_container.size.x = GameUtilityLibrary.SCREEN_WIDTH
-	main_container.size.y = GameUtilityLibrary.SCREEN_HEIGHT
-	main_container.get_node("Add").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * 0.05
-	main_container.get_node("GameZone").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * 0.87
-	
-	menu_background.position.y = GameUtilityLibrary.SCREEN_HEIGHT - GameUtilityLibrary.get_node_actual_height(menu_background)
 
 ## Initialize the game, instantiating and adding to the self node the first three minigames (current, previous and next)
 ## It also positions the three games to the right positions so we have the feeling of a reel when dragging.
@@ -239,10 +215,3 @@ func _handle_reel_interpolation(delta) -> void:
 
 		is_lerping = false
 		lerp_elapsed_time = 0
-
-#==============================================================================
-# SIGNAL FUNCTIONS
-#==============================================================================
-
-func _on_shop_button_pressed():
-	SceneManager.change_scene("res://game/scenes/menu/shop/shop.tscn")

@@ -31,3 +31,6 @@ godot/android/build/intermediates
 godot/android/build/assets
 godot/android/build/build
 godot/android/build/libs/gdextensionlibs.json
+
+# TEMPORAL
+*.translation

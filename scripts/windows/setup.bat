@@ -16,9 +16,9 @@ for %%A in (%*) do (
 )
 
 :: Updating Git submodules
-echo [92m== Updating Git Submodules ==
-cd /d "%REPO_PATH%"
-git submodule update --remote
+@REM echo [92m== Updating Git Submodules ==
+@REM cd /d "%REPO_PATH%"
+@REM git submodule update --remote
 
 :: Updating localization
 echo [92m== Updating Localization ==

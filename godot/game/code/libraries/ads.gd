@@ -80,6 +80,8 @@ static func load_show_rewarded_interstital(rewarded_listener : OnUserEarnedRewar
 ## [show_ad]: Whether we should show the ad once it's loaded or not
 ##	
 static func _load_advanced_add(callback, loader, ad_id, show_ad = false, listener = null):
+	#TODO: We need a reference to something How to 
+	#PopupLibrary.show_info_popup(get_tree().root, "Loading an ad be patient mdfk")
 	var ad
 	
 	callback.on_ad_failed_to_load = func(adError : LoadAdError) -> void:

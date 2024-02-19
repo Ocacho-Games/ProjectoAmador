@@ -82,9 +82,6 @@ func _check_objetive_collectable() -> void:
 	
 	#TODO: I would like to measure this function
 	var objetive_callable_result = cached_collectable.objetive_callable.call() 
-	var progress_bar : ProgressBar = GameUtilityLibrary.get_child_node_by_class_or_name(self, "ProgressBar") 
-	progress_bar.visible = true
-	progress_bar.value = objetive_callable_result[1]
 	
 	if objetive_callable_result[0]:
 		cached_is_lock = false
