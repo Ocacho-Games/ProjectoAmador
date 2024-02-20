@@ -36,10 +36,10 @@ func _exit_tree():
 func _prepare_containers() -> void:
 	# Check if the user has bought the ads or not in order to update percentages
 	var percentage_menu_background = (GameUtilityLibrary.get_node_actual_height(menu_background)) / GameUtilityLibrary.SCREEN_HEIGHT
-	var percentage_add = 0.09
-	var percentage_game = 1.0 - percentage_menu_background - percentage_add
+	var percentage_ad = 0.09
+	var percentage_game = 1.0 - percentage_menu_background - percentage_ad
 	
-	print(percentage_add)
+	print(percentage_ad)
 	print(percentage_game)
 	print(percentage_menu_background)	
 	
@@ -50,7 +50,7 @@ func _prepare_containers() -> void:
 		
 	main_container.size.x = GameUtilityLibrary.SCREEN_WIDTH
 	main_container.size.y = GameUtilityLibrary.SCREEN_HEIGHT
-	main_container.get_node("Add").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * percentage_add
+	main_container.get_node("Ad").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * percentage_ad
 	main_container.get_node("GameZone").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * percentage_game
 	
 	menu_background.position.y = GameUtilityLibrary.SCREEN_HEIGHT - GameUtilityLibrary.get_node_actual_height(menu_background)

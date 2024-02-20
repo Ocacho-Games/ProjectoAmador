@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c15ka3i036qk5"]
+[gd_scene load_steps=5 format=3 uid="uid://c15ka3i036qk5"]
 
-[ext_resource type="Texture2D" uid="uid://bmrst33i464po" path="res://game/resources/img/bob/bob.svg" id="1_5ei3w"]
+[ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="1_5ei3w"]
+[ext_resource type="PackedScene" uid="uid://bhlu7uy66nv41" path="res://game/scenes/menu/base_structure.tscn" id="2_w823p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xutth"]
 bg_color = Color(0.768627, 0.529412, 0.517647, 1)
@@ -19,11 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="AdSpace" type="ColorRect" parent="BaseTienda"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-color = Color(1, 1, 0, 1)
 
 [node name="CollectableTopPart" type="HBoxContainer" parent="BaseTienda"]
 custom_minimum_size = Vector2(0, 250)
@@ -81,58 +77,6 @@ layout_mode = 2
 texture = ExtResource("1_5ei3w")
 expand_mode = 1
 
-[node name="CoinCollectable2" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables/CoinCollectable2"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="CoinCollectable3" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables/CoinCollectable3"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="CoinCollectable4" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables/CoinCollectable4"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="CoinCollectable5" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables/CoinCollectable5"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
 [node name="Separation" type="ColorRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
@@ -154,84 +98,6 @@ layout_mode = 2
 texture = ExtResource("1_5ei3w")
 expand_mode = 1
 
-[node name="VideoCollectable2" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables/VideoCollectable2"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="VideoCollectable3" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables/VideoCollectable3"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="VideoCollectable4" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables/VideoCollectable4"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="VideoCollectable5" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables/VideoCollectable5"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="VideoCollectable6" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables/VideoCollectable6"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="VideoCollectable7" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables/VideoCollectable7"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
 [node name="Separation2" type="ColorRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
@@ -248,45 +114,6 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables/AchievementCollectable1"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="AchievementCollectable2" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables/AchievementCollectable2"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="AchievementCollectable3" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables/AchievementCollectable3"]
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 1
-
-[node name="AchievementCollectable4" type="MarginContainer" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables"]
-layout_mode = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables/AchievementCollectable4"]
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 texture = ExtResource("1_5ei3w")
@@ -315,67 +142,4 @@ layout_mode = 2
 texture = ExtResource("1_5ei3w")
 expand_mode = 3
 
-[node name="TypeCollectable2" type="MarginContainer" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer/TypeCollectable2"]
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 3
-
-[node name="TypeCollectable3" type="MarginContainer" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer/TypeCollectable3"]
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 3
-
-[node name="TypeCollectable4" type="MarginContainer" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer/TypeCollectable4"]
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 3
-
-[node name="TypeCollectable5" type="MarginContainer" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer/TypeCollectable5"]
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 3
-
-[node name="TypeCollectable6" type="MarginContainer" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
-
-[node name="TextureRect" type="TextureRect" parent="BaseTienda/ScrollTypeCollectable/HBoxContainer/TypeCollectable6"]
-layout_mode = 2
-texture = ExtResource("1_5ei3w")
-expand_mode = 3
-
-[node name="Menu" type="ColorRect" parent="BaseTienda"]
-custom_minimum_size = Vector2(0, 300)
-layout_mode = 2
-color = Color(1, 0, 0, 1)
+[node name="base_structure" parent="." instance=ExtResource("2_w823p")]

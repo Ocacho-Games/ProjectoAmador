@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhlu7uy66nv41"]
 
 [ext_resource type="Texture2D" uid="uid://bnme0l7m8lof8" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="1_gjyws"]
-[ext_resource type="Script" path="res://game/scenes/menu/base_structure.gd" id="1_mu7k5"]
+[ext_resource type="Script" path="res://game/code/menu/base_structure.gd" id="1_i7ymd"]
 [ext_resource type="Texture2D" uid="uid://ds3sotkbkpcwh" path="res://game/resources/img/menu/menu_btn_left_2280x1080.png" id="2_n714l"]
 [ext_resource type="Texture2D" uid="uid://dn72k62xfwmw0" path="res://game/resources/img/menu/menu_btn_center_2280x1080.png" id="3_v765o"]
 [ext_resource type="Texture2D" uid="uid://dm8u1qk8wk7i" path="res://game/resources/img/menu/menu_bnt_right_2280x1080.png" id="4_k65nm"]
@@ -14,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_mu7k5")
+script = ExtResource("1_i7ymd")
 
 [node name="MenuBackground" type="TextureRect" parent="."]
 z_index = 2
@@ -30,7 +30,7 @@ offset_right = 1080.0
 offset_bottom = 2280.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Add" type="Button" parent="VBoxContainer"]
+[node name="Ad" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "I'm an add
