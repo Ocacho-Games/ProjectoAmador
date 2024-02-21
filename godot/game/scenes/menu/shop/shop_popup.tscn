@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://bu3txaoe44d0f"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop_popup.gd" id="1_f1tbr"]
-[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
-[ext_resource type="Texture2D" uid="uid://cmloyoeu24jht" path="res://game/resources/img/shop/shop_window_popup_progress.svg" id="2_r5nnm"]
-[ext_resource type="Texture2D" uid="uid://bjjnvwhk7rewa" path="res://game/resources/img/shop/shop_icon_close.png" id="2_rqjqq"]
-[ext_resource type="Texture2D" uid="uid://bhcuumv0oduvr" path="res://game/resources/img/shop/shop_box_blue.svg" id="3_kd302"]
-[ext_resource type="Texture2D" uid="uid://tllugbxm6xom" path="res://game/resources/img/shop/shop_window_popup_btn_ad.svg" id="3_nvcg5"]
-[ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="5_wyf2u"]
+[ext_resource type="Texture2D" uid="uid://b7brnkwyvek4u" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
+[ext_resource type="Texture2D" uid="uid://cutw43u1urgnr" path="res://game/resources/img/shop/shop_window_popup_progress.svg" id="2_r5nnm"]
+[ext_resource type="Texture2D" uid="uid://b1d5tiqjw0kju" path="res://game/resources/img/shop/shop_icon_close.png" id="2_rqjqq"]
+[ext_resource type="Texture2D" uid="uid://cdhvpoln0vcwx" path="res://game/resources/img/shop/shop_box_blue.svg" id="3_kd302"]
+[ext_resource type="Texture2D" uid="uid://dul2kyjwcvk6y" path="res://game/resources/img/shop/shop_window_popup_btn_ad.svg" id="3_nvcg5"]
+[ext_resource type="Texture2D" uid="uid://bmrst33i464po" path="res://game/resources/img/bob/bob.svg" id="5_wyf2u"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_drw7e"]
 
@@ -41,6 +41,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_8en0a")
 layout_mode = 2
 
 [node name="Close" type="TextureButton" parent="Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("2_rqjqq")
 
@@ -62,6 +63,7 @@ text = "TO UNLOCK"
 fit_content = true
 
 [node name="ObjetiveText" type="RichTextLabel" parent="Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 70
@@ -72,10 +74,12 @@ fit_content = true
 layout_mode = 2
 
 [node name="VideoButton" type="TextureButton" parent="Control/VBoxContainer"]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("3_nvcg5")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer/VideoButton"]
+visible = false
 layout_mode = 0
 offset_left = 300.0
 offset_right = 340.0
@@ -87,7 +91,6 @@ fit_content = true
 
 [node name="background_popup" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(550, 1000)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_swiau")
 
@@ -106,5 +109,130 @@ texture = ExtResource("2_r5nnm")
 position = Vector2(-5, 575)
 texture = ExtResource("3_nvcg5")
 
+[node name="Control3" type="PanelContainer" parent="."]
+offset_right = 900.0
+offset_bottom = 1200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_ce4xg")
+theme_override_styles/panel = SubResource("StyleBoxTexture_8en0a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control3/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="Control3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Close" type="TextureButton" parent="Control3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_rqjqq")
+
+[node name="Container2" type="Container" parent="Control3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control3/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Box" type="TextureRect" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_kd302")
+
+[node name="Asset" type="TextureRect" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer/Box"]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 50.0
+offset_right = 391.0
+offset_bottom = 375.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_wyf2u")
+
+[node name="Container" type="Container" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Container" parent="Control3/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Unlock" type="RichTextLabel" parent="Control3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]TO UNLOCK[/center]"
+fit_content = true
+
+[node name="Spacer2" type="Container" parent="Control3/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ObjectiveText" type="RichTextLabel" parent="Control3/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]Objetive text[/center]"
+fit_content = true
+
+[node name="Spacer3" type="Container" parent="Control3/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Control3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Container" parent="Control3/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container2" type="Container" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VideoButton" type="TextureButton" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("3_nvcg5")
+
+[node name="ObjectiveText" type="RichTextLabel" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer2/VideoButton"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 550.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]+1[/center]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Container3" type="Container" parent="Control3/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control3/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
 [connection signal="pressed" from="Control/VBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/VideoButton" to="." method="_on_video_button_pressed"]
+[connection signal="pressed" from="Control3/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Control3/VBoxContainer/VBoxContainer/HBoxContainer2/VideoButton" to="." method="_on_video_button_pressed"]
