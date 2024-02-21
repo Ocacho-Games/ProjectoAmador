@@ -7,7 +7,7 @@ godot/.godot/
 godot/addons/gut
 godot/addons/scene_manager
 godot/addons/sound_manager
-godot/addons/debug_draw_3d
+# godot/addons/debug_draw_3d TEMPORAL (the current plugin only supports > 4.1.2 and we are 4.1.1)
 godot/addons/godotsteam
 godot/addons/touch_input_manager
 godot/addons/admob
