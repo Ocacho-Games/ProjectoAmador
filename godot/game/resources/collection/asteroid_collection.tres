@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="SCollection" load_steps=13 format=3 uid="uid://oe8wugpvybbj"]
+
+[ext_resource type="Texture2D" uid="uid://ivilkbuv4nm2" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_01_1080x2280.png" id="1_wwyam"]
+[ext_resource type="Texture2D" uid="uid://d1pd6gc6hfn6k" path="res://game/resources/img/shop/shop_box_green.svg" id="2_0brh4"]
+[ext_resource type="Script" path="res://game/code/resources/collectable_resource.gd" id="3_qeq2h"]
+[ext_resource type="Texture2D" uid="uid://cv78bsudh7qk" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_02_1080x2280.png" id="4_oadvf"]
+[ext_resource type="Texture2D" uid="uid://bhcuumv0oduvr" path="res://game/resources/img/shop/shop_box_blue.svg" id="5_s27pk"]
+[ext_resource type="Texture2D" uid="uid://bds7lm43njyra" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_03_1080x2280.png" id="6_q8jkt"]
+[ext_resource type="Texture2D" uid="uid://cmmne0yu1bhx" path="res://game/resources/img/shop/shop_box_pink.svg" id="7_m7ewl"]
+[ext_resource type="Texture2D" uid="uid://dceji21p7dnsy" path="res://game/resources/img/spaceship/spaceship_asteroid_1080x2280.png" id="9_76dy7"]
+[ext_resource type="Script" path="res://game/code/resources/collection_resource.gd" id="9_rwd3n"]
+
+[sub_resource type="Resource" id="Resource_gb2mx"]
+script = ExtResource("3_qeq2h")
+key = "white"
+type = 0
+unlock_type = 0
+coins_to_unlock = 40
+videos_to_unlock = 4
+objetive_description = ""
+show_reward_video_button = true
+box_sprite = ExtResource("2_0brh4")
+shop_sprite = ExtResource("1_wwyam")
+asset = ExtResource("1_wwyam")
+
+[sub_resource type="Resource" id="Resource_0p8w6"]
+script = ExtResource("3_qeq2h")
+key = "blue"
+type = 0
+unlock_type = 1
+coins_to_unlock = 200
+videos_to_unlock = 10
+objetive_description = "?"
+show_reward_video_button = true
+box_sprite = ExtResource("5_s27pk")
+shop_sprite = ExtResource("4_oadvf")
+asset = ExtResource("4_oadvf")
+
+[sub_resource type="Resource" id="Resource_g4m55"]
+script = ExtResource("3_qeq2h")
+key = "pink"
+type = 0
+unlock_type = 2
+coins_to_unlock = 200
+videos_to_unlock = 4
+objetive_description = "Unlock 2 asteroid skins"
+show_reward_video_button = false
+box_sprite = ExtResource("7_m7ewl")
+shop_sprite = ExtResource("6_q8jkt")
+asset = ExtResource("6_q8jkt")
+
+[resource]
+script = ExtResource("9_rwd3n")
+shop_sprite = ExtResource("9_76dy7")
+key = "asteroid"
+collectables = Array[ExtResource("3_qeq2h")]([SubResource("Resource_gb2mx"), SubResource("Resource_0p8w6"), SubResource("Resource_g4m55")])

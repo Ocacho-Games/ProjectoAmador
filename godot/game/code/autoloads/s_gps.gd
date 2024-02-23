@@ -116,7 +116,13 @@ func get_saved_data(key : String, return_thing = 0):
 		return data_to_save_dic[key]
 		
 	return return_thing
-	
+
+func append_saved_data(collection_key : String, collectable_key : String):
+	if(data_to_save_dic.has(collection_key)):
+		data_to_save_dic[collection_key].append(collectable_key)
+	else:
+		data_to_save_dic[collection_key] = [collectable_key]
+
 ## Helper function for connecting GPS signals with some checks
 ##
 func connect_signal(signal_name : String, callable : Callable) -> void:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ioi8aq3h06pf"]
 
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
-[ext_resource type="Texture2D" uid="uid://bvuntwdyk04pr" path="res://game/resources/img/spaceship/alien_background.png" id="2_hutlb"]
+[ext_resource type="Texture2D" uid="uid://bnme0l7m8lof8" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="2_jjjga"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
 [ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="4_sagvy"]
@@ -19,7 +19,7 @@ metadata/_edit_group_ = true
 [node name="background" type="TextureRect" parent="."]
 offset_right = 1393.0
 offset_bottom = 2280.0
-texture = ExtResource("2_hutlb")
+texture = ExtResource("2_jjjga")
 expand_mode = 1
 
 [node name="spaceship_player" type="Node2D" parent="."]

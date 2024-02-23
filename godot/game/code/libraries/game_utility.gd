@@ -73,6 +73,13 @@ static func resume_scene(root_node : Node, children_to_ignore : Array[String] = 
 ##
 static func pause_scene(root_node : Node, children_to_ignore : Array[String] = []):
 	_pause_scene_implementation(root_node, true, children_to_ignore)
+	
+##
+##
+static func remove_children(node : Node) -> void:
+	for n in node.get_children():
+		node.remove_child(n)
+		n.queue_free()
 
 #==============================================================================
 # PRIVATE FUNCTIONS

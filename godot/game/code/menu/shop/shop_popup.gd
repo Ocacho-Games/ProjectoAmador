@@ -2,12 +2,6 @@
 class_name ShopPopup extends Node
 
 #==============================================================================
-# VARIABLES
-#==============================================================================
-
-@onready var progress_bar : ProgressBar = $Control/VBoxContainer/ProgressBar
-
-#==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
 
@@ -16,7 +10,7 @@ class_name ShopPopup extends Node
 func set_properties(collectable : SCollectable) -> void:
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "Box").texture = collectable.box_sprite
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "Asset").texture = collectable.shop_sprite	
-	GameUtilityLibrary.get_child_node_by_class_or_name(self, "ObjetiveText").text = collectable.objetive_description
+	GameUtilityLibrary.get_child_node_by_class_or_name(self, "ObjectiveText").text = collectable.objetive_description
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "ProgressBar").value = collectable.objetive_callable.call()[1]
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "VideoButton").visible = collectable.show_reward_video_button 
 

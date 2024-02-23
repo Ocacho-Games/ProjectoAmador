@@ -1,15 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpoq7rgiyi6qy"]
+[gd_scene load_steps=6 format=3 uid="uid://bpoq7rgiyi6qy"]
 
 [ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
 [ext_resource type="Texture2D" uid="uid://bx12vkrxsg66j" path="res://game/resources/img/stack/stack_floor.svg" id="2_4d88l"]
-[ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_up357"]
 [ext_resource type="Texture2D" uid="uid://bsc57kbvkqjqe" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
 
 [node name="stack" type="Node2D"]
 script = ExtResource("1_mtjus")
-collection_array = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("2_up357")])
 
 [node name="background" type="TextureRect" parent="."]
 offset_left = -76.0

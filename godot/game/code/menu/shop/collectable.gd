@@ -65,7 +65,7 @@ func set_collectable_properties(collection_key : String, collectable : SCollecta
 ## The collectable is lock if the user doesn't have it on the cloud data related to the collectable's collection
 ##
 func _is_collectable_lock() -> bool:
-	for collectable_name in SGPS.data_to_save_dic[cached_collection_key]:
+	for collectable_name in SGPS.get_saved_data(cached_collection_key, "Invalid"):
 		if collectable_name == cached_collectable.key:
 			return false
 			
@@ -79,10 +79,10 @@ func _check_objetive_collectable() -> void:
 	if cached_collectable.unlock_type != SCollectable.EUnlockType.OBJETIVE: return
 	
 	assert(cached_collectable.objetive_callable.is_valid(), "Trying to call a null callable in a objetive collectable")
-	
+
 	#TODO: I would like to measure this function
 	var objetive_callable_result = cached_collectable.objetive_callable.call() 
-	
+
 	if objetive_callable_result[0]:
 		cached_is_lock = false
 		SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
@@ -95,7 +95,7 @@ func _check_selected_collectable() -> void:
 	if cached_is_lock: return
 	
 	var name_selected_asset : String = "current_" + cached_collection_key + "_" + cached_collectable.get_type_to_string()	
-	if cached_collectable.key == SGPS.get_saved_data(name_selected_asset):
+	if cached_collectable.key == SGPS.get_saved_data(name_selected_asset, "Invalid"):
 		cached_sprite_corner_info.texture = selected_texture
 		cached_sprite_corner_info.visible = true
 		cached_text_corner_info.visible = false		 
@@ -134,7 +134,7 @@ func _button_pressed_lock() -> void:
 		SCollectable.EUnlockType.COINS:
 			var current_coins = SGPS.data_to_save_dic["coins"]
 			if current_coins >= cached_collectable.coins_to_unlock:
-				SGPS.data_to_save_dic[cached_collection_key].append(cached_collectable.key)
+				SGPS.append_saved_data(cached_collection_key, cached_collectable.key)
 				SGPS.data_to_save_dic["coins"] = current_coins - cached_collectable.coins_to_unlock
 				set_collectable_properties(cached_collection_key, cached_collectable)
 				

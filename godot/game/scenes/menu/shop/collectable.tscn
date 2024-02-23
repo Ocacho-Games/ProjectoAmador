@@ -1,7 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://fgnfdtvg8c3c"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
-[ext_resource type="Texture2D" uid="uid://2fmobchsxc1i" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_bm2je"]
 [ext_resource type="Texture2D" uid="uid://bpny0cepj5fx4" path="res://game/resources/img/shop/bob_coin.svg" id="2_f1cg6"]
 [ext_resource type="Texture2D" uid="uid://bhcuumv0oduvr" path="res://game/resources/img/shop/shop_box_blue.svg" id="2_mmpbx"]
 [ext_resource type="Texture2D" uid="uid://dquipijowngsh" path="res://game/resources/img/shop/shop_icon_info.svg" id="3_efiev"]
@@ -9,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cf4vh8eamlre7" path="res://game/resources/img/shop/shop_icon_selected.svg" id="5_6e3jf"]
 [ext_resource type="Texture2D" uid="uid://bh6fs1e85jt6a" path="res://game/resources/img/shop/shop_question_mark.svg" id="6_7y6a0"]
 [ext_resource type="Texture2D" uid="uid://cphb12wkojmah" path="res://game/resources/img/shop/shop_box_blocked.svg" id="6_op8d2"]
+[ext_resource type="Texture2D" uid="uid://cv78bsudh7qk" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_02_1080x2280.png" id="9_ho8ff"]
 
 [node name="collectable" type="MarginContainer"]
 scale = Vector2(0.6, 0.6)
@@ -30,8 +30,8 @@ texture_normal = ExtResource("2_mmpbx")
 
 [node name="asset" type="Sprite2D" parent="BoxButton"]
 position = Vector2(175, 175)
-scale = Vector2(0.666667, 0.666667)
-texture = ExtResource("1_bm2je")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_ho8ff")
 
 [node name="corner_info" type="Sprite2D" parent="BoxButton"]
 position = Vector2(343.056, 11.1111)

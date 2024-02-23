@@ -39,13 +39,6 @@ func _prepare_containers() -> void:
 	var percentage_ad = 0.09
 	var percentage_game = 1.0 - percentage_menu_background - percentage_ad
 	
-	print(percentage_ad)
-	print(percentage_game)
-	print(percentage_menu_background)	
-	
-	print(GameUtilityLibrary.SCREEN_HEIGHT)
-	print(GameUtilityLibrary.SCREEN_WIDTH)
-	
 	ad_view = AdsLibrary.load_show_banner(AdSize.new(-1, 50), AdPosition.Values.TOP)	
 		
 	main_container.size.x = GameUtilityLibrary.SCREEN_WIDTH
@@ -60,5 +53,11 @@ func _prepare_containers() -> void:
 #==============================================================================
 
 func _on_shop_button_pressed():
-	#SceneManager.change_scene("res://game/scenes/menu/shop/shop.tscn")
-	SceneManager.change_scene("res://test/home_godot/shop_ui_test/shop_ui.tscn")
+	if get_tree().current_scene.name == "reel":
+		SceneManager.change_scene("res://test/home_godot/shop_ui_test/shop_ui.tscn")
+	else:
+		SceneManager.change_scene("res://game/scenes/reel.tscn")
+
+
+func _on_back_to_game_button_pressed(button_pressed):
+	pass # Replace with function body.

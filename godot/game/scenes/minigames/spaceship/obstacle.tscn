@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbd4w1ed5hqo2"]
+[gd_scene load_steps=7 format=3 uid="uid://bbd4w1ed5hqo2"]
 
-[ext_resource type="Texture2D" uid="uid://c4uxqjui4u75f" path="res://game/resources/img/spaceship/alien_asteroid.png" id="1_vga1u"]
+[ext_resource type="Texture2D" uid="uid://dceji21p7dnsy" path="res://game/resources/img/spaceship/spaceship_asteroid_1080x2280.png" id="1_mdt1x"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="2_7bnx2"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="2_k60bl"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="3_oknmg"]
+[ext_resource type="Resource" uid="uid://oe8wugpvybbj" path="res://game/resources/collection/asteroid_collection.tres" id="3_ta4n2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nmpmq"]
 radius = 169.199
@@ -11,7 +13,11 @@ radius = 169.199
 scale = Vector2(0.35, 0.35)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_vga1u")
+texture = ExtResource("1_mdt1x")
+
+[node name="SelectCollectableCmp" type="Node" parent="Sprite2D"]
+script = ExtResource("2_7bnx2")
+collection = ExtResource("3_ta4n2")
 
 [node name="AutoMovementCmp" type="Node" parent="."]
 script = ExtResource("2_k60bl")

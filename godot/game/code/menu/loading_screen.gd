@@ -16,8 +16,8 @@ var offline_pop_up_shown = false
 
 func _ready():
 	if OS.get_name() != "Android":
+		SGame.load_all_collectable_callbacks(collection_array)				
 		SceneManager.change_scene("res://game/scenes/reel.tscn")
-		SGame.load_all_collectable_callbacks(collection_array)		
 	else:
 		SNetwork.on_connection_failed.connect(_on_internet_connection_failed)
 		SGPS.on_gps_initialized.connect(_on_gps_initialized)
@@ -42,6 +42,6 @@ func _on_internet_connection_failed(_error, _msg):
 ##		
 func _on_gps_initialized() -> void:
 	SGPS.connect_signal("_on_game_load_success", 
-	func(_unused): 
-		SceneManager.change_scene("res://game/scenes/reel.tscn")
-		SGame.load_all_collectable_callbacks(collection_array))
+	func(_unused):
+		SGame.load_all_collectable_callbacks(collection_array)
+		SceneManager.change_scene("res://game/scenes/reel.tscn"))

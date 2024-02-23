@@ -16,6 +16,9 @@ var game_ready = false
 ## The last minigame index loaded in order to keep track of it
 var last_minigame_index : int = 0
 
+## Reference to the collections of collectables of this game
+var collections : Array[SCollection] 
+
 #==============================================================================
 # GODOT FUNCTIONS
 #==============================================================================
@@ -32,10 +35,17 @@ func _ready():
 # PUBLIC FUNCTIONS
 #==============================================================================
 
+func test_func():
+	return [false, 50.0]
+
 ## Load the global and the specific game callbacks for the collectables that are objetives
 ##
-func load_all_collectable_callbacks(collections : Array[SCollection]) -> void:
+func load_all_collectable_callbacks(in_collections : Array[SCollection]) -> void:
+	collections = in_collections
+	# TODO: Hardcoded
+	collections[1].add_callable_to_objetive_collectable(test_func, "pink")
 	# TODO: Global callbacks
+	# TODO: Add collection to project settings???
 	for minigame in minigames_array:
 		minigame.scene.instantiate().load_collectable_callbacks(collections)
 

@@ -28,6 +28,7 @@ class_name SCollection extends Resource
 ## [collectable_key]: Specific collectable's key in order to find the collectable.
 ##
 func add_callable_to_objetive_collectable(callable : Callable, collectable_key : String) -> bool:
+	assert(callable, "Invalid callable for objetive collectable")
 	if not callable: return false
 	for collectable in collectables:
 		if collectable.key == collectable_key and collectable.unlock_type == SCollectable.EUnlockType.OBJETIVE:

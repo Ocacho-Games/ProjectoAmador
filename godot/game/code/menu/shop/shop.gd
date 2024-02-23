@@ -1,4 +1,4 @@
-extends Node
+class_name ShopNode extends Node
 
 ## This is a draft because we don't know the shop structure yet, so no comments
 
@@ -6,19 +6,21 @@ extends Node
 # VARIABLES
 #==============================================================================
 
-## The shop will display a bunch of collections, these are the collections to display
-@export var collections : Array[SCollection]
 ## This is the collectable scene to instantiate when displaying the shop
 @export var collectable_scene : PackedScene
+## TODO
+@export var collection_scene : PackedScene
 
 #@onready var coins_label : RichTextLabel = $Control/coins_label
 ## Reference to the containers
 @onready var coins_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/CoinsCollectables
 @onready var videos_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables
 @onready var objetive_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables
-@onready var collectable_type_container : HBoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable/HBoxContainer
+@onready var collection_type_container : HBoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable/HBoxContainer
 
 var current_index_collection : int = 0
+var current_key_collection : String
+var collection_nodes_array : Array[CollectionNode]
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -26,22 +28,29 @@ var current_index_collection : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_display_current_collection()
-	# TODO. The collection type node similar to collectable
-	# menu container sizing logic
-	#_add_collections_to_container()
+	_display_collection_types()
+	display_collection(SGame.collections[current_index_collection].key)
+
+#==============================================================================
+# PUBLIC FUNCTIONS
+#==============================================================================
+
+func display_collection(collection_key : String) -> void:
+	var current_collection 
+	for collection in SGame.collections:
+		if collection.key == collection_key: current_collection = collection
+		else: pass
 	
-func _process(_delta):
-	pass
-	#coins_label.text = "Coins: " + str(SGPS.data_to_save_dic["coins"])	
-
-#==============================================================================
-# PRIVATE FUNCTIONS
-#==============================================================================
-
-func _display_current_collection() -> void:
-	var current_collection = collections[current_index_collection]
-
+	assert(current_collection, "Invalid collection, key not valid or not existent collection")
+	
+	if current_key_collection == collection_key: return
+	else: current_key_collection = collection_key
+	
+	_set_collection_nodes_visibility()
+	
+	GameUtilityLibrary.remove_children(coins_container)
+	GameUtilityLibrary.remove_children(videos_container)
+	GameUtilityLibrary.remove_children(objetive_container)	
 	
 	for collectable in current_collection.collectables:
 		var collectable_node = collectable_scene.instantiate()
@@ -55,26 +64,32 @@ func _display_current_collection() -> void:
 		elif collectable.unlock_type == SCollectable.EUnlockType.OBJETIVE: selected_container = objetive_container
 		
 		selected_container.call_deferred("add_child", collectable_node)
+		
+#==============================================================================
+# PRIVATE
+#==============================================================================
+
+##
+##
+func _display_collection_types() -> void:
+	for collection in SGame.collections:
+		var collection_node = collection_scene.instantiate() as CollectionNode
+		collection_node.set_collection_properties(collection, self, true)				
+		collection_nodes_array.append(collection_node)
+		collection_type_container.call_deferred("add_child", collection_node)
+		
+##
+##
+func _set_collection_nodes_visibility():
+	for collection in collection_nodes_array:
+		if collection.cached_collection_key == current_key_collection:
+			collection.set_selected_visibility(true)
+		else:
+			collection.set_selected_visibility(false)	
 
 #==============================================================================
 # SIGNAL FUNCTIONS
 #==============================================================================
-
-#func _on_left_pressed():
-#	if current_index_collection - 1 >= 0:
-#		current_index_collection = current_index_collection - 1
-#		return
-#
-#	current_index_collection = 0
-#	#_display_current_collection()
-#
-#func _on_right_pressed():
-#	if current_index_collection + 1 < collections.size():
-#		current_index_collection = current_index_collection + 1
-#		return
-#
-#	current_index_collection = 0
-#	#_display_current_collection()
 
 func _on_video_coin_button_pressed():
 	# Show pop up as loading the video maybe on the library
@@ -87,6 +102,3 @@ func _on_video_coin_button_pressed():
 		ad.destroy()
 	
 	ad = AdsLibrary.load_show_rewarded(ad_listener)
-
-func _on_back_to_game_button_pressed():
-	SceneManager.change_scene("res://game/scenes/reel.tscn")
