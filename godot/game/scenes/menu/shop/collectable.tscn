@@ -26,6 +26,7 @@ lock_box_texture = ExtResource("6_op8d2")
 
 [node name="BoxButton" type="TextureButton" parent="."]
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("2_mmpbx")
 
 [node name="asset" type="Sprite2D" parent="BoxButton"]

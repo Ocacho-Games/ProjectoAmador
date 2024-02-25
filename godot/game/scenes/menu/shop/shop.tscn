@@ -1,138 +1,104 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxnmpd4xkj3rh"]
+[gd_scene load_steps=8 format=3 uid="uid://c15ka3i036qk5"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop.gd" id="1_r0ehy"]
-[ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_0ay04"]
-[ext_resource type="Texture2D" uid="uid://dxkpr3rl7v2vw" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="2_65u2b"]
-[ext_resource type="Texture2D" uid="uid://btpjith7g1a3r" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="3_jr5y5"]
+[ext_resource type="PackedScene" uid="uid://beilypwomfk7n" path="res://game/scenes/menu/shop/collection.tscn" id="3_7mxy1"]
 [ext_resource type="PackedScene" uid="uid://fgnfdtvg8c3c" path="res://game/scenes/menu/shop/collectable.tscn" id="3_pgk4b"]
-[ext_resource type="Texture2D" uid="uid://dul2kyjwcvk6y" path="res://game/resources/img/shop/shop_window_popup_btn_ad.svg" id="4_elom3"]
+[ext_resource type="PackedScene" uid="uid://bhlu7uy66nv41" path="res://game/scenes/menu/base_structure.tscn" id="4_f5bo4"]
+[ext_resource type="Script" path="res://game/code/menu/ui/inherit_parent_minimum_size.gd" id="5_r71gc"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g6r5n"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xutth"]
+bg_color = Color(0.768627, 0.529412, 0.517647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h60ny"]
 
 [node name="shop" type="Node2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_r0ehy")
-collections = Array[Resource("res://game/code/resources/collection_resource.gd")]([ExtResource("2_0ay04")])
 collectable_scene = ExtResource("3_pgk4b")
+collection_scene = ExtResource("3_7mxy1")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1080.0
-offset_bottom = 2280.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="base_structure" parent="." instance=ExtResource("4_f5bo4")]
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-self_modulate = Color(0.47451, 0.219608, 0.658824, 1)
+[node name="BaseTienda" type="VBoxContainer" parent="base_structure/VBoxContainer/GameZone" index="0"]
+custom_minimum_size = Vector2(1080, 900)
 layout_mode = 0
 offset_right = 1080.0
-offset_bottom = 2280.0
-texture = SubResource("ViewportTexture_g6r5n")
+offset_bottom = 558.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("5_r71gc")
 
-[node name="coins_label" type="RichTextLabel" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -438.0
-offset_top = 50.0
-offset_right = 90.0
-offset_bottom = 160.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 70
-text = "COINS: "
-fit_content = true
+[node name="CollectableTopPart" type="HBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
 
-[node name="video_coin_button" type="TextureButton" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.116519
-anchor_top = 0.0634035
-anchor_right = 0.447519
-anchor_bottom = 0.127825
-offset_left = 0.159973
-offset_top = 0.44
-offset_right = 88.68
-offset_bottom = 66.56
-grow_horizontal = 0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("4_elom3")
-texture_pressed = ExtResource("4_elom3")
-metadata/_edit_use_anchors_ = true
+[node name="CollectableTopPart2" type="VBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="type_store_label" type="RichTextLabel" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -258.0
-offset_top = 295.0
-offset_right = 270.0
-offset_bottom = 405.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 70
-text = "TYPE OF STORE"
-fit_content = true
+[node name="CoinsText" type="ColorRect" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.972549, 0.45098, 0, 1)
 
-[node name="left" type="TextureButton" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = 106.0
-offset_top = 295.0
-offset_right = 252.0
-offset_bottom = 428.0
-texture_normal = ExtResource("2_65u2b")
-texture_pressed = ExtResource("3_jr5y5")
-ignore_texture_size = true
-stretch_mode = 0
+[node name="BotonVideo" type="ColorRect" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.137255, 1, 1, 1)
 
-[node name="right" type="TextureButton" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -240.0
-offset_top = 295.0
-offset_right = -94.0
-offset_bottom = 428.0
-grow_horizontal = 0
-texture_normal = ExtResource("2_65u2b")
-texture_pressed = ExtResource("3_jr5y5")
-ignore_texture_size = true
-stretch_mode = 0
-metadata/_edit_use_anchors_ = true
+[node name="LuckBotton" type="ColorRect" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart"]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
-custom_minimum_size = Vector2(1080, 1880)
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -740.0
-offset_bottom = 1140.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScrollCollectables" type="ScrollContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xutth")
+horizontal_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/ScrollContainer"]
-custom_minimum_size = Vector2(1080, 1880)
+[node name="CenterCollectables" type="CenterContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CollectablesTypes" type="VBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="back_to_game_button" type="Button" parent="Control"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 2100.0
-offset_right = 309.0
-offset_bottom = 2204.0
-theme_override_font_sizes/font_size = 70
-text = "GAME"
+[node name="CoinsCollectables" type="GridContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
+layout_mode = 2
+columns = 3
 
-[connection signal="pressed" from="Control/video_coin_button" to="." method="_on_video_coin_button_pressed"]
-[connection signal="pressed" from="Control/left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="Control/right" to="." method="_on_right_pressed"]
-[connection signal="pressed" from="Control/back_to_game_button" to="." method="_on_back_to_game_button_pressed"]
+[node name="Separation" type="ColorRect" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="VideosCollectables" type="GridContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
+layout_mode = 2
+columns = 3
+
+[node name="Separation2" type="ColorRect" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="AchievementsCollectables" type="GridContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes"]
+layout_mode = 2
+columns = 3
+
+[node name="ScrollTypeCollectable" type="ScrollContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h60ny")
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="Menu" parent="base_structure/VBoxContainer" index="3"]
+custom_minimum_size = Vector2(0, 300)
+
+[editable path="base_structure"]

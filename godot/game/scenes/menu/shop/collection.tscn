@@ -14,6 +14,7 @@ script = ExtResource("1_aopj1")
 
 [node name="sprite" type="TextureButton" parent="."]
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("2_g0faq")
 
 [node name="selected" type="Sprite2D" parent="sprite"]

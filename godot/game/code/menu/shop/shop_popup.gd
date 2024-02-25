@@ -1,16 +1,25 @@
 ## Popup for showing pure information to the player
 class_name ShopPopup extends Node
 
+@onready var center_container = $CenterContainer
+@onready var base_popup_control = $CenterContainer/BasePopup
+
 #==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
+
+func _ready():
+	center_container.custom_minimum_size.x = GameUtilityLibrary.SCREEN_WIDTH
+	center_container.custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * 0.75
+	base_popup_control.custom_minimum_size.x = GameUtilityLibrary.SCREEN_WIDTH * 0.8
+	
 
 ## When instanciating the popup, you can call this function in order to set the popups' properties
 ##
 func set_properties(collectable : SCollectable) -> void:
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "Box").texture = collectable.box_sprite
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "Asset").texture = collectable.shop_sprite	
-	GameUtilityLibrary.get_child_node_by_class_or_name(self, "ObjectiveText").text = collectable.objetive_description
+	GameUtilityLibrary.get_child_node_by_class_or_name(self, "ObjectiveText").text = GameUtilityLibrary.get_centered_text(collectable.objetive_description)
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "ProgressBar").value = collectable.objetive_callable.call()[1]
 	GameUtilityLibrary.get_child_node_by_class_or_name(self, "VideoButton").visible = collectable.show_reward_video_button 
 

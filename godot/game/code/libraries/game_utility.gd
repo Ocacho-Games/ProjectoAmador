@@ -80,6 +80,11 @@ static func remove_children(node : Node) -> void:
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+		
+## Returns the given text centered
+##
+static func get_centered_text(text : String) -> String:
+	return "[center]" + text + "[/center]"
 
 #==============================================================================
 # PRIVATE FUNCTIONS

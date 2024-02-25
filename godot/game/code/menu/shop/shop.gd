@@ -74,7 +74,7 @@ func display_collection(collection_key : String) -> void:
 func _display_collection_types() -> void:
 	for collection in SGame.collections:
 		var collection_node = collection_scene.instantiate() as CollectionNode
-		collection_node.set_collection_properties(collection, self, true)				
+		collection_node.set_collection_properties(collection, self)				
 		collection_nodes_array.append(collection_node)
 		collection_type_container.call_deferred("add_child", collection_node)
 		

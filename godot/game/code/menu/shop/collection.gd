@@ -17,7 +17,7 @@ var cached_shop_node : ShopNode
 
 ##
 ##
-func set_collection_properties(collection : SCollection, shop_node : ShopNode, selected : bool = false):
+func set_collection_properties(collection : SCollection, shop_node : ShopNode):
 	get_node("sprite").set_texture_normal(collection.shop_sprite)
 	cached_collection_key = collection.key
 	cached_shop_node = shop_node

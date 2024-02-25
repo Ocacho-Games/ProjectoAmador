@@ -54,10 +54,6 @@ func _prepare_containers() -> void:
 
 func _on_shop_button_pressed():
 	if get_tree().current_scene.name == "reel":
-		SceneManager.change_scene("res://test/home_godot/shop_ui_test/shop_ui.tscn")
+		SceneManager.change_scene("res://game/scenes/menu/shop/shop.tscn")
 	else:
 		SceneManager.change_scene("res://game/scenes/reel.tscn")
-
-
-func _on_back_to_game_button_pressed(button_pressed):
-	pass # Replace with function body.

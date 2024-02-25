@@ -7,3 +7,6 @@
 script = ExtResource("1_dbiqk")
 
 [node name="base_structure" parent="." instance=ExtResource("2_odoyf")]
+z_index = 1
+
+[editable path="base_structure"]
