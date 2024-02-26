@@ -150,8 +150,8 @@ func _button_pressed_lock() -> void:
 				else:
 					SGPS.data_to_save_dic[remaining_videos_key] = remaining_videos - 1
 				
-				set_collectable_properties(cached_collection_key, cached_collectable)					
-				ad.destroy()
+				set_collectable_properties(cached_collection_key, cached_collectable)
+				if(ad):	ad.destroy()
 			
 			ad = AdsLibrary.load_show_rewarded(self, ad_listener)
 			

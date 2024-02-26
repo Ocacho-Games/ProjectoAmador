@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bu3txaoe44d0f"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop_popup.gd" id="1_f1tbr"]
-[ext_resource type="Texture2D" uid="uid://bxkd0h7y7n8cv" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
-[ext_resource type="Texture2D" uid="uid://cm2l8ck8mj3i3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_3s1mv"]
-[ext_resource type="Texture2D" uid="uid://bhgddr4shifaf" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="4_ob80m"]
-[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="5_iocon"]
-[ext_resource type="Texture2D" uid="uid://flhkwp13ev8c" path="res://game/resources/img/button/button_ad_1080x2280.png" id="6_20tn0"]
+[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
+[ext_resource type="Texture2D" uid="uid://d0q7tw6ohyim3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_3s1mv"]
+[ext_resource type="Texture2D" uid="uid://c6s3eoldav4f2" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="4_ob80m"]
+[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="5_iocon"]
+[ext_resource type="Texture2D" uid="uid://dwub7jn3y2me2" path="res://game/resources/img/button/button_ad_1080x2280.png" id="6_20tn0"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_drw7e"]
 
@@ -19,6 +19,7 @@ script = ExtResource("1_f1tbr")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.392157)
+z_index = 10
 anchors_preset = -1
 anchor_left = -0.155
 anchor_top = -0.088
@@ -29,6 +30,7 @@ offset_bottom = 2558.36
 texture = SubResource("CanvasTexture_drw7e")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+z_index = 10
 custom_minimum_size = Vector2(1080, 1800)
 offset_right = 40.0
 offset_bottom = 40.0
