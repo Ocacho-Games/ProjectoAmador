@@ -33,7 +33,7 @@ func _on_internet_connection_failed(_error, _msg):
 	if offline_pop_up_shown: return
 	
 	PopupLibrary.show_info_popup(self,
-	 "You dont have internet connection mate. The game will start offline after you close this popup",
+	 "You dont have internet connection mate. The game will start offline after you close this popup", true,
 	 func(): SceneManager.change_scene("res://game/scenes/reel.tscn"))	
 
 	offline_pop_up_shown = true	

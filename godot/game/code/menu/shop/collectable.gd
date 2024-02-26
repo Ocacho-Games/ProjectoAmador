@@ -139,7 +139,6 @@ func _button_pressed_lock() -> void:
 				set_collectable_properties(cached_collection_key, cached_collectable)
 				
 		SCollectable.EUnlockType.VIDEO:
-			get_tree().get_root().set_disable_input(true)
 			var ad : RewardedAd
 			var ad_listener = OnUserEarnedRewardListener.new()
 			ad_listener.on_user_earned_reward = func(_rewarded_item):
@@ -152,10 +151,9 @@ func _button_pressed_lock() -> void:
 					SGPS.data_to_save_dic[remaining_videos_key] = remaining_videos - 1
 				
 				set_collectable_properties(cached_collection_key, cached_collectable)					
-				get_tree().get_root().set_disable_input(false)
 				ad.destroy()
 			
-			ad = AdsLibrary.load_show_rewarded(ad_listener)
+			ad = AdsLibrary.load_show_rewarded(self, ad_listener)
 			
 		SCollectable.EUnlockType.OBJETIVE:
 			PopupLibrary.show_shop_popup(self, cached_collectable)

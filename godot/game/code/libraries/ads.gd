@@ -54,8 +54,8 @@ static func load_rewarded()-> RewardedAd:
 ## Create, load and return an Admob Rewarded
 ## Make sure to destroy the ad once you are done with it with .destroy()
 ##	
-static func load_show_rewarded(rewarded_listener : OnUserEarnedRewardListener = null)-> RewardedAd:
-	return _load_advanced_add(RewardedAdLoadCallback.new(), RewardedAdLoader.new(), rewarded_id, true, rewarded_listener)
+static func load_show_rewarded(root_for_child_node : Node, rewarded_listener : OnUserEarnedRewardListener = null)-> RewardedAd:
+	return _load_advanced_add(RewardedAdLoadCallback.new(), RewardedAdLoader.new(), rewarded_id, true, rewarded_listener, root_for_child_node)
 
 ## Create and return an Admob Rewarded Interstitial
 ## Make sure to destroy the ad once you are done with it with .destroy()
@@ -79,15 +79,17 @@ static func load_show_rewarded_interstital(rewarded_listener : OnUserEarnedRewar
 ## [ad_id] : Test ID of the add
 ## [show_ad]: Whether we should show the ad once it's loaded or not
 ##	
-static func _load_advanced_add(callback, loader, ad_id, show_ad = false, listener = null):
-	#TODO: We need a reference to something How to 
-	#PopupLibrary.show_info_popup(get_tree().root, "Loading an ad be patient mdfk")
+static func _load_advanced_add(callback, loader, ad_id, show_ad = false, listener = null, root_for_child_node : Node = null):
+	var popup : InfoPopup = PopupLibrary.show_info_popup(root_for_child_node, "Loading an ad be patient mdfk", false)
 	var ad
 	
 	callback.on_ad_failed_to_load = func(adError : LoadAdError) -> void:
+		popup.queue_free()
+		popup = PopupLibrary.show_info_popup(root_for_child_node, "Ad could not be loaded")
 		print(adError.message)
 
 	callback.on_ad_loaded = func(incoming_ad) -> void:
+		popup.queue_free()
 		ad = incoming_ad
 		if show_ad:
 			ad.show(listener);

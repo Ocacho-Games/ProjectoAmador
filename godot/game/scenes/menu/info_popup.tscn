@@ -1,59 +1,101 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckrgouc1e86q1"]
+[gd_scene load_steps=8 format=3 uid="uid://ckrgouc1e86q1"]
 
 [ext_resource type="Script" path="res://game/code/menu/info_popup.gd" id="1_w20k3"]
-[ext_resource type="Texture2D" uid="uid://bxkd0h7y7n8cv" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
-[ext_resource type="Texture2D" path="res://game/resources/img/bob/bob.svg" id="4_4kufn"]
+[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
+[ext_resource type="Texture2D" uid="uid://d0q7tw6ohyim3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_a030c"]
+[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_3mtc8"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="5_x6u27"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3qhd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6dxw"]
+texture = ExtResource("2_dvaiy")
 
 [node name="info_pop_up" type="Node"]
 script = ExtResource("1_w20k3")
 
 [node name="background" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 0.392157)
+z_index = 10
 anchors_preset = -1
 anchor_left = -0.155
 anchor_top = -0.088
-offset_left = 21.4
-offset_top = -56.36
-offset_right = 1276.0
-offset_bottom = 2564.0
+offset_left = -61.6
+offset_top = -59.36
+offset_right = 1082.0
+offset_bottom = 2561.0
 texture = SubResource("CanvasTexture_h3qhd")
 
-[node name="popup_background" type="Sprite2D" parent="."]
-position = Vector2(555, 1071)
-scale = Vector2(0.73328, 0.4)
-texture = ExtResource("2_dvaiy")
+[node name="CenterContainer" type="CenterContainer" parent="."]
+z_index = 10
+offset_right = 1080.0
+offset_bottom = 1800.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
 
-[node name="close" type="TextureButton" parent="popup_background"]
-offset_left = 495.036
-offset_top = -977.5
-offset_right = 601.036
-offset_bottom = -871.5
-scale = Vector2(1.36374, 2.5)
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_k6dxw")
 
-[node name="text" type="RichTextLabel" parent="popup_background"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container" type="Container" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Close" type="TextureButton" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_a030c")
+
+[node name="Container" type="Container" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="text" type="RichTextLabel" parent="CenterContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(600, 200)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -628.0
-offset_top = -864.5
-offset_right = -627.0
-offset_bottom = -864.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 50
-text = "You dont have internet connection or similar I dont fucking care"
+bbcode_enabled = true
+text = "[center]You dont have internet connection or similar I dont fucking care[/center]"
 fit_content = true
-scroll_active = false
 
-[node name="Bob" type="Sprite2D" parent="popup_background"]
-position = Vector2(19.0924, 545)
-scale = Vector2(0.472062, 0.865385)
-texture = ExtResource("4_4kufn")
+[node name="Container2" type="Container" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
-[connection signal="pressed" from="popup_background/close" to="." method="_on_close_pressed"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Container3" type="Container" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="Sprite2D" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/Control"]
+texture = ExtResource("4_3mtc8")
+
+[node name="AutoMovementCmp" type="Node" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2/Control/TextureRect"]
+script = ExtResource("5_x6u27")
+enable = true
+movement_type = 0
+rotation_type = 1
+rotation_degrees_per_frame = 10.0
+
+[node name="Container2" type="Container" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container3" type="Container" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

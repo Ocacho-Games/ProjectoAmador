@@ -8,7 +8,7 @@ class_name ShopNode extends Node
 
 ## This is the collectable scene to instantiate when displaying the shop
 @export var collectable_scene : PackedScene
-## TODO
+## This is the coolection scene to instantiate when displaying the types of collections
 @export var collection_scene : PackedScene
 
 #@onready var coins_label : RichTextLabel = $Control/coins_label

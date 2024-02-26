@@ -45,7 +45,6 @@ func load_all_collectable_callbacks(in_collections : Array[SCollection]) -> void
 	# TODO: Hardcoded
 	collections[1].add_callable_to_objetive_collectable(test_func, "pink")
 	# TODO: Global callbacks
-	# TODO: Add collection to project settings???
 	for minigame in minigames_array:
 		minigame.scene.instantiate().load_collectable_callbacks(collections)
 
