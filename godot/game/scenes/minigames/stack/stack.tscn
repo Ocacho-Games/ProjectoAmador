@@ -60,4 +60,4 @@ text = "SCORE"
 
 [node name="initial_piece" parent="." instance=ExtResource("3_fykb7")]
 process_mode = 4
-position = Vector2(301, 1564)
+position = Vector2(301, 1566)
