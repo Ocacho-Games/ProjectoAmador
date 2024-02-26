@@ -39,7 +39,6 @@ floor_ref = NodePath("../StackFloor")
 [node name="StackFloor" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(540, 1960)
-scale = Vector2(0.85, 0.85)
 texture = ExtResource("5_m1lc6")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
