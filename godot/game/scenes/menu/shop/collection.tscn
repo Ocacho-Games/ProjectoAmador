@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://beilypwomfk7n"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collection.gd" id="1_aopj1"]
-[ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob.svg" id="2_g0faq"]
-[ext_resource type="Texture2D" uid="uid://cf4vh8eamlre7" path="res://game/resources/img/shop/shop_icon_selected.svg" id="5_ky2nh"]
+[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="2_5slt3"]
+[ext_resource type="Texture2D" uid="uid://dhpgwti74rd64" path="res://game/resources/img/icon/icon_selected_1080x2280.png" id="3_p3jag"]
 
 [node name="collection" type="MarginContainer"]
 scale = Vector2(0.6, 0.6)
@@ -15,11 +15,11 @@ script = ExtResource("1_aopj1")
 [node name="sprite" type="TextureButton" parent="."]
 layout_mode = 2
 mouse_filter = 1
-texture_normal = ExtResource("2_g0faq")
+texture_normal = ExtResource("2_5slt3")
 
 [node name="selected" type="Sprite2D" parent="sprite"]
 visible = false
 position = Vector2(173.333, 211.667)
-texture = ExtResource("5_ky2nh")
+texture = ExtResource("3_p3jag")
 
 [connection signal="pressed" from="sprite" to="." method="_on_texture_button_pressed"]

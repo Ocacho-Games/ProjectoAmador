@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwm0qubmpqhtn"]
 
 [ext_resource type="Script" path="res://game/code/minigames/basket/basket_minigame.gd" id="1_03ldb"]
-[ext_resource type="Texture2D" uid="uid://dagwdpkieuwo2" path="res://game/resources/img/basket/basket_background.svg" id="2_btd0o"]
+[ext_resource type="Texture2D" uid="uid://y7a2e6m43s2m" path="res://game/resources/img/basket/basket_background.svg" id="2_btd0o"]
 [ext_resource type="PackedScene" uid="uid://sw0eoop1jtmk" path="res://game/scenes/minigames/basket/entities/ball.tscn" id="3_ka1b6"]
 [ext_resource type="PackedScene" uid="uid://maqcojbnkhh4" path="res://game/scenes/minigames/basket/entities/basket_entity.tscn" id="4_egoqy"]
 

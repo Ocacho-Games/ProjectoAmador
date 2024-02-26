@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://vm4waf4vh7m7"]
 
-[ext_resource type="Texture2D" uid="uid://cgn875iaiccrp" path="res://game/resources/img/stack/stack_rectangle.svg" id="1_qhyjc"]
+[ext_resource type="Texture2D" uid="uid://qdsyt4mn653h" path="res://game/resources/img/stack/stack_rectangle_1080x2280.png" id="1_6oay7"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="2_ihjt6"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="3_ri6cv"]
 
@@ -9,7 +9,7 @@
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 488.0
 offset_bottom = 76.0
-texture = ExtResource("1_qhyjc")
+texture = ExtResource("1_6oay7")
 expand_mode = 1
 
 [node name="AutoMovementCmp" type="Node" parent="."]
