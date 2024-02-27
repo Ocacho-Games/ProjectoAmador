@@ -11,8 +11,10 @@ signal on_connection_failed(code, message)
 # VARIABLES
 #==============================================================================
 
-# Reference to the timer for checking the internet connection
-var check_timer : Timer = null
+var last_time_checked : float = 0.0
+var wait_time : float = 1.5
+var current_time : float = wait_time
+
 # Whether the device is connected to internet or not
 var is_connected : bool = false
 
@@ -22,32 +24,15 @@ var is_connected : bool = false
 
 func _ready():
 	_check_connection()
-
-	check_timer = Timer.new()
-	check_timer.autostart = true
-	check_timer.wait_time = 3
-
-	check_timer.timeout.connect(_check_connection)
 	request_completed.connect(_on_request_result)
-
-	add_child(check_timer)
-
-#==============================================================================
-# PUBLIC FUNCTIONS
-#==============================================================================
-
-## Stops the timer
-##
-func stop_check():
-	if not check_timer.is_stopped():
-		check_timer.stop()
-
-## Starts the timer
-##
-func start_check():
-	if check_timer.is_stopped():
-		check_timer.start()
-
+	
+func _process(delta):
+	if current_time <= 0.0:
+		_check_connection()
+		current_time = wait_time
+	else:
+		current_time = current_time - delta
+		
 #==============================================================================
 # PRIVATE FUNCTIONS
 #==============================================================================

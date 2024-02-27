@@ -26,6 +26,7 @@ var collections : Array[SCollection]
 ## Overriden ready function
 ##
 func _ready():
+	# TODO [David]: Should we popup info if we disconnect from internet? 
 	# TODO [David]: We should develop an algorithm for this, for now it's disabled for the shake of testing
 	#randomize()
 	#minigames_array.shuffle()
@@ -35,25 +36,11 @@ func _ready():
 # PUBLIC FUNCTIONS
 #==============================================================================
 
-func test_func():
-	return [false, 50.0]
-
-## Load the global and the specific game callbacks for the collectables that are objetives
-##
-func load_all_collectable_callbacks(in_collections : Array[SCollection]) -> void:
-	collections = in_collections
-	# TODO: Hardcoded
-	collections[1].add_callable_to_objetive_collectable(test_func, "pink")
-	# TODO: Global callbacks
-	for minigame in minigames_array:
-		minigame.scene.instantiate().load_collectable_callbacks(collections)
-
 ## Set the game as ready and load the first minigame
 ##		
 func start_game() -> PackedScene:
 	game_ready = true
 	return get_current_minigame_scene()
-	
 
 ## Update the internal last_minigame_index in order to update the current scene index we are playing
 ## Ex: If we are playing the scene index 2, if we call this function tracked index will be 1.
@@ -104,6 +91,25 @@ func get_minigame_duration(minigame_node : Minigame) -> float:
 			return minigame.game_duration
 			
 	return -1
+	
+#################### COLLECTION FUNCTIONS ###########################
+
+## Load the global and the specific game callbacks for the collectables that are objetives
+##
+func load_all_collectable_callbacks(in_collections : Array[SCollection]) -> void:
+	collections = in_collections
+	add_callable_to_objetive_collectable("asteroid", func(): return [false, 0.0], "pink")
+	
+	for minigame in minigames_array:
+		minigame.scene.instantiate().load_collectable_callbacks(collections)
+
+## Search for the collection based on the collection_key and then
+## add the callback to the collectable that matches the collectable_key
+##
+func add_callable_to_objetive_collectable(collection_key : String, callable : Callable, collectable_key : String) -> void:
+	for collection in collections:
+		if collection.key == collection_key:
+			collection.add_callable_to_objetive_collectable(callable, collectable_key)
 
 #==============================================================================
 # PRIVATE FUNCTIONS

@@ -20,8 +20,9 @@ static var SHOP_POPUP_SCENE = preload("res://game/scenes/menu/shop/shop_popup.ts
 ## [on_popup_closed]: Optional popup to call when the popup is closed
 ##
 static func show_info_popup(root_for_child_node : Node, text : String, close_visible : bool = true, on_popup_closed : Callable = Callable()) -> InfoPopup:
-	assert(INFO_POPUP_SCENE, "Not valid Info popup scene")	 
-	GameUtilityLibrary.pause_scene(root_for_child_node.get_tree().root)
+	assert(INFO_POPUP_SCENE, "Not valid Info popup scene")
+	# TODO: Do we need this?
+	#GameUtilityLibrary.pause_scene(root_for_child_node.get_tree().root)
 	var popup_node = INFO_POPUP_SCENE.instantiate() as InfoPopup
 	popup_node.set_properties(text, on_popup_closed, close_visible)
 	root_for_child_node.add_child(popup_node)
