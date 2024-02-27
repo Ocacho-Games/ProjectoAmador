@@ -98,7 +98,7 @@ func get_max_score():
 ## Called at the beginning from the autoload SGame. Load all the callbacks for the collectables
 ## This should be overridden by the children
 ##	
-func load_collectable_callbacks(_collections : Array[SCollection]) -> void:
+func load_collectable_callbacks() -> void:
 	pass
 	
 #==============================================================================

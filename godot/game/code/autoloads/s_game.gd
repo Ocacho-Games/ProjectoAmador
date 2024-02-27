@@ -98,15 +98,15 @@ func get_minigame_duration(minigame_node : Minigame) -> float:
 ##
 func load_all_collectable_callbacks(in_collections : Array[SCollection]) -> void:
 	collections = in_collections
-	add_callable_to_objetive_collectable("asteroid", func(): return [false, 0.0], "pink")
+	add_callable_to_objetive_collectable(SCollection.ECollectionNames.asteroid, func(): return [false, 0.0], "pink")
 	
 	for minigame in minigames_array:
-		minigame.scene.instantiate().load_collectable_callbacks(collections)
+		minigame.scene.instantiate().load_collectable_callbacks()
 
 ## Search for the collection based on the collection_key and then
 ## add the callback to the collectable that matches the collectable_key
 ##
-func add_callable_to_objetive_collectable(collection_key : String, callable : Callable, collectable_key : String) -> void:
+func add_callable_to_objetive_collectable(collection_key : SCollection.ECollectionNames, callable : Callable, collectable_key : String) -> void:
 	for collection in collections:
 		if collection.key == collection_key:
 			collection.add_callable_to_objetive_collectable(callable, collectable_key)

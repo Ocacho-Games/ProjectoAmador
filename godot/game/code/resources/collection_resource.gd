@@ -5,6 +5,12 @@
 class_name SCollection extends Resource
 
 #==============================================================================
+# TYPE
+#==============================================================================
+# ENUM AS COLLECTION NAMES VARIABLE
+enum ECollectionNames{ bob, asteroid }
+
+#==============================================================================
 # VARIABLES
 #==============================================================================
 
@@ -12,7 +18,7 @@ class_name SCollection extends Resource
 @export var shop_sprite : Texture 
 
 ## Unique ID name of the collecction. There should be an array entry on save_data with the same name
-@export var key : String = "test-key-skin"
+@export var key : ECollectionNames = ECollectionNames.bob
 
 ## Array containing the collectables that take part of this collection
 @export var collectables : Array[SCollectable]
@@ -37,4 +43,8 @@ func add_callable_to_objetive_collectable(callable : Callable, collectable_key :
 	
 	assert(false, "Trying to add a callable to an invalid collectable key")
 	return false
-	
+
+## Return the key of this collection as string instead of enum
+##
+func get_string_key() -> String:
+	return ECollectionNames.keys()[key]

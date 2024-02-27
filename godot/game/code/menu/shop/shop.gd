@@ -17,9 +17,10 @@ class_name ShopNode extends Node
 @onready var videos_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables
 @onready var objetive_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables
 @onready var collection_type_container : HBoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable/HBoxContainer
+@onready var coins_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer/CoinsText
 
 var current_index_collection : int = 0
-var current_key_collection : String
+var current_key_collection : SCollection.ECollectionNames
 var collection_nodes_array : Array[CollectionNode]
 
 #==============================================================================
@@ -29,13 +30,16 @@ var collection_nodes_array : Array[CollectionNode]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_display_collection_types()
-	display_collection(SGame.collections[current_index_collection].key)
+	display_collection(SGame.collections[current_index_collection].key, false)
+	
+func _process(_delta):
+	coins_text.text = "[b] " + str(SGPS.get_saved_data("coins", 0)) + "[/b]"
 
 #==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
 
-func display_collection(collection_key : String) -> void:
+func display_collection(collection_key : SCollection.ECollectionNames, check_for_previous : bool = true) -> void:
 	var current_collection 
 	for collection in SGame.collections:
 		if collection.key == collection_key: current_collection = collection
@@ -43,7 +47,7 @@ func display_collection(collection_key : String) -> void:
 	
 	assert(current_collection, "Invalid collection, key not valid or not existent collection")
 	
-	if current_key_collection == collection_key: return
+	if current_key_collection == collection_key and check_for_previous: return
 	else: current_key_collection = collection_key
 	
 	_set_collection_nodes_visibility()
@@ -56,7 +60,7 @@ func display_collection(collection_key : String) -> void:
 		var collectable_node = collectable_scene.instantiate()
 		collectable_node = collectable_node as CollectableNode
 		
-		collectable_node.set_collectable_properties(current_collection.key, collectable)			
+		collectable_node.set_collectable_properties(current_collection.get_string_key(), collectable)			
 
 		var selected_container
 		if collectable.unlock_type == SCollectable.EUnlockType.COINS: selected_container = coins_container

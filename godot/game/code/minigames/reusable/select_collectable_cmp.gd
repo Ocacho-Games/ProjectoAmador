@@ -40,7 +40,7 @@ func _set_asset_by_collectable_type() -> void:
 ## Look on the cloud data for the current selected asset of the user
 ##
 func _get_collectable_asset() -> Resource:
-	var save_key = "current_" + collection.key + "_" + SCollectable.ECollectableType.keys()[type_of_collectable]
+	var save_key = "current_" + collection.get_string_key() + "_" + SCollectable.ECollectableType.keys()[type_of_collectable]
 	save_key = save_key.to_lower()
 	var collectable_name = SGPS.get_saved_data(save_key, "")
 	

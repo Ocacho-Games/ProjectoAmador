@@ -7,7 +7,7 @@ class_name CollectionNode extends Node
 #==============================================================================
 
 ## Cached value of the collection's key
-var cached_collection_key : String
+var cached_collection_key : SCollection.ECollectionNames
 ## Cached reference to the shop node
 var cached_shop_node : ShopNode
 
