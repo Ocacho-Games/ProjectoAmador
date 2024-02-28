@@ -19,7 +19,7 @@ class_name Minigame extends Node2D
 ## Reference to the button to open the leaderboard of the game. Each Minigame must have a leaderboard button
 @onready var leaderboard_button : Button = $leaderboard_button
 
-## Reference to the progress bar of the minigame. Each Minigame must have a progress bar
+## Reference to the progress bar of the minigame. Each Minigame must have a progress bar #TODO: CHANGE THIS WHEN USING BASE_MINIGAME
 @onready var time_bar : ProgressBar = $ProgressBar 
 
 ## Name (key) of this minigame. Dictated by the minigames database resource of the autoload
@@ -60,7 +60,8 @@ func _ready():
 	key_name = SGame.get_minigame_name(self)			
 	minigame_duration = SGame.get_minigame_duration(self)
 	
-	time_bar.fill_mode = ProgressBar.FILL_TOP_TO_BOTTOM 			
+	time_bar.fill_mode = ProgressBar.FILL_TOP_TO_BOTTOM 
+	time_bar.size.y = GameUtilityLibrary.SCREEN_HEIGHT 			
 	if minigame_duration == -1:
 		time_bar.visible = false
 	

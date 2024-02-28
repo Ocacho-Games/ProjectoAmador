@@ -12,7 +12,7 @@ signal on_connection_failed(code, message)
 #==============================================================================
 
 var last_time_checked : float = 0.0
-var wait_time : float = 1.5
+var wait_time : float = 2.0
 var current_time : float = wait_time
 
 # Whether the device is connected to internet or not

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://dewdtqs7smx3a"]
+
+[ext_resource type="Script" path="res://game/code/minigames/minigame.gd" id="1_cynjy"]
+
+[node name="base_minigame" type="Node2D"]
+script = ExtResource("1_cynjy")
+
+[node name="background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1080, 2280)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.294118, 0.294118, 0.294118, 1)
+
+[node name="progress_bar" type="ProgressBar" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 20.0
+offset_bottom = 2280.0
+grow_vertical = 2
+
+[node name="leaderboard_button" type="Button" parent="."]
+offset_left = 731.0
+offset_top = 1927.0
+offset_right = 973.0
+offset_bottom = 2004.0
+text = "Leaderboard"

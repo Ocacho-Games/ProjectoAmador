@@ -34,9 +34,9 @@ func _exit_tree():
 ## In charge of setting the percentages to the different containers in order to be responsive
 ##
 func _prepare_containers() -> void:
-	# Check if the user has bought the ads or not in order to update percentages
+	# TODO: Check if the user has bought the ads or not in order to update percentages
 	var percentage_menu_background = (GameUtilityLibrary.get_node_actual_height(menu_background)) / GameUtilityLibrary.SCREEN_HEIGHT
-	var percentage_ad = 0.09
+	var percentage_ad = 0.085
 	var percentage_game = 1.0 - percentage_menu_background - percentage_ad
 	
 	ad_view = AdsLibrary.load_show_banner(AdSize.new(-1, 50), AdPosition.Values.TOP)	

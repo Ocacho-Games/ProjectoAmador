@@ -80,7 +80,6 @@ func _check_objetive_collectable() -> void:
 	
 	assert(cached_collectable.objetive_callable.is_valid(), "Trying to call a null callable in a objetive collectable")
 
-	#TODO: I would like to measure this function
 	var objetive_callable_result = cached_collectable.objetive_callable.call() 
 
 	if objetive_callable_result[0]:

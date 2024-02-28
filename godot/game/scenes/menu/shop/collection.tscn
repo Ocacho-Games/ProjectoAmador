@@ -1,25 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://beilypwomfk7n"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collection.gd" id="1_aopj1"]
-[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="2_5slt3"]
-[ext_resource type="Texture2D" uid="uid://dhpgwti74rd64" path="res://game/resources/img/icon/icon_selected_1080x2280.png" id="3_p3jag"]
+[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="2_5slt3"]
+[ext_resource type="Texture2D" uid="uid://hlli63xl70m3" path="res://game/resources/img/icon/icon_selected_1080x2280.png" id="3_p3jag"]
 
 [node name="collection" type="MarginContainer"]
+custom_minimum_size = Vector2(250, 250)
 scale = Vector2(0.6, 0.6)
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 script = ExtResource("1_aopj1")
 
 [node name="sprite" type="TextureButton" parent="."]
 layout_mode = 2
 mouse_filter = 1
 texture_normal = ExtResource("2_5slt3")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="selected" type="Sprite2D" parent="sprite"]
 visible = false
-position = Vector2(173.333, 211.667)
+position = Vector2(110, 138.333)
 texture = ExtResource("3_p3jag")
 
 [connection signal="pressed" from="sprite" to="." method="_on_texture_button_pressed"]

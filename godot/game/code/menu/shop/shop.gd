@@ -18,7 +18,14 @@ class_name ShopNode extends Node
 @onready var objetive_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables
 @onready var collection_type_container : HBoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable/HBoxContainer
 @onready var coins_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer/CoinsText
+@onready var coins_video_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2/VideoButton/ObjectiveText
 
+@onready var game_zone : Control = $base_structure/VBoxContainer/GameZone
+@onready var gambling_part : BoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart
+@onready var collectable_part : ScrollContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables
+@onready var collection_part : ScrollContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable
+
+var coins_per_video = 20
 var current_index_collection : int = 0
 var current_key_collection : SCollection.ECollectionNames
 var collection_nodes_array : Array[CollectionNode]
@@ -29,11 +36,13 @@ var collection_nodes_array : Array[CollectionNode]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_prepare_containers()
 	_display_collection_types()
 	display_collection(SGame.collections[current_index_collection].key, false)
+	coins_video_text.text = "[b]+" + str(coins_per_video) + "[/b]"	
 	
 func _process(_delta):
-	coins_text.text = "[b] " + str(SGPS.get_saved_data("coins", 0)) + "[/b]"
+	coins_text.text = "[b]" + str(SGPS.get_saved_data("coins", 0)) + "[/b]"
 
 #==============================================================================
 # PUBLIC FUNCTIONS
@@ -75,10 +84,18 @@ func display_collection(collection_key : SCollection.ECollectionNames, check_for
 
 ##
 ##
+func _prepare_containers() -> void:
+	var game_zone_percentage = game_zone.custom_minimum_size.y / GameUtilityLibrary.SCREEN_HEIGHT
+	
+	var percentage_collection = 0.1 * game_zone_percentage 
+	collection_part.custom_minimum_size.y = percentage_collection * GameUtilityLibrary.SCREEN_HEIGHT
+##
+##
 func _display_collection_types() -> void:
 	for collection in SGame.collections:
 		var collection_node = collection_scene.instantiate() as CollectionNode
-		collection_node.set_collection_properties(collection, self)				
+		collection_node.set_collection_properties(collection, self)
+		collection_node.custom_minimum_size.x = collection_part.custom_minimum_size.y			
 		collection_nodes_array.append(collection_node)
 		collection_type_container.call_deferred("add_child", collection_node)
 		
@@ -96,13 +113,10 @@ func _set_collection_nodes_visibility():
 #==============================================================================
 
 func _on_video_coin_button_pressed():
-	# Show pop up as loading the video maybe on the library
-	get_tree().get_root().set_disable_input(true)
 	var ad : RewardedAd
 	var ad_listener = OnUserEarnedRewardListener.new()
 	ad_listener.on_user_earned_reward = func(_rewarded_item):
 		SGPS.data_to_save_dic["coins"] += 25
-		get_tree().get_root().set_disable_input(false)
-		ad.destroy()
+		if(ad):	ad.destroy()
 	
-	ad = AdsLibrary.load_show_rewarded(ad_listener)
+	ad = AdsLibrary.load_show_rewarded(self, ad_listener)
