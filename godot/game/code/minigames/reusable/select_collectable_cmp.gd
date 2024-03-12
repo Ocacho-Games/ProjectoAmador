@@ -19,7 +19,8 @@ class_name SelectCollectableCmp extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_name.call_deferred("SelectCollectableCmp")
-	_set_asset_by_collectable_type()
+	if(collection):
+		_set_asset_by_collectable_type()
 
 #==============================================================================
 # PRIVATE FUNCTIONS

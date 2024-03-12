@@ -77,6 +77,8 @@ const DIRECTION_BWD_RIGHT	: Vector2 = Vector2 (0.7, 0.7)
 @export var rotation_interpolation_speed 	: float = 8.0
 ## Offset we want to apply to the corresponding direction rotation
 @export var rotation_offset					: float = 0.0
+## Direction of the rotation, Clockwise or counter clockwise
+#@export var 
 
 ## Initial position of the entity
 var initial_position 		: Vector2
@@ -148,7 +150,7 @@ func _select_initial_direction() -> void:
 		current_movement_type = initial_direction
 		
 	match current_movement_type:
-		EMovementType.HORIZONTAL		: current_direction = DIRECTION_RIGHT
+		EMovementType.HORIZONTAL		: current_direction = DIRECTION_RIGHT 
 		EMovementType.VERTICAL			: current_direction = DIRECTION_FWD
 		EMovementType.FWD				: current_direction = DIRECTION_FWD
 		EMovementType.LEFT				: current_direction = DIRECTION_LEFT
@@ -160,6 +162,12 @@ func _select_initial_direction() -> void:
 		EMovementType.FWD_RIGHT			: current_direction = DIRECTION_FWD_RIGHT
 		EMovementType.BWD_LEFT			: current_direction = DIRECTION_BWD_LEFT
 		EMovementType.BWD_RIGHT			: current_direction = DIRECTION_BWD_RIGHT
+		
+	match additional_movement_type:
+		EMovementType.FWD				: additional_current_direction = DIRECTION_FWD
+		EMovementType.LEFT				: additional_current_direction = DIRECTION_LEFT
+		EMovementType.BWD				: additional_current_direction = DIRECTION_BWD
+		EMovementType.RIGHT				: additional_current_direction = DIRECTION_RIGHT
 		
 
 ## Called when we should trigger a movement change. Depending on the movemenet pattern,
@@ -278,9 +286,12 @@ func _handle_rotation(delta) -> void:
 		ERotationType.CONSTANT: 
 			get_parent().rotation_degrees += rotation_degrees_per_frame
 		ERotationType.ORIENTED_TO_MOVEMENT:
-			var dot = DIRECTION_FWD.dot(current_direction)
-			var det = DIRECTION_FWD.x * current_direction.y - current_direction.x * DIRECTION_FWD.y
+			var actual_direction = current_direction
+			if additional_movement_type != EMovementType.NO_MOVEMENT:
+				actual_direction = current_direction + additional_current_direction
+			var dot = DIRECTION_FWD.dot(actual_direction)
+			var det = DIRECTION_FWD.x * actual_direction.y - actual_direction.x * DIRECTION_FWD.y
 			var target_angle = atan2(det, dot)
 			var offset_angle = rotation_offset if target_angle > 0 else -rotation_offset
 			var final_target_angle = target_angle + deg_to_rad(offset_angle)
-			get_parent().rotation = InterpolationLibrary.interp_to(get_parent().rotation, final_target_angle, delta, rotation_interpolation_speed) 
+			get_parent().rotation = InterpolationLibrary.interp_angle_to(get_parent().rotation, final_target_angle, delta, rotation_interpolation_speed) 

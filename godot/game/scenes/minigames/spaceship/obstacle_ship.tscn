@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxcmhtefqqknn"]
+
+[ext_resource type="Texture2D" uid="uid://hes7xpf2vcx4" path="res://game/resources/img/spaceship/spaceship_ship_1080x2280.png" id="1_1ixx0"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="2_k3fpu"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="4_4iie2"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="5_kta76"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o7udk"]
+radius = 57.35
+height = 215.17
+
+[node name="obstacle" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1ixx0")
+
+[node name="SelectCollectableCmp" type="Node" parent="Sprite2D"]
+script = ExtResource("2_k3fpu")
+
+[node name="AutoMovementCmp" type="Node" parent="."]
+script = ExtResource("4_4iie2")
+enable = true
+additional_movement_type = 5
+change_type = 1
+speed = 300.0
+additional_speed = 600.0
+rotation_type = 2
+rotation_interpolation_speed = 10.0
+
+[node name="DestroyCmp" type="Node" parent="."]
+script = ExtResource("5_kta76")
+destroy_action = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_o7udk")

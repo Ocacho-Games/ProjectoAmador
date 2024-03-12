@@ -1,16 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://ioi8aq3h06pf"]
+[gd_scene load_steps=12 format=3 uid="uid://ioi8aq3h06pf"]
 
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="1_cbeqs"]
 [ext_resource type="Texture2D" uid="uid://bnme0l7m8lof8" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="2_jjjga"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_n1q1x"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="4_8xx6q"]
-[ext_resource type="Texture2D" uid="uid://dnyaxwrsq3mem" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_sagvy"]
-[ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle.tscn" id="5_6dd0u"]
+[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_sagvy"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="5_7mfjr"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="6_4rmhc"]
+[ext_resource type="PackedScene" uid="uid://c8sc888dd1q2k" path="res://game/scenes/minigames/spaceship/obstacle_ovni.tscn" id="8_o3foc"]
+[ext_resource type="PackedScene" uid="uid://bxcmhtefqqknn" path="res://game/scenes/minigames/spaceship/obstacle_ship.tscn" id="8_ufuhd"]
+[ext_resource type="PackedScene" uid="uid://bbd4w1ed5hqo2" path="res://game/scenes/minigames/spaceship/obstacle_asteroid.tscn" id="8_ve7oq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khny3"]
-radius = 48.0104
+radius = 101.885
 
 [node name="spaceship" type="Node2D"]
 script = ExtResource("1_cbeqs")
@@ -23,8 +25,8 @@ texture = ExtResource("2_jjjga")
 expand_mode = 1
 
 [node name="spaceship_player" type="Node2D" parent="."]
-position = Vector2(548, 1936)
-scale = Vector2(0.6, 0.6)
+position = Vector2(540, 1800)
+scale = Vector2(0.35, 0.35)
 
 [node name="AutoMovementCmp" type="Node" parent="spaceship_player"]
 script = ExtResource("3_n1q1x")
@@ -34,7 +36,6 @@ rotation_type = 2
 rotation_offset = -60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="spaceship_player"]
-scale = Vector2(0.38, 0.38)
 texture = ExtResource("4_sagvy")
 
 [node name="SelectCollectableCmp" type="Node" parent="spaceship_player/Sprite2D"]
@@ -44,12 +45,13 @@ collection = ExtResource("6_4rmhc")
 [node name="Area2D" type="Area2D" parent="spaceship_player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spaceship_player/Area2D"]
-position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_khny3")
 
 [node name="obstacle_generator" type="Node2D" parent="."]
 script = ExtResource("4_8xx6q")
-obstacle = ExtResource("5_6dd0u")
+obstacle_asteroid = ExtResource("8_ve7oq")
+obstacle_ovni = ExtResource("8_o3foc")
+obstacle_ship = ExtResource("8_ufuhd")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = 29.0

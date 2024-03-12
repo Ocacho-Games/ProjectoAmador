@@ -26,3 +26,14 @@ static func interp_to(current, target, delta, interp_speed):
 
 		var delta_move = diff * clamp(delta * interp_speed, 0.0, 1.0);
 		return current + delta_move;	
+
+## Performs a interpolatioin based on the interp_speed. Provoking a smooth interpolation feeling, NOT LINEAR.
+## Taking the shortest path for angles
+##
+static func interp_angle_to(current, target, delta, interp_speed):
+		if interp_speed <= 0.0: return target
+	
+		var diff = target - current;
+		if diff * diff < 0.00001: return target
+		
+		return lerp_angle(current, target, clamp(delta * interp_speed, 0.0, 1.0));	

@@ -31,7 +31,7 @@ func _process(delta):
 ##
 ##
 func _check_for_screen_collision() -> void:
-	if spaceship.position.x > ProjectSettings.get_setting("display/window/size/viewport_width"): on_should_change_to_next_minigame.emit() 
+	if spaceship.position.x > GameUtilityLibrary.SCREEN_WIDTH: on_should_change_to_next_minigame.emit() 
 	if spaceship.position.x < 0: on_should_change_to_next_minigame.emit() 
 
 ##

@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbd4w1ed5hqo2"]
+
+[ext_resource type="Texture2D" uid="uid://dceji21p7dnsy" path="res://game/resources/img/spaceship/spaceship_asteroid_1080x2280.png" id="1_orl8t"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="2_swqe7"]
+[ext_resource type="Resource" uid="uid://oe8wugpvybbj" path="res://game/resources/collection/asteroid_collection.tres" id="3_no4t2"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="4_251k8"]
+[ext_resource type="Script" path="res://game/code/minigames/reusable/destroy_cmp.gd" id="5_v74r8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmpmq"]
+radius = 105.232
+
+[node name="obstacle" type="Node2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_orl8t")
+
+[node name="SelectCollectableCmp" type="Node" parent="Sprite2D"]
+script = ExtResource("2_swqe7")
+collection = ExtResource("3_no4t2")
+
+[node name="AutoMovementCmp" type="Node" parent="."]
+script = ExtResource("4_251k8")
+enable = true
+movement_type = 2
+initial_direction = 5
+speed = 600.0
+rotation_type = 1
+rotation_degrees_per_frame = 0.5
+
+[node name="DestroyCmp" type="Node" parent="."]
+script = ExtResource("5_v74r8")
+destroy_action = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_nmpmq")
