@@ -17,7 +17,6 @@ class_name ShopNode extends Node
 @onready var videos_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables
 @onready var objetive_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables
 @onready var collection_type_container : HBoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable/HBoxContainer
-@onready var coins_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer/CoinsText
 @onready var coins_video_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2/VideoButton/ObjectiveText
 
 @onready var game_zone : Control = $base_structure/VBoxContainer/GameZone
@@ -41,9 +40,6 @@ func _ready():
 	display_collection(SGame.collections[current_index_collection].key, false)
 	coins_video_text.text = "[b]+" + str(coins_per_video) + "[/b]"	
 	
-func _process(_delta):
-	coins_text.text = "[b]" + str(SGPS.get_saved_data("coins", 0)) + "[/b]"
-
 #==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================

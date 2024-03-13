@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0qa3vfw1c1fw"]
+
+[ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame_new.gd" id="2_ptr1c"]
+[ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_6jhuu"]
+[ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="4_8wpi5"]
+[ext_resource type="Texture2D" uid="uid://shllky6l75mg" path="res://game/resources/img/stack/stack_floor_1080x2280.png" id="5_dddoc"]
+[ext_resource type="PackedScene" uid="uid://dewdtqs7smx3a" path="res://game/scenes/minigames/base_minigame.tscn" id="5_ehq6b"]
+
+[node name="stack" type="Node2D"]
+
+[node name="base_minigame" parent="." instance=ExtResource("5_ehq6b")]
+script = ExtResource("2_ptr1c")
+
+[node name="background" parent="base_minigame" index="0"]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 2280.0
+color = Color(0.596078, 0.596078, 0.596078, 1)
+
+[node name="progress_bar" parent="base_minigame" index="1"]
+value = 100.0
+fill_mode = 2
+
+[node name="ScoreText" parent="base_minigame/VBoxContainer" index="2"]
+text = "[center][b]0[/b]"
+
+[node name="MenuBackground-REMOVE" parent="base_minigame" index="3"]
+layout_mode = 0
+offset_top = 0.0
+offset_bottom = 275.0
+
+[node name="piece_generator" type="Node" parent="base_minigame" node_paths=PackedStringArray("initial_piece", "floor_ref")]
+script = ExtResource("3_6jhuu")
+piece = ExtResource("4_8wpi5")
+initial_piece = NodePath("../initial_piece")
+floor_ref = NodePath("../StackFloor")
+num_pieces_to_climb = 14
+climb_interp_speed = 10.0
+
+[node name="StackFloor" type="Sprite2D" parent="base_minigame"]
+z_index = 1
+position = Vector2(540, 1960)
+texture = ExtResource("5_dddoc")
+
+[node name="initial_piece" parent="base_minigame" instance=ExtResource("4_8wpi5")]
+process_mode = 4
+position = Vector2(301, 1566)
+
+[editable path="base_minigame"]

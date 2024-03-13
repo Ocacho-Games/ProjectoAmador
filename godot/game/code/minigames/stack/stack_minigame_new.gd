@@ -1,4 +1,4 @@
-extends Minigame
+extends MinigameNew
 
 @onready var piece_generator = $piece_generator
 

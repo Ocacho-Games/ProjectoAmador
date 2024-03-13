@@ -1,26 +1,101 @@
-[gd_scene load_steps=2 format=3 uid="uid://dewdtqs7smx3a"]
+[gd_scene load_steps=7 format=3 uid="uid://dewdtqs7smx3a"]
 
-[ext_resource type="Script" path="res://game/code/minigames/minigame.gd" id="1_cynjy"]
+[ext_resource type="Script" path="res://game/code/minigames/minigame_new.gd" id="1_5ktwk"]
+[ext_resource type="Script" path="res://game/code/menu/ui/inherit_parent_minimum_size.gd" id="2_nfqh3"]
+[ext_resource type="Texture2D" uid="uid://cch3ftl4r7ux6" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="2_vlnw8"]
+[ext_resource type="Texture2D" uid="uid://bnme0l7m8lof8" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="3_5uu3r"]
+[ext_resource type="Texture2D" uid="uid://bv5b53bamfh2" path="res://game/resources/img/icon/icon_info_1080x2280.png" id="4_ulv3e"]
+[ext_resource type="Script" path="res://game/code/menu/ui/coins_text.gd" id="5_y6bi5"]
 
-[node name="base_minigame" type="Node2D"]
-script = ExtResource("1_cynjy")
+[node name="base_minigame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 2280.0
+mouse_filter = 2
+script = ExtResource("1_5ktwk")
 
 [node name="background" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1080, 2280)
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 color = Color(0.294118, 0.294118, 0.294118, 1)
 
 [node name="progress_bar" type="ProgressBar" parent="."]
+layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 20.0
-offset_bottom = 2280.0
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="leaderboard_button" type="Button" parent="."]
-offset_left = 731.0
-offset_top = 1927.0
-offset_right = 973.0
-offset_bottom = 2004.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 2280.0
+script = ExtResource("2_nfqh3")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 215)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_vlnw8")
+
+[node name="CoinsText" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/bold_font_size = 70
+bbcode_enabled = true
+text = "[b]230[/b]"
+fit_content = true
+scroll_following = true
+script = ExtResource("5_y6bi5")
+
+[node name="TutorialButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("4_ulv3e")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="ScoreText" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/bold_font_size = 70
+bbcode_enabled = true
+text = "[center][b]230[/b]"
+fit_content = true
+scroll_following = true
+
+[node name="leaderboard_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "Leaderboard"
+
+[node name="MenuBackground-REMOVE" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+offset_top = 2000.0
+offset_right = 1081.0
+offset_bottom = 2275.0
+mouse_filter = 2
+texture = ExtResource("3_5uu3r")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/leaderboard_button" to="." method="_on_leaderboard_button_pressed"]
