@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpoq7rgiyi6qy"]
 
 [ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
-[ext_resource type="Texture2D" uid="uid://dcfvhyeflifap" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
+[ext_resource type="Texture2D" uid="uid://bsc57kbvkqjqe" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
 [ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
 [ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
-[ext_resource type="Texture2D" uid="uid://cq580irjewbns" path="res://game/resources/img/stack/stack_floor_1080x2280.png" id="5_m1lc6"]
+[ext_resource type="Texture2D" uid="uid://shllky6l75mg" path="res://game/resources/img/stack/stack_floor_1080x2280.png" id="5_m1lc6"]
 
 [node name="stack" type="Node2D"]
 script = ExtResource("1_mtjus")

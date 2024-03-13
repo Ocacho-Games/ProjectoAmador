@@ -21,10 +21,11 @@ script = ExtResource("2_0olh5")
 [node name="AutoMovementCmp" type="Node" parent="."]
 script = ExtResource("4_3awyt")
 enable = true
+movement_type = 14
 additional_movement_type = 5
 change_type = 1
 speed = 750.0
-additional_speed = 150.0
+additional_speed = 200.0
 rotation_degrees_per_frame = 0.5
 
 [node name="DestroyCmp" type="Node" parent="."]

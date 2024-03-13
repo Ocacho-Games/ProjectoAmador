@@ -17,8 +17,9 @@ script = ExtResource("1_5ktwk")
 
 [node name="background" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1080, 2280)
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 0
+offset_right = 1080.0
+offset_bottom = 2280.0
 mouse_filter = 2
 color = Color(0.294118, 0.294118, 0.294118, 1)
 
@@ -29,6 +30,8 @@ anchor_bottom = 1.0
 offset_right = 20.0
 grow_vertical = 2
 mouse_filter = 2
+value = 100.0
+fill_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -80,7 +83,7 @@ mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 70
 theme_override_font_sizes/bold_font_size = 70
 bbcode_enabled = true
-text = "[center][b]230[/b]"
+text = "[center][b]0[/b]"
 fit_content = true
 scroll_following = true
 
@@ -91,6 +94,7 @@ text = "Leaderboard"
 [node name="MenuBackground-REMOVE" type="TextureRect" parent="."]
 visible = false
 z_index = 2
+layout_mode = 0
 offset_top = 2000.0
 offset_right = 1081.0
 offset_bottom = 2275.0

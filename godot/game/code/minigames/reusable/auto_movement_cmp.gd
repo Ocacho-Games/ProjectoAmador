@@ -8,7 +8,7 @@ class_name AutoMovementCmp extends Node
 
 ## Type of movement pattern the entity will follow
 ## FIXED_UNITS: This means the entity will move only for some fixed amount and then back, again and again. 
-enum EMovementType 	{ NO_MOVEMENT, HORIZONTAL, VERTICAL, FWD, LEFT, BWD, RIGHT, DIAGONAL_LEFT, DIAGONAL_RIGHT, FWD_LEFT, FWD_RIGHT, BWD_LEFT, BWD_RIGHT, FIXED_UNITS }
+enum EMovementType 	{ NO_MOVEMENT, HORIZONTAL, VERTICAL, FWD, LEFT, BWD, RIGHT, DIAGONAL_LEFT, DIAGONAL_RIGHT, FWD_LEFT, FWD_RIGHT, BWD_LEFT, BWD_RIGHT, FIXED_UNITS, SIN_HORIZONTAL, SIN_VERTICAL }
 
 ## Type of change that will trigger a change in the movement.
 ## NOTE!: Only HORIZONTAL, VERTICAL, DIAGONAL_LEFT and DIAGONAL_RIGHT are elegible for changing. See _is_direction_changeable()
@@ -64,7 +64,11 @@ const DIRECTION_BWD_RIGHT	: Vector2 = Vector2 (0.7, 0.7)
 ## Kind of interpolation for the translation when we are in FIXED_UNITS
 @export var fixed_interpolation_type 	: InterpolationLibrary.EInterpolationType
 ## In which axis should we move the entity when we are in FIXED_UNITS
-@export var fixed_axis 					: InterpolationLibrary.EAxis 
+@export var fixed_axis 					: InterpolationLibrary.EAxis
+
+@export_subgroup("Sin")
+@export var sin_angle				: float = 90.0
+@export var sin_angle_increment		: float = 2.0
 
 @export_group("Rotation")
 ## Pattern of rotation we want to follow. See ERotationType for more info
@@ -249,15 +253,19 @@ func _handle_screen_borders() -> void:
 ##	
 func _handle_position(delta) -> void:
 	if movement_type == EMovementType.NO_MOVEMENT: return
-	
+
 	if movement_type == EMovementType.FIXED_UNITS:
 		_handle_fixed_units_position(delta)
 		return
-	
+
+	if movement_type == EMovementType.SIN_HORIZONTAL or movement_type == EMovementType.SIN_VERTICAL:
+		current_direction = Vector2(sin(deg_to_rad(sin_angle)), 0.0) if movement_type == EMovementType.SIN_HORIZONTAL else Vector2(0.0, sin(deg_to_rad(sin_angle)))
+		sin_angle += sin_angle_increment
+		
 	var additional_movement_direction = Vector2(0,0)
 	if additional_movement_type != EMovementType.NO_MOVEMENT:
 		additional_movement_direction = additional_current_direction * additional_speed
-	
+
 	var movement_direction = current_direction * speed
 	var velocity = (movement_direction + additional_movement_direction) * delta
 	get_parent().position += velocity
