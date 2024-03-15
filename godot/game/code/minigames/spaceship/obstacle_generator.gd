@@ -1,37 +1,35 @@
 extends Node
 
-@export var obstacle_asteroid: PackedScene
-@export var obstacle_ovni: PackedScene 
-@export var obstacle_ship: PackedScene 
+@export var obstacles : Array[Obstacle]
+
+# Time to wait before spwaning a new obstacle
+@export var time_new_obstacle = 1.0
 
 var timer : Timer = Timer.new()
 
-@export var enable : bool = false
-
+## Used for vary the initial direction of Horizontal stuff when spawnning
 var spawn_movement_right : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_child(timer)	
-	timer.wait_time = 1.0
+	add_child(timer)
+	timer.wait_time = time_new_obstacle
 	timer.connect("timeout", _on_timer_timeout)
 	timer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func _on_timer_timeout():
-	var random_obstacle_id = randi_range(0, 2)
-	var obstacle_node
+	var random_chance = randi_range(0, 100)
 	
-	match random_obstacle_id:
-		0: obstacle_node = obstacle_asteroid.instantiate()
-		1: obstacle_node = obstacle_ovni.instantiate()
-		2: obstacle_node = obstacle_ship.instantiate()		
+	var obstacle_node = null
+	var current_chance = 0
+	for obstacle in obstacles:
+		current_chance += obstacle.chance
+		if current_chance >= random_chance:
+			obstacle_node = obstacle.scene.instantiate()
+			break
 	
 	var screen_width = GameUtilityLibrary.SCREEN_WIDTH
-	var obstacle_width = obstacle_node.get_child(0).texture.get_width()
+	var obstacle_width = obstacle_node.get_child(0).texture.get_width() / 2
 	obstacle_node.position.x = randf_range(obstacle_width, screen_width - obstacle_width)
 	obstacle_node.position.y = -200
 	
@@ -43,9 +41,3 @@ func _on_timer_timeout():
 	
 	get_parent().add_child(obstacle_node)
 	spawn_movement_right = !spawn_movement_right
-	
-#	var obstacle_node2 = obstacle.instantiate()
-#	obstacle_node.position.x = randf_range(obstacle_width * 2, screen_width - obstacle_width)
-#	obstacle_node.position.y = randf_range(-100, -500)
-#	get_parent().add_child(obstacle_node2)
-
