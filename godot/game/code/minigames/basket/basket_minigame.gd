@@ -83,11 +83,13 @@ func _exit_tree():
 func _move_random_location_entities():
 	var width = GameUtilityLibrary.SCREEN_WIDTH
 	var height = GameUtilityLibrary.SCREEN_HEIGHT
+	var play_zone_width = GameUtilityLibrary.SCREEN_WIDTH_PLAY_ZONE
+	var play_zone_height = GameUtilityLibrary.SCREEN_HEIGHT_PLAY_ZONE
 	
-	var min_X_basket_range = offset_screen + half_basket_size.x
-	var max_X_basket_range = width - half_basket_size.x - offset_screen
-	var min_Y_basket_range = offset_screen + half_basket_size.x
-	var max_Y_basketrange = height - half_basket_size.y - offset_screen
+	var min_X_basket_range = play_zone_width.x + offset_screen + half_basket_size.x
+	var max_X_basket_range = play_zone_width.y - half_basket_size.x - offset_screen
+	var min_Y_basket_range = play_zone_height.x + offset_screen + half_basket_size.x
+	var max_Y_basketrange = play_zone_height.y - half_basket_size.y - offset_screen
 	
 	var basket_X_rand = randf_range( min_X_basket_range , max_X_basket_range )
 	var basket_Y_rand = randf_range( min_Y_basket_range , max_Y_basketrange )
@@ -95,12 +97,12 @@ func _move_random_location_entities():
 	
 	basket_node.position = basket_rand_pos
 	
-	var ball_Y_rand = randf_range( ball_radius + offset_screen , height - ball_radius - offset_screen )
+	var ball_Y_rand = randf_range( play_zone_height.x + ball_radius + offset_screen , play_zone_height.y - ball_radius - offset_screen )
 	
-	var range_left_min = ball_radius + offset_screen
+	var range_left_min = play_zone_width.x + ball_radius + offset_screen
 	var range_left_max = basket_rand_pos.x - half_basket_size.x - ball_radius * 2.0
 	var range_right_min = basket_rand_pos.x + half_basket_size.x + ball_radius * 2.0 
-	var range_right_max = width - ball_radius - offset_screen
+	var range_right_max = play_zone_width.y - ball_radius - offset_screen
 	
 	var min_size_spawn = ball_radius * 3
 	

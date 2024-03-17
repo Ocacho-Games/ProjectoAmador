@@ -115,6 +115,10 @@ func _prepare_game() -> void:
 	current_minigame_node.add_child(previous_minigame_node)
 	current_minigame_node.add_child(next_minigame_node)
 	
+	current_minigame_node.z_index = 0
+	previous_minigame_node.z_index = 1
+	next_minigame_node.z_index = 1
+	
 	current_minigame_node.is_being_played = true
 	previous_minigame_node.is_being_played = false
 	next_minigame_node.is_being_played = false

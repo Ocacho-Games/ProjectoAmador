@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://sw0eoop1jtmk"]
 
 [ext_resource type="Script" path="res://game/code/minigames/basket/ball.gd" id="1_c5qtr"]
-[ext_resource type="Texture2D" uid="uid://cy2fpyy44rsvf" path="res://game/resources/img/basket/basket_ball_1080x2280.png" id="2_fvlsq"]
+[ext_resource type="Texture2D" uid="uid://b4lwa58dwachb" path="res://game/resources/img/basket/basket_ball_1080x2280.png" id="2_cwh0f"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/point_trail.gd" id="2_or07h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l0oib"]
@@ -14,7 +14,7 @@ script = ExtResource("1_c5qtr")
 freeze = true
 
 [node name="sprite_ball" type="Sprite2D" parent="RigidBody2D"]
-texture = ExtResource("2_fvlsq")
+texture = ExtResource("2_cwh0f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_l0oib")

@@ -32,6 +32,8 @@ var is_dragging : STrackVariable
 ## Boolean track variable in order to know if we are tapping or not. 
 var is_tapping : STrackVariable
 
+var tapping_position = Vector2(0.0,0.0)
+
 ## Whether we are swiping or not. This will only be true when we are not longer dragging, obviously.
 var is_swiping : bool = false
 
@@ -64,6 +66,7 @@ func _input(event):
 		is_touching = event.pressed
 	elif event is InputEventSingleScreenTap:
 		is_tapping.set_value(true)
+		tapping_position = event.position
 
 ## Overriden process function
 ##

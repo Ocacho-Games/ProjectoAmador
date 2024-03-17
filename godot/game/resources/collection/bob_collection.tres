@@ -1,14 +1,6 @@
-[gd_resource type="Resource" script_class="SCollection" load_steps=15 format=3 uid="uid://dnuok8mfsrmex"]
+[gd_resource type="Resource" script_class="SCollection" load_steps=7 format=3 uid="uid://dnuok8mfsrmex"]
 
-[ext_resource type="Texture2D" uid="uid://c8ioagxevsxav" path="res://game/resources/img/bob/skins/bob_skin_01_1080x2280.png" id="1_yoc0l"]
-[ext_resource type="Texture2D" uid="uid://p4rn773fota2" path="res://game/resources/img/button/button_box_green_1080x2280.png" id="2_desmd"]
 [ext_resource type="Script" path="res://game/code/resources/collectable_resource.gd" id="3_ko04a"]
-[ext_resource type="Texture2D" uid="uid://bi73n7smh056b" path="res://game/resources/img/bob/skins/bob_skin_02_1080x2280.png" id="4_72xy0"]
-[ext_resource type="Texture2D" uid="uid://c6s3eoldav4f2" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="5_noixh"]
-[ext_resource type="Texture2D" uid="uid://blh4uxd305fql" path="res://game/resources/img/bob/skins/bob_skin_03_1080x2280.png" id="6_ykuw2"]
-[ext_resource type="Texture2D" uid="uid://bpfb8yhk5f70i" path="res://game/resources/img/button/button_box_pink_1080x2280.png" id="7_tfrch"]
-[ext_resource type="Texture2D" uid="uid://dceji21p7dnsy" path="res://game/resources/img/spaceship/spaceship_asteroid_1080x2280.png" id="8_av1b0"]
-[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="10_varg6"]
 [ext_resource type="Script" path="res://game/code/resources/collection_resource.gd" id="12_10c5a"]
 
 [sub_resource type="Resource" id="Resource_gb2mx"]
@@ -20,9 +12,6 @@ coins_to_unlock = 350
 videos_to_unlock = 4
 objetive_description = ""
 show_reward_video_button = true
-box_sprite = ExtResource("2_desmd")
-shop_sprite = ExtResource("1_yoc0l")
-asset = ExtResource("1_yoc0l")
 
 [sub_resource type="Resource" id="Resource_0p8w6"]
 script = ExtResource("3_ko04a")
@@ -33,9 +22,6 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "?"
 show_reward_video_button = true
-box_sprite = ExtResource("5_noixh")
-shop_sprite = ExtResource("4_72xy0")
-asset = ExtResource("4_72xy0")
 
 [sub_resource type="Resource" id="Resource_g4m55"]
 script = ExtResource("3_ko04a")
@@ -46,9 +32,6 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "?"
 show_reward_video_button = true
-box_sprite = ExtResource("7_tfrch")
-shop_sprite = ExtResource("6_ykuw2")
-asset = ExtResource("6_ykuw2")
 
 [sub_resource type="Resource" id="Resource_5ypuu"]
 script = ExtResource("3_ko04a")
@@ -59,12 +42,8 @@ coins_to_unlock = 200
 videos_to_unlock = 4
 objetive_description = "Obtain > 100 score on stack"
 show_reward_video_button = true
-box_sprite = ExtResource("2_desmd")
-shop_sprite = ExtResource("8_av1b0")
-asset = ExtResource("8_av1b0")
 
 [resource]
 script = ExtResource("12_10c5a")
-shop_sprite = ExtResource("10_varg6")
 key = 0
 collectables = Array[ExtResource("3_ko04a")]([SubResource("Resource_gb2mx"), SubResource("Resource_0p8w6"), SubResource("Resource_g4m55"), SubResource("Resource_5ypuu")])
