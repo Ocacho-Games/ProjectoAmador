@@ -130,6 +130,11 @@ func connect_signal(signal_name : String, callable : Callable) -> void:
 		_check_gpgs()
 		# TODO: Asserts for custom android
 		GPGS.connect(signal_name, callable)
+
+## Helper function for adding coins to the saved data
+##
+func add_coins(coins_to_add : int) -> void:
+	SGPS.data_to_save_dic['coins'] += coins_to_add
 		
 #==============================================================================
 # PRIVATE FUNCTIONS

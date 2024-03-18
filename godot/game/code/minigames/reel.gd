@@ -10,9 +10,9 @@ extends Node
 ## === REFERENCES VARIABLES ===
 
 ## Cached current,previous and next instanciated PackedScenes in order to add/move/destroy them when changing among minigames
-var current_minigame_node 	: Minigame = null
-var previous_minigame_node 	: Minigame = null
-var next_minigame_node		: Minigame = null
+var current_minigame_node 	: Node2D = null
+var previous_minigame_node 	: Node2D = null
+var next_minigame_node		: Node2D = null
 
 ## === DISPLACEMENT VARIABLES ===
 
@@ -90,7 +90,7 @@ func _init_game() -> void:
 ## Then we add the game 3 to the reel node and we pretty much repeat the same process as _init_game(), previously loading the next or previous minigame index, depending on the given parameter
 ## [David]: I highly recommend putting a breakpoint on the top of the function an go step by step in order to see the process with the Remote option, so you can see the changes on runtime
 ##	
-func _init_specific_game(specific_game : Minigame) -> void:
+func _init_specific_game(specific_game : Node2D) -> void:
 	current_minigame_node.remove_child(specific_game)
 	remove_child(current_minigame_node)	
 	
@@ -115,9 +115,9 @@ func _prepare_game() -> void:
 	current_minigame_node.add_child(previous_minigame_node)
 	current_minigame_node.add_child(next_minigame_node)
 	
-	current_minigame_node.is_being_played = true
-	previous_minigame_node.is_being_played = false
-	next_minigame_node.is_being_played = false
+	current_minigame_node.get_node("base_minigame").is_being_played = true
+	previous_minigame_node.get_node("base_minigame").is_being_played = false
+	next_minigame_node.get_node("base_minigame").is_being_played = false
 	
 	previous_minigame_node.position.y = -GameUtilityLibrary.SCREEN_HEIGHT
 	next_minigame_node.position.y = GameUtilityLibrary.SCREEN_HEIGHT
@@ -126,7 +126,7 @@ func _prepare_game() -> void:
 	GameUtilityLibrary.pause_scene(previous_minigame_node)
 	GameUtilityLibrary.pause_scene(next_minigame_node)
 	
-	current_minigame_node.connect("on_should_change_to_next_minigame", func():
+	current_minigame_node.get_node("base_minigame").connect("on_should_change_to_next_minigame", func():
 		GameUtilityLibrary.pause_scene(current_minigame_node, [previous_minigame_node.get_path(), next_minigame_node.get_path()])
 		drag_event_initial_y_position = 0		
 		is_lerping = true
@@ -139,7 +139,7 @@ func _prepare_game() -> void:
 ## [delta]: Frame delta time coming from the _process function
 ##	
 func _handle_dragging(delta) -> void:
-	if !current_minigame_node.can_drag_from_reel(): return
+	if !current_minigame_node.get_node("base_minigame").can_drag_from_reel(): return
 	
 	if is_lerping:
 		_handle_reel_interpolation(delta)

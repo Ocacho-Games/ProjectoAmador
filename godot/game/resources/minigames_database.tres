@@ -1,48 +1,48 @@
 [gd_resource type="Resource" script_class="MinigamesDataBase" load_steps=13 format=3 uid="uid://dlwwh6sxqpale"]
 
-[ext_resource type="PackedScene" uid="uid://ioi8aq3h06pf" path="res://game/scenes/minigames/spaceship/spaceship.tscn" id="1_h1bcv"]
+[ext_resource type="PackedScene" uid="uid://8eo1ijbotk1j" path="res://game/scenes/minigames/spaceship/spaceship.tscn" id="1_tbud5"]
 [ext_resource type="Script" path="res://game/code/resources/minigame_resource.gd" id="1_tv1c6"]
-[ext_resource type="PackedScene" uid="uid://bn8cw41kc3lsj" path="res://game/scenes/minigames/clicker/clicker.tscn" id="3_f4kmf"]
+[ext_resource type="PackedScene" uid="uid://d0qa3vfw1c1fw" path="res://game/scenes/minigames/stack/stack.tscn" id="3_vhq0g"]
+[ext_resource type="PackedScene" uid="uid://dwm0qubmpqhtn" path="res://game/scenes/minigames/basket/basket.tscn" id="4_1tcdn"]
 [ext_resource type="Script" path="res://game/code/resources/minigames_resource.gd" id="4_8e2eg"]
-[ext_resource type="PackedScene" uid="uid://bpoq7rgiyi6qy" path="res://game/scenes/minigames/stack/stack.tscn" id="4_a0she"]
-[ext_resource type="PackedScene" uid="uid://bdafntthxpcrc" path="res://game/scenes/minigames/counter/counter.tscn" id="5_km4g4"]
-[ext_resource type="PackedScene" uid="uid://dwm0qubmpqhtn" path="res://game/scenes/minigames/basket/basket.tscn" id="6_1q5wx"]
+[ext_resource type="PackedScene" uid="uid://bn8cw41kc3lsj" path="res://game/scenes/minigames/clicker/clicker.tscn" id="5_w8ix5"]
+[ext_resource type="PackedScene" uid="uid://bdafntthxpcrc" path="res://game/scenes/minigames/counter/counter.tscn" id="6_spqn0"]
 
 [sub_resource type="Resource" id="Resource_uuu08"]
 script = ExtResource("1_tv1c6")
-scene = ExtResource("1_h1bcv")
+scene = ExtResource("1_tbud5")
 game_duration = -1.0
 game_key = "spaceship"
 metadata = Array[int]([1, 6])
 
 [sub_resource type="Resource" id="Resource_p2v6o"]
 script = ExtResource("1_tv1c6")
-scene = ExtResource("3_f4kmf")
-game_duration = 3.0
-game_key = "clicker"
-metadata = Array[int]([6])
-
-[sub_resource type="Resource" id="Resource_hopvo"]
-script = ExtResource("1_tv1c6")
-scene = ExtResource("4_a0she")
+scene = ExtResource("3_vhq0g")
 game_duration = -1.0
 game_key = "stack"
 metadata = Array[int]([6])
 
-[sub_resource type="Resource" id="Resource_ov1gw"]
+[sub_resource type="Resource" id="Resource_xghfl"]
 script = ExtResource("1_tv1c6")
-scene = ExtResource("5_km4g4")
-game_duration = -1.0
-game_key = "counter"
-metadata = Array[int]([6])
-
-[sub_resource type="Resource" id="Resource_47dck"]
-script = ExtResource("1_tv1c6")
-scene = ExtResource("6_1q5wx")
+scene = ExtResource("4_1tcdn")
 game_duration = -1.0
 game_key = "basket"
-metadata = Array[int]([2])
+metadata = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_sr2su"]
+script = ExtResource("1_tv1c6")
+scene = ExtResource("5_w8ix5")
+game_duration = 4.0
+game_key = "clicker"
+metadata = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_msfiw"]
+script = ExtResource("1_tv1c6")
+scene = ExtResource("6_spqn0")
+game_duration = -1.0
+game_key = "counter"
+metadata = Array[int]([])
 
 [resource]
 script = ExtResource("4_8e2eg")
-minigames = Array[ExtResource("1_tv1c6")]([SubResource("Resource_uuu08"), SubResource("Resource_p2v6o"), SubResource("Resource_hopvo"), SubResource("Resource_ov1gw"), SubResource("Resource_47dck")])
+minigames = Array[ExtResource("1_tv1c6")]([SubResource("Resource_uuu08"), SubResource("Resource_p2v6o"), SubResource("Resource_xghfl"), SubResource("Resource_sr2su"), SubResource("Resource_msfiw")])

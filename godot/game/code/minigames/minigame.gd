@@ -7,23 +7,23 @@
 ## 		- The progression bar of the minigame.
 ##		- The logic for firing a signal for the next game if the progress bar is 100%
 ##
-class_name Minigame extends Node2D
+class_name Minigame extends Control
 
 #==============================================================================
 # VARIABLES
 #==============================================================================
 
 ## Reference to the background of the minigame. Each Minigame must have a background
-@onready var background : TextureRect = $background
-
-## Reference to the button to open the leaderboard of the game. Each Minigame must have a leaderboard button
-@onready var leaderboard_button : Button = $leaderboard_button
+@onready var background : ColorRect = $background
 
 ## Reference to the progress bar of the minigame. Each Minigame must have a progress bar #TODO: CHANGE THIS WHEN USING BASE_MINIGAME
-@onready var time_bar : ProgressBar = $ProgressBar 
+@onready var time_bar : ProgressBar = $progress_bar 
+
+## Reference to the text displaying the score of this minigame
+@onready var score_text : RichTextLabel = $VBoxContainer/ScoreText
 
 ## Name (key) of this minigame. Dictated by the minigames database resource of the autoload
-var key_name : String = "" 
+var key_name : String = ""
 
 ## Duration of this minigame. Dictated by the minigames database resource of the autoload
 var minigame_duration = 0
@@ -55,7 +55,6 @@ signal on_should_change_to_next_minigame
 ##
 func _ready():
 	_handle_background()
-	_handle_leaderboard_button()
 	
 	key_name = SGame.get_minigame_name(self)			
 	minigame_duration = SGame.get_minigame_duration(self)
@@ -68,6 +67,8 @@ func _ready():
 ## Overriden process function
 ##
 func _process(delta):
+	score_text.text = "[center][b]" + str(round(score)) + "[/b]" 
+	
 	if time_bar.visible:
 		current_minigame_duration += delta
 		time_bar.value = (current_minigame_duration * 100) / minigame_duration
@@ -112,12 +113,16 @@ func _handle_background() -> void:
 	if 	background:
 		background.position = Vector2(0,0)
 		background.size = Vector2(GameUtilityLibrary.SCREEN_WIDTH, GameUtilityLibrary.SCREEN_HEIGHT)
-		
-## Connect the logic to show the leaderboard of the game to the leaderboard button
-##
-func _handle_leaderboard_button() -> void:
-	if leaderboard_button:
-		leaderboard_button.pressed.connect(func(): SGPS.show_leaderboard(self))
+	
+#==============================================================================
+# SIGNAL FUNCTIONS
+#==============================================================================
+
+func _on_tutorial_button_pressed():
+	pass # Replace with function body.
+
+func _on_leaderboard_button_pressed():
+	pass
 		
 #==============================================================================
 # REEL FUNCTIONS
@@ -128,4 +133,3 @@ func _handle_leaderboard_button() -> void:
 ##
 func can_drag_from_reel() -> bool:
 	return true	
-
