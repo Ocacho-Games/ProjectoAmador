@@ -12,6 +12,13 @@ static var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewp
 static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
 
 #==============================================================================
+# VARIABLES
+#==============================================================================
+
+## Formats for RichLabelText using BBCode. 
+enum ETextFormat { center, b, left, right }
+
+#==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
 
@@ -80,6 +87,12 @@ static func remove_children(node : Node) -> void:
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+		
+## Returns the given text formatted by the format
+##		
+static func get_formatted_text(text, format : ETextFormat) -> String:
+	return "[" + ETextFormat.keys()[format] + "]" + text + "[/" + ETextFormat.keys()[format] + "]" 
+		
 		
 ## Returns the given text centered
 ##

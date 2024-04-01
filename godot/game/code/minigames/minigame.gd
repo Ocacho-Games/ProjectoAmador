@@ -67,7 +67,7 @@ func _ready():
 ## Overriden process function
 ##
 func _process(delta):
-	score_text.text = "[center][b]" + str(round(score)) + "[/b]" 
+	score_text.text = GameUtilityLibrary.get_formatted_text(str(round(score)), GameUtilityLibrary.ETextFormat.center)
 	
 	if time_bar.visible:
 		current_minigame_duration += delta
