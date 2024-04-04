@@ -13,6 +13,9 @@ var ad_view
 @onready var menu_background : TextureRect = $MenuBackground
 ## Reference to the middel menu button of the reel
 @onready var middle_menu_button = $VBoxContainer/Menu/Middle
+var middle_menu_button_rect : Rect2
+
+var first_processed : bool = false
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -20,8 +23,8 @@ var ad_view
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_prepare_containers()	
-	
+	_prepare_containers()
+
 ## Overriden exit tree function
 ##			
 func _exit_tree():	
@@ -57,37 +60,29 @@ func _prepare_containers() -> void:
 	
 	menu_background.position.y = GameUtilityLibrary.SCREEN_HEIGHT - GameUtilityLibrary.get_node_actual_height(menu_background)
 
+func _prepare_button_rects() -> void:
+	var button_pos = middle_menu_button.global_position
+	
+	var posX = button_pos.x
+	var sizeX = middle_menu_button.size.x
+	var posY = button_pos.y
+	var sizeY = middle_menu_button.size.y
+	
+	middle_menu_button_rect = Rect2(posX, posY, sizeX, sizeY)
 #==============================================================================
 # SIGNAL FUNCTIONS
 #==============================================================================
 
-#func _on_shop_button_pressed():
-#	if get_tree().current_scene.name == "reel":
-#		SceneManager.change_scene("res://game/scenes/menu/shop/shop.tscn")
-#	else:
-#		SceneManager.change_scene("res://game/scenes/reel.tscn")
-
-
 func _process(delta):
+	if !first_processed :
+		_prepare_button_rects()
+		first_processed = true
+	
 	if SInputUtility.is_tapping.value:
 		# If input is inside middle button go to shop
 		var tapPosition = SInputUtility.tapping_position
-		if _check_action_in_button(tapPosition):
+		if InputDetection.check_position_in_area(tapPosition, middle_menu_button_rect):
 			shop_button_pressed()
-
-# Checks if the given position collides with the basketball
-func _check_action_in_button( pos : Vector2 ):
-	var button_pos = middle_menu_button.global_position
-	
-	var min_X = button_pos.x
-	var max_X = button_pos.x + middle_menu_button.size.x
-	var min_Y = button_pos.y
-	var max_Y = button_pos.y + middle_menu_button.size.y
-	
-	var x_bound = pos.x >= min_X and pos.x <= max_X
-	var y_bound = pos.y >= min_Y and pos.y <= max_Y
-	
-	return x_bound and y_bound
 
 func shop_button_pressed():
 	if get_tree().current_scene.name == "reel":

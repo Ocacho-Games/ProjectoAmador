@@ -50,7 +50,7 @@ func _process(delta):
 	
 	var is_ball_thrown = ball_node.thrown
 	if !is_ball_thrown and SInputUtility.is_dragging.value :
-		var event = SInputUtility.cached_drag_event
+		var event = SInputUtility.cached_drag_event		
 		if !is_pressed :
 			is_pressed = _check_action_in_ball(event.position)
 			init_drag_position.x = -event.position.x
@@ -117,15 +117,13 @@ func _move_random_location_entities():
 func _check_action_in_ball( pos : Vector2 ):
 	var ball_pos = ball_node.position
 	
-	var min_X = ball_pos.x - ball_radius
-	var max_X = ball_pos.x + ball_radius
-	var min_Y = ball_pos.y - ball_radius
-	var max_Y = ball_pos.y + ball_radius
+	var posX = ball_pos.x - ball_radius
+	var posY = ball_pos.y - ball_radius
+	var size = ball_radius * 2.0
 	
-	var x_bound = pos.x >= min_X and pos.x <= max_X
-	var y_bound = pos.y >= min_Y and pos.y <= max_Y
+	var ballRect = Rect2(posX, posY, size, size)
 	
-	return x_bound and y_bound
+	return InputDetection.check_position_in_area(pos, ballRect)
 
 #==============================================================================
 # REEL FUNCTIONS
