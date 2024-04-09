@@ -126,7 +126,7 @@ func _prepare_game() -> void:
 	GameUtilityLibrary.pause_scene(previous_minigame_node)
 	GameUtilityLibrary.pause_scene(next_minigame_node)
 	
-	current_minigame_node.get_node("base_minigame").connect("on_should_change_to_next_minigame", func():
+	current_minigame_node.get_node("base_minigame").on_change_to_next_minigame.connect(func():
 		GameUtilityLibrary.pause_scene(current_minigame_node, [previous_minigame_node.get_path(), next_minigame_node.get_path()])
 		drag_event_initial_y_position = 0		
 		is_lerping = true

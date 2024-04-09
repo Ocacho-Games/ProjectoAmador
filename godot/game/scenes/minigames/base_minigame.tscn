@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://game/code/minigames/minigame.gd" id="1_7iupp"]
 [ext_resource type="Script" path="res://game/code/menu/ui/inherit_parent_minimum_size.gd" id="2_nfqh3"]
-[ext_resource type="Texture2D" uid="uid://b1mbqdc03x8cb" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="2_vlnw8"]
-[ext_resource type="Texture2D" uid="uid://6fw5homsveca" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="3_5uu3r"]
-[ext_resource type="Texture2D" uid="uid://cavnhiwtbsa45" path="res://game/resources/img/icon/icon_info_1080x2280.png" id="4_ulv3e"]
+[ext_resource type="Texture2D" uid="uid://cch3ftl4r7ux6" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="2_vlnw8"]
+[ext_resource type="Texture2D" uid="uid://bnme0l7m8lof8" path="res://game/resources/img/menu/menu_background_2280x1080.png" id="3_5uu3r"]
+[ext_resource type="Texture2D" uid="uid://bv5b53bamfh2" path="res://game/resources/img/icon/icon_info_1080x2280.png" id="4_ulv3e"]
 [ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="4_x50d8"]
 [ext_resource type="Script" path="res://game/code/menu/ui/coins_text.gd" id="5_y6bi5"]
 
@@ -28,7 +28,9 @@ color = Color(0.294118, 0.294118, 0.294118, 1)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_top = 180.0
 offset_right = 20.0
+offset_bottom = -250.0
 grow_vertical = 2
 mouse_filter = 2
 value = 100.0

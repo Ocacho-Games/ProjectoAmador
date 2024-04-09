@@ -85,10 +85,10 @@ func get_minigame_name(minigame_node : Minigame) -> String:
 ## Get the duration of a minigame based on the name of the given node
 ## [minigame_node] : Node that contains the Minigame.gd script. 
 ##
-func get_minigame_duration(minigame_node : Minigame) -> float:
+func get_minigame_duration_and_delay(minigame_node : Minigame):
 	for minigame in minigames_array:
 		if minigame_node.key_name == minigame.game_key:
-			return minigame.game_duration
+			return [minigame.game_duration, minigame.delay_before_change]
 			
 	return -1
 	

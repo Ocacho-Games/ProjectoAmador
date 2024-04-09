@@ -12,6 +12,7 @@
 script = ExtResource("1_tv1c6")
 scene = ExtResource("1_tbud5")
 game_duration = -1.0
+delay_before_change = -1.0
 game_key = "spaceship"
 metadata = Array[int]([1, 6])
 
@@ -19,6 +20,7 @@ metadata = Array[int]([1, 6])
 script = ExtResource("1_tv1c6")
 scene = ExtResource("3_vhq0g")
 game_duration = -1.0
+delay_before_change = -1.0
 game_key = "stack"
 metadata = Array[int]([6])
 
@@ -26,6 +28,7 @@ metadata = Array[int]([6])
 script = ExtResource("1_tv1c6")
 scene = ExtResource("4_1tcdn")
 game_duration = -1.0
+delay_before_change = -1.0
 game_key = "basket"
 metadata = Array[int]([])
 
@@ -33,6 +36,7 @@ metadata = Array[int]([])
 script = ExtResource("1_tv1c6")
 scene = ExtResource("5_w8ix5")
 game_duration = 4.0
+delay_before_change = -1.0
 game_key = "clicker"
 metadata = Array[int]([])
 
@@ -40,6 +44,7 @@ metadata = Array[int]([])
 script = ExtResource("1_tv1c6")
 scene = ExtResource("6_spqn0")
 game_duration = -1.0
+delay_before_change = 2.0
 game_key = "counter"
 metadata = Array[int]([])
 
