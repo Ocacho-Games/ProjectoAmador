@@ -34,3 +34,6 @@ godot/android/build/libs/gdextensionlibs.json
 
 # TEMPORAL
 *.translation
+godot/game/scenes/menu/shop/shop.tscn
+godot/game/scenes/menu/shop/collectable.tscn
+godot/game/scenes/menu/shop/collectable.tscn

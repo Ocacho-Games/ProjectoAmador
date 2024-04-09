@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckrgouc1e86q1"]
+[gd_scene load_steps=9 format=3 uid="uid://ckrgouc1e86q1"]
 
 [ext_resource type="Script" path="res://game/code/menu/info_popup.gd" id="1_w20k3"]
-[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
-[ext_resource type="Texture2D" uid="uid://d0q7tw6ohyim3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_a030c"]
-[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_3mtc8"]
+[ext_resource type="Texture2D" uid="uid://bxkd0h7y7n8cv" path="res://game/resources/img/shop/shop_window_popup.svg" id="2_dvaiy"]
+[ext_resource type="Texture2D" uid="uid://cm2l8ck8mj3i3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_a030c"]
+[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_3mtc8"]
+[ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="4_cd6yw"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="5_x6u27"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_h3qhd"]
@@ -60,7 +61,7 @@ layout_mode = 2
 [node name="text" type="RichTextLabel" parent="CenterContainer/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(600, 200)
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme = ExtResource("4_cd6yw")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]You dont have internet connection or similar I dont fucking care[/center]"

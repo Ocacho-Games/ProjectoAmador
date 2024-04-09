@@ -38,7 +38,7 @@ func _ready():
 	_prepare_containers()
 	_display_collection_types()
 	display_collection(SGame.collections[current_index_collection].key, false)
-	coins_video_text.text = "[b]+" + str(coins_per_video) + "[/b]"	
+	coins_video_text.text = "[center]+" + str(coins_per_video) + "[/center]"	
 	
 #==============================================================================
 # PUBLIC FUNCTIONS

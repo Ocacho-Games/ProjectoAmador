@@ -111,12 +111,12 @@ func _set_lock_collectable_properties(sprite : Sprite2D) -> void:
 	match cached_collectable.unlock_type:
 		SCollectable.EUnlockType.COINS:
 			cached_sprite_corner_info.texture = coin_texture
-			cached_text_corner_info.text = str(cached_collectable.coins_to_unlock)			
+			cached_text_corner_info.text = "[right]" + str(cached_collectable.coins_to_unlock) + "[/right] "			
 		SCollectable.EUnlockType.VIDEO:
 			var remaining_videos_key : String = "remaining_" + cached_collectable.key + "_videos"
 			var remaining_videos = SGPS.get_saved_data(remaining_videos_key, cached_collectable.videos_to_unlock)
 			cached_sprite_corner_info.texture = video_texture
-			cached_text_corner_info.text = "x" + str(remaining_videos)
+			cached_text_corner_info.text = "[right]x" + str(remaining_videos) + "[/right] "
 		SCollectable.EUnlockType.OBJETIVE:
 			cached_sprite_corner_info.texture = objetive_texture
 			cached_text_corner_info.visible = false
