@@ -70,6 +70,7 @@ scroll_following = true
 script = ExtResource("5_y6bi5")
 
 [node name="TutorialButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 texture_normal = ExtResource("4_ulv3e")

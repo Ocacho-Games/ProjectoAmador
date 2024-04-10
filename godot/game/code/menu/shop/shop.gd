@@ -17,7 +17,7 @@ class_name ShopNode extends Node
 @onready var videos_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/VideosCollectables
 @onready var objetive_container : GridContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollCollectables/CenterCollectables/CollectablesTypes/AchievementsCollectables
 @onready var collection_type_container : HBoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/ScrollTypeCollectable/HBoxContainer
-@onready var coins_video_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2/VideoButton/ObjectiveText
+@onready var coins_video_text : RichTextLabel = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/HBoxContainer2/VideoButton/ObjectiveText
 
 @onready var game_zone : Control = $base_structure/VBoxContainer/GameZone
 @onready var gambling_part : BoxContainer = $base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart

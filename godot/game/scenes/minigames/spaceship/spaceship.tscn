@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dewdtqs7smx3a" path="res://game/scenes/minigames/base_minigame.tscn" id="1_16kpl"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/spaceship_minigame.gd" id="2_3fk3p"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="3_rwtgn"]
-[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_f2kra"]
+[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="4_f2kra"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/select_collectable_cmp.gd" id="5_pmppj"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="6_j05ny"]
 [ext_resource type="Script" path="res://game/code/minigames/spaceship/obstacle_generator.gd" id="7_di6pi"]
@@ -37,9 +37,6 @@ script = ExtResource("2_3fk3p")
 
 [node name="background" parent="base_minigame" index="0"]
 color = Color(1, 1, 1, 0.00392157)
-
-[node name="MenuBackground-REMOVE" parent="base_minigame" index="3"]
-visible = true
 
 [node name="spaceship_player" type="Node2D" parent="base_minigame"]
 position = Vector2(540, 1800)

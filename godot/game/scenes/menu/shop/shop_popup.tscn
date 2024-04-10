@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://bu3txaoe44d0f"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop_popup.gd" id="1_f1tbr"]
-[ext_resource type="Texture2D" uid="uid://bxkd0h7y7n8cv" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
-[ext_resource type="Texture2D" uid="uid://cm2l8ck8mj3i3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_3s1mv"]
-[ext_resource type="Texture2D" uid="uid://bwdu73a3fiq5" path="res://game/resources/img/button/button_cross_pressed_1080x2280.png" id="4_gc6xg"]
-[ext_resource type="Texture2D" uid="uid://bhgddr4shifaf" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="4_ob80m"]
-[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="5_iocon"]
-[ext_resource type="Texture2D" uid="uid://37hv1hvnsk3f" path="res://game/resources/img/button/button_ad_1080x2280.png" id="6_20tn0"]
+[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
+[ext_resource type="Texture2D" uid="uid://d0q7tw6ohyim3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_3s1mv"]
+[ext_resource type="Texture2D" uid="uid://u6v1chv0o1b4" path="res://game/resources/img/button/button_cross_pressed_1080x2280.png" id="4_gc6xg"]
+[ext_resource type="Texture2D" uid="uid://c6s3eoldav4f2" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="4_ob80m"]
+[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="5_iocon"]
+[ext_resource type="Texture2D" uid="uid://dwub7jn3y2me2" path="res://game/resources/img/button/button_ad_1080x2280.png" id="6_20tn0"]
 [ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="7_u67fy"]
 [ext_resource type="Theme" uid="uid://bn45dfbgto2lf" path="res://game/resources/font/themes/secondary_theme.tres" id="8_cjjsx"]
-[ext_resource type="Texture2D" uid="uid://cjtpiob1txe43" path="res://game/resources/img/button/button_ad_onClick_1080x2280.png" id="10_7j1ji"]
+[ext_resource type="Texture2D" uid="uid://cwamplhpfthvs" path="res://game/resources/img/button/button_ad_onClick_1080x2280.png" id="10_7j1ji"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_drw7e"]
 
@@ -82,6 +82,7 @@ texture = ExtResource("4_ob80m")
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 233.0
+scale = Vector2(0.7, 0.7)
 pivot_offset = Vector2(128.5, 128.5)
 texture = ExtResource("5_iocon")
 

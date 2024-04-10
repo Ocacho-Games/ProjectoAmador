@@ -153,6 +153,8 @@ func _on_should_change_to_next_minigame() -> void:
 func _on_tutorial_button_pressed():
 	pass # Replace with function body.
 
+##
+##
 func _on_leaderboard_button_pressed():
 	pass
 		

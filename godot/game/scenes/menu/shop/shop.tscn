@@ -37,6 +37,7 @@ layout_mode = 2
 
 [node name="CollectableTopPart2" type="VBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2"]
 layout_mode = 2
@@ -61,20 +62,20 @@ fit_content = true
 scroll_following = true
 script = ExtResource("7_ibi72")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_right = 110
 
-[node name="VideoButton" type="TextureButton" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2"]
+[node name="VideoButton" type="TextureButton" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("9_ocpnh")
 
-[node name="ObjectiveText" type="RichTextLabel" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2/VideoButton"]
+[node name="ObjectiveText" type="RichTextLabel" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/HBoxContainer2/VideoButton"]
 layout_mode = 2
 offset_left = 59.0
 offset_top = 24.0
@@ -95,6 +96,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 50
 
 [node name="LuckButton" type="TextureRect" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("8_6k6ga")
@@ -160,6 +162,6 @@ theme_override_constants/separation = 50
 [node name="Menu" parent="base_structure/VBoxContainer" index="3"]
 custom_minimum_size = Vector2(0, 300)
 
-[connection signal="pressed" from="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2/VideoButton" to="." method="_on_video_coin_button_pressed"]
+[connection signal="pressed" from="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/HBoxContainer2/VideoButton" to="." method="_on_video_coin_button_pressed"]
 
 [editable path="base_structure"]
