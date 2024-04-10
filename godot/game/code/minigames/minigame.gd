@@ -43,6 +43,9 @@ var is_delay_counter_active = false
 ## Score of the game. This will be submitted to GPS and loaded from GPS.
 var score = 0.0
 
+## If we want to show the max score instead of starting from 0. Depending on the game
+@export var show_max_score : bool = false
+
 ## String ID related to the Google play services leaderboard for this game
 var gps_leader_board_id = "CgkIr7WWkr4cEAIQAQ"
 
@@ -79,6 +82,9 @@ func _ready():
 	#time_bar.size.y = GameUtilityLibrary.SCREEN_HEIGHT 			
 	if minigame_duration == -1:
 		time_bar.visible = false
+		
+	if show_max_score:
+		score = SGPS.data_to_save_dic[key_name + "_score"]
 	
 ## Overriden process function
 ##
