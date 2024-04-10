@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://game/code/menu/loading_screen.gd" id="1_fisos"]
 [ext_resource type="Resource" uid="uid://dnuok8mfsrmex" path="res://game/resources/collection/bob_collection.tres" id="2_c4hmo"]
-[ext_resource type="Texture2D" uid="uid://q8wvr25wlkv5" path="res://game/resources/img/loading_screen/loading_screen_background.svg" id="3_j48eq"]
+[ext_resource type="Texture2D" uid="uid://cj0puxt4vgoaq" path="res://game/resources/img/loading_screen/loading_screen_background.svg" id="3_j48eq"]
 [ext_resource type="Resource" uid="uid://oe8wugpvybbj" path="res://game/resources/collection/asteroid_collection.tres" id="3_l7y5r"]
-[ext_resource type="Texture2D" uid="uid://b6xcjufywwytn" path="res://game/resources/img/loading_screen/loading_screen_text.svg" id="4_mnpwu"]
-[ext_resource type="Texture2D" uid="uid://cpas2i233ijuu" path="res://game/resources/img/loading_screen/loading_screen_bob.svg" id="5_0e7yq"]
+[ext_resource type="Texture2D" uid="uid://bmk68huxwar8u" path="res://game/resources/img/loading_screen/loading_screen_text.svg" id="4_mnpwu"]
+[ext_resource type="Texture2D" uid="uid://btoaf5s22e27n" path="res://game/resources/img/loading_screen/loading_screen_bob.svg" id="5_0e7yq"]
 [ext_resource type="Script" path="res://game/code/minigames/reusable/auto_movement_cmp.gd" id="6_ur5o1"]
 
 [node name="loading_screen" type="Node2D"]

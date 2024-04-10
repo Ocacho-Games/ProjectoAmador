@@ -50,7 +50,7 @@ func _process(delta):
 	
 	var is_ball_thrown = ball_node.thrown
 	if !is_ball_thrown and SInputUtility.is_dragging.value :
-		var event = SInputUtility.cached_drag_event
+		var event = SInputUtility.cached_drag_event		
 		if !is_pressed :
 			is_pressed = _check_action_in_ball(event.position)
 			init_drag_position.x = -event.position.x
@@ -83,11 +83,13 @@ func _exit_tree():
 func _move_random_location_entities():
 	var width = GameUtilityLibrary.SCREEN_WIDTH
 	var height = GameUtilityLibrary.SCREEN_HEIGHT
+	var play_zone_width = GameUtilityLibrary.SCREEN_WIDTH_PLAY_ZONE
+	var play_zone_height = GameUtilityLibrary.SCREEN_HEIGHT_PLAY_ZONE
 	
-	var min_X_basket_range = offset_screen + half_basket_size.x
-	var max_X_basket_range = width - half_basket_size.x - offset_screen
-	var min_Y_basket_range = offset_screen + half_basket_size.x
-	var max_Y_basketrange = height - half_basket_size.y - offset_screen
+	var min_X_basket_range = play_zone_width.x + offset_screen + half_basket_size.x
+	var max_X_basket_range = play_zone_width.y - half_basket_size.x - offset_screen
+	var min_Y_basket_range = play_zone_height.x + offset_screen + half_basket_size.x
+	var max_Y_basketrange = play_zone_height.y - half_basket_size.y - offset_screen
 	
 	var basket_X_rand = randf_range( min_X_basket_range , max_X_basket_range )
 	var basket_Y_rand = randf_range( min_Y_basket_range , max_Y_basketrange )
@@ -95,12 +97,12 @@ func _move_random_location_entities():
 	
 	basket_node.position = basket_rand_pos
 	
-	var ball_Y_rand = randf_range( ball_radius + offset_screen , height - ball_radius - offset_screen )
+	var ball_Y_rand = randf_range( play_zone_height.x + ball_radius + offset_screen , play_zone_height.y - ball_radius - offset_screen )
 	
-	var range_left_min = ball_radius + offset_screen
+	var range_left_min = play_zone_width.x + ball_radius + offset_screen
 	var range_left_max = basket_rand_pos.x - half_basket_size.x - ball_radius * 2.0
 	var range_right_min = basket_rand_pos.x + half_basket_size.x + ball_radius * 2.0 
-	var range_right_max = width - ball_radius - offset_screen
+	var range_right_max = play_zone_width.y - ball_radius - offset_screen
 	
 	var min_size_spawn = ball_radius * 3
 	
@@ -115,15 +117,13 @@ func _move_random_location_entities():
 func _check_action_in_ball( pos : Vector2 ):
 	var ball_pos = ball_node.position
 	
-	var min_X = ball_pos.x - ball_radius
-	var max_X = ball_pos.x + ball_radius
-	var min_Y = ball_pos.y - ball_radius
-	var max_Y = ball_pos.y + ball_radius
+	var posX = ball_pos.x - ball_radius
+	var posY = ball_pos.y - ball_radius
+	var size = ball_radius * 2.0
 	
-	var x_bound = pos.x >= min_X and pos.x <= max_X
-	var y_bound = pos.y >= min_Y and pos.y <= max_Y
+	var ballRect = Rect2(posX, posY, size, size)
 	
-	return x_bound and y_bound
+	return InputDetection.check_position_in_area(pos, ballRect)
 
 #==============================================================================
 # REEL FUNCTIONS

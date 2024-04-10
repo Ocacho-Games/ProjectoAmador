@@ -80,7 +80,6 @@ func _exit_tree():
 func _init_game() -> void:
 	current_minigame_node = SGame.start_game().instantiate()
 	add_child(current_minigame_node)
-	move_child(current_minigame_node, 0)
 	
 	_prepare_game()
 
@@ -96,7 +95,6 @@ func _init_specific_game(specific_game : Node2D) -> void:
 	
 	specific_game.position.y = 0
 	add_child(specific_game)
-	move_child(specific_game, 0)
 	
 	current_minigame_node = specific_game	
 	
@@ -114,6 +112,10 @@ func _prepare_game() -> void:
 	
 	current_minigame_node.add_child(previous_minigame_node)
 	current_minigame_node.add_child(next_minigame_node)
+	
+	current_minigame_node.get_node("base_minigame").z_index = 0
+	previous_minigame_node.get_node("base_minigame").z_index = 1
+	next_minigame_node.get_node("base_minigame").z_index = 1
 	
 	current_minigame_node.get_node("base_minigame").is_being_played = true
 	previous_minigame_node.get_node("base_minigame").is_being_played = false

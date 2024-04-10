@@ -11,6 +11,9 @@ class_name GameUtilityLibrary
 static var SCREEN_WIDTH = ProjectSettings.get_setting("display/window/size/viewport_width")
 static var SCREEN_HEIGHT = ProjectSettings.get_setting("display/window/size/viewport_height")
 
+static var SCREEN_WIDTH_PLAY_ZONE : Vector2 = Vector2(0.,0.)
+static var SCREEN_HEIGHT_PLAY_ZONE : Vector2 = Vector2(0.,0.)
+
 #==============================================================================
 # VARIABLES
 #==============================================================================
@@ -114,7 +117,9 @@ static func _pause_node_implementation(node : Node, pause : bool) -> void:
 	node.set_process_internal(!pause)
 	node.set_process_unhandled_input(!pause)
 	node.set_process_unhandled_key_input(!pause)
-	
+	if node is RigidBody2D :
+		node.freeze = true
+
 ## Set the pause status of the entire given scene node. This means pausing the root node and its children
 ## [node]: Root node to pause and it schildren
 ## [pause]: true == pause

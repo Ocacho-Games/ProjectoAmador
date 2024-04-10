@@ -11,6 +11,11 @@ var ad_view
 @onready var main_container : VBoxContainer = $VBoxContainer
 ## Reference to the main container of the reel
 @onready var menu_background : TextureRect = $MenuBackground
+## Reference to the middel menu button of the reel
+@onready var middle_menu_button = $VBoxContainer/Menu/Middle
+var middle_menu_button_rect : Rect2
+
+var first_processed : bool = false
 
 #==============================================================================
 # GODOT FUNCTIONS
@@ -18,8 +23,8 @@ var ad_view
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_prepare_containers()	
-	
+	_prepare_containers()
+
 ## Overriden exit tree function
 ##			
 func _exit_tree():	
@@ -43,16 +48,43 @@ func _prepare_containers() -> void:
 		
 	main_container.size.x = GameUtilityLibrary.SCREEN_WIDTH
 	main_container.size.y = GameUtilityLibrary.SCREEN_HEIGHT
-	main_container.get_node("Ad").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * percentage_ad
-	main_container.get_node("GameZone").custom_minimum_size.y = GameUtilityLibrary.SCREEN_HEIGHT * percentage_game
+	
+	var add_min_size = GameUtilityLibrary.SCREEN_HEIGHT * percentage_ad
+	var game_min_size = GameUtilityLibrary.SCREEN_HEIGHT * percentage_game
+	
+	main_container.get_node("Ad").custom_minimum_size.y = add_min_size
+	main_container.get_node("GameZone").custom_minimum_size.y = game_min_size
+	
+	GameUtilityLibrary.SCREEN_WIDTH_PLAY_ZONE = Vector2(0., main_container.size.x)
+	GameUtilityLibrary.SCREEN_HEIGHT_PLAY_ZONE = Vector2(add_min_size, add_min_size + game_min_size)
 	
 	menu_background.position.y = GameUtilityLibrary.SCREEN_HEIGHT - GameUtilityLibrary.get_node_actual_height(menu_background)
 
+func _prepare_button_rects() -> void:
+	var button_pos = middle_menu_button.global_position
+	
+	var posX = button_pos.x
+	var sizeX = middle_menu_button.size.x
+	var posY = button_pos.y
+	var sizeY = middle_menu_button.size.y
+	
+	middle_menu_button_rect = Rect2(posX, posY, sizeX, sizeY)
 #==============================================================================
 # SIGNAL FUNCTIONS
 #==============================================================================
 
-func _on_shop_button_pressed():
+func _process(delta):
+	if !first_processed :
+		_prepare_button_rects()
+		first_processed = true
+	
+	if SInputUtility.is_tapping.value:
+		# If input is inside middle button go to shop
+		var tapPosition = SInputUtility.tapping_position
+		if InputDetection.check_position_in_area(tapPosition, middle_menu_button_rect):
+			shop_button_pressed()
+
+func shop_button_pressed():
 	if get_tree().current_scene.name == "reel":
 		SceneManager.change_scene("res://game/scenes/menu/shop/shop.tscn")
 	else:
