@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://game/code/minigames/counter/counter_minigame.gd" id="1_3rns3"]
 [ext_resource type="PackedScene" uid="uid://dewdtqs7smx3a" path="res://game/scenes/minigames/base_minigame.tscn" id="1_4avqp"]
-[ext_resource type="Texture2D" uid="uid://cn1hyc6c3ge8g" path="res://game/resources/img/counter/counter_button_idle.svg" id="3_w3vbs"]
-[ext_resource type="Texture2D" uid="uid://drw2ryfno2buw" path="res://game/resources/img/counter/counter_button_click.svg" id="4_myjrs"]
-[ext_resource type="Texture2D" uid="uid://36gxl1pggged" path="res://game/resources/img/counter/counter_chronometer.svg" id="5_m82xw"]
+[ext_resource type="Texture2D" uid="uid://dncnq7i8ookxy" path="res://game/resources/img/counter/counter_button_idle.svg" id="3_w3vbs"]
+[ext_resource type="Texture2D" uid="uid://cdycx63mbuesp" path="res://game/resources/img/counter/counter_button_click.svg" id="4_myjrs"]
+[ext_resource type="Texture2D" uid="uid://eaahh8mlw6da" path="res://game/resources/img/counter/counter_chronometer.svg" id="5_m82xw"]
 
 [node name="counter" type="Node2D"]
 
@@ -14,7 +14,11 @@ script = ExtResource("1_3rns3")
 [node name="background" parent="base_minigame" index="0"]
 color = Color(0.713726, 0.34902, 0.462745, 1)
 
+[node name="MenuBackground-REMOVE" parent="base_minigame" index="3"]
+visible = true
+
 [node name="counter_button" type="TextureButton" parent="base_minigame"]
+layout_mode = 0
 offset_left = 215.0
 offset_top = 1220.0
 offset_right = 915.0
@@ -37,9 +41,6 @@ offset_bottom = 480.905
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 100
 text = "0:00"
-
-[node name="MenuBackground-REMOVE" parent="base_minigame" index="5"]
-visible = true
 
 [connection signal="pressed" from="base_minigame/counter_button" to="base_minigame" method="_on_counter_button_pressed"]
 

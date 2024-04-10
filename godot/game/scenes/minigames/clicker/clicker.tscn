@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://game/code/minigames/clicker/clicker_minigame.gd" id="1_wskaq"]
 [ext_resource type="PackedScene" uid="uid://dewdtqs7smx3a" path="res://game/scenes/minigames/base_minigame.tscn" id="2_xkemf"]
-[ext_resource type="Texture2D" uid="uid://yyr3t2qu7t5a" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
-[ext_resource type="Texture2D" uid="uid://7ngpnyie2g8k" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
+[ext_resource type="Texture2D" uid="uid://dxkpr3rl7v2vw" path="res://game/resources/img/clicker/clicker_bob_idle.svg" id="3_wp7ik"]
+[ext_resource type="Texture2D" uid="uid://btpjith7g1a3r" path="res://game/resources/img/clicker/clicker_bob_click.svg" id="4_eo4nj"]
 
 [node name="clicker" type="Node2D"]
 
