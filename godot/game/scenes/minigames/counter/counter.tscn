@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdafntthxpcrc"]
 
 [ext_resource type="Script" path="res://game/code/minigames/counter/counter_minigame.gd" id="1_3rns3"]
-[ext_resource type="Texture2D" uid="uid://dbowy6i76hgti" path="res://game/resources/img/counter/counter_background.svg" id="2_bqla4"]
-[ext_resource type="Texture2D" uid="uid://dnw1k6fynr2ux" path="res://game/resources/img/counter/counter_button_idle.svg" id="3_w3vbs"]
-[ext_resource type="Texture2D" uid="uid://gpn2yi6nd772" path="res://game/resources/img/counter/counter_button_click.svg" id="4_myjrs"]
-[ext_resource type="Texture2D" uid="uid://drooshpibfkt8" path="res://game/resources/img/counter/counter_chronometer.svg" id="5_m82xw"]
+[ext_resource type="Texture2D" uid="uid://bmqkufbsu1e50" path="res://game/resources/img/counter/counter_background.svg" id="2_bqla4"]
+[ext_resource type="Texture2D" uid="uid://dncnq7i8ookxy" path="res://game/resources/img/counter/counter_button_idle.svg" id="3_w3vbs"]
+[ext_resource type="Texture2D" uid="uid://cdycx63mbuesp" path="res://game/resources/img/counter/counter_button_click.svg" id="4_myjrs"]
+[ext_resource type="Texture2D" uid="uid://eaahh8mlw6da" path="res://game/resources/img/counter/counter_chronometer.svg" id="5_m82xw"]
 
 [node name="counter" type="Node2D"]
 script = ExtResource("1_3rns3")
