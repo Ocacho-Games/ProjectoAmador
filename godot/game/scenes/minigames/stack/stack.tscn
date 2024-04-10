@@ -1,63 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpoq7rgiyi6qy"]
+[gd_scene load_steps=6 format=3 uid="uid://d0qa3vfw1c1fw"]
 
-[ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="1_mtjus"]
-[ext_resource type="Texture2D" uid="uid://dcfvhyeflifap" path="res://game/resources/img/stack/stack_background.svg" id="2_yqun0"]
-[ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="3_fykb7"]
-[ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_xgy7n"]
-[ext_resource type="Texture2D" uid="uid://cq580irjewbns" path="res://game/resources/img/stack/stack_floor_1080x2280.png" id="5_m1lc6"]
+[ext_resource type="PackedScene" uid="uid://dewdtqs7smx3a" path="res://game/scenes/minigames/base_minigame.tscn" id="1_ip6uw"]
+[ext_resource type="Script" path="res://game/code/minigames/stack/stack_minigame.gd" id="2_k6jpi"]
+[ext_resource type="Script" path="res://game/code/minigames/stack/piece_generator.gd" id="3_7oh1l"]
+[ext_resource type="PackedScene" uid="uid://vm4waf4vh7m7" path="res://game/scenes/minigames/stack/piece.tscn" id="4_xnebn"]
+[ext_resource type="Texture2D" uid="uid://shllky6l75mg" path="res://game/resources/img/stack/stack_floor_1080x2280.png" id="5_w8hig"]
 
 [node name="stack" type="Node2D"]
-script = ExtResource("1_mtjus")
 
-[node name="background" type="TextureRect" parent="."]
-offset_left = -76.0
-offset_top = -468.0
-offset_right = 1317.0
-offset_bottom = 2564.0
-texture = ExtResource("2_yqun0")
-expand_mode = 1
+[node name="base_minigame" parent="." instance=ExtResource("1_ip6uw")]
+script = ExtResource("2_k6jpi")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 29.0
-offset_top = 2180.0
-offset_right = 1078.0
-offset_bottom = 2266.0
+[node name="background" parent="base_minigame" index="0"]
+color = Color(0.596078, 0.596078, 0.596078, 1)
 
-[node name="leaderboard_button" type="Button" parent="."]
-offset_left = 846.0
-offset_top = 1564.0
-offset_right = 1088.0
-offset_bottom = 1641.0
-text = "Leaderboard"
+[node name="MenuBackground-REMOVE" parent="base_minigame" index="3"]
+offset_top = 0.0
+offset_bottom = 275.0
 
-[node name="piece_generator" type="Node" parent="." node_paths=PackedStringArray("initial_piece", "floor_ref")]
-script = ExtResource("3_xgy7n")
-piece = ExtResource("3_fykb7")
+[node name="piece_generator" type="Node" parent="base_minigame" node_paths=PackedStringArray("initial_piece", "floor_ref")]
+script = ExtResource("3_7oh1l")
+piece = ExtResource("4_xnebn")
 initial_piece = NodePath("../initial_piece")
 floor_ref = NodePath("../StackFloor")
+num_pieces_to_climb = 14
+climb_interp_speed = 10.0
 
-[node name="StackFloor" type="Sprite2D" parent="."]
+[node name="StackFloor" type="Sprite2D" parent="base_minigame"]
 z_index = 1
 position = Vector2(540, 1960)
-texture = ExtResource("5_m1lc6")
+texture = ExtResource("5_w8hig")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 29.0
-offset_top = 208.0
-offset_right = 344.0
-offset_bottom = 329.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
-theme_override_colors/selection_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/table_odd_row_bg = Color(0, 0, 0, 1)
-theme_override_colors/table_even_row_bg = Color(0, 0, 0, 1)
-theme_override_colors/table_border = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 50
-text = "SCORE"
-
-[node name="initial_piece" parent="." instance=ExtResource("3_fykb7")]
+[node name="initial_piece" parent="base_minigame" instance=ExtResource("4_xnebn")]
 process_mode = 4
 position = Vector2(301, 1566)
+
+[editable path="base_minigame"]

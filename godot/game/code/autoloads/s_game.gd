@@ -77,7 +77,7 @@ func get_next_minigame_scene() -> PackedScene:
 ##
 func get_minigame_name(minigame_node : Minigame) -> String:
 	for minigame in minigames_array:
-		if minigame_node.scene_file_path == minigame.scene.resource_path:
+		if minigame_node.get_parent().scene_file_path == minigame.scene.resource_path:
 			return minigame.game_key
 	
 	return ""
@@ -85,10 +85,10 @@ func get_minigame_name(minigame_node : Minigame) -> String:
 ## Get the duration of a minigame based on the name of the given node
 ## [minigame_node] : Node that contains the Minigame.gd script. 
 ##
-func get_minigame_duration(minigame_node : Minigame) -> float:
+func get_minigame_duration_and_delay(minigame_node : Minigame):
 	for minigame in minigames_array:
 		if minigame_node.key_name == minigame.game_key:
-			return minigame.game_duration
+			return [minigame.game_duration, minigame.delay_before_change]
 			
 	return -1
 	
@@ -101,10 +101,9 @@ func load_all_collectable_callbacks(in_collections : Array[SCollection]) -> void
 	add_callable_to_objetive_collectable(SCollection.ECollectionNames.asteroid, func(): return [false, 0.0], "pink")
 	
 	for minigame in minigames_array:
-		minigame.scene.instantiate().load_collectable_callbacks()
-		# TODO: Use this when changing to base_mihnigame
-		#var base_minigame_node = minigame.scene.instantiate().get_node("base_minigame")
-		#if (base_minigame_node): base_minigame_node.load_collectable_callbacks()
+		var base_minigame_node = minigame.scene.instantiate().get_node("base_minigame")
+		if (base_minigame_node): 
+			base_minigame_node.load_collectable_callbacks()
 
 ## Search for the collection based on the collection_key and then
 ## add the callback to the collectable that matches the collectable_key.

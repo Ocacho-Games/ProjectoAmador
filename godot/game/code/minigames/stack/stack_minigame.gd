@@ -1,6 +1,5 @@
 extends Minigame
 
-@onready var score_text : RichTextLabel = $RichTextLabel
 @onready var piece_generator = $piece_generator
 
 #==============================================================================
@@ -18,7 +17,6 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	score = piece_generator.pieces_placed
-	score_text.set_text("Score: " + str(score))
 	
 #==============================================================================
 # PUBLIC FUNCTIONS

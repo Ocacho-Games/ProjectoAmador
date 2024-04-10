@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fgnfdtvg8c3c"]
+[gd_scene load_steps=11 format=3 uid="uid://fgnfdtvg8c3c"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
 [ext_resource type="Texture2D" uid="uid://b1mbqdc03x8cb" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="2_w35uo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bkfoai8kb1obs" path="res://game/resources/img/button/button_box_blocked_1080x2280.png" id="7_4xthe"]
 [ext_resource type="Texture2D" uid="uid://bhgddr4shifaf" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="8_ppg32"]
 [ext_resource type="Texture2D" uid="uid://b5g4dpdppvfgm" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_02_1080x2280.png" id="9_ho8ff"]
+[ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="10_q02ic"]
 [ext_resource type="Texture2D" uid="uid://cavnhiwtbsa45" path="res://game/resources/img/icon/icon_info_1080x2280.png" id="10_qklgx"]
 
 [node name="collectable" type="MarginContainer"]
@@ -42,14 +43,16 @@ texture = ExtResource("10_qklgx")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -135.0
-offset_top = -78.3333
-offset_right = -135.0
-offset_bottom = -78.3333
+offset_left = -220.0
+offset_top = -53.3333
+offset_right = -137.0
+offset_bottom = -63.3333
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("10_q02ic")
 theme_override_font_sizes/normal_font_size = 50
-text = "300"
+bbcode_enabled = true
+text = "[right]300 [/right]"
 fit_content = true
 scroll_active = false
 

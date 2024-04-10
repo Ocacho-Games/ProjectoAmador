@@ -1,11 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu3txaoe44d0f"]
+[gd_scene load_steps=14 format=3 uid="uid://bu3txaoe44d0f"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop_popup.gd" id="1_f1tbr"]
-[ext_resource type="Texture2D" uid="uid://d3o5stuvfydkn" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
-[ext_resource type="Texture2D" uid="uid://d0q7tw6ohyim3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_3s1mv"]
-[ext_resource type="Texture2D" uid="uid://c6s3eoldav4f2" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="4_ob80m"]
-[ext_resource type="Texture2D" uid="uid://cf52ds4mt0pcg" path="res://game/resources/img/bob/bob_1080x2280.png" id="5_iocon"]
-[ext_resource type="Texture2D" uid="uid://dwub7jn3y2me2" path="res://game/resources/img/button/button_ad_1080x2280.png" id="6_20tn0"]
+[ext_resource type="Texture2D" uid="uid://bxkd0h7y7n8cv" path="res://game/resources/img/shop/shop_window_popup.svg" id="1_swiau"]
+[ext_resource type="Texture2D" uid="uid://cm2l8ck8mj3i3" path="res://game/resources/img/button/button_cross_1080x2280.png" id="3_3s1mv"]
+[ext_resource type="Texture2D" uid="uid://bwdu73a3fiq5" path="res://game/resources/img/button/button_cross_pressed_1080x2280.png" id="4_gc6xg"]
+[ext_resource type="Texture2D" uid="uid://bhgddr4shifaf" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="4_ob80m"]
+[ext_resource type="Texture2D" uid="uid://dhu2bs7ysri7a" path="res://game/resources/img/bob/bob_1080x2280.png" id="5_iocon"]
+[ext_resource type="Texture2D" uid="uid://37hv1hvnsk3f" path="res://game/resources/img/button/button_ad_1080x2280.png" id="6_20tn0"]
+[ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="7_u67fy"]
+[ext_resource type="Theme" uid="uid://bn45dfbgto2lf" path="res://game/resources/font/themes/secondary_theme.tres" id="8_cjjsx"]
+[ext_resource type="Texture2D" uid="uid://cjtpiob1txe43" path="res://game/resources/img/button/button_ad_onClick_1080x2280.png" id="10_7j1ji"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_drw7e"]
 
@@ -58,6 +62,7 @@ size_flags_horizontal = 3
 [node name="Close" type="TextureButton" parent="CenterContainer/BasePopup/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_3s1mv")
+texture_pressed = ExtResource("4_gc6xg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BasePopup/VBoxContainer"]
 layout_mode = 2
@@ -90,7 +95,7 @@ layout_mode = 2
 
 [node name="Unlock" type="RichTextLabel" parent="CenterContainer/BasePopup/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme = ExtResource("7_u67fy")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[center]TO UNLOCK[/center]"
@@ -103,8 +108,8 @@ layout_mode = 2
 [node name="ObjectiveText" type="RichTextLabel" parent="CenterContainer/BasePopup/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 70
+theme = ExtResource("8_cjjsx")
+theme_override_font_sizes/normal_font_size = 41
 bbcode_enabled = true
 text = "[center]Objetive text[/center]"
 fit_content = true
@@ -130,17 +135,19 @@ size_flags_horizontal = 3
 [node name="VideoButton" type="TextureButton" parent="CenterContainer/BasePopup/VBoxContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 texture_normal = ExtResource("6_20tn0")
+texture_pressed = ExtResource("10_7j1ji")
 
 [node name="ObjectiveText" type="RichTextLabel" parent="CenterContainer/BasePopup/VBoxContainer/VBoxContainer/HBoxContainer2/VideoButton"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-offset_left = -85.0
-offset_right = 415.0
-offset_bottom = 96.0
+offset_left = -69.0
+offset_top = 25.0
+offset_right = 431.0
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme = ExtResource("7_u67fy")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[center]+1[/center]"

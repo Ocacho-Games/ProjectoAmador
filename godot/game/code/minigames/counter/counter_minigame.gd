@@ -4,7 +4,7 @@ extends Minigame
 # VARIABLES
 #==============================================================================
 
-@onready var counter_time_text : RichTextLabel = $counter_time_text
+@onready var counter_time_text : RichTextLabel = $CounterChronometer/counter_time_text
 var counter_time : float
 var is_counter_stopped : bool = false
 

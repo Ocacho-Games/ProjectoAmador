@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c15ka3i036qk5"]
+[gd_scene load_steps=13 format=3 uid="uid://c15ka3i036qk5"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/shop.gd" id="1_r0ehy"]
 [ext_resource type="PackedScene" uid="uid://beilypwomfk7n" path="res://game/scenes/menu/shop/collection.tscn" id="3_7mxy1"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://bhlu7uy66nv41" path="res://game/scenes/menu/base_structure.tscn" id="4_f5bo4"]
 [ext_resource type="Script" path="res://game/code/menu/ui/inherit_parent_minimum_size.gd" id="5_r71gc"]
 [ext_resource type="Texture2D" uid="uid://cch3ftl4r7ux6" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="6_r3var"]
-[ext_resource type="Texture2D" uid="uid://dwub7jn3y2me2" path="res://game/resources/img/button/button_ad_1080x2280.png" id="7_i1a8r"]
+[ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="7_0b7ps"]
+[ext_resource type="Script" path="res://game/code/menu/ui/coins_text.gd" id="7_ibi72"]
 [ext_resource type="Texture2D" uid="uid://dogjnccqss1xa" path="res://game/resources/img/shop/shop_btn_spin.svg" id="8_6k6ga"]
+[ext_resource type="Texture2D" uid="uid://dwub7jn3y2me2" path="res://game/resources/img/button/button_ad_1080x2280.png" id="9_ocpnh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xutth"]
 bg_color = Color(0.768627, 0.529412, 0.517647, 1)
@@ -51,12 +53,13 @@ texture = ExtResource("6_r3var")
 [node name="CoinsText" type="RichTextLabel" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("7_0b7ps")
 theme_override_font_sizes/normal_font_size = 70
-theme_override_font_sizes/bold_font_size = 70
 bbcode_enabled = true
-text = "[b]230[/b]"
+text = "230"
 fit_content = true
 scroll_following = true
+script = ExtResource("7_ibi72")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2"]
 layout_mode = 2
@@ -69,22 +72,21 @@ theme_override_constants/margin_right = 110
 [node name="VideoButton" type="TextureButton" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("7_i1a8r")
+texture_normal = ExtResource("9_ocpnh")
 
 [node name="ObjectiveText" type="RichTextLabel" parent="base_structure/VBoxContainer/GameZone/BaseTienda/CollectableTopPart/CollectableTopPart2/HBoxContainer2/VideoButton"]
 layout_mode = 2
-offset_left = 100.0
-offset_top = 10.0
-offset_right = 215.0
-offset_bottom = 128.0
+offset_left = 59.0
+offset_top = 24.0
+offset_right = 338.0
+offset_bottom = 142.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme = ExtResource("7_0b7ps")
 theme_override_font_sizes/normal_font_size = 70
-theme_override_font_sizes/bold_font_size = 60
 bbcode_enabled = true
-text = "[center][b]+20[/b][/center]"
+text = "[center]+20[/center]"
 fit_content = true
 autowrap_mode = 0
 

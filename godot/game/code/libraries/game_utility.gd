@@ -15,6 +15,13 @@ static var SCREEN_WIDTH_PLAY_ZONE : Vector2 = Vector2(0.,0.)
 static var SCREEN_HEIGHT_PLAY_ZONE : Vector2 = Vector2(0.,0.)
 
 #==============================================================================
+# VARIABLES
+#==============================================================================
+
+## Formats for RichLabelText using BBCode. 
+enum ETextFormat { center, b, left, right }
+
+#==============================================================================
 # PUBLIC FUNCTIONS
 #==============================================================================
 
@@ -83,6 +90,12 @@ static func remove_children(node : Node) -> void:
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
+		
+## Returns the given text formatted by the format
+##		
+static func get_formatted_text(text, format : ETextFormat) -> String:
+	return "[" + ETextFormat.keys()[format] + "]" + text + "[/" + ETextFormat.keys()[format] + "]" 
+		
 		
 ## Returns the given text centered
 ##
