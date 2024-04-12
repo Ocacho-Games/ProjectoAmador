@@ -41,7 +41,6 @@ var last_drag_vector		: Vector2 = Vector2( 0.0 , 0.0 )
 func _ready():
 	super._ready()
 	
-	gps_leader_board_id = "CgkIr7WWkr4cEAIQAQ"
 	_move_random_location_entities()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

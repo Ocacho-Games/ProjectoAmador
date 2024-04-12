@@ -9,7 +9,6 @@ extends Minigame
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	gps_leader_board_id = "CgkIr7WWkr4cEAIQBA"
 	piece_generator.on_finished_game.connect(func(): on_should_change_to_next_minigame.emit())
 	
 	

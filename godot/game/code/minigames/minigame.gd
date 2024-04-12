@@ -46,9 +46,6 @@ var score = 0.0
 ## If we want to show the max score instead of starting from 0. Depending on the game
 @export var show_max_score : bool = false
 
-## String ID related to the Google play services leaderboard for this game
-var gps_leader_board_id = "CgkIr7WWkr4cEAIQAQ"
-
 ## Whether this specific minigame is being played even though is paused or whatever
 var is_being_played = false
 

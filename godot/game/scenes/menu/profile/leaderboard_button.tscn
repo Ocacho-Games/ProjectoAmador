@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfqk0ryukdnqi"]
+
+[ext_resource type="Texture2D" uid="uid://c6s3eoldav4f2" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="1_burkf"]
+[ext_resource type="Script" path="res://game/code/menu/profile/leaderboard_button.gd" id="1_ev8mw"]
+[ext_resource type="Texture2D" uid="uid://dceji21p7dnsy" path="res://game/resources/img/spaceship/spaceship_asteroid_1080x2280.png" id="2_g6kbr"]
+
+[node name="leaderboard_button" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ev8mw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="BoxButton" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("1_burkf")
+
+[node name="asset" type="Sprite2D" parent="MarginContainer/BoxButton"]
+position = Vector2(128.5, 128.5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_g6kbr")
+
+[connection signal="pressed" from="MarginContainer/BoxButton" to="." method="_on_box_button_pressed"]

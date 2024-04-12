@@ -10,12 +10,6 @@ var last_coins_score = 50
 # GODOT FUNCTIONS
 #==============================================================================
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	super._ready()	
-	
-	gps_leader_board_id = "CgkIr7WWkr4cEAIQAg"
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	super._process(delta)

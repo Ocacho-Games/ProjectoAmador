@@ -15,7 +15,6 @@ var is_counter_stopped : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	super._ready()
-	gps_leader_board_id = "CgkIr7WWkr4cEAIQBg"
 	
 	var rng = RandomNumberGenerator.new()
 	counter_time = rng.randf_range(3.0, 5.0)

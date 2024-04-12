@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8ojfdmsewnn2"]
+
+[ext_resource type="PackedScene" uid="uid://bhlu7uy66nv41" path="res://game/scenes/menu/base_structure.tscn" id="1_nhhcu"]
+[ext_resource type="Script" path="res://game/code/menu/profile/profile.gd" id="2_vp13h"]
+[ext_resource type="PackedScene" uid="uid://bfqk0ryukdnqi" path="res://game/scenes/menu/profile/leaderboard_button.tscn" id="3_gj821"]
+[ext_resource type="Script" path="res://game/code/menu/ui/inherit_parent_minimum_size.gd" id="4_a1c5b"]
+
+[node name="profile" type="Node2D"]
+
+[node name="base_structure" parent="." instance=ExtResource("1_nhhcu")]
+
+[node name="GameZone" parent="base_structure/VBoxContainer" index="1"]
+script = ExtResource("2_vp13h")
+profile_leaderboard_button = ExtResource("3_gj821")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="base_structure/VBoxContainer/GameZone" index="0"]
+clip_contents = true
+custom_minimum_size = Vector2(1080, 1880)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_a1c5b")
+
+[editable path="base_structure"]

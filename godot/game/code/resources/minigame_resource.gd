@@ -27,3 +27,9 @@ enum EGenre {ADVENTURE, ACTION, SPORTS, PLATFORM, RACING, PUZZLE, CASUAL}
 
 # Array for storing metadata for the minigame. This will be used by the algorithm to provide minigames for the user
 @export var metadata		: Array[EGenre]
+
+# Sprite that represents the game
+@export var game_sprite 	: Texture2D
+
+# Leaderboard key
+@export var leaderboard_key 	: String

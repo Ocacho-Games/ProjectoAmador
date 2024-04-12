@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://fgnfdtvg8c3c"]
 
 [ext_resource type="Script" path="res://game/code/menu/shop/collectable.gd" id="1_28gil"]
-[ext_resource type="Texture2D" uid="uid://b1mbqdc03x8cb" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="2_w35uo"]
-[ext_resource type="Texture2D" uid="uid://hm25s7qlllkm" path="res://game/resources/img/icon/icon_ad_1080x2280.png" id="4_wo6r3"]
-[ext_resource type="Texture2D" uid="uid://dhpgwti74rd64" path="res://game/resources/img/icon/icon_selected_1080x2280.png" id="5_dcqci"]
-[ext_resource type="Texture2D" uid="uid://b7k2kp2y56rp0" path="res://game/resources/img/icon/icon_quiestion_1080x2280.png" id="6_ui32b"]
-[ext_resource type="Texture2D" uid="uid://bkfoai8kb1obs" path="res://game/resources/img/button/button_box_blocked_1080x2280.png" id="7_4xthe"]
-[ext_resource type="Texture2D" uid="uid://bhgddr4shifaf" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="8_ppg32"]
-[ext_resource type="Texture2D" uid="uid://b5g4dpdppvfgm" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_02_1080x2280.png" id="9_ho8ff"]
+[ext_resource type="Texture2D" uid="uid://cch3ftl4r7ux6" path="res://game/resources/img/icon/icon_coin_1080x2280.png" id="2_w35uo"]
+[ext_resource type="Texture2D" uid="uid://4e253obbnnt0" path="res://game/resources/img/icon/icon_ad_1080x2280.png" id="4_wo6r3"]
+[ext_resource type="Texture2D" uid="uid://hlli63xl70m3" path="res://game/resources/img/icon/icon_selected_1080x2280.png" id="5_dcqci"]
+[ext_resource type="Texture2D" uid="uid://cx8gjkarqunc7" path="res://game/resources/img/icon/icon_quiestion_1080x2280.png" id="6_ui32b"]
+[ext_resource type="Texture2D" uid="uid://b2bg5uf708dsg" path="res://game/resources/img/button/button_box_blocked_1080x2280.png" id="7_4xthe"]
+[ext_resource type="Texture2D" uid="uid://c6s3eoldav4f2" path="res://game/resources/img/button/button_box_blue_1080x2280.png" id="8_ppg32"]
+[ext_resource type="Texture2D" uid="uid://cv78bsudh7qk" path="res://game/resources/img/spaceship/skins/spaceship_asteroid_skin_02_1080x2280.png" id="9_ho8ff"]
 [ext_resource type="Theme" uid="uid://cwakdrhav6wvh" path="res://game/resources/font/themes/base_theme.tres" id="10_q02ic"]
-[ext_resource type="Texture2D" uid="uid://cavnhiwtbsa45" path="res://game/resources/img/icon/icon_info_1080x2280.png" id="10_qklgx"]
+[ext_resource type="Texture2D" uid="uid://bv5b53bamfh2" path="res://game/resources/img/icon/icon_info_1080x2280.png" id="10_qklgx"]
 
 [node name="collectable" type="MarginContainer"]
 scale = Vector2(0.6, 0.6)

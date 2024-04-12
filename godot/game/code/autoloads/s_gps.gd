@@ -67,13 +67,12 @@ func _notification(id):
 #==============================================================================
 
 ## Show the leaderboard of an specific minigame
-## [minigame]: Reference to the minigame in order to get the ID of the leaderboard
+## [leaderboard_id]: ID of the leaderboard from google play
 ##
-func show_leaderboard(minigame : Minigame) -> void:
+func show_leaderboard(leaderboard_id : String) -> void:
 	if OS.get_name() == "Android":
 		_check_gpgs()
-		assert(minigame, "Invalid minigame in order to show the its leaderboard!")
-		GPGS.showLeaderBoard(minigame.gps_leader_board_id)
+		GPGS.showLeaderBoard(leaderboard_id)
 
 ## Show all the leaderboards of this game
 ##	
